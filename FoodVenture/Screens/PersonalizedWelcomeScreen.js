@@ -21,13 +21,12 @@ import styles from "../styles";
 export default function PersonalizedWelcomeScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
-      {/* I cannot for the life of me get this to cover the whole screen */}
       <ImageBackground
         source={require("../assets/Foodventure_Background_Image.png")}
         style={styles.backgroundImage}
       >
         <Image
-          style={{ width: 50, height: 50 }}
+          style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
         <Text>Welcome</Text>
