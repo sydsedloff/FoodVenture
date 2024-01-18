@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   Button,
   ImageBackground,
@@ -7,11 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {
-  NavigationContainer,
-  useFocusEffect,
-  useRoute,
-} from "@react-navigation/native";
 import styles from "../styles";
 import LoginScreen from "./LoginScreen";
 import SignUpScreen from "./SignUpScreen";

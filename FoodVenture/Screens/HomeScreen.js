@@ -8,9 +8,8 @@ import {
   View,
 } from "react-native";
 import styles from "../styles";
-import HomeScreen from "./HomeScreen";
 
-export default function LoginScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
       <TextInput placeholder="Username" />
@@ -19,7 +18,7 @@ export default function LoginScreen({ navigation }) {
         <Text>Forgot Password</Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text onPress={() => navigation.navigate(HomeScreen)}>Sign In</Text>
+        <Text>Sign In</Text>
       </TouchableOpacity>
       <Text>or</Text>
       <TouchableOpacity>
