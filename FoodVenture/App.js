@@ -1,15 +1,5 @@
 import {
-  Button,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import {
   NavigationContainer,
-  useFocusEffect,
-  useRoute,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./Screens/WelcomeScreen";
@@ -17,7 +7,6 @@ import LoginScreen from "./Screens/LoginScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import PersonalizedWelcomeScreen from "./Screens/PersonalizedWelcomeScreen";
-import styles from "./styles";
 
 const Stack = createNativeStackNavigator();
 
