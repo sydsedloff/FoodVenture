@@ -19,7 +19,7 @@ export default function LoginScreen({ navigation }) {
         <Text>Forgot Password</Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text onPress={() => navigation.navigate(HomeScreen)}>Sign In</Text>
+        <Text onPress={() => navigation.navigate(HomeScreen)}>Log In</Text>
       </TouchableOpacity>
       <Text>or</Text>
       <TouchableOpacity>

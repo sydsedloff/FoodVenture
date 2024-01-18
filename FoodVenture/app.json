@@ -4,10 +4,10 @@
     "slug": "FoodVenture",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/FViconYellow",
+    "icon": "./assets/FViconYellow.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/FViconYellow",
+      "image": "./assets/FViconYellow.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,12 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/FViconYellow.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/FViconYellow"
+      "favicon": "./assets/FViconYellow.png"
     }
   }
 }
