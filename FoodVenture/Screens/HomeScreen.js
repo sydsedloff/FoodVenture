@@ -1,5 +1,4 @@
 import {
-  Button,
   ImageBackground,
   StyleSheet,
   Image,
@@ -17,7 +16,7 @@ export default function HomeScreen({ navigation }) {
         style={{ width: 50, height: 50 }}
         source={require("../assets/FViconYellow.png")}
       />
-      <TextInput placeholder="Search" />
+      <TextInput placeholder="Search" style={[styles.input]} />
 
       <Text>RESTAURANT NAME</Text>
       <Text>RESTAURANT IMAGE</Text>

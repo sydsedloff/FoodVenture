@@ -14,10 +14,19 @@ export default StyleSheet.create({
   },
   input: {
     borderColor: "black",
-    borderWidth: "2px",
+    borderWidth: "1px",
   },
   button: {
     r: { color: Colors.yellow, backgroundColor: Colors.red },
-    y: {},
+    y: { color: Colors.red, backgroundColor: Colors.yellow },
+    w: {
+      color: Colors.red,
+      backgroundColor: Colors.white,
+      borderColor: Colors.red,
+      borderWidth: "1px",
+    },
+  },
+  checkboxContainer: {
+    flexDirection: "row",
   },
 });
