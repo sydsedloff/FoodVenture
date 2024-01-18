@@ -13,6 +13,10 @@ import {
   useRoute,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import WelcomeScreen from "./Screens/WelcomeScreen";
+import LoginScreen from "./Screens/LoginScreen";
+import SignUpScreen from "./Screens/SignUpScreen";
+import styles from "./styles";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,44 +31,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-function handlePress() {
-  navigation.navigate(LoginScreen);
-}
-function WelcomeScreen({ navigation }) {
-  return (
-    <View style={[styles.container]}>
-      <Text>Welcome</Text>
-      <Text>to FoodVenture</Text>
-      <TouchableOpacity onPress={()=navigation.navigate(LoginScreen)}>
-        Log In
-      </TouchableOpacity>
-      <Button>Sign Up</Button>
-    </View>
-  );
-}
-
-function LoginScreen({ navigation }) {
-  return (
-    <View style={[styles.container]}>
-      <Text>This is the Login screen</Text>
-    </View>
-  );
-}
-
-function SignUpScreen({ navigation }) {
-  return (
-    <View style={[styles.container]}>
-      <Text>This is the Sign Up screen</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
