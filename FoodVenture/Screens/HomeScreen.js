@@ -11,6 +11,7 @@ import {
 import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
 import RestaurantScreen from "../Screens/RestaurantScreen";
+import FilterSidebar from "./FilterSidebar";
 
 // We will later need to limit how many restaurants are on the home page as this loads all of them
 //  Also when clicking on the image or title, it will need to grab the restaurant id/key for the restaurant page
@@ -50,6 +51,10 @@ export default function HomeScreen({ navigation }) {
         style={styles.logo}
         source={require("../assets/FViconYellow.png")}
       />
+      {/* BUTTON BELOW WILL BECOME FILTER ICON */}
+      <TouchableOpacity onPress={() => navigation.navigate(FilterSidebar)}>
+        <Text>Filter</Text>
+      </TouchableOpacity>
       <TextInput placeholder="Search" style={[styles.input]} />
       <FlatList
         data={myRestaurants}
