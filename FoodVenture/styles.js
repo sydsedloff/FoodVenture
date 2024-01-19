@@ -74,4 +74,12 @@ export default StyleSheet.create({
     alignItems: "center",
     width: "100%", // Make the checkboxContainer take up 100% of its parent's width
   },
+  link: {
+    color: Colors.red,
+    textDecorationLine: "underline",
+  },
+  image: {
+    height: "200px",
+    width: "300px",
+  },
 });
