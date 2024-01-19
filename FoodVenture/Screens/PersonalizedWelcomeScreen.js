@@ -15,6 +15,7 @@ import {
   useRoute,
 } from "@react-navigation/native";
 import styles from "../styles";
+import HomeScreen from "./HomeScreen";
 
 // const [isSelected, setSelection] = useState(false);
 
@@ -65,6 +66,9 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           />
           <Text>Vegetarian</Text>
         </View>
+        <TouchableOpacity onPress={() => navigation.navigate(HomeScreen)}>
+          <Text style={[styles.button.r]}>Done</Text>
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
