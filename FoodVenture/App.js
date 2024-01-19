@@ -6,6 +6,7 @@ import SignUpScreen from "./Screens/SignUpScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import PersonalizedWelcomeScreen from "./Screens/PersonalizedWelcomeScreen";
 import RestaurantScreen from "./Screens/RestaurantScreen";
+import FilterSidebar from "./Screens/FilterSidebar";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,11 @@ export default function App() {
         <Stack.Screen
           name="RestaurantScreen"
           component={RestaurantScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="FilterSidebar"
+          component={FilterSidebar}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

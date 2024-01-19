@@ -37,7 +37,7 @@ export default function SignUpScreen({ navigation }) {
           <TouchableOpacity>
             <Text>Forgot Password</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button.r]}>
+          <TouchableOpacity>
             <Text
               style={[styles.button.y]}
               onPress={() => navigation.navigate(PersonalizedWelcomeScreen)}
@@ -46,7 +46,7 @@ export default function SignUpScreen({ navigation }) {
             </Text>
           </TouchableOpacity>
           <Text>or</Text>
-          <TouchableOpacity style={[styles.button.w]}>
+          <TouchableOpacity>
             <Text
               style={[styles.button.w]}
               onPress={() => navigation.navigate(LoginScreen)}

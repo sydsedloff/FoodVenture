@@ -65,14 +65,28 @@ export default StyleSheet.create({
     r: {
       ...baseButtonStyle,
       backgroundColor: Colors.red,
+      width: "8rem",
+      justifyContent: "center",
+      flex: 1,
+      padding: "0.5rem",
+      margin: "0.5rem",
     },
     y: {
       ...baseButtonStyle,
       backgroundColor: Colors.yellow,
+      width: "8rem",
+      justifyContent: "center",
+      flex: 1,
+      padding: "0.5rem",
     },
     w: {
       ...baseButtonStyle,
       backgroundColor: Colors.white,
+      width: "8rem",
+      justifyContent: "center",
+      flex: 1,
+      padding: "0.5rem",
+      textAlign: "center",
     },
   },
   buttonText: {
