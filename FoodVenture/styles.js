@@ -48,7 +48,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     height: 40,
-    width: "100%",
+    width: "50%",
     marginBottom: 10,
     paddingHorizontal: 10, // Use a number for paddingHorizontal
   },
