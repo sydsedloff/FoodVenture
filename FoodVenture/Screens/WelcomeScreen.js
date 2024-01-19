@@ -26,18 +26,12 @@ export default function WelcomeScreen({ navigation }) {
         <View style={styles.contentContainer}>
           <Text>Welcome</Text>
           <Text>to FoodVenture</Text>
-          <TouchableOpacity
-            style={[styles.button.r]}
-            onPress={() => navigation.navigate(LoginScreen)}
-          >
-            <Text>Log In</Text>
+          <TouchableOpacity onPress={() => navigation.navigate(LoginScreen)}>
+            <Text style={[styles.button.r]}>Log In</Text>
           </TouchableOpacity>
           <Text>or</Text>
-          <TouchableOpacity
-            style={[styles.button.r]}
-            onPress={() => navigation.navigate(SignUpScreen)}
-          >
-            <Text>Sign Up</Text>
+          <TouchableOpacity onPress={() => navigation.navigate(SignUpScreen)}>
+            <Text style={[styles.button.r]}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
