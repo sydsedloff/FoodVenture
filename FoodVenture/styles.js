@@ -8,8 +8,16 @@ const baseButtonStyle = {
   height: 40,
   boxSizing: "border-box",
   textAlign: "center",
-  width: "100%", // Make the button take up 100% of its parent's width
+  width: "100%",
+  justifyContent: "center", // Center vertically
+  alignItems: "center", // Center horizontally
 };
+
+const createButtonStyle = (textColor, bgColor) => ({
+  ...baseButtonStyle,
+  color: textColor,
+  backgroundColor: bgColor,
+});
 
 export default StyleSheet.create({
   container: {
@@ -17,8 +25,9 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    display: "flex", // Use display: flex
+    display: "flex",
     justifyContent: "space-between",
+    height: "100%",
   },
   backgroundImage: {
     flex: 1,
@@ -29,8 +38,8 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   contentContainer: {
-    display: "flex", // Use display: flex
-    flexDirection: "column", // Stack child elements vertically
+    display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     padding: 20,
     width: "80%",
@@ -50,12 +59,11 @@ export default StyleSheet.create({
     height: 40,
     width: "50%",
     marginBottom: 10,
-    paddingHorizontal: 10, // Use a number for paddingHorizontal
+    paddingHorizontal: 10,
   },
   button: {
     r: {
       ...baseButtonStyle,
-      color: Colors.yellow,
       backgroundColor: Colors.red,
       width: "8rem",
       justifyContent: "center",
@@ -65,7 +73,6 @@ export default StyleSheet.create({
     },
     y: {
       ...baseButtonStyle,
-      color: Colors.red,
       backgroundColor: Colors.yellow,
       width: "8rem",
       justifyContent: "center",
@@ -74,7 +81,6 @@ export default StyleSheet.create({
     },
     w: {
       ...baseButtonStyle,
-      color: Colors.red,
       backgroundColor: Colors.white,
       width: "8rem",
       justifyContent: "center",
@@ -83,10 +89,18 @@ export default StyleSheet.create({
       textAlign: "center",
     },
   },
+  buttonText: {
+    r: { color: Colors.red, textAlign: "center", height: "100%" },
+    y: {
+      color: Colors.yellow,
+      textAlign: "center",
+    },
+    w: { color: Colors.white, textAlign: "center", height: "100%" },
+  },
   checkboxContainer: {
     flexDirection: "row",
     alignItems: "center",
-    width: "100%", // Make the checkboxContainer take up 100% of its parent's width
+    width: "100%",
   },
   link: {
     color: Colors.red,

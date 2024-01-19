@@ -1,12 +1,10 @@
 import {
   ImageBackground,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
   Image,
   Text,
-  TouchableOpacity,
+  Pressable,
   View,
+  Button,
 } from "react-native";
 import styles from "../styles";
 import LoginScreen from "./LoginScreen";
@@ -23,16 +21,18 @@ export default function WelcomeScreen({ navigation }) {
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
+        <Text>Welcome</Text>
+        <Text>to FoodVenture</Text>
         <View style={styles.contentContainer}>
           <Text>Welcome</Text>
           <Text>to FoodVenture</Text>
-          <TouchableOpacity onPress={() => navigation.navigate(LoginScreen)}>
+          <Pressable onPress={() => navigation.navigate(LoginScreen)}>
             <Text style={[styles.button.r]}>Log In</Text>
-          </TouchableOpacity>
+          </Pressable>
           <Text>or</Text>
-          <TouchableOpacity onPress={() => navigation.navigate(SignUpScreen)}>
+          <Pressable onPress={() => navigation.navigate(SignUpScreen)}>
             <Text style={[styles.button.r]}>Sign Up</Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </ImageBackground>
     </View>
