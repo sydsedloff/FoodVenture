@@ -15,7 +15,6 @@ import SignUpScreen from "./SignUpScreen";
 export default function WelcomeScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
-      {/* I cannot for the life of me get this to cover the whole screen */}
       <ImageBackground
         source={require("../assets/Foodventure_Background_Image.png")}
         style={styles.backgroundImage}
