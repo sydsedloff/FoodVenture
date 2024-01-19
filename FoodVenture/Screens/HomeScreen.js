@@ -53,7 +53,7 @@ export default function HomeScreen({ navigation }) {
       />
       {/* BUTTON BELOW WILL BECOME FILTER ICON */}
       <TouchableOpacity onPress={() => navigation.navigate(FilterSidebar)}>
-        <Text>Filter</Text>
+        <Text style={[styles.button.r]}>Filter (temp button)</Text>
       </TouchableOpacity>
       <TextInput placeholder="Search" style={[styles.input]} />
       <FlatList

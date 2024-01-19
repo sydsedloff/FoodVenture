@@ -65,8 +65,9 @@ export default StyleSheet.create({
     r: {
       ...baseButtonStyle,
       backgroundColor: Colors.red,
+      color: Colors.yellow,
       width: "8rem",
-      justifyContent: "center",
+      textAlign: "center",
       flex: 1,
       padding: "0.5rem",
       margin: "0.5rem",

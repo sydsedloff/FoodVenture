@@ -20,11 +20,12 @@ export default function LoginScreen({ navigation }) {
         source={require("../assets/Foodventure_Background_Image.png")}
         style={styles.backgroundImage}
       >
+        <Image
+          style={styles.logo}
+          source={require("../assets/FViconYellow.png")}
+        />
         <View style={styles.contentContainer}>
-          <Image
-            style={styles.logo}
-            source={require("../assets/FViconYellow.png")}
-          />
+          <Text>Login</Text>
           {/* Style the input elements */}
           <TextInput placeholder="Username" style={styles.input} />
           <TextInput placeholder="Password" style={styles.input} />
