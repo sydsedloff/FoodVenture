@@ -21,18 +21,24 @@ export default function WelcomeScreen({ navigation }) {
         style={styles.backgroundImage}
       >
         <Image
-          style={{ width: 50, height: 50 }}
+          style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
-        <View>
+        <View style={styles.contentContainer}>
           <Text>Welcome</Text>
           <Text>to FoodVenture</Text>
-          <TouchableOpacity onPress={() => navigation.navigate(LoginScreen)}>
-            <Text style={[styles.button.r]}>Log In</Text>
+          <TouchableOpacity
+            style={[styles.button.r]}
+            onPress={() => navigation.navigate(LoginScreen)}
+          >
+            <Text>Log In</Text>
           </TouchableOpacity>
           <Text>or</Text>
-          <TouchableOpacity onPress={() => navigation.navigate(SignUpScreen)}>
-            <Text style={[styles.button.r]}>Sign Up</Text>
+          <TouchableOpacity
+            style={[styles.button.r]}
+            onPress={() => navigation.navigate(SignUpScreen)}
+          >
+            <Text>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

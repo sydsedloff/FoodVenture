@@ -1,3 +1,4 @@
+import React from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -13,38 +14,41 @@ import SignUpScreen from "./SignUpScreen";
 
 export default function LoginScreen({ navigation }) {
   return (
-    <View style={[styles.container]}>
-      {/* I cannot for the life of me get this to cover the whole screen */}
+    <View style={styles.container}>
+      {/* Remove the title at the top of the screen */}
       <ImageBackground
         source={require("../assets/Foodventure_Background_Image.png")}
         style={styles.backgroundImage}
       >
-        <Image
-          style={{ width: 50, height: 50 }}
-          source={require("../assets/FViconYellow.png")}
-        />
-        <TextInput placeholder="Username" style={[styles.input]} />
-        <TextInput placeholder="Password" style={[styles.input]} />
-        <TouchableOpacity>
-          <Text>Forgot Password</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            onPress={() => navigation.navigate(HomeScreen)}
-            style={[styles.button.r]}
-          >
-            Log In
-          </Text>
-        </TouchableOpacity>
-        <Text>or</Text>
-        <TouchableOpacity>
-          <Text
-            onPress={() => navigation.navigate(SignUpScreen)}
-            style={[styles.button.w]}
-          >
-            Sign Up
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.contentContainer}>
+          <Image
+            style={styles.logo}
+            source={require("../assets/FViconYellow.png")}
+          />
+          {/* Style the input elements */}
+          <TextInput placeholder="Username" style={styles.input} />
+          <TextInput placeholder="Password" style={styles.input} />
+          <TouchableOpacity>
+            <Text>Forgot Password</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text
+              onPress={() => navigation.navigate(HomeScreen)}
+              style={styles.button.r}
+            >
+              Log In
+            </Text>
+          </TouchableOpacity>
+          <Text>or</Text>
+          <TouchableOpacity>
+            <Text
+              onPress={() => navigation.navigate(SignUpScreen)}
+              style={styles.button.w}
+            >
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     </View>
   );
