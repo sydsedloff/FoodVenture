@@ -5,8 +5,8 @@ import {
   TextInput,
   Text,
   CheckBox,
-  TouchableOpacity,
   View,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -207,9 +207,9 @@ export default function FilterSidebar({ navigation }) {
         />
         <Text>Pizza</Text>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate(HomeScreen)}>
+      <Pressable onPress={() => navigation.navigate(HomeScreen)}>
         <Text style={[styles.button.r]}>Apply</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }

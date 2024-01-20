@@ -4,7 +4,7 @@ import {
   Image,
   Text,
   TextInput,
-  TouchableOpacity,
+  Pressable,
   View,
   FlatList,
 } from "react-native";

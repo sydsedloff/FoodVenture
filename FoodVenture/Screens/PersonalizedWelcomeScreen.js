@@ -7,6 +7,7 @@ import {
   CheckBox,
   TouchableOpacity,
   View,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -69,9 +70,9 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           </View>
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate(HomeScreen)}>
+        <Pressable onPress={() => navigation.navigate(HomeScreen)}>
           <Text style={[styles.button.r]}>Done</Text>
-        </TouchableOpacity>
+        </Pressable>
       </ImageBackground>
     </View>
   );

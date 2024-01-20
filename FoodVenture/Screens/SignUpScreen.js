@@ -4,8 +4,8 @@ import {
   StyleSheet,
   TextInput,
   Text,
-  TouchableOpacity,
   View,
+  Pressable,
 } from "react-native";
 import {
   NavigationContainer,
@@ -34,26 +34,26 @@ export default function SignUpScreen({ navigation }) {
           <TextInput placeholder="Username" style={[styles.input]} />
           <TextInput placeholder="Password" style={[styles.input]} />
 
-          <TouchableOpacity>
+          <Pressable>
             <Text>Forgot Password</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
+          </Pressable>
+          <Pressable>
             <Text
               style={[styles.button.y]}
               onPress={() => navigation.navigate(PersonalizedWelcomeScreen)}
             >
               Sign Up
             </Text>
-          </TouchableOpacity>
+          </Pressable>
           <Text>or</Text>
-          <TouchableOpacity>
+          <Pressable>
             <Text
               style={[styles.button.w]}
               onPress={() => navigation.navigate(LoginScreen)}
             >
               Log In
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </ImageBackground>
     </View>
