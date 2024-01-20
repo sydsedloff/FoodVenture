@@ -57,7 +57,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     height: 40,
-    width: "100%",
+    width: "50%",
     marginBottom: 10,
     paddingHorizontal: 10,
   },
@@ -65,14 +65,29 @@ export default StyleSheet.create({
     r: {
       ...baseButtonStyle,
       backgroundColor: Colors.red,
+      color: Colors.yellow,
+      width: "8rem",
+      textAlign: "center",
+      flex: 1,
+      padding: "0.5rem",
+      margin: "0.5rem",
     },
     y: {
       ...baseButtonStyle,
       backgroundColor: Colors.yellow,
+      width: "8rem",
+      justifyContent: "center",
+      flex: 1,
+      padding: "0.5rem",
     },
     w: {
       ...baseButtonStyle,
       backgroundColor: Colors.white,
+      width: "8rem",
+      justifyContent: "center",
+      flex: 1,
+      padding: "0.5rem",
+      textAlign: "center",
     },
   },
   buttonText: {
@@ -87,5 +102,13 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
+  },
+  link: {
+    color: Colors.red,
+    textDecorationLine: "underline",
+  },
+  image: {
+    height: "200px",
+    width: "300px",
   },
 });
