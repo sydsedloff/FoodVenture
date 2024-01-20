@@ -11,7 +11,7 @@ import {
 import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
 
-const Restaurant = ({ name, image, address, description, website }) => {
+const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
     <View style={styles.container}>
       <Text>{name}</Text>
@@ -34,19 +34,14 @@ export default function RestaurantScreen({ navigation }) {
       />
       <TextInput placeholder="Search" style={[styles.input]} />
       <Text>This is the Restaurant Page</Text>
-      <FlatList
-        data={myRestaurants}
-        renderItem={({ item }) => (
-          <Restaurant
-            name="Restaurant Name"
-            image="https://placehold.co/300x200/"
-            address="Restaurant Address"
-            description="Restaurant Description"
-            website="Restaurant Website"
-          />
-        )}
-        keyExtractor={(item) => item.id}
-      ></FlatList>
+      <RestaurantSingle
+        name="Restaurant Name"
+        image="https://placehold.co/300x200/"
+        address="Restaurant Address"
+        description="Restaurant Description"
+        website="Restaurant Website"
+      />
+      {/* keyExtractor={(item) => item.id} */}
     </View>
   );
 }

@@ -12,6 +12,7 @@ import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
 import RestaurantScreen from "../Screens/RestaurantScreen";
 import FilterSidebar from "./FilterSidebar";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // We will later need to limit how many restaurants are on the home page as this loads all of them
 //  Also when clicking on the image or title, it will need to grab the restaurant id/key for the restaurant page
@@ -43,6 +44,18 @@ const Restaurants = ({
     </View>
   );
 };
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      {/* <Tab.Screen name="CreatFoodTourScreen" component={CreatFoodTourScreen} /> */}
+      {/* <Tab.Screen name="SavedScreen" component={SavedScreen} /> */}
+    </Tab.Navigator>
+  );
+}
 
 export default function HomeScreen({ navigation }) {
   return (
