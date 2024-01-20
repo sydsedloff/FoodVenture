@@ -7,8 +7,21 @@ import HomeScreen from "./Screens/HomeScreen";
 import PersonalizedWelcomeScreen from "./Screens/PersonalizedWelcomeScreen";
 import RestaurantScreen from "./Screens/RestaurantScreen";
 import FilterSidebar from "./Screens/FilterSidebar";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Stack = createNativeStackNavigator();
+
+const Tab = createBottomTabNavigator();
+
+export function TabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Log In" component={LoginScreen} />
+      <Tab.Screen name="Restaurant Screen" component={RestaurantScreen} />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -48,6 +61,11 @@ export default function App() {
         <Stack.Screen
           name="FilterSidebar"
           component={FilterSidebar}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NavBar"
+          component={TabNavigator}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
