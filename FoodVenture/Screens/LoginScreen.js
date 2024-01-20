@@ -5,8 +5,8 @@ import {
   Text,
   Image,
   TextInput,
-  TouchableOpacity,
   View,
+  Pressable,
 } from "react-native";
 import styles from "../styles";
 import HomeScreen from "./HomeScreen";
@@ -29,26 +29,26 @@ export default function LoginScreen({ navigation }) {
           {/* Style the input elements */}
           <TextInput placeholder="Username" style={styles.input} />
           <TextInput placeholder="Password" style={styles.input} />
-          <TouchableOpacity>
+          <Pressable>
             <Text>Forgot Password</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
+          </Pressable>
+          <Pressable>
             <Text
               onPress={() => navigation.navigate(HomeScreen)}
               style={styles.button.r}
             >
               Log In
             </Text>
-          </TouchableOpacity>
+          </Pressable>
           <Text>or</Text>
-          <TouchableOpacity>
+          <Pressable>
             <Text
               onPress={() => navigation.navigate(SignUpScreen)}
               style={styles.button.w}
             >
               Sign Up
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </ImageBackground>
     </View>

@@ -4,9 +4,9 @@ import {
   Image,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
   FlatList,
+  Pressable,
 } from "react-native";
 import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
@@ -25,21 +25,21 @@ const Restaurants = ({
 }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate(RestaurantScreen)}>
+      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         <Text>{name}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate(RestaurantScreen)}>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         <Image source={{ uri: image }} style={[styles.image]}></Image>
-      </TouchableOpacity>
+      </Pressable>
       <Text>{address}</Text>
       <Text>{description}</Text>
       <Text style={[styles.link]} href={[website]}>
         {website}
       </Text>
-      <TouchableOpacity onPress={() => navigation.navigate(RestaurantScreen)}>
+      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         {/* Will need to grab key for restaurant screen */}
         <Text>See Details</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
@@ -52,9 +52,9 @@ export default function HomeScreen({ navigation }) {
         source={require("../assets/FViconYellow.png")}
       />
       {/* BUTTON BELOW WILL BECOME FILTER ICON */}
-      <TouchableOpacity onPress={() => navigation.navigate(FilterSidebar)}>
+      <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
         <Text style={[styles.button.r]}>Filter (temp button)</Text>
-      </TouchableOpacity>
+      </Pressable>
       <TextInput placeholder="Search" style={[styles.input]} />
       <FlatList
         data={myRestaurants}
