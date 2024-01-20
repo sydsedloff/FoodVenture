@@ -22,7 +22,7 @@ export default function WelcomeScreen({ navigation }) {
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
-        <Text>Welcome</Text>
+        <Text style={styles.h1}>Welcome</Text>
         <Text>to FoodVenture</Text>
         <View style={styles.contentContainer}>
           <Pressable

@@ -13,13 +13,13 @@ const baseButtonStyle = {
   alignItems: "center", // Center horizontally
 };
 
-const createButtonStyle = (textColor, bgColor) => ({
-  ...baseButtonStyle,
-  color: textColor,
-  backgroundColor: bgColor,
-});
+const baseContainerStyle = {};
 
 export default StyleSheet.create({
+  h1: {
+    fontSize: 32, // Adjust the size as needed
+    fontFamily: "FugazOne-Regular", // Use the registered font family
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
