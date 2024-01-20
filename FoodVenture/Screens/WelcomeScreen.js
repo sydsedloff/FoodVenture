@@ -21,7 +21,7 @@ export default function WelcomeScreen({ navigation }) {
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
-        <View>
+        <View style={styles.contentContainer}>
           <Text>Welcome</Text>
           <Text>to FoodVenture</Text>
           <Pressable onPress={() => navigation.navigate(LoginScreen)}>
