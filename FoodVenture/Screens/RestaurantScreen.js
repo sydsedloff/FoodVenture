@@ -42,7 +42,7 @@ export default function RestaurantScreen({ navigation }) {
           website="https://www.google.com"
         />
         <Text>Make a reservation</Text>
-        <Text>Party Size</Text>
+        <Text>Party Size (future dropdown)</Text>
         <Pressable>
           <Text
             style={[styles.buttonLarge.r]}
