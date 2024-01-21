@@ -32,15 +32,19 @@ export default function RestaurantScreen({ navigation }) {
         style={styles.logo}
         source={require("../assets/FViconYellow.png")}
       />
-      <TextInput placeholder="Search" style={[styles.input]} />
-      <Text>This is the Restaurant Page</Text>
+
       <RestaurantSingle
         name="Restaurant Name"
         image="https://placehold.co/300x200/"
-        address="Restaurant Address"
-        description="Restaurant Description"
-        website="Restaurant Website"
+        address="123 Roady Rd, Orlando, FL 12345"
+        description="This is a description of a restaurant that serves food. Ideally it would be good food, but you never know."
+        website="https://www.google.com"
       />
+      <Text>Make a reservation</Text>
+      <Text>Party Size</Text>
+      <Pressable>
+        <Text style={[styles.button.r]}>Make Reservation</Text>
+      </Pressable>
       {/* keyExtractor={(item) => item.id} */}
     </View>
   );
