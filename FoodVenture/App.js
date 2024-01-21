@@ -1,5 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as Font from "expo-font"; // Import Font from Expo
+
+// Import screens
 import WelcomeScreen from "./Screens/WelcomeScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
@@ -7,13 +11,12 @@ import HomeScreen from "./Screens/HomeScreen";
 import PersonalizedWelcomeScreen from "./Screens/PersonalizedWelcomeScreen";
 import RestaurantScreen from "./Screens/RestaurantScreen";
 import FilterSidebar from "./Screens/FilterSidebar";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as Font from "expo-font"; // Import Font from Expo
 
 // Import custom fonts
 import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
 import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
 import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
+import ReservationScreen from "./Screens/ReservationScreen";
 
 // Register custom fonts
 Font.loadAsync({
@@ -74,6 +77,11 @@ export default function App() {
         <Stack.Screen
           name="FilterSidebar"
           component={FilterSidebar}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ReservationScreen"
+          component={ReservationScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
