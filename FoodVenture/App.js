@@ -12,10 +12,14 @@ import * as Font from "expo-font"; // Import Font from Expo
 
 // Import custom fonts
 import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
+import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
+import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf"
 
 // Register custom fonts
 Font.loadAsync({
   "FugazOne-Regular": FugazOneRegular,
+  "MerriweatherSans-Bold": MerriweatherSansBold,
+  "SignikaNegative-Regular": SignikaNegativeRegular
 });
 
 const Stack = createNativeStackNavigator();

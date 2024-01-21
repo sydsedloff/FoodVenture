@@ -1,11 +1,4 @@
-import {
-  ImageBackground,
-  Image,
-  Text,
-  Pressable,
-  View,
-  Button,
-} from "react-native";
+import { ImageBackground, Image, Text, Pressable, View } from "react-native";
 import styles from "../styles";
 import LoginScreen from "./LoginScreen";
 import SignUpScreen from "./SignUpScreen";
@@ -21,17 +14,20 @@ export default function WelcomeScreen({ navigation }) {
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
-        <Text style={styles.h1}>Welcome</Text>
-        <Text>to FoodVenture</Text>
-        <View style={styles.contentContainer}>
-          <Text>Welcome</Text>
-          <Text>to FoodVenture</Text>
-          <Pressable onPress={() => navigation.navigate(LoginScreen)}>
-            <Text style={[styles.button.r]}>Log In</Text>
+        <View style={styles.contentContainer.transparent}>
+          <Text style={styles.h1.r}>Welcome</Text>
+          <Text style={styles.h3.r}>to FoodVenture</Text>
+          <Pressable
+            style={[styles.buttonLarge.r]}
+            onPress={() => navigation.navigate(LoginScreen)}
+          >
+            <Text style={[styles.buttonLargeText.y]}>Log In</Text>
           </Pressable>
-          <Text>or</Text>
-          <Pressable onPress={() => navigation.navigate(SignUpScreen)}>
-            <Text style={[styles.button.r]}>Sign Up</Text>
+          <Pressable
+            style={[styles.buttonLarge.r]}
+            onPress={() => navigation.navigate(SignUpScreen)}
+          >
+            <Text style={[styles.buttonLargeText.y]}>Sign Up</Text>
           </Pressable>
         </View>
       </ImageBackground>
