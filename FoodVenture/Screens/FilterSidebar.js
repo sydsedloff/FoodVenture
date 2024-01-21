@@ -208,7 +208,7 @@ export default function FilterSidebar({ navigation }) {
         <Text>Pizza</Text>
       </View>
       <Pressable onPress={() => navigation.navigate(HomeScreen)}>
-        <Text style={[styles.button.r]}>Apply</Text>
+        <Text style={[styles.buttonLarge.r]}>Apply</Text>
       </Pressable>
     </View>
   );
