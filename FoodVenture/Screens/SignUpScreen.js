@@ -1,7 +1,6 @@
 import {
   ImageBackground,
   Image,
-  StyleSheet,
   TextInput,
   Text,
   View,
@@ -27,32 +26,24 @@ export default function SignUpScreen({ navigation }) {
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
-        <View style={styles.contentContainer}>
-          <Text>Sign Up</Text>
+        <View style={styles.contentContainer.white}>
+          <Text style={styles.h2.r}>Sign Up</Text>
           <TextInput placeholder="Full Name" style={[styles.input]} />
           <TextInput placeholder="Email" style={[styles.input]} />
           <TextInput placeholder="Username" style={[styles.input]} />
           <TextInput placeholder="Password" style={[styles.input]} />
-
-          <Pressable>
-            <Text>Forgot Password</Text>
-          </Pressable>
-          <Pressable>
-            <Text
-              style={[styles.button.y]}
-              onPress={() => navigation.navigate(PersonalizedWelcomeScreen)}
-            >
-              Sign Up
-            </Text>
+          <Pressable
+            style={[styles.buttonLarge.y]}
+            onPress={() => navigation.navigate(PersonalizedWelcomeScreen)}
+          >
+            <Text style={[styles.buttonLargeText.r]}>Sign Up</Text>
           </Pressable>
           <Text>or</Text>
-          <Pressable>
-            <Text
-              style={[styles.button.w]}
-              onPress={() => navigation.navigate(LoginScreen)}
-            >
-              Log In
-            </Text>
+          <Pressable
+            style={[styles.buttonLarge.w]}
+            onPress={() => navigation.navigate(LoginScreen)}
+          >
+            <Text style={[styles.buttonLargeText.r]}>Log In</Text>
           </Pressable>
         </View>
       </ImageBackground>

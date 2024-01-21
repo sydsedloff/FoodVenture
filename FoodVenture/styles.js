@@ -1,112 +1,176 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "./colors";
 
-const baseButtonStyle = {
-  borderColor: Colors.red,
-  borderWidth: 1,
-  borderRadius: 5,
-  height: 40,
+const baseButtonLargeStyle = {
+  borderRadius: 15,
   boxSizing: "border-box",
-  textAlign: "center",
+  alignItems: "center",
+  padding: "0.5rem",
   width: "100%",
-  justifyContent: "center", // Center vertically
-  alignItems: "center", // Center horizontally
+  marginVertical: 10,
 };
 
-const baseContainerStyle = {};
+const baseButtonLargeTextStyle = {
+  fontFamily: "MerriweatherSans-Bold",
+  fontSize: 24,
+};
+
+const baseH1Style = {
+  fontSize: 64,
+  fontFamily: "FugazOne-Regular",
+  margin: 0,
+};
+
+const baseH2Style = {
+  fontSize: 48,
+  fontFamily: "FugazOne-Regular",
+  margin: 0,
+};
+
+const baseH3Style = {
+  fontSize: 32,
+  fontFamily: "FugazOne-Regular",
+};
 
 export default StyleSheet.create({
   h1: {
-    fontSize: 32, // Adjust the size as needed
-    fontFamily: "FugazOne-Regular", // Use the registered font family
+    r: {
+      ...baseH1Style,
+      color: Colors.red,
+      lineHeight: 55,
+      paddingTop: 21,
+    },
+    b: {
+      ...baseH1Style,
+      color: Colors.black,
+      paddingBottom: 21,
+    },
+  },
+  h2: {
+    r: {
+      ...baseH2Style,
+      color: Colors.red,
+      paddingBottom: 16,
+      fontFamily: "FugazOne-Regular",
+    },
+    b: {
+      ...baseH2Style,
+      color: Colors.black,
+      fontFamily: "FugazOne-Regular",
+    },
+  },
+  h3: {
+    r: {
+      ...baseH3Style,
+      color: Colors.red,
+      paddingBottom: 16,
+    },
+    b: {
+      ...baseH3Style,
+      color: Colors.black,
+    },
   },
   container: {
-    flex: 1,
+    display: "flex",
     backgroundColor: "#fff",
+    height: "100%",
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    display: "flex",
-    justifyContent: "space-between",
-    height: "100%",
   },
   backgroundImage: {
-    flex: 1,
     width: "100%",
     height: "100%",
+    display: "flex",
+    justifyContent: "Center",
     resizeMode: "contain",
     alignItems: "center",
-    justifyContent: "center",
   },
   contentContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: 20,
-    width: "80%",
-    backgroundColor: Colors.white,
-    borderRadius: 8,
-    borderColor: Colors.grey,
-    borderWidth: 1,
+    white: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-around",
+      width: "80%",
+      backgroundColor: Colors.white,
+      borderRadius: 15,
+      border: "1px solid #4A4F4A80",
+      padding: "5%",
+      height: "fit-content",
+      marginVertical: 15,
+    },
+    transparent: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      width: "80%",
+      justifyContent: "space-between",
+      height: "13%",
+      height: "fit-content",
+    },
   },
   logo: {
-    width: 128,
-    height: 128,
+    width: 132,
+    height: 132,
   },
   input: {
     borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 5,
-    height: 40,
-    width: "50%",
-    marginBottom: 10,
-    paddingHorizontal: 10,
+    borderWidth: 2,
+    borderRadius: 15,
+    height: 48,
+    width: "100%",
+    padding: "0.5rem",
+    fontSize: 24,
+    fontFamily: "SignikaNegative-Regular",
+    placeholderTextColor: Colors.grey,
+    marginBottom: 20,
   },
-  button: {
+  buttonLarge: {
     r: {
-      ...baseButtonStyle,
+      ...baseButtonLargeStyle,
       backgroundColor: Colors.red,
       color: Colors.yellow,
-      width: "8rem",
-      textAlign: "center",
-      flex: 1,
-      padding: "0.5rem",
-      margin: "0.5rem",
     },
     y: {
-      ...baseButtonStyle,
+      ...baseButtonLargeStyle,
       backgroundColor: Colors.yellow,
-      width: "8rem",
-      justifyContent: "center",
-      flex: 1,
-      padding: "0.5rem",
     },
     w: {
-      ...baseButtonStyle,
+      ...baseButtonLargeStyle,
       backgroundColor: Colors.white,
-      width: "8rem",
-      justifyContent: "center",
-      flex: 1,
-      padding: "0.5rem",
-      textAlign: "center",
+      borderColor: Colors.red,
+      borderWidth: 3,
     },
   },
-  buttonText: {
-    r: { color: Colors.red, textAlign: "center", height: "100%" },
+
+  buttonLargeText: {
+    r: {
+      ...baseButtonLargeTextStyle,
+      color: Colors.red,
+    },
     y: {
+      ...baseButtonLargeTextStyle,
       color: Colors.yellow,
-      textAlign: "center",
     },
-    w: { color: Colors.white, textAlign: "center", height: "100%" },
+    b: {
+      ...baseButtonLargeTextStyle,
+      color: Colors.white,
+    },
   },
+
   checkboxContainer: {
-    flexDirection: "row",
+    display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     width: "100%",
   },
+
   link: {
     color: Colors.red,
     textDecorationLine: "underline",
   },
+
   image: {
     height: "200px",
     width: "300px",

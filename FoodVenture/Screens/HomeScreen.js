@@ -65,8 +65,11 @@ export default function HomeScreen({ navigation }) {
         source={require("../assets/FViconYellow.png")}
       />
       {/* BUTTON BELOW WILL BECOME FILTER ICON */}
-      <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
-        <Text style={[styles.button.r]}>Filter (temp button)</Text>
+      <Pressable
+        style={[styles.buttonLarge.r]}
+        onPress={() => navigation.navigate(FilterSidebar)}
+      >
+        <Text style={[styles.buttonLargeText.y]}>Filter (temp button)</Text>
       </Pressable>
       <TextInput placeholder="Search" style={[styles.input]} />
       <FlatList
