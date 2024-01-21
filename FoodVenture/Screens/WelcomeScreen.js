@@ -21,6 +21,8 @@ export default function WelcomeScreen({ navigation }) {
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
         />
+        <Text style={styles.h1}>Welcome</Text>
+        <Text>to FoodVenture</Text>
         <View style={styles.contentContainer}>
           <Text>Welcome</Text>
           <Text>to FoodVenture</Text>

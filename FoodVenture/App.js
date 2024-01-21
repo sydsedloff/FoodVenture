@@ -8,6 +8,15 @@ import PersonalizedWelcomeScreen from "./Screens/PersonalizedWelcomeScreen";
 import RestaurantScreen from "./Screens/RestaurantScreen";
 import FilterSidebar from "./Screens/FilterSidebar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as Font from "expo-font"; // Import Font from Expo
+
+// Import custom fonts
+import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
+
+// Register custom fonts
+Font.loadAsync({
+  "FugazOne-Regular": FugazOneRegular,
+});
 
 const Stack = createNativeStackNavigator();
 
