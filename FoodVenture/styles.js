@@ -82,7 +82,7 @@ export default StyleSheet.create({
     width: "100%",
     height: "100%",
     display: "flex",
-    justifyContent: "Center",
+    justifyContent: "center",
     resizeMode: "contain",
     alignItems: "center",
   },
@@ -124,7 +124,6 @@ export default StyleSheet.create({
     fontSize: 24,
     fontFamily: "SignikaNegative-Regular",
     placeholderTextColor: Colors.grey,
-    marginBottom: 20,
   },
   buttonLarge: {
     r: {
@@ -172,7 +171,39 @@ export default StyleSheet.create({
   },
 
   image: {
-    height: "200px",
-    width: "300px",
+    height: 200,
+    width: 300,
   },
+  orContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 10,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: Colors.grey,
+  },
+  orText: {
+    fontFamily: "SignikaNegative-Regular",
+    marginHorizontal: 10,
+    fontSize: 16,
+    color: Colors.grey,
+  },
+  forgotPasswordContainer: {
+    alignSelf: "flex-end", // Align to the right
+  },
+  forgotPasswordText: {
+    color: Colors.red, // Change color as needed
+    fontSize: 16, // Adjust font size as needed
+  },
+  textInputContainer: {
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    gap: 15,
+    marginBottom: 10,
+  },
+
+  authenticationButtonContainer: { width: "100%", marginTop: 15 },
 });

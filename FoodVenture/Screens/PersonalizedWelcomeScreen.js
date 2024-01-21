@@ -8,6 +8,7 @@ import {
 import styles from "../styles";
 import HomeScreen from "./HomeScreen";
 import Checkbox from "expo-checkbox";
+import { Colors } from "../colors";
 
 // const [isSelected, setSelection] = useState(false);
 
@@ -28,14 +29,13 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           <Text style={[styles.h2.b]}>Welcome</Text>
           <Text style={[styles.h3.b]}>USERNAME</Text>
           <Text>Please select any dietary restrictions you may have:</Text>
-          {/* NEED CHECKBOX ICON. The current one doesn't work. */}
           <View style={[styles.checkboxContainer]}>
             <View>
               <Checkbox
                 style={styles.checkbox}
                 value={isChecked}
                 onValueChange={setChecked}
-                color={isChecked ? "#4630EB" : undefined}
+                color={isChecked ? Colors.red : undefined}
               />
               <Text style={styles.paragraph}>Gluten Free</Text>
             </View>
