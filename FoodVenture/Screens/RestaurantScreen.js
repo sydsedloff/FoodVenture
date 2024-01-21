@@ -43,7 +43,7 @@ export default function RestaurantScreen({ navigation }) {
       <Text>Make a reservation</Text>
       <Text>Party Size</Text>
       <Pressable>
-        <Text style={[styles.button.r]}>Make Reservation</Text>
+        <Text style={[styles.buttonLarge.r]}>Make Reservation</Text>
       </Pressable>
       {/* keyExtractor={(item) => item.id} */}
     </View>
