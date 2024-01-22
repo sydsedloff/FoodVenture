@@ -14,6 +14,7 @@ import FilterSidebar from "./Screens/FilterSidebar";
 
 // Import custom fonts
 import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
+import MerriweatherSansRegular from "./assets/fonts/MerriweatherSans-Regular.ttf";
 import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
 import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
 import ReservationScreen from "./Screens/ReservationScreen";
@@ -22,6 +23,7 @@ import ProfileScreen from "./Screens/ProfileScreen";
 // Register custom fonts
 Font.loadAsync({
   "FugazOne-Regular": FugazOneRegular,
+  "MerriweatherSans-Regular": MerriweatherSansRegular,
   "MerriweatherSans-Bold": MerriweatherSansBold,
   "SignikaNegative-Regular": SignikaNegativeRegular,
 });
@@ -44,7 +46,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
-      <Stack.Navigator initialRouteName="ProfileScreen">
+      <Stack.Navigator initialRouteName="WelcomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}

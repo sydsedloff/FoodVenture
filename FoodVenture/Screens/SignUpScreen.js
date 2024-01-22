@@ -28,23 +28,35 @@ export default function SignUpScreen({ navigation }) {
         />
         <View style={styles.contentContainer.white}>
           <Text style={styles.h2.r}>Sign Up</Text>
-          <TextInput placeholder="Full Name" style={[styles.input]} />
-          <TextInput placeholder="Email" style={[styles.input]} />
-          <TextInput placeholder="Username" style={[styles.input]} />
-          <TextInput placeholder="Password" style={[styles.input]} />
-          <Pressable
-            style={[styles.buttonLarge.y]}
-            onPress={() => navigation.navigate(PersonalizedWelcomeScreen)}
-          >
-            <Text style={[styles.buttonLargeText.r]}>Sign Up</Text>
-          </Pressable>
-          <Text>or</Text>
-          <Pressable
-            style={[styles.buttonLarge.w]}
-            onPress={() => navigation.navigate(LoginScreen)}
-          >
-            <Text style={[styles.buttonLargeText.r]}>Log In</Text>
-          </Pressable>
+          <View style={styles.textInputContainer}>
+            <TextInput placeholder="Full Name" style={[styles.input]} />
+            <TextInput placeholder="Email" style={[styles.input]} />
+            <TextInput placeholder="Username" style={[styles.input]} />
+            <TextInput
+              placeholder="Password"
+              style={[styles.input]}
+              secureTextEntry={true}
+            />
+          </View>
+          <View style={styles.authenticationButtonContainer}>
+            <Pressable
+              style={[styles.buttonLarge.y]}
+              onPress={() => navigation.navigate(PersonalizedWelcomeScreen)}
+            >
+              <Text style={[styles.buttonLargeText.r]}>Sign Up</Text>
+            </Pressable>
+            <View style={styles.contentSeperatorContainer}>
+              <View style={styles.line} />
+              <Text style={styles.orText}>or</Text>
+              <View style={styles.line} />
+            </View>
+            <Pressable
+              style={[styles.buttonLarge.w]}
+              onPress={() => navigation.navigate(LoginScreen)}
+            >
+              <Text style={[styles.buttonLargeText.r]}>Log In</Text>
+            </Pressable>
+          </View>
         </View>
       </ImageBackground>
     </View>

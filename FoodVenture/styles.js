@@ -32,6 +32,11 @@ const baseH3Style = {
   fontFamily: "FugazOne-Regular",
 };
 
+const baseParagraphStyle = {
+  fontSize: 21,
+  fontFamily: "SignikaNegative-Regular",
+};
+
 export default StyleSheet.create({
   h1: {
     r: {
@@ -70,6 +75,9 @@ export default StyleSheet.create({
       color: Colors.black,
     },
   },
+  paragraph: {
+    centered: { ...baseParagraphStyle, textAlign: "center" },
+  },
   container: {
     display: "flex",
     backgroundColor: "#fff",
@@ -82,7 +90,7 @@ export default StyleSheet.create({
     width: "100%",
     height: "100%",
     display: "flex",
-    justifyContent: "Center",
+    justifyContent: "center",
     resizeMode: "contain",
     alignItems: "center",
   },
@@ -99,6 +107,7 @@ export default StyleSheet.create({
       padding: "5%",
       height: "fit-content",
       marginVertical: 15,
+      textAlign: "center",
     },
     transparent: {
       display: "flex",
@@ -124,7 +133,6 @@ export default StyleSheet.create({
     fontSize: 24,
     fontFamily: "SignikaNegative-Regular",
     placeholderTextColor: Colors.grey,
-    marginBottom: 20,
   },
   buttonLarge: {
     r: {
@@ -158,12 +166,29 @@ export default StyleSheet.create({
       color: Colors.white,
     },
   },
+  checkboxCollectionContainer: {
+    flexDirection: "column",
+    width: "100%",
+    paddingVertical: 10,
+    height: "fit-content",
+    marginLeft: 25,
+  },
 
   checkboxContainer: {
-    display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    width: "100%",
+    marginVertical: 6,
+  },
+
+  checkbox: {
+    marginRight: 10,
+    width: 18,
+    height: 18,
+  },
+
+  checkBoxText: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 18,
   },
 
   link: {
@@ -172,7 +197,41 @@ export default StyleSheet.create({
   },
 
   image: {
-    height: "200px",
-    width: "300px",
+    height: 200,
+    width: 300,
+  },
+  contentSeperatorContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 10,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: Colors.grey,
+  },
+  orText: {
+    fontFamily: "SignikaNegative-Regular",
+    marginHorizontal: 10,
+    fontSize: 16,
+    color: Colors.grey,
+  },
+  forgotPasswordContainer: {
+    alignSelf: "flex-end", // Align to the right
+  },
+  forgotPasswordText: {
+    color: Colors.red, // Change color as needed
+    fontSize: 16, // Adjust font size as needed
+  },
+  textInputContainer: {
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    gap: 15,
+    marginBottom: 10,
+  },
+  authenticationButtonContainer: {
+    width: "100%",
+    marginTop: 15,
   },
 });
