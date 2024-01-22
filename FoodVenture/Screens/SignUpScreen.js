@@ -45,7 +45,7 @@ export default function SignUpScreen({ navigation }) {
             >
               <Text style={[styles.buttonLargeText.r]}>Sign Up</Text>
             </Pressable>
-            <View style={styles.orContainer}>
+            <View style={styles.contentSeperatorContainer}>
               <View style={styles.line} />
               <Text style={styles.orText}>or</Text>
               <View style={styles.line} />

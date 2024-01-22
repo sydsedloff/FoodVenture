@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ImageBackground,
-  StyleSheet,
   Text,
   Image,
   TextInput,
@@ -11,7 +10,6 @@ import {
 import styles from "../styles";
 import HomeScreen from "./HomeScreen";
 import SignUpScreen from "./SignUpScreen";
-import RestaurantScreen from "./RestaurantScreen";
 
 export default function LoginScreen({ navigation }) {
   return (
@@ -48,7 +46,7 @@ export default function LoginScreen({ navigation }) {
             >
               <Text style={[styles.buttonLargeText.y]}>Log In</Text>
             </Pressable>
-            <View style={styles.orContainer}>
+            <View style={styles.contentSeperatorContainer}>
               <View style={styles.line} />
               <Text style={styles.orText}>or</Text>
               <View style={styles.line} />
