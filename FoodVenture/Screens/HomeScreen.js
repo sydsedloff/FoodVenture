@@ -13,6 +13,7 @@ import myRestaurants from "../data/fakeRestaurants.json";
 import RestaurantScreen from "../Screens/RestaurantScreen";
 import FilterSidebar from "./FilterSidebar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { TabNavigator } from "../App";
 
 // We will later need to limit how many restaurants are on the home page as this loads all of them
 //  Also when clicking on the image or title, it will need to grab the restaurant id/key for the restaurant page

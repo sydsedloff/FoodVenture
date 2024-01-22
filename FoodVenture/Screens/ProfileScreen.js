@@ -26,7 +26,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
   );
 };
 
-export default function RestaurantScreen({ navigation }) {
+export default function ProfileScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
       <Image
