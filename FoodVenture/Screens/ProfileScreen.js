@@ -7,6 +7,7 @@ import {
   Pressable,
   View,
   FlatList,
+  Touchable,
 } from "react-native";
 import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
@@ -33,26 +34,26 @@ export default function ProfileScreen({ navigation }) {
         style={styles.logo}
         source={require("../assets/FViconYellow.png")}
       />
-      <View>
-        <RestaurantSingle
-          name="Restaurant Name"
-          image="https://placehold.co/300x200/"
-          address="123 Roady Rd, Orlando, FL 12345"
-          description="This is a description of a restaurant that serves food. Ideally it would be good food, but you never know."
-          website="https://www.google.com"
-        />
-        <Text>Make a reservation</Text>
-        <Text>Party Size (future dropdown)</Text>
-        <Pressable>
-          <Text
-            style={[styles.buttonLarge.r]}
-            onPress={() => navigation.navigate(ReservationScreen)}
-          >
-            Make Reservation
-          </Text>
-        </Pressable>
-      </View>
-
+      <Text>USERNAME</Text>
+      <Text>FIRSTNAME LASTNAME</Text>
+      <Pressable>
+        <Text>Edit Profile</Text>
+      </Pressable>
+      <Pressable>
+        <Text>Edit Dietary Restrictions</Text>
+      </Pressable>
+      <Pressable>
+        <Text>Saved</Text>
+      </Pressable>
+      <Pressable>
+        <Text>Notifications</Text>
+      </Pressable>
+      <Pressable>
+        <Text>Setting</Text>
+      </Pressable>
+      <Pressable>
+        <Text>Log out</Text>
+      </Pressable>
       {/* keyExtractor={(item) => item.id} */}
     </View>
   );
