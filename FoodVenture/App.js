@@ -17,6 +17,7 @@ import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
 import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
 import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
 import ReservationScreen from "./Screens/ReservationScreen";
+import ProfileScreen from "./Screens/ProfileScreen";
 
 // Register custom fonts
 Font.loadAsync({
@@ -43,7 +44,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
-      <Stack.Navigator initialRouteName="WelcomeScreen">
+      <Stack.Navigator initialRouteName="ProfileScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
@@ -82,6 +83,11 @@ export default function App() {
         <Stack.Screen
           name="ReservationScreen"
           component={ReservationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
