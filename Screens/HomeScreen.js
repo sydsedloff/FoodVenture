@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
-import RestaurantScreen from "../Screens/RestaurantScreen";
+import RestaurantScreen from "./RestaurantScreen";
 import FilterSidebar from "./FilterSidebar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { TabNavigator } from "../App";
