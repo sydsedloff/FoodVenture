@@ -38,6 +38,9 @@ const baseParagraphStyle = {
 };
 
 export default StyleSheet.create({
+  //TEXT
+
+  //Headers
   h1: {
     r: {
       ...baseH1Style,
@@ -75,9 +78,89 @@ export default StyleSheet.create({
       color: Colors.black,
     },
   },
+
+  //Other Text
   paragraph: {
     centered: { ...baseParagraphStyle, textAlign: "center" },
   },
+  link: {
+    color: Colors.red,
+    textDecorationLine: "underline",
+  },
+  input: {
+    borderColor: "black",
+    borderWidth: 2,
+    borderRadius: 15,
+    height: 48,
+    width: "100%",
+    padding: "0.5rem",
+    fontSize: 24,
+    fontFamily: "SignikaNegative-Regular",
+    placeholderTextColor: Colors.grey,
+  },
+  forgotPasswordText: {
+    color: Colors.red, // Change color as needed
+    fontSize: 16, // Adjust font size as needed
+  },
+  orText: {
+    fontFamily: "SignikaNegative-Regular",
+    marginHorizontal: 10,
+    fontSize: 16,
+    color: Colors.grey,
+  },
+  checkBoxText: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 18,
+  },
+
+  //IMAGES
+  logo: {
+    width: 132,
+    height: 132,
+  },
+  image: {
+    height: 200,
+    width: 300,
+  },
+  icon: {
+    height: 50,
+    width: 50,
+  },
+
+  //BUTTONS
+  buttonLarge: {
+    r: {
+      ...baseButtonLargeStyle,
+      backgroundColor: Colors.red,
+      color: Colors.yellow,
+    },
+    y: {
+      ...baseButtonLargeStyle,
+      backgroundColor: Colors.yellow,
+    },
+    w: {
+      ...baseButtonLargeStyle,
+      backgroundColor: Colors.white,
+      borderColor: Colors.red,
+      borderWidth: 3,
+    },
+  },
+  buttonLargeText: {
+    r: {
+      ...baseButtonLargeTextStyle,
+      color: Colors.red,
+    },
+    y: {
+      ...baseButtonLargeTextStyle,
+      color: Colors.yellow,
+    },
+    b: {
+      ...baseButtonLargeTextStyle,
+      color: Colors.white,
+    },
+  },
+
+  //CONTAINERS
   container: {
     display: "flex",
     backgroundColor: "#fff",
@@ -85,14 +168,6 @@ export default StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-  },
-  backgroundImage: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    resizeMode: "contain",
-    alignItems: "center",
   },
   contentContainer: {
     white: {
@@ -119,115 +194,6 @@ export default StyleSheet.create({
       height: "fit-content",
     },
   },
-  logo: {
-    width: 132,
-    height: 132,
-  },
-  input: {
-    borderColor: "black",
-    borderWidth: 2,
-    borderRadius: 15,
-    height: 48,
-    width: "100%",
-    padding: "0.5rem",
-    fontSize: 24,
-    fontFamily: "SignikaNegative-Regular",
-    placeholderTextColor: Colors.grey,
-  },
-  buttonLarge: {
-    r: {
-      ...baseButtonLargeStyle,
-      backgroundColor: Colors.red,
-      color: Colors.yellow,
-    },
-    y: {
-      ...baseButtonLargeStyle,
-      backgroundColor: Colors.yellow,
-    },
-    w: {
-      ...baseButtonLargeStyle,
-      backgroundColor: Colors.white,
-      borderColor: Colors.red,
-      borderWidth: 3,
-    },
-  },
-
-  buttonLargeText: {
-    r: {
-      ...baseButtonLargeTextStyle,
-      color: Colors.red,
-    },
-    y: {
-      ...baseButtonLargeTextStyle,
-      color: Colors.yellow,
-    },
-    b: {
-      ...baseButtonLargeTextStyle,
-      color: Colors.white,
-    },
-  },
-  checkboxCollectionContainer: {
-    flexDirection: "column",
-    width: "100%",
-    paddingVertical: 10,
-    height: "fit-content",
-    marginLeft: 25,
-  },
-
-  checkboxContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 6,
-  },
-
-  checkbox: {
-    marginRight: 10,
-    width: 18,
-    height: 18,
-  },
-
-  checkBoxText: {
-    fontFamily: "MerriweatherSans-Regular",
-    fontSize: 18,
-  },
-
-  link: {
-    color: Colors.red,
-    textDecorationLine: "underline",
-  },
-
-  image: {
-    height: 200,
-    width: 300,
-  },
-  icon: {
-    height: 50,
-    width: 50,
-  },
-  contentSeperatorContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    marginVertical: 10,
-  },
-  line: {
-    flex: 1,
-    height: 1,
-    backgroundColor: Colors.grey,
-  },
-  orText: {
-    fontFamily: "SignikaNegative-Regular",
-    marginHorizontal: 10,
-    fontSize: 16,
-    color: Colors.grey,
-  },
-  forgotPasswordContainer: {
-    alignSelf: "flex-end", // Align to the right
-  },
-  forgotPasswordText: {
-    color: Colors.red, // Change color as needed
-    fontSize: 16, // Adjust font size as needed
-  },
   textInputContainer: {
     flexDirection: "column",
     justifyContent: "space-evenly",
@@ -237,5 +203,46 @@ export default StyleSheet.create({
   authenticationButtonContainer: {
     width: "100%",
     marginTop: 15,
+  },
+  checkboxCollectionContainer: {
+    flexDirection: "column",
+    width: "100%",
+    paddingVertical: 10,
+    height: "fit-content",
+    marginLeft: 25,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 6,
+  },
+  contentSeperatorContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 10,
+  },
+  forgotPasswordContainer: {
+    alignSelf: "flex-end", // Align to the right
+  },
+
+  //OTHER STYLES
+  checkbox: {
+    marginRight: 10,
+    width: 18,
+    height: 18,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: Colors.grey,
+  },
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    resizeMode: "contain",
+    alignItems: "center",
   },
 });
