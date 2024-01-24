@@ -1,9 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as Font from "expo-font"; // Import Font from Expo
-
-// Import screens
 import WelcomeScreen from "./Screens/WelcomeScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
@@ -11,16 +7,14 @@ import HomeScreen from "./Screens/HomeScreen";
 import PersonalizedWelcomeScreen from "./Screens/PersonalizedWelcomeScreen";
 import RestaurantScreen from "./Screens/RestaurantScreen";
 import FilterSidebar from "./Screens/FilterSidebar";
-import EditProfileScreen from "./Screens/EditProfileScreen";
-import EditDietaryRestrictionsScreen from "./Screens/EditDietaryRestrictionsScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as Font from "expo-font"; // Import Font from Expo
 
 // Import custom fonts
 import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
 import MerriweatherSansRegular from "./assets/fonts/MerriweatherSans-Regular.ttf";
 import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
 import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
-import ReservationScreen from "./Screens/ReservationScreen";
-import ProfileScreen from "./Screens/ProfileScreen";
 
 // Register custom fonts
 Font.loadAsync({
@@ -48,7 +42,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
-      <Stack.Navigator initialRouteName="WelcomeScreen">
+      <Stack.Navigator initialRouteName="PersonalizedWelcomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
@@ -82,26 +76,6 @@ export default function App() {
         <Stack.Screen
           name="FilterSidebar"
           component={FilterSidebar}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ReservationScreen"
-          component={ReservationScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="EditProfileScreen"
-          component={EditProfileScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="EditDietaryRestrictionsScreen"
-          component={EditDietaryRestrictionsScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
