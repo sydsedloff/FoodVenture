@@ -11,6 +11,7 @@ import EditProfileScreen from "./EditProfileScreen";
 import EditDietaryRestrictionsScreen from "./EditDietaryRestrictionsScreen";
 import WelcomeScreen from "./WelcomeScreen";
 import SavedScreen from "./SavedScreen";
+import NotificationsScreen from "./NotificationsScreen";
 
 export default function ProfileScreen({ navigation }) {
   return (
@@ -44,7 +45,7 @@ export default function ProfileScreen({ navigation }) {
         ></Image>
         <Text>Saved</Text>
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate(NotificationsScreen)}>
         <Image
           source={require("../assets/noti.png")}
           style={[styles.icon]}
