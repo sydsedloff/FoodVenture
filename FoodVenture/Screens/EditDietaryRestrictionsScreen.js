@@ -2,7 +2,7 @@ import React from "react";
 import { ImageBackground, Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
 
-export default function ReservationScreen({ navigation }) {
+export default function EditDietaryRestrictionsScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* Remove the title at the top of the screen */}
@@ -15,7 +15,7 @@ export default function ReservationScreen({ navigation }) {
           source={require("../assets/FViconYellow.png")}
         />
         <View style={styles.contentContainer.white}>
-          <Text style={styles.h2.r}>Reservation Confirmation</Text>
+          <Text style={styles.h2.r}>Edit Dietary Restrictions</Text>
           {/* Style the input elements */}
           <Text>Party Size:</Text>
           <Text>Date:</Text>

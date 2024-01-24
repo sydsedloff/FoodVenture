@@ -3,6 +3,7 @@ import { ImageBackground, Image, Text, View, Pressable } from "react-native";
 import Checkbox from "expo-checkbox";
 import styles from "../styles";
 import { Colors } from "../colors";
+import HomeScreen from "./HomeScreen";
 
 export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isGlutenFree, setGlutenFree] = useState(false);
@@ -96,7 +97,12 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
             style={[styles.buttonLarge.r]}
             onPress={() => navigation.navigate(HomeScreen)}
           >
-            <Text style={[styles.buttonLargeText.y]}>Done</Text>
+            <Text
+              style={[styles.buttonLargeText.y]}
+              onPress={() => navigation.navigate(HomeScreen)}
+            >
+              Done
+            </Text>
           </Pressable>
         </View>
       </ImageBackground>
