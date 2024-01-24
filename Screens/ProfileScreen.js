@@ -10,6 +10,7 @@ import styles from "../styles";
 import EditProfileScreen from "./EditProfileScreen";
 import EditDietaryRestrictionsScreen from "./EditDietaryRestrictionsScreen";
 import WelcomeScreen from "./WelcomeScreen";
+import SavedScreen from "./SavedScreen";
 
 export default function ProfileScreen({ navigation }) {
   return (
@@ -23,14 +24,12 @@ export default function ProfileScreen({ navigation }) {
       <Pressable onPress={() => navigation.navigate(EditProfileScreen)}>
         <Text>Edit Profile</Text>
       </Pressable>
-      <Pressable>
-        <Text
-          onPress={() => navigation.navigate(EditDietaryRestrictionsScreen)}
-        >
-          Edit Dietary Restrictions
-        </Text>
+      <Pressable
+        onPress={() => navigation.navigate(EditDietaryRestrictionsScreen)}
+      >
+        <Text>Edit Dietary Restrictions</Text>
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate(SavedScreen)}>
         <Text>Saved</Text>
       </Pressable>
       <Pressable>
