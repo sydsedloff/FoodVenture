@@ -200,6 +200,10 @@ export default StyleSheet.create({
     height: 200,
     width: 300,
   },
+  icon: {
+    height: 50,
+    width: 50,
+  },
   contentSeperatorContainer: {
     flexDirection: "row",
     alignItems: "center",

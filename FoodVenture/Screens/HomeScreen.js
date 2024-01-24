@@ -52,7 +52,7 @@ function MyTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
-      {/* <Tab.Screen name="CreatFoodTourScreen" component={CreatFoodTourScreen} /> */}
+      {/* <Tab.Screen name="CreateFoodTourScreen" component={CreatFoodTourScreen} /> */}
       {/* <Tab.Screen name="SavedScreen" component={SavedScreen} /> */}
     </Tab.Navigator>
   );
@@ -65,12 +65,12 @@ export default function HomeScreen({ navigation }) {
         style={styles.logo}
         source={require("../assets/FViconYellow.png")}
       />
-      {/* BUTTON BELOW WILL BECOME FILTER ICON */}
-      <Pressable
-        style={[styles.buttonLarge.r]}
-        onPress={() => navigation.navigate(FilterSidebar)}
-      >
-        <Text style={[styles.buttonLargeText.y]}>Filter (temp button)</Text>
+      {/*CONDITIONAL TO FILLED FILTER ICON IF FILTERING IS ON*/}
+      <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
+        <Image
+          source={require("../assets/filter.png")}
+          style={[styles.icon]}
+        ></Image>
       </Pressable>
       <TextInput placeholder="Search" style={[styles.input]} />
       <FlatList

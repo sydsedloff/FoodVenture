@@ -11,6 +11,8 @@ import HomeScreen from "./Screens/HomeScreen";
 import PersonalizedWelcomeScreen from "./Screens/PersonalizedWelcomeScreen";
 import RestaurantScreen from "./Screens/RestaurantScreen";
 import FilterSidebar from "./Screens/FilterSidebar";
+import EditProfileScreen from "./Screens/EditProfileScreen";
+import EditDietaryRestrictionsScreen from "./Screens/EditDietaryRestrictionsScreen";
 
 // Import custom fonts
 import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
@@ -92,6 +94,17 @@ export default function App() {
           component={ProfileScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="EditProfileScreen"
+          component={EditProfileScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EditDietaryRestrictionsScreen"
+          component={EditDietaryRestrictionsScreen}
+          options={{ headerShown: false }}
+        />
+
         <Stack.Screen
           name="NavBar"
           component={TabNavigator}

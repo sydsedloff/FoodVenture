@@ -1,31 +1,15 @@
 import {
   ImageBackground,
-  StyleSheet,
   Image,
   Text,
   TextInput,
   Pressable,
   View,
-  FlatList,
-  Touchable,
 } from "react-native";
 import styles from "../styles";
-import myRestaurants from "../data/fakeRestaurants.json";
-import ReservationScreen from "./ReservationScreen";
-
-const RestaurantSingle = ({ name, image, address, description, website }) => {
-  return (
-    <View style={styles.container}>
-      <Text>{name}</Text>
-      <Image source={{ uri: image }} style={[styles.image]}></Image>
-      <Text>{address}</Text>
-      <Text>{description}</Text>
-      <Text style={[styles.link]} href={[website]}>
-        {website}
-      </Text>
-    </View>
-  );
-};
+import EditProfileScreen from "./EditProfileScreen";
+import EditDietaryRestrictionsScreen from "./EditDietaryRestrictionsScreen";
+import WelcomeScreen from "./WelcomeScreen";
 
 export default function ProfileScreen({ navigation }) {
   return (
@@ -36,11 +20,15 @@ export default function ProfileScreen({ navigation }) {
       />
       <Text>USERNAME</Text>
       <Text>FIRSTNAME LASTNAME</Text>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate(EditProfileScreen)}>
         <Text>Edit Profile</Text>
       </Pressable>
       <Pressable>
-        <Text>Edit Dietary Restrictions</Text>
+        <Text
+          onPress={() => navigation.navigate(EditDietaryRestrictionsScreen)}
+        >
+          Edit Dietary Restrictions
+        </Text>
       </Pressable>
       <Pressable>
         <Text>Saved</Text>
@@ -52,7 +40,7 @@ export default function ProfileScreen({ navigation }) {
         <Text>Setting</Text>
       </Pressable>
       <Pressable>
-        <Text>Log out</Text>
+        <Text onPress={() => navigation.navigate(WelcomeScreen)}>Log out</Text>
       </Pressable>
       {/* keyExtractor={(item) => item.id} */}
     </View>
