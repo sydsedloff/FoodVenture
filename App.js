@@ -22,6 +22,8 @@ import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
 import ReservationScreen from "./Screens/ReservationScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import SavedScreen from "./Screens/SavedScreen";
+import NotificationsScreen from "./Screens/NotificationsScreen";
+import SettingsScreen from "./Screens/SettingsScreen";
 
 // Register custom fonts
 Font.loadAsync({
@@ -110,7 +112,16 @@ export default function App() {
           component={SavedScreen}
           options={{ headerShown: false }}
         />
-
+        <Stack.Screen
+          name="NotificationsScreen"
+          component={NotificationsScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="NavBar"
           component={TabNavigator}
