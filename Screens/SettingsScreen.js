@@ -5,10 +5,10 @@ import EditDietaryRestrictionsScreen from "./EditDietaryRestrictionsScreen";
 import SavedScreen from "./SavedScreen";
 import ProfileScreen from "./ProfileScreen";
 
-export default function NotificationsScreen({ navigation }) {
+export default function SettingsScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.h3.b]}>Notifications</Text>
+      <Text style={[styles.h3.b]}>Settings</Text>
       <Text>Push Notifications</Text>
       <Text>Pause all</Text>
       <Text>Login alerts</Text>

@@ -12,6 +12,7 @@ import EditDietaryRestrictionsScreen from "./EditDietaryRestrictionsScreen";
 import WelcomeScreen from "./WelcomeScreen";
 import SavedScreen from "./SavedScreen";
 import NotificationsScreen from "./NotificationsScreen";
+import SettingsScreen from "./SettingsScreen";
 
 export default function ProfileScreen({ navigation }) {
   return (
@@ -22,13 +23,16 @@ export default function ProfileScreen({ navigation }) {
       />
       <Text style={[styles.h3.b]}>USERNAME</Text>
       <Text>FIRSTNAME LASTNAME</Text>
-      <Pressable onPress={() => navigation.navigate(EditProfileScreen)}>
-        <Image
-          source={require("../assets/profileIcon.png")}
-          style={[styles.icon]}
-        ></Image>
-        <Text>Edit Profile</Text>
-      </Pressable>
+      <View>
+        <Pressable onPress={() => navigation.navigate(EditProfileScreen)}>
+          <Image
+            source={require("../assets/profileIcon.png")}
+            style={[styles.icon]}
+          ></Image>
+          <Text>Edit Profile</Text>
+        </Pressable>
+      </View>
+
       <Pressable
         onPress={() => navigation.navigate(EditDietaryRestrictionsScreen)}
       >
@@ -52,21 +56,20 @@ export default function ProfileScreen({ navigation }) {
         ></Image>
         <Text>Notifications</Text>
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate(SettingsScreen)}>
         <Image
           source={require("../assets/settingGear.png")}
           style={[styles.icon]}
         ></Image>
-        <Text>Setting</Text>
+        <Text>Settings</Text>
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate(WelcomeScreen)}>
         <Image
           source={require("../assets/logout.png")}
           style={[styles.icon]}
         ></Image>
-        <Text onPress={() => navigation.navigate(WelcomeScreen)}>Log out</Text>
+        <Text>Log out</Text>
       </Pressable>
-      {/* keyExtractor={(item) => item.id} */}
     </View>
   );
 }
