@@ -245,4 +245,7 @@ export default StyleSheet.create({
     resizeMode: "contain",
     alignItems: "center",
   },
+  horizontalAlign: {
+    flexDirection: "row",
+  },
 });
