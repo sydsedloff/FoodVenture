@@ -15,8 +15,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Pause all</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -25,8 +25,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Login alerts</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -35,8 +35,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Promotions & deals</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -45,8 +45,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Reservation reminders</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -55,8 +55,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Reservation created</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -65,8 +65,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Reservation canceled</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -75,8 +75,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Complete Reservation</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -85,8 +85,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Reservation alerts</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -99,8 +99,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Reservation made</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -109,8 +109,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>Reservation canceled</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
@@ -119,8 +119,8 @@ export default function NotificationsScreen({ navigation }) {
       <View style={[styles.horizontalAlign]}>
         <Text>FoodVenture updates</Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
