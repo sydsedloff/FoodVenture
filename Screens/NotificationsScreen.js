@@ -1,27 +1,137 @@
-import { Image, Text, TextInput, Pressable, View } from "react-native";
+import { Image, Text, TextInput, Pressable, View, Switch } from "react-native";
 import styles from "../styles";
-import EditProfileScreen from "./EditProfileScreen";
-import EditDietaryRestrictionsScreen from "./EditDietaryRestrictionsScreen";
-import SavedScreen from "./SavedScreen";
+import React, { useState } from "react";
 import ProfileScreen from "./ProfileScreen";
 
 export default function NotificationsScreen({ navigation }) {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.h3.b]}>Notifications</Text>
-      <Text>Push Notifications</Text>
-      <Text>Pause all</Text>
-      <Text>Login alerts</Text>
-      <Text>Promotions & deals</Text>
-      <Text>Reservation reminders</Text>
-      <Text>Reservation created</Text>
-      <Text>Reservation canceled</Text>
-      <Text>Complete Reservation</Text>
-      <Text>Reservation alerts</Text>
-      <Text>Email Notifications</Text>
-      <Text>Reservation made</Text>
-      <Text>Reservation canceled</Text>
-      <Text>FoodVenture updates</Text>
+      <Text style={[styles.pageHeaders]}>Notifications</Text>
+      <View>
+        <Text style={[styles.profileSectionHeaders]}>Push Notifications</Text>
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Pause all</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Login alerts</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Promotions & deals</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Reservation reminders</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Reservation created</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Reservation canceled</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Complete Reservation</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <Text style={[styles.smallText]}>
+        Looks like you forgot to finish this reservation, complete it now!
+      </Text>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Reservation alerts</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <Text style={[styles.smallText]}>
+        This place is booking fast, make your reservation now!
+      </Text>
+
+      <View>
+        <Text style={[styles.profileSectionHeaders]}>Email Notifications</Text>
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Reservation made</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>Reservation canceled</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={[styles.horizontalAlign]}>
+        <Text style={[styles.profileText]}>FoodVenture updates</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#9b0000" }}
+          activeThumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
       <Pressable
         style={[styles.buttonLarge.r]}
         onPress={() => navigation.navigate(ProfileScreen)}

@@ -112,6 +112,29 @@ export default StyleSheet.create({
     fontFamily: "MerriweatherSans-Regular",
     fontSize: 18,
   },
+  smallText: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 14,
+    fontStyle: "italic",
+  },
+  profileText: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 24,
+  },
+  profileSectionHeaders: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 28,
+    fontWeight: "bold",
+  },
+  pageHeaders: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 37,
+    fontWeight: "bold",
+  },
+  signa32: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 32,
+  },
 
   //IMAGES
   logo: {
@@ -125,6 +148,10 @@ export default StyleSheet.create({
   icon: {
     height: 50,
     width: 50,
+  },
+  savedPageIcons: {
+    height: 125,
+    width: 125,
   },
 
   //BUTTONS
@@ -244,5 +271,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     resizeMode: "contain",
     alignItems: "center",
+  },
+  horizontalAlign: {
+    flexDirection: "row",
   },
 });

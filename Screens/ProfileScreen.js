@@ -23,18 +23,21 @@ export default function ProfileScreen({ navigation }) {
       />
       <Text style={[styles.h3.b]}>USERNAME</Text>
       <Text>FIRSTNAME LASTNAME</Text>
-      <View>
-        <Pressable onPress={() => navigation.navigate(EditProfileScreen)}>
-          <Image
-            source={require("../assets/profileIcon.png")}
-            style={[styles.icon]}
-          ></Image>
-          <Text>Edit Profile</Text>
-        </Pressable>
-      </View>
+
+      <Pressable
+        onPress={() => navigation.navigate(EditProfileScreen)}
+        style={[styles.horizontalAlign]}
+      >
+        <Image
+          source={require("../assets/profileIcon.png")}
+          style={[styles.icon]}
+        ></Image>
+        <Text>Edit Profile</Text>
+      </Pressable>
 
       <Pressable
         onPress={() => navigation.navigate(EditDietaryRestrictionsScreen)}
+        style={[styles.horizontalAlign]}
       >
         <Image
           source={require("../assets/forkKnifeRed.png")}
@@ -42,28 +45,40 @@ export default function ProfileScreen({ navigation }) {
         ></Image>
         <Text>Edit Dietary Restrictions</Text>
       </Pressable>
-      <Pressable onPress={() => navigation.navigate(SavedScreen)}>
+      <Pressable
+        onPress={() => navigation.navigate(SavedScreen)}
+        style={[styles.horizontalAlign]}
+      >
         <Image
           source={require("../assets/saveFilled.png")}
           style={[styles.icon]}
         ></Image>
         <Text>Saved</Text>
       </Pressable>
-      <Pressable onPress={() => navigation.navigate(NotificationsScreen)}>
+      <Pressable
+        onPress={() => navigation.navigate(NotificationsScreen)}
+        style={[styles.horizontalAlign]}
+      >
         <Image
           source={require("../assets/noti.png")}
           style={[styles.icon]}
         ></Image>
         <Text>Notifications</Text>
       </Pressable>
-      <Pressable onPress={() => navigation.navigate(SettingsScreen)}>
+      <Pressable
+        onPress={() => navigation.navigate(SettingsScreen)}
+        style={[styles.horizontalAlign]}
+      >
         <Image
           source={require("../assets/settingGear.png")}
           style={[styles.icon]}
         ></Image>
         <Text>Settings</Text>
       </Pressable>
-      <Pressable onPress={() => navigation.navigate(WelcomeScreen)}>
+      <Pressable
+        onPress={() => navigation.navigate(WelcomeScreen)}
+        style={[styles.horizontalAlign]}
+      >
         <Image
           source={require("../assets/logout.png")}
           style={[styles.icon]}
