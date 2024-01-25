@@ -126,10 +126,14 @@ export default StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
   },
-  profilePageHeaders: {
+  pageHeaders: {
     fontFamily: "SignikaNegative-Regular",
     fontSize: 37,
     fontWeight: "bold",
+  },
+  signa32: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 32,
   },
 
   //IMAGES
@@ -144,6 +148,10 @@ export default StyleSheet.create({
   icon: {
     height: 50,
     width: 50,
+  },
+  savedPageIcons: {
+    height: 125,
+    width: 125,
   },
 
   //BUTTONS

@@ -8,7 +8,7 @@ export default function NotificationsScreen({ navigation }) {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.profilePageHeaders]}>Notifications</Text>
+      <Text style={[styles.pageHeaders]}>Notifications</Text>
       <View>
         <Text style={[styles.profileSectionHeaders]}>Push Notifications</Text>
       </View>

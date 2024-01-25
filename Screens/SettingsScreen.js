@@ -8,7 +8,7 @@ export default function SettingsScreen({ navigation }) {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.profilePageHeaders]}>Settings</Text>
+      <Text style={[styles.pageHeaders]}>Settings</Text>
       <View>
         <Text style={[styles.profileSectionHeaders]}>Privacy & Security</Text>
       </View>
