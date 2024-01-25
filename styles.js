@@ -112,6 +112,25 @@ export default StyleSheet.create({
     fontFamily: "MerriweatherSans-Regular",
     fontSize: 18,
   },
+  smallText: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 14,
+    fontStyle: "italic",
+  },
+  profileText: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 24,
+  },
+  profileSectionHeaders: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 28,
+    fontWeight: "bold",
+  },
+  profilePageHeaders: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 37,
+    fontWeight: "bold",
+  },
 
   //IMAGES
   logo: {

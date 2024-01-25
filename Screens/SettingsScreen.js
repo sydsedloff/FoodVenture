@@ -8,12 +8,12 @@ export default function SettingsScreen({ navigation }) {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.paragraph.centered]}>Settings</Text>
+      <Text style={[styles.profilePageHeaders]}>Settings</Text>
       <View>
-        <Text style={[styles.paragraph.centered]}>Privacy & Security</Text>
+        <Text style={[styles.profileSectionHeaders]}>Privacy & Security</Text>
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Location</Text>
+        <Text style={[styles.profileText]}>Location</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -23,7 +23,7 @@ export default function SettingsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Login alerts</Text>
+        <Text style={[styles.profileText]}>Login alerts</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -34,10 +34,10 @@ export default function SettingsScreen({ navigation }) {
       </View>
 
       <View>
-        <Text style={[styles.paragraph.centered]}>Accessibility</Text>
+        <Text style={[styles.profileSectionHeaders]}>Accessibility</Text>
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Dark mode</Text>
+        <Text style={[styles.profileText]}>Dark mode</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -47,7 +47,7 @@ export default function SettingsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>High constrast mode</Text>
+        <Text style={[styles.profileText]}>High constrast mode</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -57,7 +57,7 @@ export default function SettingsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Captions</Text>
+        <Text style={[styles.profileText]}>Captions</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -68,10 +68,10 @@ export default function SettingsScreen({ navigation }) {
       </View>
 
       <View>
-        <Text style={[styles.paragraph.centered]}>History</Text>
+        <Text style={[styles.profileSectionHeaders]}>History</Text>
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Save past food tours</Text>
+        <Text style={[styles.profileText]}>Save past food tours</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -81,7 +81,7 @@ export default function SettingsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Save search history</Text>
+        <Text style={[styles.profileText]}>Save search history</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}

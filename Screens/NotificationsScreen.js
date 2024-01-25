@@ -8,12 +8,12 @@ export default function NotificationsScreen({ navigation }) {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.paragraph.centered]}>Notifications</Text>
+      <Text style={[styles.profilePageHeaders]}>Notifications</Text>
       <View>
-        <Text style={[styles.paragraph.centered]}>Push Notifications</Text>
+        <Text style={[styles.profileSectionHeaders]}>Push Notifications</Text>
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Pause all</Text>
+        <Text style={[styles.profileText]}>Pause all</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -23,7 +23,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Login alerts</Text>
+        <Text style={[styles.profileText]}>Login alerts</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -33,7 +33,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Promotions & deals</Text>
+        <Text style={[styles.profileText]}>Promotions & deals</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -43,7 +43,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Reservation reminders</Text>
+        <Text style={[styles.profileText]}>Reservation reminders</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -53,7 +53,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Reservation created</Text>
+        <Text style={[styles.profileText]}>Reservation created</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -63,7 +63,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Reservation canceled</Text>
+        <Text style={[styles.profileText]}>Reservation canceled</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -73,7 +73,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Complete Reservation</Text>
+        <Text style={[styles.profileText]}>Complete Reservation</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -82,8 +82,11 @@ export default function NotificationsScreen({ navigation }) {
           value={isEnabled}
         />
       </View>
+      <Text style={[styles.smallText]}>
+        Looks like you forgot to finish this reservation, complete it now!
+      </Text>
       <View style={[styles.horizontalAlign]}>
-        <Text>Reservation alerts</Text>
+        <Text style={[styles.profileText]}>Reservation alerts</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -92,12 +95,15 @@ export default function NotificationsScreen({ navigation }) {
           value={isEnabled}
         />
       </View>
+      <Text style={[styles.smallText]}>
+        This place is booking fast, make your reservation now!
+      </Text>
 
       <View>
-        <Text style={[styles.paragraph.centered]}>Email Notifications</Text>
+        <Text style={[styles.profileSectionHeaders]}>Email Notifications</Text>
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Reservation made</Text>
+        <Text style={[styles.profileText]}>Reservation made</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -107,7 +113,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>Reservation canceled</Text>
+        <Text style={[styles.profileText]}>Reservation canceled</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
@@ -117,7 +123,7 @@ export default function NotificationsScreen({ navigation }) {
         />
       </View>
       <View style={[styles.horizontalAlign]}>
-        <Text>FoodVenture updates</Text>
+        <Text style={[styles.profileText]}>FoodVenture updates</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#9b0000" }}
           activeThumbColor={"#f4f3f4"}
