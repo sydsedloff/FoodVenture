@@ -137,6 +137,14 @@ export default StyleSheet.create({
   },
 
   //IMAGES
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    resizeMode: "contain",
+    alignItems: "center",
+  },
   logo: {
     width: 132,
     height: 132,
@@ -152,6 +160,13 @@ export default StyleSheet.create({
   savedPageIcons: {
     height: 125,
     width: 125,
+  },
+  headerImage: {
+    marginRight: 15,
+    marginTop: 15,
+    height: 55,
+    width: 55,
+    borderRadius: 50,
   },
 
   //BUTTONS
@@ -225,7 +240,7 @@ export default StyleSheet.create({
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-around",
-      width: "80%",
+      width: "85%",
       backgroundColor: Colors.white,
       borderRadius: 6,
       border: "1px solid #9B0000",
@@ -266,6 +281,13 @@ export default StyleSheet.create({
   forgotPasswordContainer: {
     alignSelf: "flex-end", // Align to the right
   },
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 75,
+    backgroundColor: "#fff",
+  },
 
   //OTHER STYLES
   checkbox: {
@@ -278,15 +300,21 @@ export default StyleSheet.create({
     height: 1,
     backgroundColor: Colors.grey,
   },
-  backgroundImage: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    resizeMode: "contain",
-    alignItems: "center",
-  },
+
   horizontalAlign: {
     flexDirection: "row",
+  },
+
+  headerBackArrow: {
+    marginLeft: 15,
+    marginTop: 15,
+    height: 55,
+    width: 65,
+  },
+  bottomMargins: {
+    marginBottom: 15,
+  },
+  topMargins: {
+    marginTop: 15,
   },
 });

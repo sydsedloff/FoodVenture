@@ -7,15 +7,17 @@ import HeaderComponent from "../Components/HeaderComponent";
 
 export default function SavedScreen({ navigation }) {
   return (
-    <View>
-      <HeaderComponent></HeaderComponent>
+    <View style={{ flex: 1 }}>
+      <HeaderComponent navigation={navigation}></HeaderComponent>
       <View style={styles.container}>
-        <Text style={[styles.pageHeaders]}>Saved</Text>
+        <Text style={[styles.pageHeaders, styles.bottomMargins]}>Saved</Text>
         <Pressable
           style={styles.contentContainer.red}
           onPress={() => navigation.navigate(SavedRestaurantScreen)}
         >
-          <Text style={[styles.pageHeaders]}>Saved Restaurants</Text>
+          <Text style={[styles.pageHeaders, styles.bottomMargins]}>
+            Saved Restaurants
+          </Text>
           <Image
             source={require("../assets/forkKnifeBW.png")}
             style={[styles.savedPageIcons]}
@@ -29,7 +31,9 @@ export default function SavedScreen({ navigation }) {
           style={styles.contentContainer.red}
           onPress={() => navigation.navigate(SavedFoodToursScreen)}
         >
-          <Text style={[styles.pageHeaders]}>Saved Tours</Text>
+          <Text style={[styles.pageHeaders, styles.bottomMargins]}>
+            Saved Tours
+          </Text>
           <Image
             source={require("../assets/binoculars.png")}
             style={[styles.savedPageIcons]}

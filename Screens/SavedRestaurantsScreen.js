@@ -14,6 +14,7 @@ import RestaurantScreen from "./RestaurantScreen";
 import FilterSidebar from "./FilterSidebar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { TabNavigator } from "../App";
+import HeaderComponent from "../Components/HeaderComponent";
 
 // We will later need to limit how many restaurants are on the home page as this loads all of them
 //  Also when clicking on the image or title, it will need to grab the restaurant id/key for the restaurant page
@@ -60,25 +61,28 @@ function MyTabs() {
 
 export default function SavedRestaurantScreen({ navigation }) {
   return (
-    <View style={[styles.container]}>
-      <Text style={[styles.pageHeaders]}>Saved Restaurants</Text>
-      <TextInput placeholder="Search" style={[styles.input]} />
-      <FlatList
-        data={myRestaurants}
-        renderItem={({ item }) => (
-          <View style={[styles.contentContainer.white]}>
-            <Restaurants
-              name={item.name}
-              image={item.image}
-              address={item.address}
-              description={item.description}
-              website={item.website}
-              navigation={navigation}
-            />
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-      ></FlatList>
+    <View>
+      <HeaderComponent navigation={navigation}></HeaderComponent>
+      <View style={[styles.container]}>
+        <Text style={[styles.pageHeaders]}>Saved Restaurants</Text>
+        <TextInput placeholder="Search" style={[styles.input]} />
+        <FlatList
+          data={myRestaurants}
+          renderItem={({ item }) => (
+            <View style={[styles.contentContainer.white]}>
+              <Restaurants
+                name={item.name}
+                image={item.image}
+                address={item.address}
+                description={item.description}
+                website={item.website}
+                navigation={navigation}
+              />
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+        ></FlatList>
+      </View>
     </View>
   );
 }
