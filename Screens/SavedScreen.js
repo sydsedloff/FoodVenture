@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
 import SavedRestaurantScreen from "./SavedRestaurantsScreen";
+import SavedFoodToursScreen from "./SavedFoodToursScreen";
 
 export default function SavedScreen({ navigation }) {
   return (
@@ -21,7 +22,10 @@ export default function SavedScreen({ navigation }) {
           Breakfast, Lunch, Dinner, Desserts, & Drinks
         </Text>
       </Pressable>
-      <View style={styles.contentContainer.white}>
+      <Pressable
+        style={styles.contentContainer.white}
+        onPress={() => navigation.navigate(SavedFoodToursScreen)}
+      >
         <Text style={[styles.pageHeaders]}>Saved Tours</Text>
         <Image
           source={require("../assets/binoculars.png")}
@@ -31,7 +35,7 @@ export default function SavedScreen({ navigation }) {
         <Text style={[styles.smallText]}>
           Breakfast, Lunch, Dinner, Desserts, & Drinks
         </Text>
-      </View>
+      </Pressable>
     </View>
   );
 }

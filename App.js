@@ -25,6 +25,7 @@ import SavedScreen from "./Screens/SavedScreen";
 import NotificationsScreen from "./Screens/NotificationsScreen";
 import SettingsScreen from "./Screens/SettingsScreen";
 import SavedRestaurantScreen from "./Screens/SavedRestaurantsScreen";
+import SavedFoodToursScreen from "./Screens/SavedFoodToursScreen";
 
 // Register custom fonts
 Font.loadAsync({
@@ -126,6 +127,11 @@ export default function App() {
         <Stack.Screen
           name="SavedRestaurantScreen"
           component={SavedRestaurantScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SavedFoodToursScreen"
+          component={SavedFoodToursScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
