@@ -1,12 +1,16 @@
 import React from "react";
-import { ImageBackground, Text, Image, View, Pressable } from "react-native";
+import { Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
+import SavedRestaurantScreen from "./SavedRestaurantsScreen";
 
 export default function SavedScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={[styles.pageHeaders]}>Saved</Text>
-      <View style={styles.contentContainer.white}>
+      <Pressable
+        style={styles.contentContainer.white}
+        onPress={() => navigation.navigate(SavedRestaurantScreen)}
+      >
         <Text style={[styles.pageHeaders]}>Saved Restaurants</Text>
         <Image
           source={require("../assets/forkKnifeBW.png")}
@@ -16,7 +20,7 @@ export default function SavedScreen({ navigation }) {
         <Text style={[styles.smallText]}>
           Breakfast, Lunch, Dinner, Desserts, & Drinks
         </Text>
-      </View>
+      </Pressable>
       <View style={styles.contentContainer.white}>
         <Text style={[styles.pageHeaders]}>Saved Tours</Text>
         <Image
