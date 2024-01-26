@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Image, View, Pressable, SafeAreaView } from "react-native";
 import styles from "../styles";
 import profileData from "../data/fakeProfile.json";
+import ProfileScreen from "../Screens/ProfileScreen";
 
 export default function HeaderComponent({ navigation }) {
   return (
@@ -12,10 +13,12 @@ export default function HeaderComponent({ navigation }) {
           style={[styles.headerBackArrow]}
         ></Image>
       </Pressable>
-      <Image
-        source={{ uri: "https://placehold.co/100x100/" }}
-        style={[styles.headerImage]}
-      ></Image>
+      <Pressable onPress={() => navigation.navigate(ProfileScreen)}>
+        <Image
+          source={{ uri: "https://placehold.co/100x100/" }}
+          style={[styles.headerImage]}
+        ></Image>
+      </Pressable>
     </SafeAreaView>
   );
 }

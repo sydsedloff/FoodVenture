@@ -1,4 +1,12 @@
-import { Image, Text, TextInput, Pressable, View, Switch } from "react-native";
+import {
+  Image,
+  Text,
+  TextInput,
+  Pressable,
+  View,
+  Switch,
+  SafeAreaView,
+} from "react-native";
 import styles from "../styles";
 import React, { useState } from "react";
 import ProfileScreen from "./ProfileScreen";
@@ -9,7 +17,14 @@ export default function NotificationsScreen({ navigation }) {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View>
-      <HeaderComponent></HeaderComponent>
+      <SafeAreaView style={[styles.headerContainer]}>
+        <Pressable onPress={() => navigation.goBack()}>
+          <Image
+            source={require("../assets/backArrow.png")}
+            style={[styles.headerBackArrow]}
+          ></Image>
+        </Pressable>
+      </SafeAreaView>
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders, styles.bottomMargins]}>
           Notifications
