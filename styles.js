@@ -131,9 +131,24 @@ export default StyleSheet.create({
     fontSize: 37,
     fontWeight: "bold",
   },
+  pageHeadersRed: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 37,
+    fontWeight: "bold",
+    color: Colors.red,
+    textAlign: "center",
+  },
   signa32: {
     fontFamily: "SignikaNegative-Regular",
     fontSize: 32,
+  },
+  signa28: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 28,
+  },
+  merri28: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 28,
   },
 
   //IMAGES
@@ -148,6 +163,14 @@ export default StyleSheet.create({
   logo: {
     width: 132,
     height: 132,
+    borderRadius: 100,
+  },
+  logoR: {
+    width: 132,
+    height: 132,
+    borderRadius: 100,
+    borderColor: Colors.red,
+    borderWidth: 2,
   },
   image: {
     height: 200,
@@ -318,5 +341,11 @@ export default StyleSheet.create({
   },
   topMargins: {
     marginTop: 15,
+  },
+  bottomPadding: {
+    paddingBottom: 50,
+  },
+  negativeMargins: {
+    marginBottom: -10,
   },
 });
