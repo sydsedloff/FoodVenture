@@ -311,6 +311,7 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: 75,
+    backgroundColor: "#fff",
   },
 
   //OTHER STYLES
