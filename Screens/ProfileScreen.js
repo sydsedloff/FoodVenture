@@ -14,6 +14,7 @@ import SavedScreen from "./SavedScreen";
 import NotificationsScreen from "./NotificationsScreen";
 import SettingsScreen from "./SettingsScreen";
 import { SafeAreaView } from "react-native-web";
+import NavigationBar from "../Components/NavigationBar";
 
 export default function ProfileScreen({ navigation }) {
   return (
@@ -105,6 +106,7 @@ export default function ProfileScreen({ navigation }) {
             <Text style={[styles.merri28, styles.bottomPadding]}>Log out</Text>
           </Pressable>
         </SafeAreaView>
+        <NavigationBar />
       </View>
     </View>
   );
