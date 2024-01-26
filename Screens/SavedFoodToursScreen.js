@@ -3,6 +3,7 @@ import { Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
 import SavedRestaurantScreen from "./SavedRestaurantsScreen";
 import HeaderComponent from "../Components/HeaderComponent";
+import NavigationBar from "../Components/NavigationBar";
 
 export default function SavedFoodToursScreen({ navigation }) {
   return (
@@ -38,6 +39,7 @@ export default function SavedFoodToursScreen({ navigation }) {
           ></Image>
         </Pressable>
       </View>
+      <NavigationBar />
     </View>
   );
 }

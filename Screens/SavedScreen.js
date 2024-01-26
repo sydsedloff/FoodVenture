@@ -4,6 +4,7 @@ import styles from "../styles";
 import SavedRestaurantScreen from "./SavedRestaurantsScreen";
 import SavedFoodToursScreen from "./SavedFoodToursScreen";
 import HeaderComponent from "../Components/HeaderComponent";
+import NavigationBar from "../Components/NavigationBar";
 
 export default function SavedScreen({ navigation }) {
   return (
@@ -44,6 +45,7 @@ export default function SavedScreen({ navigation }) {
           </Text>
         </Pressable>
       </View>
+      <NavigationBar />
     </View>
   );
 }

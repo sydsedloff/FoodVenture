@@ -1,6 +1,7 @@
 import React from "react";
 import { ImageBackground, Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
+import NavigationBar from "../Components/NavigationBar";
 
 export default function ReservationScreen({ navigation }) {
   return (
@@ -23,6 +24,7 @@ export default function ReservationScreen({ navigation }) {
           <Text>See you soon!</Text>
         </View>
       </ImageBackground>
+      <NavigationBar />
     </View>
   );
 }

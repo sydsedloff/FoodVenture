@@ -99,8 +99,8 @@ export default StyleSheet.create({
     placeholderTextColor: Colors.grey,
   },
   forgotPasswordText: {
-    color: Colors.red, // Change color as needed
-    fontSize: 16, // Adjust font size as needed
+    color: Colors.red,
+    fontSize: 16,
   },
   orText: {
     fontFamily: "SignikaNegative-Regular",

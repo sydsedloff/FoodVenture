@@ -11,6 +11,7 @@ import {
 import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
 import ReservationScreen from "./ReservationScreen";
+import NavigationBar from "../Components/NavigationBar";
 
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
@@ -52,7 +53,7 @@ export default function RestaurantScreen({ navigation }) {
           </Text>
         </Pressable>
       </View>
-
+      <NavigationBar />
       {/* keyExtractor={(item) => item.id} */}
     </View>
   );
