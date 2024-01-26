@@ -100,6 +100,17 @@ export default StyleSheet.create({
     fontFamily: "SignikaNegative-Regular",
     placeholderTextColor: Colors.grey,
   },
+  thinInput: {
+    borderColor: "black",
+    borderWidth: 2,
+    borderRadius: 15,
+    height: 40,
+    width: "100%",
+    padding: "0.5rem",
+    fontSize: 24,
+    fontFamily: "SignikaNegative-Regular",
+    placeholderTextColor: Colors.grey,
+  },
   searchBar: {
     borderColor: "black",
     borderWidth: 2,
@@ -271,6 +282,20 @@ export default StyleSheet.create({
     width: "100%",
     alignItems: "center",
   },
+  justifySpaceBetween: {
+    justifyContent: "space-between",
+  },
+  profileContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start", // Align items to the start of the cross axis (top)
+    padding: 10, // Adjust the padding as needed
+  },
+  buttonContainer: {
+    alignSelf: "flex-end", // Align the container to the end of the main axis (right)
+    marginTop: 10, // Add some margin to give space between the content and the right edge
+  },
   contentJustify: {
     justifyContent: "center",
   },
@@ -366,6 +391,7 @@ export default StyleSheet.create({
 
   horizontalAlign: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
 
   headerBackArrow: {
@@ -385,5 +411,9 @@ export default StyleSheet.create({
   },
   negativeMargins: {
     marginBottom: -10,
+  },
+  sideSpacing: {
+    marginRight: 25,
+    marginLeft: 25,
   },
 });

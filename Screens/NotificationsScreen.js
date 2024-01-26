@@ -35,7 +35,7 @@ export default function NotificationsScreen({ navigation }) {
           Push Notifications
         </Text>
 
-        <View>
+        <View style={[styles.sideSpacing]}>
           <View style={[styles.horizontalAlign]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
               Pause all
@@ -142,7 +142,7 @@ export default function NotificationsScreen({ navigation }) {
           Email Notifications
         </Text>
 
-        <View>
+        <View style={[styles.sideSpacing]}>
           <View style={[styles.horizontalAlign]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
               Reservation made
@@ -180,8 +180,9 @@ export default function NotificationsScreen({ navigation }) {
             />
           </View>
         </View>
+
         <Pressable
-          style={[styles.buttonLarge.r]}
+          style={[styles.buttonLarge.r, styles.sideSpacing]}
           onPress={() => navigation.navigate(ProfileScreen)}
         >
           <Text style={[styles.buttonLargeText.y]}>Save Changes</Text>
