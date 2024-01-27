@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     position: "absolute",
     top: -12,
-    border: "10px solid red",
     zIndex: 1,
     height: 58,
     width: 58,

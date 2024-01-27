@@ -230,11 +230,14 @@ export default StyleSheet.create({
     width: 125,
   },
   headerImage: {
-    marginRight: 15,
-    marginTop: 15,
-    height: 55,
-    width: 55,
-    borderRadius: 50,
+    position: "absolute",
+    top: 10,
+    right: 20,
+    zIndex: 1,
+    height: 58,
+    width: 58,
+    borderRadius: 100,
+    zIndex: 1,
   },
   searchBarIcon: {
     height: 35,
@@ -370,11 +373,14 @@ export default StyleSheet.create({
     alignSelf: "flex-end", // Align to the right
   },
   headerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    position: "sticky",
     height: 75,
-    backgroundColor: "#fff",
+    width: "100%",
+    backgroundColor: "transparent", // Set background color to transparent
+    top: 0, // Align to the top of the parent container
+    left: 0, // Align to the left of the parent container
+    right: 0, // Align to the right of the parent container
+    zIndex: 2,
   },
 
   //OTHER STYLES
@@ -395,10 +401,12 @@ export default StyleSheet.create({
   },
 
   headerBackArrow: {
-    marginLeft: 15,
-    marginTop: 15,
-    height: 55,
-    width: 65,
+    position: "absolute",
+    top: 10,
+    left: 20,
+    zIndex: 1,
+    height: 58,
+    width: 58,
   },
   bottomMargins: {
     marginBottom: 15,

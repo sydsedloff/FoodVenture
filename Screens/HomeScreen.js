@@ -30,17 +30,15 @@ const Restaurants = ({
   return (
     <View style={[styles.container, styles.bottomMargins]}>
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
-        <Text style={[styles.signa28]}>{name}</Text>
-      </Pressable>
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
+
+        <Text>{name}</Text>
         <Image source={{ uri: image }} style={[styles.image]}></Image>
-      </Pressable>
-      <Text style={[styles.merri19Bold]}>{address}</Text>
-      <Text style={[styles.merri17]}>{description}</Text>
-      <Text style={[styles.link]} href={[website]}>
-        {website}
-      </Text>
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
+        <Text>{address}</Text>
+        <Text>{description}</Text>
+        <Text style={[styles.link]} href={[website]}>
+          {website}
+        </Text>
+
         {/* Will need to grab key for restaurant screen */}
       </Pressable>
     </View>
@@ -61,9 +59,16 @@ function MyTabs() {
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View>
-      <HeaderComponent navigation={navigation}></HeaderComponent>
-      <View style={[styles.container]}>
+
+    <View style={[styles.container]}>
+      <HeaderComponent />
+      <Image
+        style={styles.logo}
+        source={require("../assets/FViconYellow.png")}
+      />
+      {/*CONDITIONAL TO FILLED FILTER ICON IF FILTERING IS ON*/}
+      <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
+
         <Image
           style={[styles.smallerLogo, styles.bottomMargins]}
           source={require("../assets/FViconYellow.png")}
