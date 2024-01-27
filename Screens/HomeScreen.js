@@ -28,9 +28,8 @@ const Restaurants = ({
   navigation,
 }) => {
   return (
-    <View style={[styles.container, styles.bottomMargins]}>
+    <View style={styles.container}>
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
-
         <Text>{name}</Text>
         <Image source={{ uri: image }} style={[styles.image]}></Image>
         <Text>{address}</Text>
@@ -38,7 +37,6 @@ const Restaurants = ({
         <Text style={[styles.link]} href={[website]}>
           {website}
         </Text>
-
         {/* Will need to grab key for restaurant screen */}
       </Pressable>
     </View>
@@ -59,7 +57,6 @@ function MyTabs() {
 
 export default function HomeScreen({ navigation }) {
   return (
-
     <View style={[styles.container]}>
       <HeaderComponent />
       <Image
@@ -68,45 +65,27 @@ export default function HomeScreen({ navigation }) {
       />
       {/*CONDITIONAL TO FILLED FILTER ICON IF FILTERING IS ON*/}
       <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
-
         <Image
-          style={[styles.smallerLogo, styles.bottomMargins]}
-          source={require("../assets/FViconYellow.png")}
-        />
-        <View style={[styles.horizontalAlign, styles.bottomMargins]}>
-          <View style={[styles.searchBar, styles.horizontalAlign]}>
-            <Image
-              source={require("../assets/search.png")}
-              style={[styles.searchBarIcon]}
-            ></Image>
-            <TextInput placeholder="Search" style={[styles.searchBarText]} />
-          </View>
-
-          <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
-            <Image
-              source={require("../assets/filter.png")}
-              style={[styles.smallerIcons]}
-            ></Image>
-          </Pressable>
-        </View>
-        {/*CONDITIONAL TO FILLED FILTER ICON IF FILTERING IS ON*/}
-
-        <FlatList
-          data={myRestaurants}
-          renderItem={({ item }) => (
-            <Restaurants
-              name={item.name}
-              image={item.image}
-              address={item.address}
-              description={item.description}
-              website={item.website}
-              navigation={navigation}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-        ></FlatList>
-        <NavigationBar />
-      </View>
+          source={require("../assets/filter.png")}
+          style={[styles.icon]}
+        ></Image>
+      </Pressable>
+      <TextInput placeholder="Search" style={[styles.input]} />
+      <FlatList
+        data={myRestaurants}
+        renderItem={({ item }) => (
+          <Restaurants
+            name={item.name}
+            image={item.image}
+            address={item.address}
+            description={item.description}
+            website={item.website}
+            navigation={navigation}
+          />
+        )}
+        keyExtractor={(item) => item.id}
+      ></FlatList>
+      <NavigationBar />
     </View>
   );
 }
