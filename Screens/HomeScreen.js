@@ -15,6 +15,7 @@ import FilterSidebar from "./FilterSidebar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { TabNavigator } from "../App";
 import NavigationBar from "../Components/NavigationBar";
+import HeaderComponent from "../Components/HeaderComponent";
 
 // We will later need to limit how many restaurants are on the home page as this loads all of them
 //  Also when clicking on the image or title, it will need to grab the restaurant id/key for the restaurant page
@@ -30,18 +31,13 @@ const Restaurants = ({
     <View style={styles.container}>
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         <Text>{name}</Text>
-      </Pressable>
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         <Image source={{ uri: image }} style={[styles.image]}></Image>
-      </Pressable>
-      <Text>{address}</Text>
-      <Text>{description}</Text>
-      <Text style={[styles.link]} href={[website]}>
-        {website}
-      </Text>
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
+        <Text>{address}</Text>
+        <Text>{description}</Text>
+        <Text style={[styles.link]} href={[website]}>
+          {website}
+        </Text>
         {/* Will need to grab key for restaurant screen */}
-        <Text>See Details</Text>
       </Pressable>
     </View>
   );
@@ -62,6 +58,7 @@ function MyTabs() {
 export default function HomeScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
+      <HeaderComponent />
       <Image
         style={styles.logo}
         source={require("../assets/FViconYellow.png")}

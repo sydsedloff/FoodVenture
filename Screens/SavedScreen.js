@@ -8,43 +8,41 @@ import NavigationBar from "../Components/NavigationBar";
 
 export default function SavedScreen({ navigation }) {
   return (
-    <View style={{ flex: 1 }}>
-      <HeaderComponent navigation={navigation}></HeaderComponent>
-      <View style={styles.container}>
-        <Text style={[styles.pageHeaders, styles.bottomMargins]}>Saved</Text>
-        <Pressable
-          style={styles.contentContainer.red}
-          onPress={() => navigation.navigate(SavedRestaurantScreen)}
-        >
-          <Text style={[styles.pageHeaders, styles.bottomMargins]}>
-            Saved Restaurants
-          </Text>
-          <Image
-            source={require("../assets/forkKnifeBW.png")}
-            style={[styles.savedPageIcons]}
-          ></Image>
-          <Text style={[styles.signa32]}>Restaurants</Text>
-          <Text style={[styles.smallText]}>
-            Breakfast, Lunch, Dinner, Desserts, & Drinks
-          </Text>
-        </Pressable>
-        <Pressable
-          style={styles.contentContainer.red}
-          onPress={() => navigation.navigate(SavedFoodToursScreen)}
-        >
-          <Text style={[styles.pageHeaders, styles.bottomMargins]}>
-            Saved Tours
-          </Text>
-          <Image
-            source={require("../assets/binoculars.png")}
-            style={[styles.savedPageIcons]}
-          ></Image>
-          <Text style={[styles.signa32]}>Restaurants</Text>
-          <Text style={[styles.smallText]}>
-            Breakfast, Lunch, Dinner, Desserts, & Drinks
-          </Text>
-        </Pressable>
-      </View>
+    <View style={styles.container}>
+      <HeaderComponent />
+      <Text style={[styles.pageHeaders, styles.bottomMargins]}>Saved</Text>
+      <Pressable
+        style={styles.contentContainer.red}
+        onPress={() => navigation.navigate(SavedRestaurantScreen)}
+      >
+        <Text style={[styles.pageHeaders, styles.bottomMargins]}>
+          Saved Restaurants
+        </Text>
+        <Image
+          source={require("../assets/forkKnifeBW.png")}
+          style={[styles.savedPageIcons]}
+        ></Image>
+        <Text style={[styles.signa32]}>Restaurants</Text>
+        <Text style={[styles.smallText]}>
+          Breakfast, Lunch, Dinner, Desserts, & Drinks
+        </Text>
+      </Pressable>
+      <Pressable
+        style={styles.contentContainer.red}
+        onPress={() => navigation.navigate(SavedFoodToursScreen)}
+      >
+        <Text style={[styles.pageHeaders, styles.bottomMargins]}>
+          Saved Tours
+        </Text>
+        <Image
+          source={require("../assets/binoculars.png")}
+          style={[styles.savedPageIcons]}
+        ></Image>
+        <Text style={[styles.signa32]}>Restaurants</Text>
+        <Text style={[styles.smallText]}>
+          Breakfast, Lunch, Dinner, Desserts, & Drinks
+        </Text>
+      </Pressable>
       <NavigationBar />
     </View>
   );

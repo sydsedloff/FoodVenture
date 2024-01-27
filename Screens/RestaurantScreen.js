@@ -12,6 +12,7 @@ import styles from "../styles";
 import myRestaurants from "../data/fakeRestaurants.json";
 import ReservationScreen from "./ReservationScreen";
 import NavigationBar from "../Components/NavigationBar";
+import HeaderComponent from "../Components/HeaderComponent";
 
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
@@ -30,6 +31,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
 export default function RestaurantScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
+      <HeaderComponent />
       <Image
         style={styles.logo}
         source={require("../assets/FViconYellow.png")}
