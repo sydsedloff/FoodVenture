@@ -86,6 +86,8 @@ export default StyleSheet.create({
   link: {
     color: Colors.red,
     textDecorationLine: "underline",
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 15,
   },
   input: {
     borderColor: "black",
@@ -98,6 +100,31 @@ export default StyleSheet.create({
     fontFamily: "SignikaNegative-Regular",
     placeholderTextColor: Colors.grey,
   },
+  thinInput: {
+    borderColor: "black",
+    borderWidth: 2,
+    borderRadius: 15,
+    height: 40,
+    width: "100%",
+    padding: "0.5rem",
+    fontSize: 24,
+    fontFamily: "SignikaNegative-Regular",
+    placeholderTextColor: Colors.grey,
+  },
+  searchBar: {
+    borderColor: "black",
+    borderWidth: 2,
+    borderRadius: 20,
+    height: 40,
+    width: "100%",
+    fontSize: 24,
+  },
+  searchBarText: {
+    fontSize: 20,
+    fontFamily: "SignikaNegative-Regular",
+    placeholderTextColor: Colors.grey,
+  },
+
   forgotPasswordText: {
     color: Colors.red,
     fontSize: 16,
@@ -150,6 +177,15 @@ export default StyleSheet.create({
     fontFamily: "MerriweatherSans-Regular",
     fontSize: 28,
   },
+  merri19Bold: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 19,
+    fontWeight: "bold",
+  },
+  merri17: {
+    fontFamily: "MerriweatherSans-Regular",
+    fontSize: 17,
+  },
 
   //IMAGES
   backgroundImage: {
@@ -159,6 +195,11 @@ export default StyleSheet.create({
     justifyContent: "center",
     resizeMode: "contain",
     alignItems: "center",
+  },
+  smallerLogo: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
   },
   logo: {
     width: 132,
@@ -180,6 +221,10 @@ export default StyleSheet.create({
     height: 50,
     width: 50,
   },
+  smallerIcons: {
+    height: 35,
+    width: 35,
+  },
   savedPageIcons: {
     height: 125,
     width: 125,
@@ -193,6 +238,10 @@ export default StyleSheet.create({
     width: 58,
     borderRadius: 100,
     zIndex: 1,
+  },
+  searchBarIcon: {
+    height: 35,
+    width: 35,
   },
 
   //BUTTONS
@@ -235,6 +284,20 @@ export default StyleSheet.create({
     height: "100%",
     width: "100%",
     alignItems: "center",
+  },
+  justifySpaceBetween: {
+    justifyContent: "space-between",
+  },
+  profileContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start", // Align items to the start of the cross axis (top)
+    padding: 10, // Adjust the padding as needed
+  },
+  buttonContainer: {
+    alignSelf: "flex-end", // Align the container to the end of the main axis (right)
+    marginTop: 10, // Add some margin to give space between the content and the right edge
   },
   contentJustify: {
     justifyContent: "center",
@@ -334,6 +397,7 @@ export default StyleSheet.create({
 
   horizontalAlign: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
 
   headerBackArrow: {
@@ -355,5 +419,9 @@ export default StyleSheet.create({
   },
   negativeMargins: {
     marginBottom: -10,
+  },
+  sideSpacing: {
+    marginRight: 25,
+    marginLeft: 25,
   },
 });

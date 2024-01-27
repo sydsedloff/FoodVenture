@@ -29,21 +29,27 @@ export default function EditProfileScreen({ navigation }) {
 
         <View style={styles.textInputContainer}>
           <Text style={[styles.signa28, styles.negativeMargins]}>Name</Text>
-          <TextInput placeholder="Name" style={styles.input} />
+          <TextInput placeholder="Name" style={styles.thinInput} />
           <Text style={[styles.signa28, styles.negativeMargins]}>Username</Text>
-          <TextInput placeholder="Username" style={styles.input} />
+          <TextInput placeholder="Username" style={styles.thinInput} />
           <Text style={[styles.signa28, styles.negativeMargins]}>
             Dietary Restrictions
           </Text>
-          <TextInput placeholder="Dietary Restrictions" style={styles.input} />
+          <TextInput
+            placeholder="Dietary Restrictions"
+            style={styles.thinInput}
+          />
           <Text style={[styles.signa28, styles.negativeMargins]}>Email</Text>
-          <TextInput placeholder="hello@foodventure.com" style={styles.input} />
+          <TextInput
+            placeholder="hello@foodventure.com"
+            style={styles.thinInput}
+          />
           <Text style={[styles.signa28, styles.negativeMargins]}>
             Phone Number
           </Text>
-          <TextInput placeholder="123-456-7890" style={styles.input} />
+          <TextInput placeholder="123-456-7890" style={styles.thinInput} />
           <Text style={[styles.signa28, styles.negativeMargins]}>Password</Text>
-          <TextInput placeholder="Password" style={styles.input} />
+          <TextInput placeholder="Password" style={styles.thinInput} />
           <Pressable style={[styles.buttonLarge.r]}>
             <Text
               style={[styles.buttonLargeText.y]}
