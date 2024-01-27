@@ -27,7 +27,7 @@ export default function EditProfileScreen({ navigation }) {
           source={{ uri: "https://placehold.co/100x100/" }}
         />
 
-        <View style={styles.textInputContainer}>
+        <View style={[styles.textInputContainer]}>
           <Text style={[styles.signa28, styles.negativeMargins]}>Name</Text>
           <TextInput placeholder="Name" style={styles.thinInput} />
           <Text style={[styles.signa28, styles.negativeMargins]}>Username</Text>

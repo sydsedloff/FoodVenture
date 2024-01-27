@@ -22,7 +22,7 @@ export default function ProfileScreen({ navigation }) {
     <View style={[styles.container]}>
       <HeaderComponent />
       <Image
-        style={styles.logoR}
+        style={[styles.logoR, styles.bottomMargins]}
         source={{ uri: "https://placehold.co/100x100/" }}
       />
       <Text style={[styles.h3.b]}>USERNAME</Text>
@@ -32,70 +32,64 @@ export default function ProfileScreen({ navigation }) {
       <SafeAreaView>
         <Pressable
           onPress={() => navigation.navigate(EditProfileScreen)}
-          style={[styles.horizontalAlign]}
+          style={[styles.horizontalAlign, styles.bottomMargins]}
         >
           <Image
             source={require("../assets/profileIcon.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28, styles.bottomPadding]}>
-            Edit Profile
-          </Text>
+          <Text style={[styles.merri28]}>Edit Profile</Text>
         </Pressable>
 
         <Pressable
           onPress={() => navigation.navigate(EditDietaryRestrictionsScreen)}
-          style={[styles.horizontalAlign]}
+          style={[styles.horizontalAlign, styles.bottomMargins]}
         >
           <Image
             source={require("../assets/forkKnifeRed.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28, styles.bottomPadding]}>
-            Edit Dietary Restrictions
-          </Text>
+          <Text style={[styles.merri28]}>Edit Dietary Restrictions</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(SavedScreen)}
-          style={[styles.horizontalAlign]}
+          style={[styles.horizontalAlign, styles.bottomMargins]}
         >
           <Image
             source={require("../assets/saveFilled.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28, styles.bottomPadding]}>Saved</Text>
+          <Text style={[styles.merri28]}>Saved</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(NotificationsScreen)}
-          style={[styles.horizontalAlign]}
+          style={[styles.horizontalAlign, styles.bottomMargins]}
         >
           <Image
             source={require("../assets/noti.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28, styles.bottomPadding]}>
-            Notifications
-          </Text>
+          <Text style={[styles.merri28]}>Notifications</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(SettingsScreen)}
-          style={[styles.horizontalAlign]}
+          style={[styles.horizontalAlign, styles.bottomMargins]}
         >
           <Image
             source={require("../assets/settingGear.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28, styles.bottomPadding]}>Settings</Text>
+          <Text style={[styles.merri28]}>Settings</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(WelcomeScreen)}
-          style={[styles.horizontalAlign]}
+          style={[styles.horizontalAlign, styles.bottomMargins]}
         >
           <Image
             source={require("../assets/logout.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28, styles.bottomPadding]}>Log out</Text>
+          <Text style={[styles.merri28]}>Log out</Text>
         </Pressable>
       </SafeAreaView>
       <NavigationBar />

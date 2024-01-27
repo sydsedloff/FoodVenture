@@ -47,24 +47,12 @@ const Restaurants = ({
   );
 };
 
-const Tab = createBottomTabNavigator();
-
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      {/* <Tab.Screen name="CreateFoodTourScreen" component={CreatFoodTourScreen} /> */}
-      {/* <Tab.Screen name="SavedScreen" component={SavedScreen} /> */}
-    </Tab.Navigator>
-  );
-}
-
 export default function HomeScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
       <HeaderComponent />
       <Image
-        style={styles.logo}
+        style={[styles.smallerLogo, styles.bottomMargins]}
         source={require("../assets/FViconYellow.png")}
       />
 
