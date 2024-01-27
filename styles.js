@@ -381,6 +381,7 @@ export default StyleSheet.create({
     left: 0, // Align to the left of the parent container
     right: 0, // Align to the right of the parent container
     zIndex: 2,
+    backgroundColor: "#fff",
   },
 
   //OTHER STYLES
@@ -397,7 +398,7 @@ export default StyleSheet.create({
 
   horizontalAlign: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "center",
   },
 
   headerBackArrow: {

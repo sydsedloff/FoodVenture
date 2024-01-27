@@ -14,6 +14,15 @@ import HeaderComponent from "../Components/HeaderComponent";
 
 export default function NotificationsScreen({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
+  // PUSH NOTIFICATIONS
+  const [isPaused, setPause] = useState(false);
+  const [wantsLoginAlerts, setLoginAlerts] = useState(false);
+  const [wantsPromoDeals, setPromoDeals] = useState(false);
+  const [wantsReservationReminders, setReservationReminders] = useState(false);
+  const [wantsReservationCreated, setReservationCreated] = useState(false);
+
+  // EMAIL REMINDERS
+
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View>
@@ -44,8 +53,8 @@ export default function NotificationsScreen({ navigation }) {
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setPause}
+              value={isPaused}
             />
           </View>
           <View style={[styles.horizontalAlign]}>
@@ -56,8 +65,8 @@ export default function NotificationsScreen({ navigation }) {
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setLoginAlerts}
+              value={wantsLoginAlerts}
             />
           </View>
           <View style={[styles.horizontalAlign]}>
@@ -68,8 +77,8 @@ export default function NotificationsScreen({ navigation }) {
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setPromoDeals}
+              value={wantsPromoDeals}
             />
           </View>
           <View style={[styles.horizontalAlign]}>
@@ -80,8 +89,8 @@ export default function NotificationsScreen({ navigation }) {
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setReservationReminders}
+              value={wantsReservationReminders}
             />
           </View>
           <View style={[styles.horizontalAlign]}>
@@ -92,8 +101,8 @@ export default function NotificationsScreen({ navigation }) {
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setReservationCreated}
+              value={wantsReservationCreated}
             />
           </View>
           <View style={[styles.horizontalAlign]}>
