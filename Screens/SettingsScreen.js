@@ -12,10 +12,21 @@ import React, { useState } from "react";
 import ProfileScreen from "./ProfileScreen";
 
 export default function SettingsScreen({ navigation }) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  // PRIVACY & SETTINGS
+  const [wantsLocation, setLocation] = useState(false);
+  const [wantsLoginAlerts, setLoginAlerts] = useState(false);
+  // ACCESSIBILITY
+  const [wantsDarkMode, setDarkMode] = useState(false);
+  const [wantsHighContrast, setHighContrast] = useState(false);
+  const [wantsCaptions, setCaptions] = useState(false);
+  // HISTORY
+  const [wantsSavedPastFoodTours, setSavedPastFoodTours] = useState(false);
+  const [wantsSaveSearchHistory, setSaveSearchHistory] = useState(false);
+  // const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
   return (
-    <View>
+    <View style={{ flex: 1 }}>
+      {/* HEADER */}
       <SafeAreaView style={[styles.headerContainer]}>
         <Pressable onPress={() => navigation.goBack()}>
           <Image
@@ -26,95 +37,119 @@ export default function SettingsScreen({ navigation }) {
       </SafeAreaView>
 
       <View style={[styles.container]}>
-        <Text style={[styles.pageHeaders, styles.bottomMargins]}>Settings</Text>
-        <View>
-          <Text style={[styles.profileSectionHeaders]}>Privacy & Security</Text>
-          <View style={[styles.horizontalAlign]}>
-            <Text style={[styles.profileText]}>Location</Text>
+        <Text style={[styles.pageHeaders, styles.moreBottomMargins]}>
+          Settings
+        </Text>
+
+        {/* PRIVACY & SECURITY */}
+        <View style={[styles.width80, styles.sideSpacing]}>
+          <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
+            Privacy & Security
+          </Text>
+          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+            <Text style={[styles.profileText, styles.bottomMargins]}>
+              Location
+            </Text>
             <Switch
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setLocation}
+              value={wantsLocation}
             />
           </View>
-          <View style={[styles.horizontalAlign]}>
-            <Text style={[styles.profileText]}>Login alerts</Text>
+          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+            <Text style={[styles.profileText, styles.moreBottomMargins]}>
+              Login alerts
+            </Text>
             <Switch
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setLoginAlerts}
+              value={wantsLoginAlerts}
             />
           </View>
         </View>
 
-        <View>
-          <Text style={[styles.profileSectionHeaders]}>Accessibility</Text>
-          <View style={[styles.horizontalAlign]}>
-            <Text style={[styles.profileText]}>Dark mode</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#9b0000" }}
-              activeThumbColor={"#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-            />
-          </View>
-          <View style={[styles.horizontalAlign]}>
-            <Text style={[styles.profileText]}>High constrast mode</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#9b0000" }}
-              activeThumbColor={"#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-            />
-          </View>
-          <View style={[styles.horizontalAlign]}>
+        {/* ACCESSIBILITY */}
+        <View style={[styles.width80, styles.sideSpacing]}>
+          <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
+            Accessibility
+          </Text>
+          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
+              Dark mode
+            </Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#9b0000" }}
+              activeThumbColor={"#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={setDarkMode}
+              value={wantsDarkMode}
+            />
+          </View>
+          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+            <Text style={[styles.profileText, styles.bottomMargins]}>
+              High constrast mode
+            </Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#9b0000" }}
+              activeThumbColor={"#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={setHighContrast}
+              value={wantsHighContrast}
+            />
+          </View>
+          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+            <Text style={[styles.profileText, styles.moreBottomMargins]}>
               Captions
             </Text>
             <Switch
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setCaptions}
+              value={wantsCaptions}
             />
           </View>
         </View>
 
-        <View>
-          <Text style={[styles.profileSectionHeaders]}>History</Text>
-          <View style={[styles.horizontalAlign]}>
-            <Text style={[styles.profileText]}>Save past food tours</Text>
+        {/* HISTORY */}
+        <View style={[styles.width80, styles.moreBottomMargins]}>
+          <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
+            History
+          </Text>
+          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+            <Text style={[styles.profileText, styles.bottomMargins]}>
+              Save past food tours
+            </Text>
             <Switch
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setSavedPastFoodTours}
+              value={wantsSavedPastFoodTours}
             />
           </View>
-          <View style={[styles.horizontalAlign]}>
-            <Text style={[styles.profileText]}>Save search history</Text>
+          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+            <Text style={[styles.profileText, styles.bottomMargins]}>
+              Save search history
+            </Text>
             <Switch
               trackColor={{ false: "#767577", true: "#9b0000" }}
               activeThumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              onValueChange={setSaveSearchHistory}
+              value={wantsSaveSearchHistory}
             />
           </View>
-          <Pressable style={[styles.buttonLarge.y]}>
+          <Pressable style={[styles.buttonLarge.y, styles.moreBottomMargins]}>
             <Text style={[styles.buttonLargeText.r]}>Clear History</Text>
           </Pressable>
         </View>
         <Pressable
-          style={[styles.buttonLarge.r]}
+          style={[styles.buttonLarge.r, styles.width80]}
           onPress={() => navigation.navigate(ProfileScreen)}
         >
           <Text style={[styles.buttonLargeText.y]}>Save Changes</Text>

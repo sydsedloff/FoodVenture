@@ -32,6 +32,7 @@ export default function NotificationsScreen({ navigation }) {
   // const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View>
+      {/* HEADER */}
       <SafeAreaView style={[styles.headerContainer]}>
         <Pressable onPress={() => navigation.goBack()}>
           <Image
@@ -50,7 +51,7 @@ export default function NotificationsScreen({ navigation }) {
           Push Notifications
         </Text>
 
-        <View style={[styles.sideSpacing]}>
+        <View style={[styles.sideSpacing, styles.width80]}>
           <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
               Pause all
@@ -157,7 +158,7 @@ export default function NotificationsScreen({ navigation }) {
           Email Notifications
         </Text>
 
-        <View style={[styles.sideSpacing]}>
+        <View style={[styles.sideSpacing, styles.width80]}>
           <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
               Reservation made

@@ -434,6 +434,9 @@ export default StyleSheet.create({
   bottomMargins: {
     marginBottom: 15,
   },
+  moreBottomMargins: {
+    marginBottom: 30,
+  },
   topMargins: {
     marginTop: 15,
   },
@@ -456,6 +459,9 @@ export default StyleSheet.create({
   },
   width80: {
     width: "80%",
+  },
+  width70: {
+    width: "70%",
   },
   bold: {
     fontWeight: "bold",
