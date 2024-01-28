@@ -24,14 +24,14 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
         />
         <View style={[styles.contentContainer.white]}>
           <Text style={[styles.h2.b]}>Welcome</Text>
-          <Text style={[styles.h3.b]}>USERNAME</Text>
-          <View style={styles.contentSeperatorContainer}>
-            <View style={styles.line} />
+          <Text style={[styles.h3.b, styles.bottomMargins]}>UserName123</Text>
+          <View style={[styles.contentSeperatorContainer]}>
+            <View style={[styles.line, styles.bottomMargins]} />
           </View>
-          <Text style={styles.paragraph.centered}>
+          <Text style={[styles.paragraph.centered, styles.bottomMargins]}>
             Please select any dietary restrictions you may have:
           </Text>
-          <View style={styles.checkboxCollectionContainer}>
+          <View style={[styles.checkboxCollectionContainer]}>
             <Pressable
               style={[styles.checkboxContainer]}
               onPress={() => setGlutenFree(!isGlutenFree)}
@@ -42,7 +42,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
                 onValueChange={setGlutenFree}
                 color={isGlutenFree ? Colors.red : undefined}
               />
-              <Text style={styles.checkBoxText}>Gluten Free</Text>
+              <Text style={[styles.checkBoxText]}>Gluten Free</Text>
             </Pressable>
             <Pressable
               style={[styles.checkboxContainer]}
