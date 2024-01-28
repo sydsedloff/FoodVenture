@@ -317,6 +317,19 @@ export default StyleSheet.create({
       marginVertical: 15,
       textAlign: "center",
     },
+    whiteNoBorder: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-around",
+      width: "90%",
+      backgroundColor: Colors.white,
+      borderRadius: 15,
+      padding: "5%",
+      height: "fit-content",
+      marginVertical: 15,
+      textAlign: "center",
+    },
     transparent: {
       display: "flex",
       flexDirection: "column",
@@ -376,12 +389,21 @@ export default StyleSheet.create({
     position: "sticky",
     height: 75,
     width: "100%",
-    backgroundColor: "transparent", // Set background color to transparent
     top: 0, // Align to the top of the parent container
     left: 0, // Align to the left of the parent container
     right: 0, // Align to the right of the parent container
     zIndex: 2,
     backgroundColor: "#fff",
+  },
+  headerContainerClear: {
+    position: "sticky",
+    height: 75,
+    width: "100%",
+    backgroundColor: "transparent", // Set background color to transparent
+    top: 0, // Align to the top of the parent container
+    left: 0, // Align to the left of the parent container
+    right: 0, // Align to the right of the parent container
+    zIndex: 2,
   },
 
   //OTHER STYLES
@@ -419,10 +441,23 @@ export default StyleSheet.create({
     paddingBottom: 50,
   },
   negativeMargins: {
-    marginBottom: -10,
+    marginTop: -200,
   },
   sideSpacing: {
     marginRight: 25,
     marginLeft: 25,
+  },
+  sideBuffer: {
+    marginRight: 15,
+    marginLeft: 15,
+  },
+  marginLeft: {
+    marginLeft: 50,
+  },
+  width80: {
+    width: "80%",
+  },
+  bold: {
+    fontWeight: "bold",
   },
 });

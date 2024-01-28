@@ -21,25 +21,23 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
   const [isVegetarian, setVegetarian] = useState(false);
 
   return (
-    <View>
-      <SafeAreaView style={[styles.headerContainer]}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Image
-            source={require("../assets/backArrow.png")}
-            style={[styles.headerBackArrow]}
-          ></Image>
-        </Pressable>
-      </SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={[styles.container]}>
         <ImageBackground
           source={require("../assets/Foodventure_Background_Image.png")}
           style={styles.backgroundImage}
         >
-          <Image
-            style={styles.logo}
-            source={require("../assets/FViconYellow.png")}
-          />
-          <View style={[styles.contentContainer.white]}>
+          <SafeAreaView
+            style={[styles.headerContainerClear, styles.negativeMargins]}
+          >
+            <Pressable onPress={() => navigation.goBack()}>
+              <Image
+                source={require("../assets/backArrow.png")}
+                style={[styles.headerBackArrow]}
+              ></Image>
+            </Pressable>
+          </SafeAreaView>
+          <View style={[styles.contentContainer.whiteNoBorder]}>
             <Text style={[styles.pageHeadersRed]}>
               Edit Dietary Restrictions
             </Text>
@@ -47,13 +45,13 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
               <View style={styles.line} />
             </View>
             <Text style={styles.paragraph.centered}>
-              Please select any dietary restrictions you may have:
+              Please select any dietary restriction(s)
             </Text>
           </View>
           <View style={[styles.contentContainer.white]}>
             <View style={styles.checkboxCollectionContainer}>
               <Pressable
-                style={[styles.checkboxContainer]}
+                style={[styles.checkboxContainer, styles.bottomMargins]}
                 onPress={() => setGlutenFree(!isGlutenFree)}
               >
                 <Checkbox
@@ -62,10 +60,12 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
                   onValueChange={setGlutenFree}
                   color={isGlutenFree ? Colors.red : undefined}
                 />
-                <Text style={styles.checkBoxText}>Gluten Free</Text>
+                <Text style={[styles.checkBoxText, styles.bold]}>
+                  Gluten Free
+                </Text>
               </Pressable>
               <Pressable
-                style={[styles.checkboxContainer]}
+                style={[styles.checkboxContainer, styles.bottomMargins]}
                 onPress={() => setKosher(!isKosher)}
               >
                 <Checkbox
@@ -74,10 +74,10 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
                   onValueChange={setKosher}
                   color={isKosher ? Colors.red : undefined}
                 />
-                <Text style={styles.checkBoxText}>Kosher</Text>
+                <Text style={[styles.checkBoxText, styles.bold]}>Kosher</Text>
               </Pressable>
               <Pressable
-                style={[styles.checkboxContainer]}
+                style={[styles.checkboxContainer, styles.bottomMargins]}
                 onPress={() => setPescatarian(!isPescatarian)}
               >
                 <Checkbox
@@ -86,10 +86,12 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
                   onValueChange={setPescatarian}
                   color={isPescatarian ? Colors.red : undefined}
                 />
-                <Text style={styles.checkBoxText}>Pescatarian</Text>
+                <Text style={[styles.checkBoxText, styles.bold]}>
+                  Pescatarian
+                </Text>
               </Pressable>
               <Pressable
-                style={[styles.checkboxContainer]}
+                style={[styles.checkboxContainer, styles.bottomMargins]}
                 onPress={() => setVegan(!isVegan)}
               >
                 <Checkbox
@@ -98,7 +100,7 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
                   onValueChange={setVegan}
                   color={isVegan ? Colors.red : undefined}
                 />
-                <Text style={styles.checkBoxText}>Vegan</Text>
+                <Text style={[styles.checkBoxText, styles.bold]}>Vegan</Text>
               </Pressable>
               <Pressable
                 style={[styles.checkboxContainer]}
@@ -110,18 +112,20 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
                   onValueChange={setVegetarian}
                   color={isVegetarian ? Colors.red : undefined}
                 />
-                <Text style={styles.checkBoxText}>Vegetarian</Text>
+                <Text style={[styles.checkBoxText, styles.bold]}>
+                  Vegetarian
+                </Text>
               </Pressable>
             </View>
           </View>
           <Pressable
-            style={[styles.buttonLarge.r]}
+            style={[styles.buttonLarge.r, styles.width80]}
             onPress={() => navigation.navigate(ProfileScreen)}
           >
             <Text style={[styles.buttonLargeText.y]}>Save Changes</Text>
           </Pressable>
         </ImageBackground>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

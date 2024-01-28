@@ -29,7 +29,7 @@ export default function ProfileScreen({ navigation }) {
       <Text style={[styles.signa28, styles.bottomPadding]}>
         FIRSTNAME LASTNAME
       </Text>
-      <SafeAreaView>
+      <SafeAreaView style={[styles.sideSpacing, styles.marginLeft]}>
         <Pressable
           onPress={() => navigation.navigate(EditProfileScreen)}
           style={[styles.horizontalAlign, styles.bottomMargins]}
@@ -38,7 +38,7 @@ export default function ProfileScreen({ navigation }) {
             source={require("../assets/profileIcon.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28]}>Edit Profile</Text>
+          <Text style={[styles.merri28, styles.sideBuffer]}>Edit Profile</Text>
         </Pressable>
 
         <Pressable
@@ -49,7 +49,9 @@ export default function ProfileScreen({ navigation }) {
             source={require("../assets/forkKnifeRed.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28]}>Edit Dietary Restrictions</Text>
+          <Text style={[styles.merri28, styles.sideBuffer]}>
+            Edit Dietary Restrictions
+          </Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(SavedScreen)}
@@ -59,7 +61,7 @@ export default function ProfileScreen({ navigation }) {
             source={require("../assets/saveFilled.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28]}>Saved</Text>
+          <Text style={[styles.merri28, styles.sideBuffer]}>Saved</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(NotificationsScreen)}
@@ -69,7 +71,7 @@ export default function ProfileScreen({ navigation }) {
             source={require("../assets/noti.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28]}>Notifications</Text>
+          <Text style={[styles.merri28, styles.sideBuffer]}>Notifications</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(SettingsScreen)}
@@ -79,7 +81,7 @@ export default function ProfileScreen({ navigation }) {
             source={require("../assets/settingGear.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28]}>Settings</Text>
+          <Text style={[styles.merri28, styles.sideBuffer]}>Settings</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate(WelcomeScreen)}
@@ -89,7 +91,7 @@ export default function ProfileScreen({ navigation }) {
             source={require("../assets/logout.png")}
             style={[styles.icon]}
           ></Image>
-          <Text style={[styles.merri28]}>Log out</Text>
+          <Text style={[styles.merri28, styles.sideBuffer]}>Log out</Text>
         </Pressable>
       </SafeAreaView>
       <NavigationBar />
