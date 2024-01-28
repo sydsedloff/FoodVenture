@@ -198,7 +198,7 @@ export default function NotificationsScreen({ navigation }) {
         </View>
 
         <Pressable
-          style={[styles.buttonLarge.r, styles.sideSpacing]}
+          style={[styles.buttonLarge.r, styles.width80]}
           onPress={() => navigation.navigate(ProfileScreen)}
         >
           <Text style={[styles.buttonLargeText.y]}>Save Changes</Text>
