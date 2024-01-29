@@ -420,6 +420,10 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  verticalAlign: {
+    flexDirection: "column",
+    alignItems: "center",
+  },
   headerBackArrow: {
     position: "absolute",
     top: 10,
@@ -474,5 +478,8 @@ export default StyleSheet.create({
   },
   alignItemsLeft: {
     alignItems: "left",
+  },
+  alignSelfCenter: {
+    alignSelf: "center",
   },
 });
