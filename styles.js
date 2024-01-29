@@ -373,7 +373,6 @@ export default StyleSheet.create({
       textAlign: "center",
     },
     sharpCorner: {
-      // display: "flex",
       alignItems: "center",
       width: "95%",
       borderRadius: 6,
@@ -399,6 +398,19 @@ export default StyleSheet.create({
     paddingVertical: 10,
     height: "fit-content",
     marginLeft: 25,
+  },
+  filterContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    marginVertical: 6,
+  },
+  columnContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginVertical: 6,
   },
   checkboxContainer: {
     flexDirection: "row",
@@ -482,6 +494,9 @@ export default StyleSheet.create({
   },
   width70: {
     width: "70%",
+  },
+  width50: {
+    width: "50%",
   },
   bold: {
     fontWeight: "bold",
