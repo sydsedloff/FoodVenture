@@ -65,7 +65,7 @@ export default StyleSheet.create({
       ...baseH2Style,
       color: Colors.black,
       fontFamily: "FugazOne-Regular",
-      fontSize: 70,
+      fontSize: 60,
     },
   },
   h3: {
