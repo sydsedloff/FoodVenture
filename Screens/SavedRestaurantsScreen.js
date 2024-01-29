@@ -21,7 +21,7 @@ import SavedRestaurants from "../Components/SavedRestaurantsComponent";
 export default function SavedRestaurantScreen({ navigation }) {
   return (
     <View>
-      <HeaderComponent navigation={navigation}></HeaderComponent>
+      <HeaderComponent />
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders]}>Saved Restaurants</Text>
 

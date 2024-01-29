@@ -18,9 +18,14 @@ const SavedRestaurants = ({
         styles.bottomMargins,
         styles.alignItemsLeft,
         styles.contentContainer.sharpCorner,
+        styles.sideSpacing,
+        styles.alignSelfCenter,
       ]}
     >
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
+      <Pressable
+        onPress={() => navigation.navigate(RestaurantScreen)}
+        style={[styles.width100]}
+      >
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
           <Text style={[styles.signa28]}>{name}</Text>
           <Image
@@ -33,24 +38,33 @@ const SavedRestaurants = ({
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         <Image
           source={{ uri: image }}
-          style={[styles.image, styles.lessBottomMargins]}
+          style={[
+            styles.image,
+            styles.lessBottomMargins,
+            styles.alignSelfCenter,
+            styles.sideBuffer,
+          ]}
         ></Image>
       </Pressable>
-      <Text style={[styles.merri19Bold, styles.lessBottomMargins]}>
+      <Text
+        style={[styles.merri19Bold, styles.lessBottomMargins, styles.width100]}
+      >
         {address}
       </Text>
-      <Text style={[styles.merri17, styles.lessBottomMargins]}>
-        {description}
-      </Text>
-      <Text style={[styles.link, styles.bottomMargins]} href={[website]}>
+      <Text
+        style={[
+          styles.link,
+          styles.bottomMargins,
+          styles.alignSelfLeft,
+          styles.width100,
+        ]}
+        href={[website]}
+      >
         {website}
       </Text>
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         {/* Will need to grab key for restaurant screen */}
       </Pressable>
-      <View style={[styles.contentSeperatorContainer]}>
-        <View style={[styles.line, styles.bottomMargins]} />
-      </View>
     </View>
   );
 };

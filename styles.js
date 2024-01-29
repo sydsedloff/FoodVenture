@@ -373,18 +373,14 @@ export default StyleSheet.create({
       textAlign: "center",
     },
     sharpCorner: {
-      display: "flex",
-      flexDirection: "column",
+      // display: "flex",
       alignItems: "center",
-      justifyContent: "space-around",
-      width: "85%",
-      backgroundColor: Colors.white,
+      width: "95%",
       borderRadius: 6,
-      border: "1px solid #4A4F4A80",
+      border: "1px solid black",
       padding: "5%",
       height: "fit-content",
       marginVertical: 15,
-      textAlign: "center",
     },
   },
   textInputContainer: {
@@ -478,6 +474,9 @@ export default StyleSheet.create({
   marginLeft: {
     marginLeft: 50,
   },
+  width100: {
+    width: "100%",
+  },
   width80: {
     width: "80%",
   },
@@ -498,6 +497,9 @@ export default StyleSheet.create({
   },
   alignSelfCenter: {
     alignSelf: "center",
+  },
+  alignSelfLeft: {
+    alignSelf: "left",
   },
   flexColumn: {
     flexDirection: "column",
