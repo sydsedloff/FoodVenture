@@ -420,6 +420,10 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  verticalAlign: {
+    flexDirection: "column",
+    alignItems: "center",
+  },
   headerBackArrow: {
     position: "absolute",
     top: 10,
@@ -445,6 +449,9 @@ export default StyleSheet.create({
   },
   negativeMargins: {
     marginTop: -200,
+  },
+  smallNegativeMargins: {
+    marginTop: -50,
   },
   sideSpacing: {
     marginRight: 25,
@@ -474,5 +481,11 @@ export default StyleSheet.create({
   },
   alignItemsLeft: {
     alignItems: "left",
+  },
+  alignSelfCenter: {
+    alignSelf: "center",
+  },
+  spaceEvenly: {
+    justifyContent: "space-around",
   },
 });
