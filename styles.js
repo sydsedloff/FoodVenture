@@ -450,6 +450,9 @@ export default StyleSheet.create({
   negativeMargins: {
     marginTop: -200,
   },
+  smallNegativeMargins: {
+    marginTop: -50,
+  },
   sideSpacing: {
     marginRight: 25,
     marginLeft: 25,
@@ -481,5 +484,8 @@ export default StyleSheet.create({
   },
   alignSelfCenter: {
     alignSelf: "center",
+  },
+  spaceEvenly: {
+    justifyContent: "space-around",
   },
 });

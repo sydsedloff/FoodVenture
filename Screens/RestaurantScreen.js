@@ -1,14 +1,7 @@
-import {
-  Image,
-  Text,
-  TextInput,
-  Pressable,
-  View,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { Image, Text, Pressable, View, SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import DropDownPicker from "react-native-dropdown-picker";
 import styles from "../styles";
-import myRestaurants from "../data/fakeRestaurants.json";
 import ReservationScreen from "./ReservationScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
@@ -16,9 +9,7 @@ import RatingImage from "../Components/RatingImageComponent";
 
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
-    <SafeAreaView
-      style={[styles.container, styles.bottomMargins, styles.alignItemsLeft]}
-    >
+    <SafeAreaView style={[styles.container, styles.alignItemsLeft]}>
       <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
         <Text style={[styles.signa32]}>{name}</Text>
         <Image
@@ -59,10 +50,33 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
     </SafeAreaView>
   );
 };
+const DropdownMenu = () => {
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  return (
+    <View>
+      <Text>Select an option:</Text>
+      <DropDownPicker
+        items={[
+          { label: "Option 1", value: "option1" },
+          { label: "Option 2", value: "option2" },
+          { label: "Option 3", value: "option3" },
+        ]}
+        defaultValue={selectedValue}
+        containerStyle={{ height: 40 }}
+        style={{ backgroundColor: "#fafafa" }}
+        itemStyle={{ justifyContent: "flex-start" }}
+        dropDownStyle={{ backgroundColor: "#fafafa" }}
+        onChangeItem={(item) => setSelectedValue(item.value)}
+      />
+      <Text>Selected Value: {selectedValue}</Text>
+    </View>
+  );
+};
 
 export default function RestaurantScreen({ navigation }) {
   return (
-    <View style={[styles.container]}>
+    <SafeAreaView style={[styles.container]}>
       <HeaderComponent />
 
       <View style={[styles.width80]}>
@@ -73,19 +87,24 @@ export default function RestaurantScreen({ navigation }) {
           description="This is a description of a restaurant that serves food. Ideally it would be good food, but you never know."
           website="https://www.google.com"
         />
-        <Text style={[styles.signa28, styles.width80]}>Make a reservation</Text>
-        <Text>Party Size (future dropdown)</Text>
-        <Pressable style={[styles.buttonLarge.r]}>
-          <Text
-            style={[styles.buttonLargeText.y]}
-            onPress={() => navigation.navigate(ReservationScreen)}
-          >
-            Make Reservation
+        <View style={[styles.smallNegativeMargins, styles.justifyContent]}>
+          <Text style={[styles.signa28, styles.width80]}>
+            Make a reservation
           </Text>
-        </Pressable>
+          <Text>Party Size (future dropdown)</Text>
+          <DropdownMenu></DropdownMenu>
+          <Pressable style={[styles.buttonLarge.r]}>
+            <Text
+              style={[styles.buttonLargeText.y]}
+              onPress={() => navigation.navigate(ReservationScreen)}
+            >
+              Make Reservation
+            </Text>
+          </Pressable>
+        </View>
       </View>
       <NavigationBar />
       {/* keyExtractor={(item) => item.id} */}
-    </View>
+    </SafeAreaView>
   );
 }
