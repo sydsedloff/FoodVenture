@@ -65,6 +65,7 @@ export default StyleSheet.create({
       ...baseH2Style,
       color: Colors.black,
       fontFamily: "FugazOne-Regular",
+      fontSize: 70,
     },
   },
   h3: {
@@ -115,7 +116,7 @@ export default StyleSheet.create({
     borderColor: "black",
     borderWidth: 2,
     borderRadius: 20,
-    height: 40,
+    height: 35,
     width: "100%",
     fontSize: 24,
   },
@@ -221,6 +222,10 @@ export default StyleSheet.create({
     height: 50,
     width: 50,
   },
+  starIcons: {
+    height: 50,
+    maxWidth: 100,
+  },
   smallerIcons: {
     height: 35,
     width: 35,
@@ -285,8 +290,25 @@ export default StyleSheet.create({
     width: "100%",
     alignItems: "center",
   },
-  justifySpaceBetween: {
-    justifyContent: "space-between",
+  headerContainer: {
+    position: "sticky",
+    height: 75,
+    width: "100%",
+    top: 0, // Align to the top of the parent container
+    left: 0, // Align to the left of the parent container
+    right: 0, // Align to the right of the parent container
+    zIndex: 2,
+    backgroundColor: "#fff",
+  },
+  headerContainerClear: {
+    position: "sticky",
+    height: 75,
+    width: "100%",
+    backgroundColor: "transparent", // Set background color to transparent
+    top: 0, // Align to the top of the parent container
+    left: 0, // Align to the left of the parent container
+    right: 0, // Align to the right of the parent container
+    zIndex: 2,
   },
   profileContainer: {
     flex: 1,
@@ -298,9 +320,6 @@ export default StyleSheet.create({
   buttonContainer: {
     alignSelf: "flex-end", // Align the container to the end of the main axis (right)
     marginTop: 10, // Add some margin to give space between the content and the right edge
-  },
-  contentJustify: {
-    justifyContent: "center",
   },
   contentContainer: {
     white: {
@@ -385,28 +404,8 @@ export default StyleSheet.create({
   forgotPasswordContainer: {
     alignSelf: "flex-end", // Align to the right
   },
-  headerContainer: {
-    position: "sticky",
-    height: 75,
-    width: "100%",
-    top: 0, // Align to the top of the parent container
-    left: 0, // Align to the left of the parent container
-    right: 0, // Align to the right of the parent container
-    zIndex: 2,
-    backgroundColor: "#fff",
-  },
-  headerContainerClear: {
-    position: "sticky",
-    height: 75,
-    width: "100%",
-    backgroundColor: "transparent", // Set background color to transparent
-    top: 0, // Align to the top of the parent container
-    left: 0, // Align to the left of the parent container
-    right: 0, // Align to the right of the parent container
-    zIndex: 2,
-  },
 
-  //OTHER STYLES
+  //OTHER STYLES BC IDK ANYMORE
   checkbox: {
     marginRight: 10,
     width: 18,
@@ -417,12 +416,10 @@ export default StyleSheet.create({
     height: 1,
     backgroundColor: Colors.grey,
   },
-
   horizontalAlign: {
     flexDirection: "row",
     alignItems: "center",
   },
-
   headerBackArrow: {
     position: "absolute",
     top: 10,
@@ -431,14 +428,17 @@ export default StyleSheet.create({
     height: 58,
     width: 58,
   },
+  topMargins: {
+    marginTop: 15,
+  },
   bottomMargins: {
     marginBottom: 15,
   },
   moreBottomMargins: {
     marginBottom: 30,
   },
-  topMargins: {
-    marginTop: 15,
+  lessBottomMargins: {
+    marginBottom: 7,
   },
   bottomPadding: {
     paddingBottom: 50,
@@ -465,5 +465,14 @@ export default StyleSheet.create({
   },
   bold: {
     fontWeight: "bold",
+  },
+  contentJustify: {
+    justifyContent: "center",
+  },
+  justifySpaceBetween: {
+    justifyContent: "space-between",
+  },
+  alignItemsLeft: {
+    alignItems: "left",
   },
 });

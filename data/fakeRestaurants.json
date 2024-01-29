@@ -5,7 +5,7 @@
     "address": "111 Roady Rd, Orlando, FL 12345",
     "website": "https://google.com",
     "description": "This is a description of Restaurant 1",
-    "star_rating": "4",
+    "star_rating": 3.73,
     "dollar_signs": "2",
     "keywords": ["asian", "chinese", "dumplings"],
     "id": 1
@@ -16,7 +16,7 @@
     "address": "222 Roady Rd, Orlando, FL 12345",
     "website": "https://google.com",
     "description": "This is a description of Restaurant 2",
-    "star_rating": "4",
+    "star_rating": 2,
     "dollar_signs": "2",
     "keywords": ["asian", "chinese", "dumplings"],
     "id": 2
@@ -27,7 +27,7 @@
     "address": "333 Roady Rd, Orlando, FL 12345",
     "website": "https://google.com",
     "description": "This is a description of Restaurant 3",
-    "star_rating": "4",
+    "star_rating": 0.75,
     "dollar_signs": "2",
     "keywords": ["asian", "chinese", "dumplings"],
     "id": 3
