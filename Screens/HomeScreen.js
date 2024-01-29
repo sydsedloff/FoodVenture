@@ -7,11 +7,15 @@ import {
   Pressable,
 } from "react-native";
 import styles from "../styles";
-import myRestaurants from "../data/fakeRestaurants.json";
+//SCREENS
 import FilterSidebar from "./FilterSidebar";
+// COMPONENTS
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
+import RatingImage from "../Components/RatingImageComponent";
+// DATA
+import myRestaurants from "../data/fakeRestaurants.json";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -56,6 +60,7 @@ export default function HomeScreen({ navigation }) {
               description={item.description}
               website={item.website}
               navigation={navigation}
+              star_rating={item.star_rating}
             />
           )}
           keyExtractor={(item) => item.id}

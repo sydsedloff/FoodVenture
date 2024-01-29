@@ -1,6 +1,7 @@
 import { StyleSheet, Image, Text, View, Pressable } from "react-native";
 import styles from "../styles";
 import RestaurantScreen from "../Screens/RestaurantScreen";
+import RatingImage from "./RatingImageComponent";
 const Restaurants = ({
   name,
   image,
@@ -8,6 +9,7 @@ const Restaurants = ({
   description,
   website,
   navigation,
+  star_rating,
 }) => {
   return (
     <View
@@ -15,6 +17,7 @@ const Restaurants = ({
     >
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         <Text style={[styles.signa28]}>{name}</Text>
+        <RatingImage star_rating={star_rating} />
       </Pressable>
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
         <Image

@@ -222,6 +222,10 @@ export default StyleSheet.create({
     height: 50,
     width: 50,
   },
+  starIcons: {
+    height: 50,
+    maxWidth: 100,
+  },
   smallerIcons: {
     height: 35,
     width: 35,
@@ -452,9 +456,6 @@ export default StyleSheet.create({
   },
   marginLeft: {
     marginLeft: 50,
-  },
-  width90: {
-    width: "90%",
   },
   width80: {
     width: "80%",
