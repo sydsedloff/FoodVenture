@@ -16,12 +16,31 @@ export default function ReservationScreen({ navigation }) {
           source={require("../assets/FViconYellow.png")}
         />
         <View style={styles.contentContainer.white}>
-          <Text style={styles.h2.r}>Reservation Confirmation</Text>
-          {/* Style the input elements */}
-          <Text>Party Size:</Text>
-          <Text>Date:</Text>
-          <Text>Time:</Text>
-          <Text>See you soon!</Text>
+          <Text
+            style={[styles.signa48Red, styles.textCenter, styles.bottomMargins]}
+          >
+            Reservation Confirmation
+          </Text>
+          <View>
+            <View style={[styles.horizontalAlign]}>
+              <Text style={[styles.profileText]}>Party Size:</Text>{" "}
+              <Text style={[styles.merri19Bold, styles.marginLeft]}>3</Text>
+            </View>
+            <View style={[styles.horizontalAlign]}>
+              <Text style={[styles.profileText]}>Date:</Text>
+              <Text style={[styles.merri19Bold, styles.marginLeft]}>
+                November 1, 2024
+              </Text>
+            </View>
+            <View style={[styles.horizontalAlign, styles.bottomMargins]}>
+              <Text style={[styles.profileText]}>Time:</Text>
+              <Text style={[styles.merri19Bold, styles.marginLeft]}>
+                5:30 pm
+              </Text>
+            </View>
+          </View>
+
+          <Text style={[styles.signa36Red]}>See you soon!</Text>
         </View>
       </ImageBackground>
       <NavigationBar />
