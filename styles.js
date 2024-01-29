@@ -372,6 +372,20 @@ export default StyleSheet.create({
       marginVertical: 15,
       textAlign: "center",
     },
+    sharpCorner: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-around",
+      width: "85%",
+      backgroundColor: Colors.white,
+      borderRadius: 6,
+      border: "1px solid #4A4F4A80",
+      padding: "5%",
+      height: "fit-content",
+      marginVertical: 15,
+      textAlign: "center",
+    },
   },
   textInputContainer: {
     flexDirection: "column",
@@ -485,7 +499,7 @@ export default StyleSheet.create({
   alignSelfCenter: {
     alignSelf: "center",
   },
-  spaceEvenly: {
-    justifyContent: "space-around",
+  flexColumn: {
+    flexDirection: "column",
   },
 });
