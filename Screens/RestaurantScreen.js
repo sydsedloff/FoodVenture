@@ -54,7 +54,7 @@ const DropdownMenu = () => {
   const [selectedValue, setSelectedValue] = useState(null);
 
   return (
-    <View>
+    <View style={[styles.container]}>
       <Text>Select an option:</Text>
       <DropDownPicker
         items={[
@@ -87,12 +87,12 @@ export default function RestaurantScreen({ navigation }) {
           description="This is a description of a restaurant that serves food. Ideally it would be good food, but you never know."
           website="https://www.google.com"
         />
-        <View style={[styles.smallNegativeMargins, styles.justifyContent]}>
+        <View style={[styles.smallNegativeMargins]}>
           <Text style={[styles.signa28, styles.width80]}>
             Make a reservation
           </Text>
           <Text>Party Size (future dropdown)</Text>
-          <DropdownMenu></DropdownMenu>
+          {/* <DropdownMenu></DropdownMenu> */}
           <Pressable style={[styles.buttonLarge.r]}>
             <Text
               style={[styles.buttonLargeText.y]}

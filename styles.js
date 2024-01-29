@@ -372,6 +372,15 @@ export default StyleSheet.create({
       marginVertical: 15,
       textAlign: "center",
     },
+    sharpCorner: {
+      alignItems: "center",
+      width: "95%",
+      borderRadius: 6,
+      border: "1px solid black",
+      padding: "5%",
+      height: "fit-content",
+      marginVertical: 15,
+    },
   },
   textInputContainer: {
     flexDirection: "column",
@@ -389,6 +398,19 @@ export default StyleSheet.create({
     paddingVertical: 10,
     height: "fit-content",
     marginLeft: 25,
+  },
+  filterContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    marginVertical: 6,
+  },
+  columnContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginVertical: 6,
   },
   checkboxContainer: {
     flexDirection: "row",
@@ -464,11 +486,17 @@ export default StyleSheet.create({
   marginLeft: {
     marginLeft: 50,
   },
+  width100: {
+    width: "100%",
+  },
   width80: {
     width: "80%",
   },
   width70: {
     width: "70%",
+  },
+  width50: {
+    width: "50%",
   },
   bold: {
     fontWeight: "bold",
@@ -485,7 +513,10 @@ export default StyleSheet.create({
   alignSelfCenter: {
     alignSelf: "center",
   },
-  spaceEvenly: {
-    justifyContent: "space-around",
+  alignSelfLeft: {
+    alignSelf: "left",
+  },
+  flexColumn: {
+    flexDirection: "column",
   },
 });
