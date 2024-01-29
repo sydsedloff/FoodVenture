@@ -16,7 +16,13 @@ const Restaurants = ({
       style={[styles.container, styles.bottomMargins, styles.alignItemsLeft]}
     >
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
-        <Text style={[styles.signa28]}>{name}</Text>
+        <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+          <Text style={[styles.signa28]}>{name}</Text>
+          <Image
+            style={[styles.icon]}
+            source={require("../assets/save.png")}
+          ></Image>
+        </View>
         <RatingImage star_rating={star_rating} />
       </Pressable>
       <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
