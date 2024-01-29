@@ -92,7 +92,6 @@ export default function RestaurantScreen({ navigation }) {
             Make a reservation
           </Text>
           <Text>Party Size (future dropdown)</Text>
-          {/* <DropdownMenu></DropdownMenu> */}
           <Pressable style={[styles.buttonLarge.r]}>
             <Text
               style={[styles.buttonLargeText.y]}
