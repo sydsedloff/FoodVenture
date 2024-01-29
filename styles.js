@@ -187,6 +187,21 @@ export default StyleSheet.create({
     fontFamily: "MerriweatherSans-Regular",
     fontSize: 17,
   },
+  signa48Red: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 48,
+    color: Colors.red,
+    fontWeight: "bold",
+  },
+  signa36Red: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 36,
+    color: Colors.red,
+    fontWeight: "bold",
+  },
+  textCenter: {
+    textAlign: "center",
+  },
 
   //IMAGES
   backgroundImage: {
