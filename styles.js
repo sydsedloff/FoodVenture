@@ -73,6 +73,7 @@ export default StyleSheet.create({
       ...baseH3Style,
       color: Colors.red,
       paddingBottom: 16,
+      textAlign: "center",
     },
     b: {
       ...baseH3Style,
@@ -239,7 +240,7 @@ export default StyleSheet.create({
   },
   starIcons: {
     height: 50,
-    maxWidth: 100,
+    width: 100,
   },
   smallerIcons: {
     height: 35,
