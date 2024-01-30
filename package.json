@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "react-native-gesture-handler": "~2.12.0",
     "@expo/webpack-config": "^19.0.0",
     "@react-native-community/checkbox": "^0.5.17",
     "@react-navigation/bottom-tabs": "^6.5.11",
@@ -28,7 +29,7 @@
     "react-navigation-material-bottom-tabs": "^2.3.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.21.4"
   },
   "overrides": {
     "semver": "^7.5.3"

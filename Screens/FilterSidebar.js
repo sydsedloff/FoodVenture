@@ -12,7 +12,6 @@ import Checkbox from "expo-checkbox";
 import HeaderComponent from "../Components/HeaderComponent";
 import styles from "../styles";
 import NavigationBar from "../Components/NavigationBar";
-import YourFoodTourScreen from "./YourFoodTourScreen";
 import HomeScreen from "./HomeScreen";
 
 export default function FilterSidebar({ navigation }) {
@@ -52,37 +51,23 @@ export default function FilterSidebar({ navigation }) {
           Filters
         </Text>
         <Text style={[styles.profileText]}>Price Range</Text>
+
         <View style={[styles.checkboxContainer]}>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$$$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$$$$</Text>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$$</Text>
+          </Pressable>
         </View>
         <Text style={[styles.profileText]}>Dietary Restrictions</Text>
         <View
@@ -253,7 +238,6 @@ export default function FilterSidebar({ navigation }) {
             </Pressable>
           </View>
         </View>
-
         {/* CUISINE TYPE */}
         <Text style={[styles.profileText]}>Cuisine Type</Text>
         <View
@@ -494,7 +478,6 @@ export default function FilterSidebar({ navigation }) {
             </Pressable>
           </View>
         </View>
-
         <Pressable
           onPress={() => navigation.navigate(HomeScreen)}
           style={[
@@ -507,7 +490,6 @@ export default function FilterSidebar({ navigation }) {
         </Pressable>
         <View style={[styles.moreBottomMargins]}></View>
       </View>
-      <NavigationBar />
     </SafeAreaView>
   );
 }

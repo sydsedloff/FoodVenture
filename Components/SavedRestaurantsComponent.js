@@ -6,7 +6,6 @@ const SavedRestaurants = ({
   name,
   image,
   address,
-  description,
   website,
   navigation,
   star_rating,

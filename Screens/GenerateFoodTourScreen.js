@@ -51,37 +51,23 @@ export default function GenerateFoodTourScreen({ navigation }) {
           Generate Your Food Tour
         </Text>
         <Text style={[styles.profileText]}>Price Range</Text>
+
         <View style={[styles.checkboxContainer]}>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$$$</Text>
-          <CheckBox
-            // value={isSelected}
-            // onValueChange={setSelection}
-            style={[styles.checkbox]}
-          />
-          <Text>$$$$$</Text>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$</Text>
+          </Pressable>
+          <Pressable style={[styles.dollarButtons]}>
+            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$$</Text>
+          </Pressable>
         </View>
         <Text style={[styles.profileText]}>Dietary Restrictions</Text>
         <View
