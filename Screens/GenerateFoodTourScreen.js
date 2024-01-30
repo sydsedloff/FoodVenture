@@ -15,6 +15,7 @@ import HeaderComponent from "../Components/HeaderComponent";
 import styles from "../styles";
 import HomeScreen from "./HomeScreen";
 import NavigationBar from "../Components/NavigationBar";
+import YourFoodTourScreen from "./YourFoodTourScreen";
 
 export default function GenerateFoodTourScreen({ navigation }) {
   // DIETARY RESTRICTIONS
@@ -209,7 +210,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
                 color={isDistance12_30 ? Colors.red : undefined}
               />
               <Text style={[styles.checkBoxText, styles.bold]}>12-30 mi</Text>
-            </Pressable>{" "}
+            </Pressable>
           </View>
           <View style={[styles.width50]}>
             <Pressable
@@ -476,7 +477,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
           </Pressable>
         </View>
         <Pressable
-          onPress={() => navigation.navigate(HomeScreen)}
+          onPress={() => navigation.navigate(YourFoodTourScreen)}
           style={[
             styles.buttonLarge.r,
             styles.width70,
