@@ -200,8 +200,16 @@ export default StyleSheet.create({
     color: Colors.red,
     fontWeight: "bold",
   },
+  signa24: {
+    fontFamily: "SignikaNegative-Regular",
+    fontSize: 24,
+  },
   textCenter: {
     textAlign: "center",
+  },
+  dollarText: {
+    fontSize: 16,
+    fontFamily: "MerriweatherSans-Regular",
   },
 
   //IMAGES
@@ -296,6 +304,13 @@ export default StyleSheet.create({
       ...baseButtonLargeTextStyle,
       color: Colors.white,
     },
+  },
+  dollarButtons: {
+    border: "1px solid black",
+    borderRadius: 10,
+    minWidth: 30,
+    textAlign: "center",
+    alignItems: "center",
   },
 
   //CONTAINERS
@@ -534,5 +549,8 @@ export default StyleSheet.create({
   },
   flexColumn: {
     flexDirection: "column",
+  },
+  heightmatch: {
+    height: "auto",
   },
 });

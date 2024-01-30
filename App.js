@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import * as Font from "expo-font"; // Import Font from Expo
 
 // Import screens
@@ -57,7 +58,7 @@ export default function App() {
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="YourFoodTourScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}

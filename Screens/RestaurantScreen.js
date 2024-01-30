@@ -22,8 +22,6 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
         source={{ uri: image }}
         style={[styles.image, styles.alignSelfCenter]}
       ></Image>
-
-      {/* THIS RATING IMAGE ISN'T WORKING */}
       <View
         style={[
           styles.horizontalAlign,
