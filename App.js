@@ -26,6 +26,7 @@ import NotificationsScreen from "./Screens/NotificationsScreen";
 import SettingsScreen from "./Screens/SettingsScreen";
 import SavedRestaurantScreen from "./Screens/SavedRestaurantsScreen";
 import SavedFoodToursScreen from "./Screens/SavedFoodToursScreen";
+import GenerateFoodTourScreen from "./Screens/GenerateFoodTourScreen";
 
 // Register custom fonts
 Font.loadAsync({
@@ -54,7 +55,7 @@ export default function App() {
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="WelcomeScreen">
+      <Stack.Navigator initialRouteName="GenerateFoodTourScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
@@ -133,6 +134,11 @@ export default function App() {
         <Stack.Screen
           name="SavedFoodToursScreen"
           component={SavedFoodToursScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="GenerateFoodTourScreen"
+          component={GenerateFoodTourScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

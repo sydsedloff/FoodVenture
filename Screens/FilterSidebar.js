@@ -9,11 +9,6 @@ import {
 import React, { useState } from "react";
 import { Colors } from "../colors";
 
-import {
-  NavigationContainer,
-  useFocusEffect,
-  useRoute,
-} from "@react-navigation/native";
 import Checkbox from "expo-checkbox";
 import HeaderComponent from "../Components/HeaderComponent";
 import styles from "../styles";

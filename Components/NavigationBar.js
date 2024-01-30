@@ -23,7 +23,7 @@ const NavigationBar = () => {
       </Pressable>
       <Pressable
         style={styles.addButtonWrapper}
-        onPress={() => navigation.navigate("EditProfileScreen")}
+        onPress={() => navigation.navigate("GenerateFoodTourScreen")}
       >
         <Image
           style={styles.addButton}
