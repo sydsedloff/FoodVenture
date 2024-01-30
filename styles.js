@@ -535,4 +535,7 @@ export default StyleSheet.create({
   flexColumn: {
     flexDirection: "column",
   },
+  heightmatch: {
+    height: "auto",
+  },
 });
