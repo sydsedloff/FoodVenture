@@ -25,9 +25,10 @@ import SavedScreen from "./Screens/SavedScreen";
 import NotificationsScreen from "./Screens/NotificationsScreen";
 import SettingsScreen from "./Screens/SettingsScreen";
 import SavedRestaurantScreen from "./Screens/SavedRestaurantsScreen";
-import SavedFoodToursScreen from "./Screens/SavedFoodToursScreen";
+import SavedFoodToursScreen from "./Screens/SavedFoodToursMenuScreen";
 import GenerateFoodTourScreen from "./Screens/GenerateFoodTourScreen";
 import YourFoodTourScreen from "./Screens/YourFoodTourScreen";
+import SavedFoodToursMenuScreen from "./Screens/SavedFoodToursMenuScreen";
 
 // Register custom fonts
 Font.loadAsync({
@@ -135,6 +136,11 @@ export default function App() {
         <Stack.Screen
           name="SavedFoodToursScreen"
           component={SavedFoodToursScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SavedFoodToursMenuScreen"
+          component={SavedFoodToursMenuScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

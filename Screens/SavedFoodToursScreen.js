@@ -1,43 +1,40 @@
-import React from "react";
-import { Text, Image, View, Pressable } from "react-native";
+import {
+  Image,
+  Text,
+  TextInput,
+  View,
+  FlatList,
+  Pressable,
+} from "react-native";
 import styles from "../styles";
-import SavedRestaurantScreen from "./SavedRestaurantsScreen";
+import myRestaurants from "../data/fakeRestaurants.json";
+
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
+import SavedRestaurants from "../Components/SavedRestaurantsComponent";
 
 export default function SavedFoodToursScreen({ navigation }) {
   return (
-    <View style={{ flex: 1 }}>
-      <HeaderComponent navigation={navigation}></HeaderComponent>
+    <View>
+      <HeaderComponent />
+      <View style={[styles.container]}>
+        <Text style={[styles.pageHeaders]}>Saved Food Tour</Text>
 
-      <View style={styles.container}>
-        <Text style={[styles.pageHeaders, styles.bottomMargins]}>
-          Saved Food Tours
-        </Text>
-        <Pressable
-          style={styles.contentContainer.red}
-          onPress={() => navigation.navigate(SavedRestaurantScreen)}
-        >
-          <Text style={[styles.pageHeaders]}>Tour #1</Text>
-          <Image
-            source={require("../assets/binoculars.png")}
-            style={[styles.savedPageIcons]}
-          ></Image>
-        </Pressable>
-        <Pressable style={styles.contentContainer.red}>
-          <Text style={[styles.pageHeaders]}>Tour #2</Text>
-          <Image
-            source={require("../assets/binoculars.png")}
-            style={[styles.savedPageIcons]}
-          ></Image>
-        </Pressable>
-        <Pressable style={styles.contentContainer.red}>
-          <Text style={[styles.pageHeaders]}>Tour #3</Text>
-          <Image
-            source={require("../assets/binoculars.png")}
-            style={[styles.savedPageIcons]}
-          ></Image>
-        </Pressable>
+        <FlatList
+          data={myRestaurants}
+          renderItem={({ item }) => (
+            <SavedRestaurants
+              name={item.name}
+              image={item.image}
+              address={item.address}
+              description={item.description}
+              website={item.website}
+              navigation={navigation}
+              star_rating={item.star_rating}
+            />
+          )}
+          keyExtractor={(item) => item.id}
+        ></FlatList>
       </View>
       <NavigationBar />
     </View>
