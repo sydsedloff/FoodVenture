@@ -25,7 +25,7 @@ import SavedScreen from "./Screens/SavedScreen";
 import NotificationsScreen from "./Screens/NotificationsScreen";
 import SettingsScreen from "./Screens/SettingsScreen";
 import SavedRestaurantScreen from "./Screens/SavedRestaurantsScreen";
-import SavedFoodToursScreen from "./Screens/SavedFoodToursMenuScreen";
+import SavedFoodToursScreen from "./Screens/SavedFoodToursScreen";
 import GenerateFoodTourScreen from "./Screens/GenerateFoodTourScreen";
 import YourFoodTourScreen from "./Screens/YourFoodTourScreen";
 import SavedFoodToursMenuScreen from "./Screens/SavedFoodToursMenuScreen";
@@ -57,7 +57,7 @@ export default function App() {
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="GenerateFoodTourScreen">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}

@@ -25,14 +25,20 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
             style={[styles.savedPageIcons]}
           ></Image>
         </Pressable>
-        <Pressable style={styles.contentContainer.red}>
+        <Pressable
+          onPress={() => navigation.navigate(SavedFoodToursScreen)}
+          style={styles.contentContainer.red}
+        >
           <Text style={[styles.pageHeaders]}>Tour #2</Text>
           <Image
             source={require("../assets/binoculars.png")}
             style={[styles.savedPageIcons]}
           ></Image>
         </Pressable>
-        <Pressable style={styles.contentContainer.red}>
+        <Pressable
+          onPress={() => navigation.navigate(SavedFoodToursScreen)}
+          style={styles.contentContainer.red}
+        >
           <Text style={[styles.pageHeaders]}>Tour #3</Text>
           <Image
             source={require("../assets/binoculars.png")}
