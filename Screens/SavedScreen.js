@@ -2,9 +2,10 @@ import React from "react";
 import { Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
 import SavedRestaurantScreen from "./SavedRestaurantsScreen";
-import SavedFoodToursScreen from "./SavedFoodToursScreen";
+import SavedFoodToursScreen from "./SavedFoodToursMenuScreen";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
+import SavedFoodToursMenuScreen from "./SavedFoodToursMenuScreen";
 
 export default function SavedScreen({ navigation }) {
   return (
@@ -29,7 +30,7 @@ export default function SavedScreen({ navigation }) {
       </Pressable>
       <Pressable
         style={styles.contentContainer.red}
-        onPress={() => navigation.navigate(SavedFoodToursScreen)}
+        onPress={() => navigation.navigate(SavedFoodToursMenuScreen)}
       >
         <Text style={[styles.pageHeaders, styles.bottomMargins]}>
           Saved Tours

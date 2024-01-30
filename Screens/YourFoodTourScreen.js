@@ -13,12 +13,12 @@ import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import SavedRestaurants from "../Components/SavedRestaurantsComponent";
 
-export default function SavedFoodToursScreen({ navigation }) {
+export default function YourFoodTourScreen({ navigation }) {
   return (
     <View>
       <HeaderComponent />
       <View style={[styles.container]}>
-        <Text style={[styles.pageHeaders]}>Saved Food Tour</Text>
+        <Text style={[styles.pageHeaders]}>Your Food Tour</Text>
 
         <FlatList
           data={myRestaurants}
