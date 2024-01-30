@@ -28,7 +28,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
         style={[
           styles.horizontalAlign,
           styles.justifySpaceBetween,
-          styles.width70,
+          styles.width100,
         ]}
       >
         <Text style={[styles.merri17]}>2.5 miles</Text>
