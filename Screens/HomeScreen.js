@@ -13,7 +13,6 @@ import FilterSidebar from "./FilterSidebar";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
-import RatingImage from "../Components/RatingImageComponent";
 // DATA
 import myRestaurants from "../data/fakeRestaurants.json";
 
