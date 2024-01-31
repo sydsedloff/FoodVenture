@@ -49,25 +49,27 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
   );
 };
 const DropdownMenu = () => {
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    { label: "4", value: "4" },
+    { label: "5", value: "5" },
+    { label: "6+", value: "6+" },
+  ]);
 
   return (
-    <View style={[styles.container]}>
-      <Text>Select an option:</Text>
+    <View>
       <DropDownPicker
-        items={[
-          { label: "Option 1", value: "option1" },
-          { label: "Option 2", value: "option2" },
-          { label: "Option 3", value: "option3" },
-        ]}
-        defaultValue={selectedValue}
-        containerStyle={{ height: 40 }}
-        style={{ backgroundColor: "#fafafa" }}
-        itemStyle={{ justifyContent: "flex-start" }}
-        dropDownStyle={{ backgroundColor: "#fafafa" }}
-        onChangeItem={(item) => setSelectedValue(item.value)}
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
       />
-      <Text>Selected Value: {selectedValue}</Text>
     </View>
   );
 };
@@ -89,7 +91,9 @@ export default function RestaurantScreen({ navigation }) {
           <Text style={[styles.signa28, styles.width80]}>
             Make a reservation
           </Text>
-          <Text>Party Size (future dropdown)</Text>
+          <Text>Party Size</Text>
+          <DropdownMenu />
+          <br></br>
           <Pressable style={[styles.buttonLarge.r]}>
             <Text
               style={[styles.buttonLargeText.y]}
@@ -100,6 +104,7 @@ export default function RestaurantScreen({ navigation }) {
           </Pressable>
         </View>
       </View>
+
       <NavigationBar />
       {/* keyExtractor={(item) => item.id} */}
     </SafeAreaView>
