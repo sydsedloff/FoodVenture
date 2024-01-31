@@ -25,7 +25,7 @@ export default function HomeScreen({ navigation }) {
         style={[styles.smallerLogo, styles.bottomMargins]}
         source={require("../assets/FViconYellow.png")}
       />
-      <View>
+      <View style={[styles.bottomPadding]}>
         <View
           style={[
             styles.horizontalAlign,

@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, Text, Image, View, Pressable } from "react-native";
+import { ImageBackground, Text, Image, View, Pressable, SafeAreaView } from "react-native";
 import styles from "../styles";
 import NavigationBar from "../Components/NavigationBar";
 
@@ -10,7 +10,16 @@ export default function ReservationScreen({ navigation }) {
       <ImageBackground
         source={require("../assets/Foodventure_Background_Image.png")}
         style={styles.backgroundImage}
+      ><SafeAreaView
+        style={[styles.headerContainerClear, styles.negativeMargins]}
       >
+        <Pressable onPress={() => navigation.goBack()}>
+          <Image
+            source={require("../assets/backArrow.png")}
+            style={[styles.headerBackArrow]}
+          ></Image>
+        </Pressable>
+      </SafeAreaView>
         <Image
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
