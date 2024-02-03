@@ -1,10 +1,10 @@
 import {
-  ImageBackground,
   Image,
   Text,
   TextInput,
   Pressable,
   View,
+  SafeAreaView,
 } from "react-native";
 import styles from "../styles";
 import EditProfileScreen from "./EditProfileScreen";
@@ -13,7 +13,6 @@ import WelcomeScreen from "./WelcomeScreen";
 import SavedScreen from "./SavedScreen";
 import NotificationsScreen from "./NotificationsScreen";
 import SettingsScreen from "./SettingsScreen";
-import { SafeAreaView } from "react-native-web";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 
