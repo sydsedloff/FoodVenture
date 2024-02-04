@@ -11,6 +11,8 @@ import styles from "../styles";
 import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
+import User from "../Components/UserClass";
+import DietaryRestrictions from "../Components/UserClass";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -20,15 +22,24 @@ export default function SignUpScreen({ navigation }) {
   const [validCredentials, setValidCredentials] = useState(false);
 
   async function saveNewUser(fullName, email, username, password) {
-    const newUser = {
-      firstName: fullName,
-      email: email,
-      username: username,
-      password: password, // Note: This is a temporary solution; never store plain-text passwords in production
-      id: userProfiles.length + 1,
-    };
+    const dietDefault = new DietaryRestrictions(
+      false,
+      false,
+      false,
+      false,
+      false
+    );
+    const myUser = new User(
+      fullName,
+      email,
+      username,
+      password,
+      "",
+      dietDefault,
+      userProfiles.length + 1
+    );
 
-    userProfiles.push(newUser);
+    userProfiles.push(myUser);
   }
 
   function signupFunction() {

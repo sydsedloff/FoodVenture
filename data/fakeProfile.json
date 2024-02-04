@@ -4,9 +4,14 @@
     "email": "email@gmail.com",
     "username": "myUsername",
     "password": "myPassword",
-    "phoneNumber": "123-456-7890",
     "profilePicture": "https://placehold.co/100x100/",
-    "dietaryRestrictions": ["vegan", "gluten free"],
+    "dietaryRestrictions": {
+      "glutenFree": true,
+      "kosher": false,
+      "pescatarian": false,
+      "vegan": false,
+      "vegetarian": false
+    },
     "id": 1
   }
 ]
