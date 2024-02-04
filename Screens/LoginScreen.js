@@ -12,6 +12,14 @@ import HomeScreen from "./HomeScreen";
 import SignUpScreen from "./SignUpScreen";
 
 export default function LoginScreen({ navigation }) {
+  var validLogin = false;
+  function loginFunction() {
+    if (validLogin == true) {
+      () => navigation.navigate(HomeScreen);
+    } else {
+      console.log("bad");
+    }
+  }
   return (
     <View style={styles.container}>
       {/* Remove the title at the top of the screen */}
@@ -42,7 +50,7 @@ export default function LoginScreen({ navigation }) {
           <View style={styles.authenticationButtonContainer}>
             <Pressable
               style={[styles.buttonLarge.r]}
-              onPress={() => navigation.navigate(HomeScreen)}
+              onPress={() => loginFunction()}
             >
               <Text style={[styles.buttonLargeText.y]}>Log In</Text>
             </Pressable>
