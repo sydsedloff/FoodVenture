@@ -13,6 +13,9 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isVegan, setVegan] = useState(false);
   const [isVegetarian, setVegetarian] = useState(false);
 
+  function updateDietRestrictions() {
+    navigation.navigate(HomeScreen);
+  }
   return (
     <View style={[styles.container]}>
       <ImageBackground
@@ -100,7 +103,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           >
             <Text
               style={[styles.buttonLargeText.y]}
-              onPress={() => navigation.navigate(HomeScreen)}
+              onPress={() => updateDietRestrictions()}
             >
               Done
             </Text>
