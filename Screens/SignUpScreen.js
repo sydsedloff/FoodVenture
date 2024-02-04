@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { useState } from "react";
 import styles from "../styles";
-
 import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
@@ -19,6 +18,18 @@ export default function SignUpScreen({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [validCredentials, setValidCredentials] = useState(false);
+
+  async function saveNewUser(fullName, email, username, password) {
+    const newUser = {
+      firstName: fullName,
+      email: email,
+      username: username,
+      password: password, // Note: This is a temporary solution; never store plain-text passwords in production
+      id: userProfiles.length + 1,
+    };
+
+    userProfiles.push(newUser);
+  }
 
   function signupFunction() {
     // RegEx validation
@@ -33,19 +44,6 @@ export default function SignUpScreen({ navigation }) {
     const isUsernameValid = usernameRegex.test(username);
     const isPasswordValid = passwordRegex.test(password);
 
-    function saveNewUser(fullName, email, username, password) {
-      const newUser = {
-        fullName: fullName,
-        email: email,
-        username: username,
-        password: password,
-        id: userProfiles.length + 1,
-      };
-      //PUSH TO THE JSON FILE
-      userProfiles.push(newUser);
-      console.log("New user saved:", newUser);
-    }
-
     if (isNameValid && isEmailValid && isUsernameValid && isPasswordValid) {
       setValidCredentials(true);
       saveNewUser(fullName, email, username, password);
@@ -54,7 +52,7 @@ export default function SignUpScreen({ navigation }) {
       console.log("Invalid credentials");
     }
   }
-
+  console.log(userProfiles);
   return (
     <View style={[styles.container]}>
       <ImageBackground
