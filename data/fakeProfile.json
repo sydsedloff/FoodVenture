@@ -1,13 +1,12 @@
 [
   {
-    "firstName": "Restaurant 1",
-    "profilePicture": "https://placehold.co/100x100/",
-    "description": "This is a description of Restaurant 1",
+    "fullName": "Restaurant 1",
     "email": "email@gmail.com",
-    "phoneNumber": "123-456-7890",
-    "dietaryRestrictions": ["vegan", "gluten free"],
     "username": "myUsername",
     "password": "myPassword",
+    "phoneNumber": "123-456-7890",
+    "profilePicture": "https://placehold.co/100x100/",
+    "dietaryRestrictions": ["vegan", "gluten free"],
     "id": 1
   }
 ]

@@ -7,12 +7,9 @@ import {
   Pressable,
 } from "react-native";
 import { useState } from "react";
-import {
-  NavigationContainer,
-  useFocusEffect,
-  useRoute,
-} from "@react-navigation/native";
 import styles from "../styles";
+
+import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
 
@@ -36,8 +33,22 @@ export default function SignUpScreen({ navigation }) {
     const isUsernameValid = usernameRegex.test(username);
     const isPasswordValid = passwordRegex.test(password);
 
+    function saveNewUser(fullName, email, username, password) {
+      const newUser = {
+        fullName: fullName,
+        email: email,
+        username: username,
+        password: password,
+        id: userProfiles.length + 1,
+      };
+      //PUSH TO THE JSON FILE
+      userProfiles.push(newUser);
+      console.log("New user saved:", newUser);
+    }
+
     if (isNameValid && isEmailValid && isUsernameValid && isPasswordValid) {
       setValidCredentials(true);
+      saveNewUser(fullName, email, username, password);
       navigation.navigate(PersonalizedWelcomeScreen);
     } else {
       console.log("Invalid credentials");
