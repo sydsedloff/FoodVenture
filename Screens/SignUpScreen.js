@@ -11,8 +11,8 @@ import styles from "../styles";
 import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
-import User from "../Components/UserClass";
-import DietaryRestrictions from "../Components/UserClass";
+import User from "../Components/UserClasses";
+import DietaryRestrictions from "../Components/UserClasses";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -21,24 +21,45 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [validCredentials, setValidCredentials] = useState(false);
 
-  async function saveNewUser(fullName, email, username, password) {
-    const dietDefault = new DietaryRestrictions(
-      false,
-      false,
-      false,
-      false,
-      false
-    );
+  function saveNewUser(fullName, email, username, password) {
     const myUser = new User(
       fullName,
       email,
       username,
       password,
       "",
-      dietDefault,
+      {
+        glutenFree: false,
+        kosher: false,
+        pescatarian: false,
+        vegan: false,
+        vegetarian: false,
+      },
+      {
+        pauseAll: false,
+        loginAlerts: true,
+        promotionsDeals: true,
+        reservationReminders: true,
+        reservationCreated: true,
+        reservationCanceledPush: true,
+        completeReservation: true,
+        reservationAlerts: true,
+        reservationMade: true,
+        reservationCanceledEmail: true,
+        foodVentureUpdates: true,
+      },
+      {
+        location: true,
+        loginAlerts: true,
+        darkMode: false,
+        highConstrastMode: false,
+        captions: false,
+        savePastFoodTours: true,
+        saveSearchHistory: true,
+      },
       userProfiles.length + 1
     );
-
+    console.log(myUser);
     userProfiles.push(myUser);
   }
 
@@ -49,7 +70,7 @@ export default function SignUpScreen({ navigation }) {
     const usernameRegex = /^[a-zA-Z0-9_]+$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
 
-    // Check if all fields are valid
+    // Check if input valid
     const isNameValid = nameRegex.test(fullName);
     const isEmailValid = emailRegex.test(email);
     const isUsernameValid = usernameRegex.test(username);
@@ -64,6 +85,15 @@ export default function SignUpScreen({ navigation }) {
     }
   }
   console.log(userProfiles);
+
+  function ErrorMessage(myTest) {
+    console.log(myTest);
+    if (myTest == false) {
+      return <Text>"Please enter valid credentials"</Text>;
+    } else {
+      return;
+    }
+  }
   return (
     <View style={[styles.container]}>
       <ImageBackground
@@ -83,6 +113,7 @@ export default function SignUpScreen({ navigation }) {
               value={fullName}
               onChangeText={(text) => setFullName(text)}
             />
+            {/* <ErrorMessage myTest={isNameValid} /> */}
             <TextInput
               placeholder="Email"
               style={[styles.input]}
