@@ -12,7 +12,6 @@ import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
 import User from "../Components/UserClasses";
-import DietaryRestrictions from "../Components/UserClasses";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -101,12 +100,12 @@ export default function SignUpScreen({ navigation }) {
         style={styles.backgroundImage}
       >
         <Image
-          style={styles.logo}
+          style={[styles.logo]}
           source={require("../assets/FViconYellow.png")}
         />
-        <View style={styles.contentContainer.white}>
-          <Text style={styles.h2.r}>Sign Up</Text>
-          <View style={styles.textInputContainer}>
+        <View style={[styles.contentContainer.white]}>
+          <Text style={[styles.h2.r]}>Sign Up</Text>
+          <View style={[styles.textInputContainer, styles.width100]}>
             <TextInput
               placeholder="Full Name"
               style={[styles.input]}
