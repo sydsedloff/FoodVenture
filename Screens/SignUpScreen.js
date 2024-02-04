@@ -6,16 +6,64 @@ import {
   View,
   Pressable,
 } from "react-native";
-import {
-  NavigationContainer,
-  useFocusEffect,
-  useRoute,
-} from "@react-navigation/native";
+import { useState } from "react";
 import styles from "../styles";
+import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
+import User from "../Components/UserClass";
+import DietaryRestrictions from "../Components/UserClass";
 
 export default function SignUpScreen({ navigation }) {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [validCredentials, setValidCredentials] = useState(false);
+
+  async function saveNewUser(fullName, email, username, password) {
+    const dietDefault = new DietaryRestrictions(
+      false,
+      false,
+      false,
+      false,
+      false
+    );
+    const myUser = new User(
+      fullName,
+      email,
+      username,
+      password,
+      "",
+      dietDefault,
+      userProfiles.length + 1
+    );
+
+    userProfiles.push(myUser);
+  }
+
+  function signupFunction() {
+    // RegEx validation
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+
+    // Check if all fields are valid
+    const isNameValid = nameRegex.test(fullName);
+    const isEmailValid = emailRegex.test(email);
+    const isUsernameValid = usernameRegex.test(username);
+    const isPasswordValid = passwordRegex.test(password);
+
+    if (isNameValid && isEmailValid && isUsernameValid && isPasswordValid) {
+      setValidCredentials(true);
+      saveNewUser(fullName, email, username, password);
+      navigation.navigate(PersonalizedWelcomeScreen);
+    } else {
+      console.log("Invalid credentials");
+    }
+  }
+  console.log(userProfiles);
   return (
     <View style={[styles.container]}>
       <ImageBackground
@@ -29,19 +77,36 @@ export default function SignUpScreen({ navigation }) {
         <View style={styles.contentContainer.white}>
           <Text style={styles.h2.r}>Sign Up</Text>
           <View style={styles.textInputContainer}>
-            <TextInput placeholder="Full Name" style={[styles.input]} />
-            <TextInput placeholder="Email" style={[styles.input]} />
-            <TextInput placeholder="Username" style={[styles.input]} />
+            <TextInput
+              placeholder="Full Name"
+              style={[styles.input]}
+              value={fullName}
+              onChangeText={(text) => setFullName(text)}
+            />
+            <TextInput
+              placeholder="Email"
+              style={[styles.input]}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+            <TextInput
+              placeholder="Username"
+              style={[styles.input]}
+              value={username}
+              onChangeText={(text) => setUsername(text)}
+            />
             <TextInput
               placeholder="Password"
               style={[styles.input]}
               secureTextEntry={true}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
             />
           </View>
           <View style={styles.authenticationButtonContainer}>
             <Pressable
               style={[styles.buttonLarge.y]}
-              onPress={() => navigation.navigate(PersonalizedWelcomeScreen)}
+              onPress={() => signupFunction()}
             >
               <Text style={[styles.buttonLargeText.r]}>Sign Up</Text>
             </Pressable>

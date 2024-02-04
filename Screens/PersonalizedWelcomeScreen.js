@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ImageBackground, Image, Text, View, Pressable } from "react-native";
 import Checkbox from "expo-checkbox";
 import styles from "../styles";
+import userProfiles from "../data/fakeProfile.json";
 import { Colors } from "../colors";
 import HomeScreen from "./HomeScreen";
 
