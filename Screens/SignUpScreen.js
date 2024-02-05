@@ -12,6 +12,7 @@ import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
 import User from "../Components/UserClasses";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -21,6 +22,8 @@ export default function SignUpScreen({ navigation }) {
   const [validCredentials, setValidCredentials] = useState(false);
 
   function saveNewUser(fullName, email, username, password) {
+    const newID = userProfiles.length + 1;
+    const stringID = JSON.stringify(newID);
     const myUser = new User(
       fullName,
       email,
@@ -56,10 +59,14 @@ export default function SignUpScreen({ navigation }) {
         savePastFoodTours: true,
         saveSearchHistory: true,
       },
-      userProfiles.length + 1
+      newID
     );
     console.log(myUser);
+    console.log(newID);
+    console.log(stringID);
     userProfiles.push(myUser);
+    AsyncStorage.setItem("isLoggedIn", stringID);
+    console.log(AsyncStorage.getItem("isLoggedIn"));
   }
 
   function signupFunction() {
@@ -83,8 +90,9 @@ export default function SignUpScreen({ navigation }) {
       console.log("Invalid credentials");
     }
   }
-  console.log(userProfiles);
+  console.log(AsyncStorage.getItem("isLoggedIn"));
 
+  //this function will display error messages below the inputs if forms invalid
   function ErrorMessage(myTest) {
     console.log(myTest);
     if (myTest == false) {
