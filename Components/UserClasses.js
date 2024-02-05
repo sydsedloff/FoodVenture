@@ -20,13 +20,6 @@ export default class User {
     this.settings = settings || new Settings();
     this.id = id || 0;
   }
-  // currentUser = new User();
-  getCurrentUser() {
-    return currentUser;
-  }
-  setCurrentUser(currentUser) {
-    this.currentUser = currentUser;
-  }
 }
 
 export class DietaryRestrictions {

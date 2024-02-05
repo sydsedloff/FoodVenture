@@ -12,6 +12,7 @@ import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
 import User from "../Components/UserClasses";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -20,49 +21,66 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [validCredentials, setValidCredentials] = useState(false);
 
-  function saveNewUser(fullName, email, username, password) {
-    const myUser = new User(
-      fullName,
-      email,
-      username,
-      password,
-      "",
-      {
-        glutenFree: false,
-        kosher: false,
-        pescatarian: false,
-        vegan: false,
-        vegetarian: false,
-      },
-      {
-        pauseAll: false,
-        loginAlerts: true,
-        promotionsDeals: true,
-        reservationReminders: true,
-        reservationCreated: true,
-        reservationCanceledPush: true,
-        completeReservation: true,
-        reservationAlerts: true,
-        reservationMade: true,
-        reservationCanceledEmail: true,
-        foodVentureUpdates: true,
-      },
-      {
-        location: true,
-        loginAlerts: true,
-        darkMode: false,
-        highConstrastMode: false,
-        captions: false,
-        savePastFoodTours: true,
-        saveSearchHistory: true,
-      },
-      userProfiles.length + 1
-    );
-    console.log(myUser);
-    userProfiles.push(myUser);
+  async function saveNewUser(fullName, email, username, password) {
+    try {
+      const response = await fetch("http://localhost:3000/api/fakeProfiles", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          username,
+          password,
+          profilePicture: "",
+          dietaryRestrictions: {
+            glutenFree: false,
+            kosher: false,
+            pescatarian: false,
+            vegan: false,
+            vegetarian: false,
+          },
+          notifications: {
+            pauseAll: false,
+            loginAlerts: true,
+            promotionsDeals: true,
+            reservationReminders: true,
+            reservationCreated: true,
+            reservationCanceledPush: true,
+            completeReservation: true,
+            reservationAlerts: true,
+            reservationMade: true,
+            reservationCanceledEmail: true,
+            foodVentureUpdates: true,
+          },
+          settings: {
+            location: true,
+            loginAlerts: true,
+            darkMode: false,
+            highConstrastMode: false,
+            captions: false,
+            savePastFoodTours: true,
+            saveSearchHistory: true,
+          },
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("New user saved:", data);
+        return data;
+      } else {
+        console.error("Failed to save new user");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error saving new user:", error);
+      return null;
+    }
   }
 
-  function signupFunction() {
+  async function signupFunction() {
     // RegEx validation
     const nameRegex = /^[a-zA-Z\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -83,8 +101,9 @@ export default function SignUpScreen({ navigation }) {
       console.log("Invalid credentials");
     }
   }
-  console.log(userProfiles);
+  console.log(AsyncStorage.getItem("isLoggedIn"));
 
+  //this function will display error messages below the inputs if forms invalid
   function ErrorMessage(myTest) {
     console.log(myTest);
     if (myTest == false) {

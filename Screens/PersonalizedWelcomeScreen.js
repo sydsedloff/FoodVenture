@@ -5,6 +5,7 @@ import styles from "../styles";
 import userProfiles from "../data/fakeProfile.json";
 import { Colors } from "../colors";
 import HomeScreen from "./HomeScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isGlutenFree, setGlutenFree] = useState(false);
@@ -16,6 +17,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   function updateDietRestrictions() {
     navigation.navigate(HomeScreen);
   }
+  console.log(AsyncStorage.getItem("isLoggedIn"));
   return (
     <View style={[styles.container]}>
       <ImageBackground
