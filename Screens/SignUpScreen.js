@@ -13,6 +13,7 @@ import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
 import User from "../Components/UserClasses";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import HomeScreen from "./HomeScreen";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -95,8 +96,9 @@ export default function SignUpScreen({ navigation }) {
 
     if (isNameValid && isEmailValid && isUsernameValid && isPasswordValid) {
       setValidCredentials(true);
-      saveNewUser(fullName, email, username, password);
-      navigation.navigate(PersonalizedWelcomeScreen);
+      await saveNewUser(fullName, email, username, password).then(
+        navigation.navigate(HomeScreen)
+      );
     } else {
       console.log("Invalid credentials");
     }

@@ -41,10 +41,8 @@ app.post("/api/fakeProfiles", (req, res) => {
     }
 
     const jsonData = JSON.parse(data);
-
     const newUser = req.body;
     newUser.id = jsonData.length + 1;
-
     jsonData.push(newUser);
 
     fs.writeFile(
@@ -57,7 +55,6 @@ app.post("/api/fakeProfiles", (req, res) => {
           res.status(500).send("Internal Server Error");
           return;
         }
-
         res.json(newUser);
       }
     );
