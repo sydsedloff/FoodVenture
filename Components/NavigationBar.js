@@ -7,8 +7,31 @@ const NavigationBar = () => {
   const route = useRoute();
   const isRouteActive = (routeName) => route.name === routeName;
 
-  const renderIconColor = (routeName) =>
-    isRouteActive(routeName) ? "#236dd5" : "#aaa";
+  const renderIcon = (routeName) => {
+    if (isRouteActive(routeName)) {
+      switch (routeName) {
+        case "HomeScreen":
+          return require("../assets/icons/home_filled.svg");
+        case "GenerateFoodTourScreen":
+          return require("../assets/tour_filled.png");
+        case "SavedScreen":
+          return require("../assets/icons/saved_filled.svg");
+        default:
+          return null;
+      }
+    } else {
+      switch (routeName) {
+        case "HomeScreen":
+          return require("../assets/icons/home_outline.svg");
+        case "GenerateFoodTourScreen":
+          return require("../assets/tour.png");
+        case "SavedScreen":
+          return require("../assets/icons/saved_outline.svg");
+        default:
+          return null;
+      }
+    }
+  };
 
   return (
     <View style={styles.bottomNavigation}>
@@ -18,7 +41,7 @@ const NavigationBar = () => {
       >
         <Image
           style={styles.genericButtonHome}
-          source={require("../assets/icons/home_outline.svg")}
+          source={renderIcon("HomeScreen")}
         />
       </Pressable>
       <Pressable
@@ -27,7 +50,7 @@ const NavigationBar = () => {
       >
         <Image
           style={styles.addButton}
-          source={require("../assets/tour.png")}
+          source={renderIcon("GenerateFoodTourScreen")}
         />
       </Pressable>
       <View style={styles.navigationSpacer}></View>
@@ -37,7 +60,7 @@ const NavigationBar = () => {
       >
         <Image
           style={styles.genericButtonSaved}
-          source={require("../assets/icons/saved_outline.svg")}
+          source={renderIcon("SavedScreen")}
         />
       </Pressable>
     </View>
@@ -98,6 +121,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     overflow: "visible",
+    objectFit: "fill",
   },
   genericButtonSaved: {
     width: 27,
@@ -106,6 +130,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     overflow: "visible",
+    objectFit: "contain",
   },
 });
 
