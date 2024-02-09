@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   ImageBackground,
   Image,
@@ -6,21 +7,23 @@ import {
   View,
   Pressable,
 } from "react-native";
-import { useState } from "react";
 import styles from "../styles";
-import userProfiles from "../data/fakeProfile.json";
 import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
-import User from "../Components/UserClasses";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import HomeScreen from "./HomeScreen";
+import { Colors } from "react-native-paper";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [validCredentials, setValidCredentials] = useState(false);
+  const [errors, setErrors] = useState({
+    fullName: "",
+    email: "",
+    username: "",
+    password: "",
+  });
 
   async function saveNewUser(fullName, email, username, password) {
     try {
@@ -82,38 +85,40 @@ export default function SignUpScreen({ navigation }) {
   }
 
   async function signupFunction() {
-    // RegEx validation
     const nameRegex = /^[a-zA-Z\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const usernameRegex = /^[a-zA-Z0-9_]+$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
 
-    // Check if input valid
-    const isNameValid = nameRegex.test(fullName);
-    const isEmailValid = emailRegex.test(email);
-    const isUsernameValid = usernameRegex.test(username);
-    const isPasswordValid = passwordRegex.test(password);
+    let isValid = true;
+    const newErrors = { fullName: "", email: "", username: "", password: "" };
 
-    if (isNameValid && isEmailValid && isUsernameValid && isPasswordValid) {
-      setValidCredentials(true);
-      await saveNewUser(fullName, email, username, password).then(
-        navigation.navigate(HomeScreen)
-      );
-    } else {
-      console.log("Invalid credentials");
+    if (!nameRegex.test(fullName)) {
+      newErrors.fullName = "Please enter a valid full name";
+      isValid = false;
+    }
+    if (!emailRegex.test(email)) {
+      newErrors.email = "Please enter a valid email address";
+      isValid = false;
+    }
+    if (!usernameRegex.test(username)) {
+      newErrors.username = "Please enter a valid username";
+      isValid = false;
+    }
+    if (!passwordRegex.test(password)) {
+      newErrors.password =
+        "Password must be at least 8 characters long and contain at least one letter and one digit";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+
+    if (isValid) {
+      saveNewUser(fullName, email, username, password);
+      navigation.navigate(PersonalizedWelcomeScreen);
     }
   }
-  console.log(AsyncStorage.getItem("isLoggedIn"));
 
-  //this function will display error messages below the inputs if forms invalid
-  function ErrorMessage(myTest) {
-    console.log(myTest);
-    if (myTest == false) {
-      return <Text>"Please enter valid credentials"</Text>;
-    } else {
-      return;
-    }
-  }
   return (
     <View style={[styles.container]}>
       <ImageBackground
@@ -129,30 +134,53 @@ export default function SignUpScreen({ navigation }) {
           <View style={[styles.textInputContainer, styles.width100]}>
             <TextInput
               placeholder="Full Name"
-              style={[styles.input]}
+              style={[
+                styles.input,
+                errors.fullName && { borderColor: Colors.red900 },
+              ]}
               value={fullName}
               onChangeText={(text) => setFullName(text)}
             />
-            {/* <ErrorMessage myTest={isNameValid} /> */}
+            {errors.fullName ? (
+              <Text style={styles.errorText}>{errors.fullName}</Text>
+            ) : null}
             <TextInput
               placeholder="Email"
-              style={[styles.input]}
+              style={[
+                styles.input,
+                errors.email && { borderColor: Colors.red900 },
+              ]}
               value={email}
               onChangeText={(text) => setEmail(text)}
             />
+            {errors.email ? (
+              <Text style={styles.errorText}>{errors.email}</Text>
+            ) : null}
             <TextInput
               placeholder="Username"
-              style={[styles.input]}
+              style={[
+                styles.input,
+                errors.username && { borderColor: Colors.red900 },
+              ]}
               value={username}
               onChangeText={(text) => setUsername(text)}
             />
+            {errors.username ? (
+              <Text style={styles.errorText}>{errors.username}</Text>
+            ) : null}
             <TextInput
               placeholder="Password"
-              style={[styles.input]}
+              style={[
+                styles.input,
+                errors.password && { borderColor: Colors.red900 },
+              ]}
               secureTextEntry={true}
               value={password}
               onChangeText={(text) => setPassword(text)}
             />
+            {errors.password ? (
+              <Text style={styles.errorText}>{errors.password}</Text>
+            ) : null}
           </View>
           <View style={styles.authenticationButtonContainer}>
             <Pressable
