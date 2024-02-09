@@ -211,6 +211,12 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: "MerriweatherSans-Regular",
   },
+  errorText: {
+    marginTop: -12,
+    paddingTop: 0,
+    color: Colors.red,
+    textAlign: "center",
+  },
 
   //IMAGES
   backgroundImage: {
