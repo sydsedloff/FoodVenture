@@ -14,9 +14,11 @@ export default function HeaderComponent() {
   // Check if the current route is the ProfileScreen
   const isProfileScreen = route.name === "ProfileScreen";
 
+  const isHomeScreen = route.name === "HomeScreen";
+
   return (
     <View style={[styles.headerContainer]}>
-      {canGoBack && (
+      {canGoBack && !isHomeScreen && (
         <Pressable onPress={() => navigation.goBack()}>
           <Image
             source={require("../assets/backArrow.png")}
