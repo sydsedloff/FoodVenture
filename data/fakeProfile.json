@@ -72,5 +72,79 @@
       "saveSearchHistory": true
     },
     "id": 2
+  },
+  {
+    "fullName": "s",
+    "email": "s@s.s",
+    "username": "ssedloff",
+    "password": "passwords1!",
+    "profilePicture": "",
+    "dietaryRestrictions": {
+      "glutenFree": false,
+      "kosher": false,
+      "pescatarian": false,
+      "vegan": false,
+      "vegetarian": false
+    },
+    "notifications": {
+      "pauseAll": false,
+      "loginAlerts": true,
+      "promotionsDeals": true,
+      "reservationReminders": true,
+      "reservationCreated": true,
+      "reservationCanceledPush": true,
+      "completeReservation": true,
+      "reservationAlerts": true,
+      "reservationMade": true,
+      "reservationCanceledEmail": true,
+      "foodVentureUpdates": true
+    },
+    "settings": {
+      "location": true,
+      "loginAlerts": true,
+      "darkMode": false,
+      "highConstrastMode": false,
+      "captions": false,
+      "savePastFoodTours": true,
+      "saveSearchHistory": true
+    },
+    "id": 3
+  },
+  {
+    "fullName": "sdxcn",
+    "email": "zxcv@m.com",
+    "username": "ssedloff",
+    "password": "passwords1!",
+    "profilePicture": "",
+    "dietaryRestrictions": {
+      "glutenFree": false,
+      "kosher": false,
+      "pescatarian": false,
+      "vegan": false,
+      "vegetarian": false
+    },
+    "notifications": {
+      "pauseAll": false,
+      "loginAlerts": true,
+      "promotionsDeals": true,
+      "reservationReminders": true,
+      "reservationCreated": true,
+      "reservationCanceledPush": true,
+      "completeReservation": true,
+      "reservationAlerts": true,
+      "reservationMade": true,
+      "reservationCanceledEmail": true,
+      "foodVentureUpdates": true
+    },
+    "settings": {
+      "location": true,
+      "loginAlerts": true,
+      "darkMode": false,
+      "highConstrastMode": false,
+      "captions": false,
+      "savePastFoodTours": true,
+      "saveSearchHistory": true
+    },
+    "id": 4
   }
 ]
