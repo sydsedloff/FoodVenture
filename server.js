@@ -30,7 +30,7 @@ run();
 const db = client.db("FoodVenture");
 const collection = db.collection("Profiles");
 
-// Allow requests only from the specified origin
+// Allow requests only from the specified origin/Port issues
 const corsOptions = {
   origin: "http://localhost:19006",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -56,6 +56,22 @@ app.get("/api/userID", async (req, res) => {
   } else {
     console.log("User not found");
   }
+});
+
+//UPDATE DIETARY RESTRICTIONS
+app.post("/dietRestrictions/:userEmail", (req, res) => {
+  collection
+    .findOneAndUpdate(
+      { email: req.params.userEmail },
+      {
+        $set: {
+          dietaryRestrictions: req.body.dietaryRestrictions,
+        },
+      }
+    )
+    .then((result) => {
+      res.json(result);
+    });
 });
 
 app.post("/api/fakeProfiles", async (req, res) => {

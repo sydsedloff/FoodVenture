@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ImageBackground, Image, Text, View, Pressable } from "react-native";
 import Checkbox from "expo-checkbox";
 import styles from "../styles";
-import userProfiles from "../data/fakeProfile.json";
 import { Colors } from "../colors";
 import HomeScreen from "./HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,9 +13,46 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isVegan, setVegan] = useState(false);
   const [isVegetarian, setVegetarian] = useState(false);
 
-  function updateDietRestrictions() {
+  async function getDietRestrictions() {
+    const userEmail = await AsyncStorage.getItem("userEmail");
+    try {
+      const response = await fetch(
+        `http://localhost:3000/dietRestrictions/${userEmail}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            glutenFree: isGlutenFree,
+            kosher: isKosher,
+            pescatarian: isPescatarian,
+            vegan: isVegan,
+            vegetarian: isVegetarian,
+          }),
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Dietary Restrictions updated:", data);
+
+        return data;
+      } else {
+        console.error("Failed to update dietary restrictions");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error updating dietary restrictions:", error);
+      return null;
+    }
+  }
+
+  async function updateDietRestrictions() {
+    await getDietRestrictions();
     navigation.navigate(HomeScreen);
   }
+
   console.log(AsyncStorage.getItem("userEmail"));
   return (
     <View style={[styles.container]}>
