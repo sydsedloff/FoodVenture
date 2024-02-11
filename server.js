@@ -2,20 +2,22 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
-
 const app = express();
 const port = 3000;
-
 app.use(bodyParser.json());
 
+//EXPRESS SERVER
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+// MONGODB SETUP
 const uri =
   "mongodb+srv://sydsedloff:4IEmnJKSndMy3akX@cluster0.4xnd6vq.mongodb.net/test?retryWrites=true&w=majority";
-
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 async function run() {
   try {
     await client.connect();
@@ -24,10 +26,8 @@ async function run() {
     console.error("Error connecting to MongoDB:", err);
   }
 }
-
 run();
-
-const db = client.db("FoodVenture"); // Replace "yourDatabaseName" with your actual database name
+const db = client.db("FoodVenture");
 const collection = db.collection("Profiles");
 
 // Allow requests only from the specified origin
@@ -37,38 +37,33 @@ const corsOptions = {
   credentials: true,
   optionsSuccessStatus: 204,
 };
-
 app.use(cors(corsOptions));
 
+// HTTP REQUESTS
+
+// GET PROFILES
 app.get("/api/fakeProfiles", async (req, res) => {
-  try {
-    const fakeProfiles = await collection.find({}).toArray();
-    res.json(fakeProfiles);
-  } catch (err) {
-    console.error("Error fetching fake profiles:", err);
-    res.status(500).send("Internal Server Error");
+  const fakeProfiles = await collection.find({}).toArray();
+  res.json(fakeProfiles);
+});
+
+//GET USER ID
+app.get("/api/userID", async (req, res) => {
+  const { email } = req.query; // Assuming you're fetching the user ID based on email
+  const user = await collection.findOne({ email }); // Query the database based on email
+  if (user) {
+    res.json({ _id: user._id }); // Respond with the user ID if found
+  } else {
+    console.log("User not found");
   }
 });
 
 app.post("/api/fakeProfiles", async (req, res) => {
-  try {
-    const newUser = req.body;
-    const result = await collection.insertOne(newUser);
-    if (result.ops && result.ops.length > 0) {
-      res.json(result.ops[0]);
-    } else {
-      throw new Error("Failed to add profile");
-    }
-  } catch (err) {
-    console.error("Error adding profile:", err);
-    if (err.message) {
-      res.status(500).send(err.message);
-    } else {
-      res.status(500).send("Internal Server Error");
-    }
+  const newUser = req.body;
+  const result = await collection.insertOne(newUser);
+  if (result.ops && result.ops.length > 0) {
+    res.json(result.ops[0]);
+  } else {
+    console.log("Failed to add profile at POST /api/fakeProfiles");
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
 });

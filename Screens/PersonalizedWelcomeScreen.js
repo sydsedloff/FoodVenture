@@ -17,7 +17,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   function updateDietRestrictions() {
     navigation.navigate(HomeScreen);
   }
-  console.log(AsyncStorage.getItem("isLoggedIn"));
+  console.log(AsyncStorage.getItem("userEmail"));
   return (
     <View style={[styles.container]}>
       <ImageBackground

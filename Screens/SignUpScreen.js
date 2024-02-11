@@ -73,8 +73,11 @@ export default function SignUpScreen({ navigation }) {
       if (response.ok) {
         const data = await response.json();
         console.log("New user saved:", data);
+        await AsyncStorage.setItem("userEmail", email);
+
         return data;
       } else {
+        await AsyncStorage.setItem("userEmail", email);
         console.error("Failed to save new user");
         return null;
       }
