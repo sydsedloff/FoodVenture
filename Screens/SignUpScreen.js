@@ -69,7 +69,6 @@ export default function SignUpScreen({ navigation }) {
           },
         }),
       });
-
       if (response.ok) {
         const data = await response.json();
         console.log("New user saved:", data);
@@ -110,10 +109,10 @@ export default function SignUpScreen({ navigation }) {
         "Password must be at least 8 characters long and contain at least one letter and one digit";
       isValid = false;
     }
-
     setErrors(newErrors);
 
     if (isValid) {
+      await AsyncStorage.setItem("userEmail", email);
       saveNewUser(fullName, email, username, password);
       navigation.navigate(PersonalizedWelcomeScreen);
     }
