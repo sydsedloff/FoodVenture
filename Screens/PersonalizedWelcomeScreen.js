@@ -15,6 +15,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
 
   async function getDietRestrictions() {
     const userEmail = await AsyncStorage.getItem("userEmail");
+    console.log(userEmail);
     try {
       const response = await fetch(
         `http://localhost:3000/dietRestrictions/${userEmail}`,
@@ -32,23 +33,20 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           }),
         }
       );
-      console.log(response);
       if (response.ok) {
         const data = await response.json();
         console.log("Dietary Restrictions updated:", data);
-
         return data;
       } else {
         console.error("Failed to update dietary restrictions");
-        return null;
       }
     } catch (error) {
       console.error("Error updating dietary restrictions:", error);
-      return null;
     }
   }
 
   async function updateDietRestrictions() {
+    console.log(isGlutenFree, isKosher, isPescatarian, isVegan, isVegetarian);
     await getDietRestrictions();
     navigation.navigate(HomeScreen);
   }
