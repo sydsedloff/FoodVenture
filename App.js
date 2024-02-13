@@ -14,12 +14,6 @@ import RestaurantScreen from "./Screens/RestaurantScreen";
 import FilterSidebar from "./Screens/FilterSidebar";
 import EditProfileScreen from "./Screens/EditProfileScreen";
 import EditDietaryRestrictionsScreen from "./Screens/EditDietaryRestrictionsScreen";
-
-// Import custom fonts
-import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
-import MerriweatherSansRegular from "./assets/fonts/MerriweatherSans-Regular.ttf";
-import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
-import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
 import ReservationScreen from "./Screens/ReservationScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import SavedScreen from "./Screens/SavedScreen";
@@ -30,6 +24,12 @@ import SavedFoodToursScreen from "./Screens/SavedFoodToursScreen";
 import GenerateFoodTourScreen from "./Screens/GenerateFoodTourScreen";
 import YourFoodTourScreen from "./Screens/YourFoodTourScreen";
 import SavedFoodToursMenuScreen from "./Screens/SavedFoodToursMenuScreen";
+
+// Import custom fonts
+import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
+import MerriweatherSansRegular from "./assets/fonts/MerriweatherSans-Regular.ttf";
+import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
+import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
 
 // Register custom fonts
 Font.loadAsync({
@@ -58,7 +58,7 @@ export default function App() {
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="SignUpScreen">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}

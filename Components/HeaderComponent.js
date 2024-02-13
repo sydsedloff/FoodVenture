@@ -5,21 +5,16 @@ import profileData from "../data/fakeProfile.json";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 export default function HeaderComponent() {
-  const navigation = useNavigation();
-  const route = useRoute();
+  const { canGoBack, navigate, goBack } = useNavigation();
+  const { name } = useRoute();
 
-  // Check if there's a page to go back to
-  const canGoBack = navigation.canGoBack();
-
-  // Check if the current route is the ProfileScreen
-  const isProfileScreen = route.name === "ProfileScreen";
-
-  const isHomeScreen = route.name === "HomeScreen";
+  const isProfileScreen = name === "ProfileScreen";
+  const isHomeScreen = name === "HomeScreen";
 
   return (
     <View style={[styles.headerContainer]}>
       {canGoBack && !isHomeScreen && (
-        <Pressable onPress={() => navigation.goBack()}>
+        <Pressable onPress={goBack}>
           <Image
             source={require("../assets/backArrow.png")}
             style={[styles.headerBackArrow]}
@@ -27,7 +22,7 @@ export default function HeaderComponent() {
         </Pressable>
       )}
       {!isProfileScreen && (
-        <Pressable onPress={() => navigation.navigate("ProfileScreen")}>
+        <Pressable onPress={() => navigate("ProfileScreen")}>
           <Image
             source={{ uri: "https://placehold.co/100x100/" }}
             style={[styles.headerImage]}

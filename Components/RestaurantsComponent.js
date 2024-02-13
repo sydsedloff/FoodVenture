@@ -1,7 +1,9 @@
-import { StyleSheet, Image, Text, View, Pressable } from "react-native";
+import React from "react";
+import { View, Text, Image, Pressable } from "react-native";
 import styles from "../styles";
 import RestaurantScreen from "../Screens/RestaurantScreen";
 import RatingImage from "./RatingImageComponent";
+
 const Restaurants = ({
   name,
   image,
@@ -11,25 +13,26 @@ const Restaurants = ({
   navigation,
   star_rating,
 }) => {
+  const handlePress = () => {
+    navigation.navigate(RestaurantScreen);
+  };
+
   return (
     <View
       style={[styles.container, styles.bottomMargins, styles.alignItemsLeft]}
     >
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
+      <Pressable onPress={handlePress}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
           <Text style={[styles.signa28]}>{name}</Text>
-          <Image
-            style={[styles.icon]}
-            source={require("../assets/save.png")}
-          ></Image>
+          <Image style={[styles.icon]} source={require("../assets/save.png")} />
         </View>
         <RatingImage star_rating={star_rating} />
       </Pressable>
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
+      <Pressable onPress={handlePress}>
         <Image
           source={{ uri: image }}
           style={[styles.image, styles.lessBottomMargins]}
-        ></Image>
+        />
       </Pressable>
       <Text style={[styles.merri19Bold, styles.lessBottomMargins]}>
         {address}
@@ -40,7 +43,7 @@ const Restaurants = ({
       <Text style={[styles.link, styles.bottomMargins]} href={[website]}>
         {website}
       </Text>
-      <Pressable onPress={() => navigation.navigate(RestaurantScreen)}>
+      <Pressable onPress={handlePress}>
         {/* Will need to grab key for restaurant screen */}
       </Pressable>
       <View style={[styles.contentSeperatorContainer]}>
@@ -49,4 +52,5 @@ const Restaurants = ({
     </View>
   );
 };
+
 export default Restaurants;
