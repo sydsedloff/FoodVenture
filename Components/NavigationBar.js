@@ -2,35 +2,32 @@ import React from "react";
 import { View, StyleSheet, Pressable, Image } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
+const icons = {
+  HomeScreen: {
+    active: require("../assets/icons/home_filled.svg"),
+    inactive: require("../assets/icons/home_outline.svg"),
+  },
+  GenerateFoodTourScreen: {
+    active: require("../assets/tour_filled.png"),
+    inactive: require("../assets/tour.png"),
+  },
+  SavedScreen: {
+    active: require("../assets/icons/saved_filled.svg"),
+    inactive: require("../assets/icons/saved_outline.svg"),
+  },
+};
+
 const NavigationBar = () => {
   const navigation = useNavigation();
   const route = useRoute();
+
   const isRouteActive = (routeName) => route.name === routeName;
 
   const renderIcon = (routeName) => {
-    if (isRouteActive(routeName)) {
-      switch (routeName) {
-        case "HomeScreen":
-          return require("../assets/icons/home_filled.svg");
-        case "GenerateFoodTourScreen":
-          return require("../assets/tour_filled.png");
-        case "SavedScreen":
-          return require("../assets/icons/saved_filled.svg");
-        default:
-          return null;
-      }
-    } else {
-      switch (routeName) {
-        case "HomeScreen":
-          return require("../assets/icons/home_outline.svg");
-        case "GenerateFoodTourScreen":
-          return require("../assets/tour.png");
-        case "SavedScreen":
-          return require("../assets/icons/saved_outline.svg");
-        default:
-          return null;
-      }
-    }
+    const icon = isRouteActive(routeName)
+      ? icons[routeName].active
+      : icons[routeName].inactive;
+    return icon;
   };
 
   return (
