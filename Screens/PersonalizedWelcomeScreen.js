@@ -14,9 +14,10 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isVegetarian, setVegetarian] = useState(false);
 
   async function getDietRestrictions() {
-    const userEmail = await AsyncStorage.getItem("userEmail");
-    console.log(userEmail);
     try {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      console.log(userEmail);
+
       const response = await fetch(
         `http://localhost:3000/dietRestrictions/${userEmail}`,
         {
@@ -33,6 +34,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           }),
         }
       );
+
       if (response.ok) {
         const data = await response.json();
         console.log("Dietary Restrictions updated:", data);

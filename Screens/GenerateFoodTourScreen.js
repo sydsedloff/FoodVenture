@@ -43,6 +43,13 @@ export default function GenerateFoodTourScreen({ navigation }) {
   const [isThai, setThai] = useState(false);
   const [isSeafood, setSeafood] = useState(false);
   const [isPizza, setPizza] = useState(false);
+
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const handlePress = (button) => {
+    setSelectedButton(button);
+  };
+
   return (
     <SafeAreaView style={[styles.container]}>
       <HeaderComponent />
@@ -53,19 +60,69 @@ export default function GenerateFoodTourScreen({ navigation }) {
         <Text style={[styles.profileText]}>Price Range</Text>
 
         <View style={[styles.checkboxContainer]}>
-          <Pressable style={[styles.dollarButtons]}>
+          <Pressable
+            style={[
+              styles.dollarButtons,
+              { marginRight: 4 },
+              selectedButton === "$" && {
+                borderColor: "#9B0000",
+                backgroundColor: "rgba(155, 0, 0, 0.35)",
+              },
+            ]}
+            onPress={() => handlePress("$")}
+          >
             <Text style={[styles.dollarText, styles.sideBuffer]}>$</Text>
           </Pressable>
-          <Pressable style={[styles.dollarButtons]}>
+          <Pressable
+            style={[
+              styles.dollarButtons,
+              { marginRight: 4 },
+              selectedButton === "$$" && {
+                borderColor: "#9B0000",
+                backgroundColor: "rgba(155, 0, 0, 0.35)",
+              },
+            ]}
+            onPress={() => handlePress("$$")}
+          >
             <Text style={[styles.dollarText, styles.sideBuffer]}>$$</Text>
           </Pressable>
-          <Pressable style={[styles.dollarButtons]}>
+          <Pressable
+            style={[
+              styles.dollarButtons,
+              { marginRight: 4 },
+              selectedButton === "$$$" && {
+                borderColor: "#9B0000",
+                backgroundColor: "rgba(155, 0, 0, 0.35)",
+              },
+            ]}
+            onPress={() => handlePress("$$$")}
+          >
             <Text style={[styles.dollarText, styles.sideBuffer]}>$$$</Text>
           </Pressable>
-          <Pressable style={[styles.dollarButtons]}>
+          <Pressable
+            style={[
+              styles.dollarButtons,
+              { marginRight: 4 },
+              selectedButton === "$$$$" && {
+                borderColor: "#9B0000",
+                backgroundColor: "rgba(155, 0, 0, 0.35)",
+              },
+            ]}
+            onPress={() => handlePress("$$$$")}
+          >
             <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$</Text>
           </Pressable>
-          <Pressable style={[styles.dollarButtons]}>
+          <Pressable
+            style={[
+              styles.dollarButtons,
+              { marginRight: 4 },
+              selectedButton === "$$$$$" && {
+                borderColor: "#9B0000",
+                backgroundColor: "rgba(155, 0, 0, 0.35)",
+              },
+            ]}
+            onPress={() => handlePress("$$$$$")}
+          >
             <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$$</Text>
           </Pressable>
         </View>
@@ -78,7 +135,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setGlutenFree(!isGlutenFree)}
             >
@@ -96,7 +153,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setKosher(!isKosher)}
             >
@@ -112,7 +169,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setPescatarian(!isPescatarian)}
             >
@@ -133,7 +190,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setVegan(!isVegan)}
             >
@@ -149,7 +206,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setVegetarian(!isVegetarian)}
             >
@@ -172,7 +229,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setDistance0_10(!isDistance0_10)}
             >
@@ -190,7 +247,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setDistance12_30(!isDistance12_30)}
             >
@@ -208,7 +265,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setDistance11_20(!isDistance11_20)}
             >
@@ -224,7 +281,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setDistance31_plus(!isDistance31_plus)}
             >
@@ -486,6 +543,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
             styles.buttonLarge.r,
             styles.width70,
             styles.moreBottomMargins,
+            { marginTop: 125 },
           ]}
         >
           <Text style={[styles.buttonLargeText.y]}>Generate Food Tour</Text>
