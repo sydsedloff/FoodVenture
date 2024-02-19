@@ -11,7 +11,6 @@ import { Colors } from "../colors";
 import Checkbox from "expo-checkbox";
 import HeaderComponent from "../Components/HeaderComponent";
 import styles from "../styles";
-import NavigationBar from "../Components/NavigationBar";
 import HomeScreen from "./HomeScreen";
 
 export default function FilterSidebar({ navigation }) {

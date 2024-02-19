@@ -331,9 +331,9 @@ export default StyleSheet.create({
     position: "sticky",
     height: 75,
     width: "100%",
-    top: 0, // Align to the top of the parent container
-    left: 0, // Align to the left of the parent container
-    right: 0, // Align to the right of the parent container
+    top: 0,
+    left: 0,
+    right: 0, 
     zIndex: 2,
     backgroundColor: "#fff",
   },
@@ -341,22 +341,22 @@ export default StyleSheet.create({
     position: "sticky",
     height: 75,
     width: "100%",
-    backgroundColor: "transparent", // Set background color to transparent
-    top: 0, // Align to the top of the parent container
-    left: 0, // Align to the left of the parent container
-    right: 0, // Align to the right of the parent container
+    backgroundColor: "transparent", 
+    top: 0,
+    left: 0, 
+    right: 0, 
     zIndex: 2,
   },
   profileContainer: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "flex-start", // Align items to the start of the cross axis (top)
-    padding: 10, // Adjust the padding as needed
+    justifyContent: "flex-start", 
+    padding: 10, 
   },
   buttonContainer: {
-    alignSelf: "flex-end", // Align the container to the end of the main axis (right)
-    marginTop: 10, // Add some margin to give space between the content and the right edge
+    alignSelf: "flex-end", 
+    marginTop: 10, 
   },
   contentContainer: {
     white: {
