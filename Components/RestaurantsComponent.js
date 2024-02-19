@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import styles from "../styles";
 import RestaurantScreen from "../Screens/RestaurantScreen";
@@ -13,18 +13,27 @@ const Restaurants = ({
   navigation,
   star_rating,
 }) => {
+  const [saved, setSaved] = useState(false);
+
   const handlePress = () => {
     navigation.navigate(RestaurantScreen);
+  };
+
+  const toggleSave = () => {
+    setSaved(!saved);
   };
 
   return (
     <View
       style={[styles.container, styles.bottomMargins, styles.alignItemsLeft]}
     >
-      <Pressable onPress={handlePress}>
+      <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-          <Text style={[styles.signa28]}>{name}</Text>
-          <Image style={[styles.icon]} source={require("../assets/save.png")} />
+          <Text style={[styles.signa28]} onPress={handlePress}>{name}</Text>
+          <Image 
+            style={[styles.icon]} 
+            source={saved ? require("../assets/saveFilled.png") : require("../assets/save.png")} 
+          />
         </View>
         <RatingImage star_rating={star_rating} />
       </Pressable>
