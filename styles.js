@@ -451,7 +451,7 @@ export default StyleSheet.create({
   },
   checkboxContainer: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "start",
     marginVertical: 6,
   },
   contentSeperatorContainer: {
@@ -498,7 +498,7 @@ export default StyleSheet.create({
     marginBottom: 15,
   },
   moreBottomMargins: {
-    marginBottom: 30,
+    marginBottom: 35,
   },
   lessBottomMargins: {
     marginBottom: 7,
