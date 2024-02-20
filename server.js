@@ -59,7 +59,9 @@ app.get("/api/userID", async (req, res) => {
 });
 
 //UPDATE DIETARY RESTRICTIONS
-app.post("/dietRestrictions/:userEmail", (req, res) => {
+app.post("/dietRestrictions/:userEmail/", (req, res) => {
+  console.log(req.body.dietaryRestrictions);
+  console.log("this is running");
   collection
     .findOneAndUpdate(
       { email: req.params.userEmail },
