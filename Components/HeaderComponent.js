@@ -1,7 +1,7 @@
-import React from "react";
-import { Text, Image, View, Pressable, SafeAreaView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, Image, View, Pressable } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
-import profileData from "../data/fakeProfile.json";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 export default function HeaderComponent() {
@@ -10,6 +10,31 @@ export default function HeaderComponent() {
 
   const isProfileScreen = name === "ProfileScreen";
   const isHomeScreen = name === "HomeScreen";
+
+  const [profilePicture, setProfilePicture] = useState(null);
+
+  useEffect(() => {
+    if (!isProfileScreen) {
+      getUserProfilePicture();
+    }
+  }, []);
+
+  async function getUserProfilePicture() {
+    try {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      const response = await fetch(
+        `http://localhost:3000/api/profilePicture/${userEmail}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setProfilePicture(data.profilePicture);
+      } else {
+        console.error("Failed to fetch profile picture");
+      }
+    } catch (error) {
+      console.error("Error fetching profile picture:", error);
+    }
+  }
 
   return (
     <View style={[styles.headerContainer]}>
@@ -21,10 +46,10 @@ export default function HeaderComponent() {
           />
         </Pressable>
       )}
-      {!isProfileScreen && (
+      {!isProfileScreen && profilePicture && (
         <Pressable onPress={() => navigate("ProfileScreen")}>
           <Image
-            source={{ uri: "https://placehold.co/100x100/" }}
+            source={{ uri: profilePicture }}
             style={[styles.headerImage]}
           />
         </Pressable>

@@ -76,10 +76,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "#EBECEB",
     flex: 1,
-    shadowColor: "#171717",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1,
+    // Replace shadow* props with boxShadow
+    boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
   },
   button: {
     flex: 1,
