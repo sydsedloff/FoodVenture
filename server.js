@@ -43,8 +43,20 @@ app.use(cors(corsOptions));
 
 // GET PROFILES
 app.get("/api/fakeProfiles", async (req, res) => {
+  const userEmail = req.params;
   const fakeProfiles = await collection.find({}).toArray();
   res.json(fakeProfiles);
+});
+// GET USER PROFILE PICTURE
+app.get("/api/profilePicture/:userEmail", async (req, res) => {
+  const userEmail = req.params.userEmail; // Extract userEmail from request parameters
+  const user = await collection.findOne({ email: userEmail });
+  if (user && user.profilePicture) {
+    res.json({ profilePicture: user.profilePicture });
+  } else {
+    console.log("Profile picture not found for user:", userEmail);
+    res.status(404).json({ error: "Profile picture not found" });
+  }
 });
 
 //GET USER ID
