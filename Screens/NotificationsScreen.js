@@ -47,7 +47,14 @@ export default function NotificationsScreen({ navigation }) {
         </Text>
 
         {/* PUSH NOTIFICATIONS */}
-        <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
+        <Text
+          style={[
+            styles.profileSectionHeaders,
+            styles.bottomMargins,
+            styles.width100,
+            styles.marginLeft,
+          ]}
+        >
           Push Notifications
         </Text>
 
@@ -154,7 +161,14 @@ export default function NotificationsScreen({ navigation }) {
 
         {/* EMAIL NOTIFICATIONS */}
 
-        <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
+        <Text
+          style={[
+            styles.profileSectionHeaders,
+            styles.bottomMargins,
+            styles.width100,
+            styles.marginLeft,
+          ]}
+        >
           Email Notifications
         </Text>
 

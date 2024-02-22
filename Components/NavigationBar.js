@@ -67,7 +67,7 @@ const NavigationBar = () => {
 const styles = StyleSheet.create({
   bottomNavigation: {
     position: "fixed",
-    bottom: 0,
+    bottom: -1,
     left: 0,
     right: 0,
     height: 60,
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "#EBECEB",
     flex: 1,
-    // Replace shadow* props with boxShadow
     boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
   },
   button: {

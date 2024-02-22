@@ -40,12 +40,18 @@ export default function SettingsScreen({ navigation }) {
         <Text style={[styles.pageHeaders, styles.moreBottomMargins]}>
           Settings
         </Text>
-
+        <Text
+          style={[
+            styles.profileSectionHeaders,
+            styles.bottomMargins,
+            styles.width100,
+            styles.marginLeft,
+          ]}
+        >
+          Privacy & Security
+        </Text>
         {/* PRIVACY & SECURITY */}
         <View style={[styles.width80, styles.sideSpacing]}>
-          <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
-            Privacy & Security
-          </Text>
           <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
               Location
@@ -73,10 +79,17 @@ export default function SettingsScreen({ navigation }) {
         </View>
 
         {/* ACCESSIBILITY */}
+        <Text
+          style={[
+            styles.profileSectionHeaders,
+            styles.bottomMargins,
+            styles.width100,
+            styles.marginLeft,
+          ]}
+        >
+          Accessibility
+        </Text>
         <View style={[styles.width80, styles.sideSpacing]}>
-          <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
-            Accessibility
-          </Text>
           <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
               Dark mode
@@ -116,10 +129,17 @@ export default function SettingsScreen({ navigation }) {
         </View>
 
         {/* HISTORY */}
+        <Text
+          style={[
+            styles.profileSectionHeaders,
+            styles.bottomMargins,
+            styles.width100,
+            styles.marginLeft,
+          ]}
+        >
+          History
+        </Text>
         <View style={[styles.width80, styles.moreBottomMargins]}>
-          <Text style={[styles.profileSectionHeaders, styles.bottomMargins]}>
-            History
-          </Text>
           <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
             <Text style={[styles.profileText, styles.bottomMargins]}>
               Save past food tours
@@ -144,10 +164,16 @@ export default function SettingsScreen({ navigation }) {
               value={wantsSaveSearchHistory}
             />
           </View>
-          <Pressable style={[styles.buttonLarge.y, styles.moreBottomMargins]}>
-            <Text style={[styles.buttonLargeText.r]}>Clear History</Text>
-          </Pressable>
         </View>
+        <Pressable
+          style={[
+            styles.buttonLarge.y,
+            styles.moreBottomMargins,
+            styles.width80,
+          ]}
+        >
+          <Text style={[styles.buttonLargeText.r]}>Clear History</Text>
+        </Pressable>
         <Pressable
           style={[styles.buttonLarge.r, styles.width80]}
           onPress={() => navigation.navigate(ProfileScreen)}
