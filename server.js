@@ -43,7 +43,6 @@ app.use(cors(corsOptions));
 
 // GET PROFILES
 app.get("/api/fakeProfiles", async (req, res) => {
-  const userEmail = req.params;
   const fakeProfiles = await collection.find({}).toArray();
   res.json(fakeProfiles);
 });
@@ -71,22 +70,28 @@ app.get("/api/userID", async (req, res) => {
 });
 
 //UPDATE DIETARY RESTRICTIONS
-app.post("/dietRestrictions/:userEmail/", (req, res) => {
-  console.log(req.body.dietaryRestrictions);
-  console.log("this is running");
-  collection
-    .findOneAndUpdate(
-      { email: req.params.userEmail },
-      {
-        $set: {
-          dietaryRestrictions: req.body.dietaryRestrictions,
-        },
-      }
-    )
-    .then((result) => {
-      res.json(result);
-    });
+app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
+  const userEmail = req.params.userEmail;
+  const newDietaryRestrictions = req.body.dietaryRestrictions;
+
+  try {
+    const result = await collection.findOneAndUpdate(
+      { email: userEmail },
+      { $set: { dietaryRestrictions: newDietaryRestrictions } },
+      { returnOriginal: false } // To return the updated document
+    );
+
+    if (result.value) {
+      res.json(result.value);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error updating dietary restrictions:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
+
 
 app.post("/api/fakeProfiles", async (req, res) => {
   const newUser = req.body;
