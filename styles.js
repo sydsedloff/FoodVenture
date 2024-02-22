@@ -559,4 +559,10 @@ export default StyleSheet.create({
   heightmatch: {
     height: "auto",
   },
+  textAlignLeft: {
+    textAlign: "left",
+  },
+  smallMarginLeft: {
+    marginLeft: 15,
+  },
 });
