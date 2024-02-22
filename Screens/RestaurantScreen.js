@@ -48,7 +48,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
     </SafeAreaView>
   );
 };
-const DropdownMenu = () => {
+const PartySizeDropdown = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -59,7 +59,27 @@ const DropdownMenu = () => {
     { label: "5", value: "5" },
     { label: "6+", value: "6+" },
   ]);
-
+  return (
+    <View>
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+      />
+    </View>
+  );
+};
+const MealtimeDropdown = () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "Breakfast", value: "Breakfast" },
+    { label: "Lunch", value: "Lunch" },
+    { label: "Dinner", value: "Dinner" },
+  ]);
   return (
     <View>
       <DropDownPicker
@@ -88,18 +108,24 @@ export default function RestaurantScreen({ navigation }) {
           website="https://www.google.com"
         />
         <View style={[styles.smallNegativeMargins]}>
-          <Text style={[styles.signa28, styles.width80]}>
-            Make a reservation
+          <Text style={[styles.signa28, styles.width80, styles.bottomMargins]}>
+            Request a reservation
           </Text>
-          <Text>Party Size</Text>
-          <DropdownMenu />
-          <br></br>
-          <Pressable style={[styles.buttonLarge.r]}>
+          <View style={[styles.bottomMargins]}>
+            <View>
+              <Text style={[styles.merri19Bold]}>Party Size</Text>
+              <PartySizeDropdown />
+              <Text style={[styles.merri19Bold]}>Preferred Meal Time</Text>
+              <MealtimeDropdown />
+            </View>
+          </View>
+
+          <Pressable style={[styles.buttonLarge.r, { marginBottom: 100 }]}>
             <Text
               style={[styles.buttonLargeText.y]}
               onPress={() => navigation.navigate(ReservationScreen)}
             >
-              Make Reservation
+              Request Reservation
             </Text>
           </Pressable>
         </View>
