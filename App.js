@@ -58,7 +58,7 @@ export default function App() {
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="SignUpScreen">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
