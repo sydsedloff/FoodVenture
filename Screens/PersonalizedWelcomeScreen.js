@@ -13,43 +13,41 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isVegan, setVegan] = useState(false);
   const [isVegetarian, setVegetarian] = useState(false);
 
-  async function getDietRestrictions() {
+  async function saveDietRestrictions() {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
-      console.log(userEmail);
-
-      const response = await fetch(
-        `http://localhost:3000/dietRestrictions/${userEmail}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+      const response = await fetch(`http://localhost:3000/dietaryRestrictions/${userEmail}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          dietaryRestrictions: {
             glutenFree: isGlutenFree,
             kosher: isKosher,
             pescatarian: isPescatarian,
             vegan: isVegan,
             vegetarian: isVegetarian,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Dietary Restrictions updated:", data);
-        return data;
-      } else {
-        console.error("Failed to update dietary restrictions");
+          },
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update dietary restrictions");
       }
+  
+      const data = await response.json();
+      console.log("Dietary restrictions updated successfully:", data);
+      // Optionally, navigate to another screen or refresh the current screen
     } catch (error) {
       console.error("Error updating dietary restrictions:", error);
+      // Handle error, e.g., show a message to the user
     }
   }
 
   async function updateDietRestrictions() {
     console.log(isGlutenFree, isKosher, isPescatarian, isVegan, isVegetarian);
-    await getDietRestrictions();
+    await saveDietRestrictions();
     navigation.navigate(HomeScreen);
   }
 
