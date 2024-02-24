@@ -35,6 +35,10 @@ export default function EditProfileScreen({ navigation }) {
     }
   }
 
+  async function saveChanges() {
+    navigation.navigate(ProfileScreen);
+  }
+
   return (
     <SafeAreaView>
       <SafeAreaView style={[styles.headerContainer]}>
@@ -42,92 +46,83 @@ export default function EditProfileScreen({ navigation }) {
           <Image
             source={require("../assets/backArrow.png")}
             style={[styles.headerBackArrow]}
-          ></Image>
+          />
         </Pressable>
       </SafeAreaView>
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders, styles.bottomMargins]}>
           Edit Profile
         </Text>
-        {userData && ( // Render the Image component conditionally when userData is not null
+        {userData && (
           <Image
             style={[styles.logoR]}
             source={{ uri: userData.profilePicture }}
           />
         )}
-        <View style={[styles.textInputContainer, styles.width80]}>
-          <View>
-            <Text style={[styles.signa28]}>Name</Text>
-            <TextInput
-              placeholder="Name"
-              style={styles.thinInput}
-              value={userData ? userData.fullName : ""}
-              onChangeText={(text) =>
-                setUserData({ ...userData, fullName: text })
-              }
-            />
-          </View>
-          <View>
-            <Text style={[styles.signa28]}>Username</Text>
-            <TextInput
-              placeholder="Username"
-              style={styles.thinInput}
-              value={userData ? userData.username : ""}
-              onChangeText={(text) =>
-                setUserData({ ...userData, username: text })
-              }
-            />
-          </View>
-          {/* <View>
-            <Text style={[styles.signa28]}>Dietary Restrictions</Text>
-            <TextInput
-              placeholder="Dietary Restrictions"
-              style={styles.thinInput}
-              value={userData ? userData.dietaryRestrictions : ""}
-            />
-          </View> */}
-          <View>
-            <Text style={[styles.signa28]}>Email</Text>
-            <TextInput
-              placeholder="Email"
-              style={styles.thinInput}
-              value={userData ? userData.email : ""}
-              onChangeText={(text) => setUserData({ ...userData, email: text })}
-            />
-          </View>
-          <View>
-            <Text style={[styles.signa28]}>Phone Number</Text>
-            <TextInput
-              placeholder="123-456-7890"
-              style={styles.thinInput}
-              value={userData ? userData.phoneNumber : ""}
-              onChangeText={(text) =>
-                setUserData({ ...userData, phoneNumber: text })
-              }
-            />
-          </View>
-          <View>
-            <Text style={[styles.signa28]}>Password</Text>
-            <TextInput
-              placeholder="Password"
-              style={styles.thinInput}
-              secureTextEntry={true}
-              value={userData ? userData.password : ""}
-            />
-          </View>
+        {userData && (
+          <View style={[styles.textInputContainer, styles.width80]}>
+            <View>
+              <Text style={[styles.signa28]}>Name</Text>
+              <TextInput
+                placeholder="Name"
+                style={[styles.thinInput, styles.input]}
+                value={userData.fullName}
+                onChangeText={(text) =>
+                  setUserData({ ...userData, fullName: text })
+                }
+              />
+            </View>
+            <View>
+              <Text style={[styles.signa28]}>Username</Text>
+              <TextInput
+                placeholder="Username"
+                style={[styles.thinInput, styles.input]}
+                value={userData.username}
+                onChangeText={(text) =>
+                  setUserData({ ...userData, username: text })
+                }
+              />
+            </View>
+            <View>
+              <Text style={[styles.signa28]}>Email</Text>
+              <TextInput
+                placeholder="Email"
+                style={[styles.thinInput, styles.input]}
+                value={userData.email}
+                onChangeText={(text) =>
+                  setUserData({ ...userData, email: text })
+                }
+              />
+            </View>
+            <View>
+              <Text style={[styles.signa28]}>Phone Number</Text>
+              <TextInput
+                placeholder="123-456-7890"
+                style={[styles.thinInput, styles.input]}
+                value={userData.phoneNumber}
+                onChangeText={(text) =>
+                  setUserData({ ...userData, phoneNumber: text })
+                }
+              />
+            </View>
+            <View>
+              <Text style={[styles.signa28]}>Password</Text>
+              <TextInput
+                placeholder="Password"
+                style={[styles.thinInput, styles.input]}
+                secureTextEntry={true}
+                value={userData.password}
+                onChangeText={(text) =>
+                  setUserData({ ...userData, password: text })
+                }
+              />
+            </View>
 
-          <Pressable style={[styles.buttonLarge.r]}>
-            <Text
-              style={[styles.buttonLargeText.y]}
-              onPress={() => navigation.navigate(ProfileScreen)}
-              onChangeText={(text) =>
-                setUserData({ ...userData, password: text })
-              }
-            >
-              Save Changes
-            </Text>
-          </Pressable>
-        </View>
+            <Pressable style={[styles.buttonLarge.r]} onPress={saveChanges}>
+              <Text style={[styles.buttonLargeText.y]}>Save Changes</Text>
+            </Pressable>
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
