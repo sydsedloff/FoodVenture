@@ -62,6 +62,9 @@ export default function EditProfileScreen({ navigation }) {
               placeholder="Name"
               style={styles.thinInput}
               value={userData ? userData.fullName : ""}
+              onChangeText={(text) =>
+                setUserData({ ...userData, fullName: text })
+              }
             />
           </View>
           <View>
@@ -70,6 +73,9 @@ export default function EditProfileScreen({ navigation }) {
               placeholder="Username"
               style={styles.thinInput}
               value={userData ? userData.username : ""}
+              onChangeText={(text) =>
+                setUserData({ ...userData, username: text })
+              }
             />
           </View>
           {/* <View>
@@ -86,6 +92,7 @@ export default function EditProfileScreen({ navigation }) {
               placeholder="Email"
               style={styles.thinInput}
               value={userData ? userData.email : ""}
+              onChangeText={(text) => setUserData({ ...userData, email: text })}
             />
           </View>
           <View>
@@ -94,6 +101,9 @@ export default function EditProfileScreen({ navigation }) {
               placeholder="123-456-7890"
               style={styles.thinInput}
               value={userData ? userData.phoneNumber : ""}
+              onChangeText={(text) =>
+                setUserData({ ...userData, phoneNumber: text })
+              }
             />
           </View>
           <View>
@@ -110,6 +120,9 @@ export default function EditProfileScreen({ navigation }) {
             <Text
               style={[styles.buttonLargeText.y]}
               onPress={() => navigation.navigate(ProfileScreen)}
+              onChangeText={(text) =>
+                setUserData({ ...userData, password: text })
+              }
             >
               Save Changes
             </Text>
