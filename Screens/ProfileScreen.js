@@ -6,6 +6,9 @@ import {
   View,
   SafeAreaView,
 } from "react-native";
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import styles from "../styles";
 import EditProfileScreen from "./EditProfileScreen";
 import EditDietaryRestrictionsScreen from "./EditDietaryRestrictionsScreen";
@@ -17,12 +20,34 @@ import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 
 export default function ProfileScreen({ navigation }) {
+  const [profilePicture, setProfilePicture] = useState(null);
+
+  useEffect(() => {
+    getUserProfilePicture();
+  }, []);
+
+  async function getUserProfilePicture() {
+    try {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      const response = await fetch(
+        `http://localhost:3000/api/profilePicture/${userEmail}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setProfilePicture(data.profilePicture);
+      } else {
+        console.error("Failed to fetch profile picture");
+      }
+    } catch (error) {
+      console.error("Error fetching profile picture:", error);
+    }
+  }
   return (
     <View style={[styles.container]}>
       <HeaderComponent />
       <Image
         style={[styles.logoR, styles.bottomMargins]}
-        source={{ uri: "https://placehold.co/100x100/" }}
+        source={{ uri: profilePicture }}
       />
       <Text style={[styles.h3.b]}>USERNAME</Text>
       <Text style={[styles.signa28, styles.bottomPadding]}>
