@@ -78,56 +78,6 @@ export default function SettingsScreen({ navigation }) {
           </View>
         </View>
 
-        {/* ACCESSIBILITY */}
-        <Text
-          style={[
-            styles.profileSectionHeaders,
-            styles.bottomMargins,
-            styles.width100,
-            styles.marginLeft,
-          ]}
-        >
-          Accessibility
-        </Text>
-        <View style={[styles.width80, styles.sideSpacing]}>
-          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-            <Text style={[styles.profileText, styles.bottomMargins]}>
-              Dark mode
-            </Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#9b0000" }}
-              activeThumbColor={"#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={setDarkMode}
-              value={wantsDarkMode}
-            />
-          </View>
-          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-            <Text style={[styles.profileText, styles.bottomMargins]}>
-              High constrast mode
-            </Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#9b0000" }}
-              activeThumbColor={"#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={setHighContrast}
-              value={wantsHighContrast}
-            />
-          </View>
-          <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-            <Text style={[styles.profileText, styles.moreBottomMargins]}>
-              Captions
-            </Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#9b0000" }}
-              activeThumbColor={"#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={setCaptions}
-              value={wantsCaptions}
-            />
-          </View>
-        </View>
-
         {/* HISTORY */}
         <Text
           style={[
