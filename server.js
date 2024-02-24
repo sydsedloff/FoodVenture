@@ -92,7 +92,6 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
   }
 });
 
-
 app.post("/api/fakeProfiles", async (req, res) => {
   const newUser = req.body;
   const result = await collection.insertOne(newUser);
@@ -100,5 +99,21 @@ app.post("/api/fakeProfiles", async (req, res) => {
     res.json(result.ops[0]);
   } else {
     console.log("Failed to add profile at POST /api/fakeProfiles");
+  }
+});
+
+//GET USER DATA BASED ON EMAIL
+app.get("/api/userData/:email", async (req, res) => {
+  const userEmail = req.params.email;
+  try {
+    const user = await collection.findOne({ email: userEmail });
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
