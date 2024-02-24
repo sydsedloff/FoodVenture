@@ -117,3 +117,24 @@ app.get("/api/userData/:email", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+// UPDATE USER DATA
+app.put("/api/userData/:email", async (req, res) => {
+  const userEmail = req.params.email;
+  const updatedUserData = req.body;
+
+  try {
+    const result = await collection.findOneAndUpdate(
+      { email: userEmail },
+      { $set: updatedUserData }
+    );
+
+    if (result.value) {
+      res.json(result.value);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error updating user data:", error);
+  }
+});

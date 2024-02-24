@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  Image,
-  Text,
-  TextInput,
-  Pressable,
-  View,
-  SafeAreaView,
-} from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { Image, Text, Pressable, View, SafeAreaView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import styles from "../styles";
@@ -21,10 +15,6 @@ import HeaderComponent from "../Components/HeaderComponent";
 
 export default function ProfileScreen({ navigation }) {
   const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    getUserData();
-  }, []);
 
   async function getUserData() {
     try {
@@ -42,6 +32,11 @@ export default function ProfileScreen({ navigation }) {
       console.error("Error fetching user data:", error);
     }
   }
+  useFocusEffect(
+    useCallback(() => {
+      getUserData();
+    }, [])
+  );
 
   return (
     <View style={[styles.container]}>
