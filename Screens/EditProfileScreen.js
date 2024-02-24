@@ -36,6 +36,32 @@ export default function EditProfileScreen({ navigation }) {
   }
 
   async function saveChanges() {
+    try {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      console.log(userEmail);
+      const response = await fetch(
+        `http://localhost:3000/api/userData/${userEmail}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            fullName: userData.fullName,
+            email: userData.email,
+            username: userData.username,
+            password: userData.password,
+            dietaryRestriction: userData.dietaryRestriction,
+            notifications: userData.notifications,
+            settings: userData.settings,
+          }),
+        }
+      );
+    } catch (error) {
+      console.log("There was an error:", error);
+    }
+    console.log(userData);
     navigation.navigate(ProfileScreen);
   }
 
@@ -118,7 +144,10 @@ export default function EditProfileScreen({ navigation }) {
               />
             </View>
 
-            <Pressable style={[styles.buttonLarge.r]} onPress={saveChanges}>
+            <Pressable
+              style={[styles.buttonLarge.r]}
+              onPress={() => saveChanges()}
+            >
               <Text style={[styles.buttonLargeText.y]}>Save Changes</Text>
             </Pressable>
           </View>
