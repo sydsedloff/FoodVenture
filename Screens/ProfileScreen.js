@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Image,
   Text,
@@ -6,7 +7,6 @@ import {
   View,
   SafeAreaView,
 } from "react-native";
-import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import styles from "../styles";
@@ -20,39 +20,44 @@ import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 
 export default function ProfileScreen({ navigation }) {
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    getUserProfilePicture();
+    getUserData();
   }, []);
 
-  async function getUserProfilePicture() {
+  async function getUserData() {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/profilePicture/${userEmail}`
+        `http://localhost:3000/api/userData/${userEmail}`
       );
       if (response.ok) {
         const data = await response.json();
-        setProfilePicture(data.profilePicture);
+        setUserData(data);
       } else {
-        console.error("Failed to fetch profile picture");
+        console.error("Failed to fetch user data");
       }
     } catch (error) {
-      console.error("Error fetching profile picture:", error);
+      console.error("Error fetching user data:", error);
     }
   }
+
   return (
     <View style={[styles.container]}>
       <HeaderComponent />
-      <Image
-        style={[styles.logoR, styles.bottomMargins]}
-        source={{ uri: profilePicture }}
-      />
-      <Text style={[styles.h3.b]}>USERNAME</Text>
-      <Text style={[styles.signa28, styles.bottomPadding]}>
-        FIRSTNAME LASTNAME
-      </Text>
+      {userData && (
+        <>
+          <Image
+            style={[styles.logoR, styles.bottomMargins]}
+            source={{ uri: userData.profilePicture }}
+          />
+          <Text style={[styles.h3.b]}>{userData.username}</Text>
+          <Text style={[styles.signa28, styles.bottomPadding]}>
+            {userData.fullName}
+          </Text>
+        </>
+      )}
       <SafeAreaView style={[styles.sideSpacing, styles.marginLeft]}>
         <Pressable
           onPress={() => navigation.navigate(EditProfileScreen)}
