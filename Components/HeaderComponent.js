@@ -4,6 +4,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
+// Import the placeholder image
+const placeholderProfileImage = require("../assets/icons/profile_placeholder.svg");
+
 export default function HeaderComponent() {
   const { canGoBack, navigate, goBack } = useNavigation();
   const { name } = useRoute();
@@ -11,7 +14,7 @@ export default function HeaderComponent() {
   const isProfileScreen = name === "ProfileScreen";
   const isHomeScreen = name === "HomeScreen";
 
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(placeholderProfileImage);
 
   useEffect(() => {
     if (!isProfileScreen) {
@@ -27,12 +30,16 @@ export default function HeaderComponent() {
       );
       if (response.ok) {
         const data = await response.json();
-        setProfilePicture(data.profilePicture);
+        if (data.profilePicture) {
+          setProfilePicture(data.profilePicture);
+        }
       } else {
         console.error("Failed to fetch profile picture");
+        // If fetch fails, keep the placeholder image
       }
     } catch (error) {
       console.error("Error fetching profile picture:", error);
+      // If there's an error, keep the placeholder image
     }
   }
 
@@ -46,12 +53,9 @@ export default function HeaderComponent() {
           />
         </Pressable>
       )}
-      {!isProfileScreen && profilePicture && (
+      {!isProfileScreen && (
         <Pressable onPress={() => navigate("ProfileScreen")}>
-          <Image
-            source={{ uri: profilePicture }}
-            style={[styles.headerImage]}
-          />
+          <Image source={profilePicture} style={[styles.headerImage]} />
         </Pressable>
       )}
     </View>

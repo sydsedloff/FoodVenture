@@ -13,8 +13,12 @@ import SettingsScreen from "./SettingsScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 
+// Import the placeholder image
+const placeholderProfileImage = require("../assets/icons/profile_placeholder.svg");
+
 export default function ProfileScreen({ navigation }) {
   const [userData, setUserData] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(placeholderProfileImage);
 
   async function getUserData() {
     try {
@@ -25,6 +29,9 @@ export default function ProfileScreen({ navigation }) {
       if (response.ok) {
         const data = await response.json();
         setUserData(data);
+        if (data.profilePicture) {
+          setProfilePicture(data.profilePicture);
+        }
       } else {
         console.error("Failed to fetch user data");
       }
@@ -41,12 +48,12 @@ export default function ProfileScreen({ navigation }) {
   return (
     <View style={[styles.container]}>
       <HeaderComponent />
+      <Image
+        style={[styles.logoR, styles.bottomMargins]}
+        source={{ uri: profilePicture }}
+      />
       {userData && (
         <>
-          <Image
-            style={[styles.logoR, styles.bottomMargins]}
-            source={{ uri: userData.profilePicture }}
-          />
           <Text style={[styles.h3.b]}>{userData.username}</Text>
           <Text style={[styles.signa28, styles.bottomPadding]}>
             {userData.fullName}
