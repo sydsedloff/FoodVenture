@@ -16,12 +16,14 @@ const Restaurants = ({
   const [saved, setSaved] = useState(false);
 
   const handlePress = () => {
-    navigation.navigate(RestaurantScreen);
+    navigation.navigate("RestaurantScreen");
   };
 
   const toggleSave = () => {
     setSaved(!saved);
   };
+
+  const placeholderImage = require("../assets/FoodVenturePlaceholder.png");
 
   return (
     <View
@@ -29,17 +31,23 @@ const Restaurants = ({
     >
       <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-          <Text style={[styles.signa28]} onPress={handlePress}>{name}</Text>
-          <Image 
-            style={[styles.icon]} 
-            source={saved ? require("../assets/saveFilled.png") : require("../assets/save.png")} 
+          <Text style={[styles.signa28]} onPress={handlePress}>
+            {name}
+          </Text>
+          <Image
+            style={[styles.icon]}
+            source={
+              saved
+                ? require("../assets/saveFilled.png")
+                : require("../assets/save.png")
+            }
           />
         </View>
         <RatingImage star_rating={star_rating} />
       </Pressable>
       <Pressable onPress={handlePress}>
         <Image
-          source={{ uri: image }}
+          source={image ? { uri: image } : placeholderImage}
           style={[styles.image, styles.lessBottomMargins]}
         />
       </Pressable>
