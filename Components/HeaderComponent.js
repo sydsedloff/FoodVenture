@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Text, Image, View, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
+import { View, Pressable, Image } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 // Import the placeholder image
@@ -13,14 +13,15 @@ export default function HeaderComponent() {
 
   const isProfileScreen = name === "ProfileScreen";
   const isHomeScreen = name === "HomeScreen";
+  const isFilterSidebarScreen = name === "FilterSidebar";
 
   const [profilePicture, setProfilePicture] = useState(placeholderProfileImage);
 
   useEffect(() => {
-    if (!isProfileScreen) {
+    if (!isProfileScreen && !isFilterSidebarScreen) {
       getUserProfilePicture();
     }
-  }, []);
+  }, [isProfileScreen, isFilterSidebarScreen]);
 
   async function getUserProfilePicture() {
     try {
@@ -45,7 +46,7 @@ export default function HeaderComponent() {
 
   return (
     <View style={[styles.headerContainer]}>
-      {canGoBack && !isHomeScreen && (
+      {canGoBack && !isHomeScreen && !isFilterSidebarScreen && (
         <Pressable onPress={goBack}>
           <Image
             source={require("../assets/backArrow.png")}
@@ -53,7 +54,7 @@ export default function HeaderComponent() {
           />
         </Pressable>
       )}
-      {!isProfileScreen && (
+      {!isProfileScreen && !isFilterSidebarScreen && (
         <Pressable onPress={() => navigate("ProfileScreen")}>
           <Image source={profilePicture} style={[styles.headerImage]} />
         </Pressable>

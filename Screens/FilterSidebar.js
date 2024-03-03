@@ -49,6 +49,40 @@ export default function FilterSidebar({ navigation }) {
     setSelectedButton(button);
   };
 
+  // Assuming this is inside your FilterSidebar component
+  const navigateToHomeScreenWithFilters = () => {
+    // Prepare the filter data
+    const filterData = {
+      isGlutenFree,
+      isKosher,
+      isPescatarian,
+      isVegan,
+      isVegetarian,
+      isDistance0_10,
+      isDistance12_30,
+      isDistance11_20,
+      isDistance31_plus,
+      isAmerican,
+      isJapanese,
+      isIndian,
+      isCaribbean,
+      isKorean,
+      isFrench,
+      isBBQ,
+      isItalian,
+      isChinese,
+      isGreek,
+      isMexican,
+      isThai,
+      isSeafood,
+      isPizza,
+      selectedButton,
+    };
+
+    // Navigate to HomeScreen and pass the filter data
+    navigation.navigate("HomeScreen", { filterData });
+  };
+
   return (
     <SafeAreaView style={[styles.container]}>
       <HeaderComponent />
@@ -535,7 +569,7 @@ export default function FilterSidebar({ navigation }) {
           </View>
         </View>
         <Pressable
-          onPress={() => navigation.navigate(HomeScreen)}
+          onPress={() => navigateToHomeScreenWithFilters()}
           style={[
             styles.buttonLarge.r,
             styles.width70,
