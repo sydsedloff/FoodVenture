@@ -2,11 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
+const axios = require("axios");
+require("dotenv").config(); //get api key from .env
 const app = express();
 const port = 3000;
-const apikey =
-  "uRMSzNjB27HcXl_auLK_gd70ts4FK2Xksp4ji3NCITNgUmeBgDXolpF-Bv2zovE8YaqDithrWT1qwcdjOjXrlkNu4MLdKW5Z9FXM848EFq6VuviqflN3bJ0Mc37jZXYx";
-
 app.use(bodyParser.json());
 
 //EXPRESS SERVER
@@ -43,29 +42,29 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // API Setup
-const axios = require("axios");
+app.get("/api/searchRestaurants/:userSearch", async (req, res) => {
+  const term = req.query.term;
+  const location = "Orlando"; // Update location as needed
 
-const yelpApiBaseUrl = "https://api.yelp.com/v3/businesses";
-
-const searchRestaurants = async (term) => {
-  const location = "Orlando"; // Only searching in orlando
   try {
-    const response = await axios.get(`${yelpApiBaseUrl}/search`, {
-      headers: {
-        Authorization: `Bearer ${process.env.YELP_API_KEY}`,
-      },
-      params: {
-        term,
-        location,
-      },
-    });
-    // Handle the response data (e.g., display restaurant names, ratings, etc.)
-    console.log(response.data.businesses);
+    const response = await axios.get(
+      "https://api.yelp.com/v3/businesses/search",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.YELP_API_KEY}`,
+        },
+        params: {
+          term,
+          location,
+        },
+      }
+    );
+    res.json(response.data);
   } catch (error) {
-    console.error("Error fetching data from Yelp API:", error.message);
+    console.error("Error searching restaurants:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
-};
-module.exports = { searchRestaurants };
+});
 
 /*
  HTTP REQUESTS
