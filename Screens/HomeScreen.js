@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import {
   Image,
   Text,
@@ -7,6 +7,7 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
+import axios from "axios";
 import styles from "../styles";
 import FilterSidebar from "./FilterSidebar";
 import NavigationBar from "../Components/NavigationBar";
@@ -15,8 +16,34 @@ import Restaurants from "../Components/RestaurantsComponent";
 import myRestaurants from "../data/fakeRestaurants.json";
 
 export default function HomeScreen({ navigation, route }) {
-  const { filterData } = route.params || {};
+  const [restaurantData, setRestaurantData] = useState(null);
 
+  useEffect(() => {
+    async function getRestaurantData() {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/searchRestaurants",
+          {
+            params: {
+              term: "food",
+            },
+          }
+        );
+        if (response.status === 200) {
+          await setRestaurantData(response.data);
+        } else {
+          console.error("Failed to fetch restaurant data");
+        }
+      } catch (error) {
+        console.error("Error fetching restaurant data:", error);
+      }
+    }
+
+    getRestaurantData();
+  }, []);
+  const { filterData } = route.params || {};
+  console.log(restaurantData);
+  const restaurantResults = restaurantData;
   function filterRestaurants(restaurants, filterData) {
     if (!filterData) {
       return restaurants;
@@ -110,8 +137,8 @@ export default function HomeScreen({ navigation, route }) {
   }
 
   // Apply filters to the restaurants data
-  const filteredRestaurants = filterRestaurants(myRestaurants, filterData);
-
+  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
+  console.log(filteredRestaurants);
   return (
     <View style={[styles.container]}>
       <HeaderComponent />
@@ -144,21 +171,27 @@ export default function HomeScreen({ navigation, route }) {
         </View>
         {/*CONDITIONAL TO FILLED FILTER ICON IF FILTERING IS ON*/}
 
-        <FlatList
-          data={filteredRestaurants}
-          renderItem={({ item }) => (
-            <Restaurants
-              name={item.name}
-              image={item.image}
-              address={item.address}
-              description={item.description}
-              website={item.website}
-              navigation={navigation}
-              star_rating={item.star_rating}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-        ></FlatList>
+        {filteredRestaurants ? (
+          <FlatList
+            data={filteredRestaurants}
+            renderItem={({ item }) => (
+              <Restaurants
+                name={item.name}
+                image={item.image_url}
+                address={item.businesses.location.address1}
+                description={item.businesses.categories
+                  .map((category) => category.title)
+                  .join(", ")}
+                website={item.businesses.url}
+                navigation={navigation}
+                star_rating={item.businesses.rating}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        ) : (
+          <Text>Loading...</Text>
+        )}
       </View>
       <NavigationBar />
     </View>

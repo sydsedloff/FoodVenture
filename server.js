@@ -41,10 +41,34 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// API Setup
+// API
+app.get("/api/searchRestaurants", async (req, res) => {
+  const term = req.query.term;
+  const location = "Orlando";
+
+  try {
+    const response = await axios.get(
+      "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=20",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.YELP_API_KEY}`,
+        },
+        params: {
+          term,
+          location,
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error searching restaurants:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.get("/api/searchRestaurants/:userSearch", async (req, res) => {
   const term = req.query.term;
-  const location = "Orlando"; // Update location as needed
+  const location = "Orlando";
 
   try {
     const response = await axios.get(
