@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
+const axios = require("axios");
+require("dotenv").config(); //get api key from .env
 const app = express();
 const port = 3000;
 app.use(bodyParser.json());
@@ -39,7 +41,34 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// HTTP REQUESTS
+// API Setup
+app.get("/api/searchRestaurants/:userSearch", async (req, res) => {
+  const term = req.query.term;
+  const location = "Orlando"; // Update location as needed
+
+  try {
+    const response = await axios.get(
+      "https://api.yelp.com/v3/businesses/search",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.YELP_API_KEY}`,
+        },
+        params: {
+          term,
+          location,
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error searching restaurants:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+/*
+ HTTP REQUESTS
+*/
 
 // GET PROFILES
 app.get("/api/fakeProfiles", async (req, res) => {

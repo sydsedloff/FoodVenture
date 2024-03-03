@@ -1,12 +1,11 @@
-import { Image, Text, Pressable, View, SafeAreaView } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { View, SafeAreaView, Text, Pressable } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import styles from "../styles";
 import ReservationScreen from "./ReservationScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
-import RatingImage from "../Components/RatingImageComponent";
-
+import axios from "axios";
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
     <SafeAreaView style={[styles.container, styles.alignItemsLeft]}>
@@ -48,91 +47,98 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
     </SafeAreaView>
   );
 };
-const PartySizeDropdown = () => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-    { label: "3", value: "3" },
-    { label: "4", value: "4" },
-    { label: "5", value: "5" },
-    { label: "6+", value: "6+" },
-  ]);
-  return (
-    <View>
-      <DropDownPicker
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-      />
-    </View>
-  );
-};
-const MealtimeDropdown = () => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "Breakfast", value: "Breakfast" },
-    { label: "Lunch", value: "Lunch" },
-    { label: "Dinner", value: "Dinner" },
-  ]);
-  return (
-    <View>
-      <DropDownPicker
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-      />
-    </View>
-  );
-};
 
 export default function RestaurantScreen({ navigation }) {
+  const [restaurantData, setRestaurantData] = useState(null);
+  const [partySize, setPartySize] = useState(null);
+  const [mealTime, setMealTime] = useState(null);
+
+  useEffect(() => {
+    async function getRestaurantData() {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/searchRestaurants",
+          {
+            params: {
+              term: "food", // You can change the search term as needed
+            },
+          }
+        );
+        if (response.status === 200) {
+          setRestaurantData(response.data);
+        } else {
+          console.error("Failed to fetch restaurant data");
+        }
+      } catch (error) {
+        console.error("Error fetching restaurant data:", error);
+      }
+    }
+
+    getRestaurantData();
+  }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
+
   return (
-    <SafeAreaView style={[styles.container]}>
+    <SafeAreaView style={styles.container}>
       <HeaderComponent />
 
-      <View style={[styles.width80]}>
-        <RestaurantSingle
-          name="Restaurant Name"
-          image="https://placehold.co/300x200/"
-          address="123 Roady Rd, Orlando, FL 12345"
-          description="This is a description of a restaurant that serves food. Ideally it would be good food, but you never know."
-          website="https://www.google.com"
-        />
-        <View style={[styles.smallNegativeMargins]}>
+      <View style={styles.width80}>
+        {restaurantData && (
+          <RestaurantSingle
+            name={restaurantData.name}
+            image={restaurantData.image_url}
+            address={restaurantData.address}
+            description={restaurantData.description}
+            website={restaurantData.website}
+          />
+        )}
+        <View style={styles.smallNegativeMargins}>
           <Text style={[styles.signa28, styles.width80, styles.bottomMargins]}>
             Request a reservation
           </Text>
-          <View style={[styles.bottomMargins]}>
+          <View style={styles.bottomMargins}>
             <View>
-              <Text style={[styles.merri19Bold]}>Party Size</Text>
-              <PartySizeDropdown />
-              <Text style={[styles.merri19Bold]}>Preferred Meal Time</Text>
-              <MealtimeDropdown />
+              <Text style={styles.merri19Bold}>Party Size</Text>
+              <DropDownPicker
+                open={partySize !== null}
+                value={partySize}
+                items={[
+                  { label: "1", value: "1" },
+                  { label: "2", value: "2" },
+                  { label: "3", value: "3" },
+                  { label: "4", value: "4" },
+                  { label: "5", value: "5" },
+                  { label: "6+", value: "6+" },
+                ]}
+                setOpen={() => setPartySize(null)}
+                setValue={setPartySize}
+                setItems={() => {}}
+              />
+              <Text style={styles.merri19Bold}>Preferred Meal Time</Text>
+              <DropDownPicker
+                open={mealTime !== null}
+                value={mealTime}
+                items={[
+                  { label: "Breakfast", value: "Breakfast" },
+                  { label: "Lunch", value: "Lunch" },
+                  { label: "Dinner", value: "Dinner" },
+                ]}
+                setOpen={() => setMealTime(null)}
+                setValue={setMealTime}
+                setItems={() => {}}
+              />
             </View>
           </View>
 
-          <Pressable style={[styles.buttonLarge.r, { marginBottom: 100 }]}>
-            <Text
-              style={[styles.buttonLargeText.y]}
-              onPress={() => navigation.navigate(ReservationScreen)}
-            >
-              Request Reservation
-            </Text>
+          <Pressable
+            style={[styles.buttonLarge.r, { marginBottom: 100 }]}
+            onPress={() => navigation.navigate(ReservationScreen)}
+          >
+            <Text style={[styles.buttonLargeText.y]}>Request Reservation</Text>
           </Pressable>
         </View>
       </View>
 
       <NavigationBar />
-      {/* keyExtractor={(item) => item.id} */}
     </SafeAreaView>
   );
 }
