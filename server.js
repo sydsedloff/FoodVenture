@@ -39,7 +39,34 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// HTTP REQUESTS
+// API Setup
+const axios = require("axios");
+
+const yelpApiBaseUrl = "https://api.yelp.com/v3/businesses";
+
+const searchRestaurants = async (term) => {
+  const location = "Orlando"; // Only searching in orlando
+  try {
+    const response = await axios.get(`${yelpApiBaseUrl}/search`, {
+      headers: {
+        Authorization: `Bearer ${process.env.YELP_API_KEY}`,
+      },
+      params: {
+        term,
+        location,
+      },
+    });
+    // Handle the response data (e.g., display restaurant names, ratings, etc.)
+    console.log(response.data.businesses);
+  } catch (error) {
+    console.error("Error fetching data from Yelp API:", error.message);
+  }
+};
+module.exports = { searchRestaurants };
+
+/*
+ HTTP REQUESTS
+*/
 
 // GET PROFILES
 app.get("/api/fakeProfiles", async (req, res) => {

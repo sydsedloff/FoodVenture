@@ -6,6 +6,7 @@ import ReservationScreen from "./ReservationScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import RatingImage from "../Components/RatingImageComponent";
+import { searchRestaurants } from "../server";
 
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (

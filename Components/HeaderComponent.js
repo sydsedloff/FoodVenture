@@ -38,7 +38,7 @@ export default function HeaderComponent() {
         // If fetch fails, keep the placeholder image
       }
     } catch (error) {
-      console.error("Error fetching profile picture:", error);
+      console.log("Error fetching profile picture:", error);
       // If there's an error, keep the placeholder image
     }
   }
