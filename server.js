@@ -4,6 +4,9 @@ const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const app = express();
 const port = 3000;
+const apikey =
+  "uRMSzNjB27HcXl_auLK_gd70ts4FK2Xksp4ji3NCITNgUmeBgDXolpF-Bv2zovE8YaqDithrWT1qwcdjOjXrlkNu4MLdKW5Z9FXM848EFq6VuviqflN3bJ0Mc37jZXYx";
+
 app.use(bodyParser.json());
 
 //EXPRESS SERVER
