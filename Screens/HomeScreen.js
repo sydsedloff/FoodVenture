@@ -185,6 +185,7 @@ export default function HomeScreen({ navigation, route }) {
                 website={item.url}
                 navigation={navigation}
                 star_rating={item.rating}
+                restaurantId={item.id}
               />
             )}
             keyExtractor={(item) => item.id}

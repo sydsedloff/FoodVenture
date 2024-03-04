@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Image, Pressable, Linking } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  Linking,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import RatingImage from "./RatingImageComponent";
 
@@ -11,11 +18,33 @@ const Restaurants = ({
   website,
   navigation,
   star_rating,
+  restaurantId,
 }) => {
   const [saved, setSaved] = useState(false);
 
-  const handlePress = () => {
-    navigation.navigate("RestaurantScreen");
+  // Define restaurantData object
+  const restaurantData = {
+    name,
+    image,
+    address,
+    description,
+    website,
+    star_rating,
+  };
+
+  const saveRestaurant = async (restaurantData) => {
+    try {
+      const serializedData = JSON.stringify(restaurantData);
+      await AsyncStorage.setItem("savedRestaurant", serializedData);
+      console.log("Restaurant saved successfully!");
+    } catch (error) {
+      console.error("Error saving restaurant:", error);
+    }
+  };
+
+   async function handlePress () {
+    await saveRestaurant(restaurantData, restaurantId); 
+    navigation.navigate("RestaurantScreen", { restaurantId: item.id });
   };
 
   const toggleSave = () => {

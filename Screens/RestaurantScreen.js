@@ -5,6 +5,7 @@ import styles from "../styles";
 import ReservationScreen from "./ReservationScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
+import RatingImage from "../Components/RatingImageComponent";
 import axios from "axios";
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
@@ -52,45 +53,42 @@ export default function RestaurantScreen({ navigation }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [partySize, setPartySize] = useState(null);
   const [mealTime, setMealTime] = useState(null);
-
+  const { restaurantId } = route.params
   useEffect(() => {
-    async function getRestaurantData() {
+    async function getSavedRestaurantData() {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/searchRestaurants",
-          {
-            params: {
-              term: "food", // You can change the search term as needed
-            },
-          }
-        );
-        if (response.status === 200) {
-          setRestaurantData(response.data);
+        const savedData = await AsyncStorage.getItem("savedRestaurant");
+        if (savedData) {
+          const parsedData = JSON.parse(savedData);
+          setRestaurantData(parsedData);
         } else {
-          console.error("Failed to fetch restaurant data");
+          console.log("No saved restaurant data found.");
         }
       } catch (error) {
-        console.error("Error fetching restaurant data:", error);
+        console.error("Error retrieving saved restaurant data:", error);
       }
     }
-
-    getRestaurantData();
-  }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
-
+  
+    getSavedRestaurantData();
+  }, []);
+  
+  const filteredRestaurant = restaurantData?.find(
+    (restaurant) => restaurant.id === restaurantId
+  );
   return (
     <SafeAreaView style={styles.container}>
       <HeaderComponent />
 
       <View style={styles.width80}>
-        {restaurantData && (
-          <RestaurantSingle
-            name={restaurantData.name}
-            image={restaurantData.image_url}
-            address={restaurantData.address}
-            description={restaurantData.description}
-            website={restaurantData.website}
-          />
-        )}
+      {filteredRestaurant && (
+      <RestaurantSingle
+        name={filteredRestaurant.name}
+        image={filteredRestaurant.image_url}
+        address={filteredRestaurant.address}
+        description={filteredRestaurant.description}
+        website={filteredRestaurant.website}
+      />
+    )}
         <View style={styles.smallNegativeMargins}>
           <Text style={[styles.signa28, styles.width80, styles.bottomMargins]}>
             Request a reservation
