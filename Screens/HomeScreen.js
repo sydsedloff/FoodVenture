@@ -17,9 +17,9 @@ import myRestaurants from "../data/fakeRestaurants.json";
 
 export default function HomeScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
-
   useEffect(() => {
     async function getRestaurantData() {
+      console.log("Fetching restaurant data...");
       try {
         const response = await axios.get(
           "http://localhost:3000/api/searchRestaurants",
@@ -29,8 +29,9 @@ export default function HomeScreen({ navigation, route }) {
             },
           }
         );
+        console.log("Response received:", response.data);
         if (response.status === 200) {
-          await setRestaurantData(response.data);
+          setRestaurantData(response.data.businesses); // Adjusted to access the businesses array
         } else {
           console.error("Failed to fetch restaurant data");
         }
@@ -137,8 +138,8 @@ export default function HomeScreen({ navigation, route }) {
   }
 
   // Apply filters to the restaurants data
+  console.log("Filtered restaurants:", filteredRestaurants);
   const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
-  console.log(filteredRestaurants);
   return (
     <View style={[styles.container]}>
       <HeaderComponent />
@@ -178,13 +179,13 @@ export default function HomeScreen({ navigation, route }) {
               <Restaurants
                 name={item.name}
                 image={item.image_url}
-                address={item.businesses.location.address1}
-                description={item.businesses.categories
+                address={item.location.address1}
+                description={item.categories
                   .map((category) => category.title)
                   .join(", ")}
-                website={item.businesses.url}
+                website={item.url}
                 navigation={navigation}
-                star_rating={item.businesses.rating}
+                star_rating={item.rating}
               />
             )}
             keyExtractor={(item) => item.id}

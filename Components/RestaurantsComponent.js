@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, Linking } from "react-native";
 import styles from "../styles";
 import RestaurantScreen from "../Screens/RestaurantScreen";
 import RatingImage from "./RatingImageComponent";
@@ -57,9 +57,9 @@ const Restaurants = ({
       <Text style={[styles.merri17, styles.lessBottomMargins]}>
         {description}
       </Text>
-      <Text style={[styles.link, styles.bottomMargins]} href={[website]}>
-        {website}
-      </Text>
+      <Pressable onPress={() => Linking.openURL(website)}>
+        <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
+      </Pressable>
       <Pressable onPress={handlePress}>
         {/* Will need to grab key for restaurant screen */}
       </Pressable>
