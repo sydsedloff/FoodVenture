@@ -7,6 +7,9 @@ import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import RatingImage from "../Components/RatingImageComponent";
 import axios from "axios";
+import { useParams } from 'react-router-dom'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
     <SafeAreaView style={[styles.container, styles.alignItemsLeft]}>
@@ -53,11 +56,12 @@ export default function RestaurantScreen({ navigation }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [partySize, setPartySize] = useState(null);
   const [mealTime, setMealTime] = useState(null);
-  const { restaurantId } = route.params
+  const { restaurantId } = useParams()  
   useEffect(() => {
     async function getSavedRestaurantData() {
       try {
         const savedData = await AsyncStorage.getItem("savedRestaurant");
+        console.log(savedData)
         if (savedData) {
           const parsedData = JSON.parse(savedData);
           setRestaurantData(parsedData);
@@ -71,24 +75,25 @@ export default function RestaurantScreen({ navigation }) {
   
     getSavedRestaurantData();
   }, []);
+ 
   
-  const filteredRestaurant = restaurantData?.find(
-    (restaurant) => restaurant.id === restaurantId
-  );
   return (
     <SafeAreaView style={styles.container}>
       <HeaderComponent />
-
+  
       <View style={styles.width80}>
-      {filteredRestaurant && (
-      <RestaurantSingle
-        name={filteredRestaurant.name}
-        image={filteredRestaurant.image_url}
-        address={filteredRestaurant.address}
-        description={filteredRestaurant.description}
-        website={filteredRestaurant.website}
-      />
-    )}
+        {restaurantData === null ? (
+          <Text>Loading restaurant data...</Text> // Display loading message
+        ) : (
+          <RestaurantSingle
+            name={restaurantData.name}
+            image={restaurantData.image_url}
+            address={restaurantData.address}
+            description={restaurantData.description}
+            website={restaurantData.website}
+          />
+        )}
+    
         <View style={styles.smallNegativeMargins}>
           <Text style={[styles.signa28, styles.width80, styles.bottomMargins]}>
             Request a reservation

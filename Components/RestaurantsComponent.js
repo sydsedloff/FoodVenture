@@ -18,7 +18,7 @@ const Restaurants = ({
   website,
   navigation,
   star_rating,
-  restaurantId,
+  restaurantId, // Assuming you receive this prop from a parent component
 }) => {
   const [saved, setSaved] = useState(false);
 
@@ -42,10 +42,11 @@ const Restaurants = ({
     }
   };
 
-   async function handlePress () {
-    await saveRestaurant(restaurantData, restaurantId); 
-    navigation.navigate("RestaurantScreen", { restaurantId: item.id });
+  const handlePress = () => {
+    saveRestaurant(restaurantData);
+    navigation.navigate("RestaurantScreen", { params: {restaurantId} });
   };
+
 
   const toggleSave = () => {
     setSaved(!saved);
