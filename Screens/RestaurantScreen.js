@@ -6,7 +6,6 @@ import ReservationScreen from "./ReservationScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import RatingImage from "../Components/RatingImageComponent";
-import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const RestaurantSingle = ({ name, image, address, description, website }) => {
@@ -22,7 +21,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
 
       <Image
         source={{ uri: image }}
-        style={[styles.image, styles.alignSelfCenter]}
+        style={[styles.image, styles.alignSelfCenter, styles.width100, styles.bottomPadding]}
       ></Image>
       <View
         style={[
@@ -45,7 +44,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
         {description}
       </Text>
       <Text style={[styles.link]} href={[website]}>
-        {website}
+        Restaurant Link
       </Text>
     </SafeAreaView>
   );
@@ -60,7 +59,6 @@ export default function RestaurantScreen({ navigation }) {
       try {
         const savedData = await AsyncStorage.getItem("savedRestaurant");
         console.log(savedData)
-        console.log(savedData.image_url)
         if (savedData) {
           const parsedData = JSON.parse(savedData);
           setRestaurantData(parsedData);

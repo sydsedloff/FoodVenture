@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation, route }) {
         );
         console.log("Response received:", response.data);
         if (response.status === 200) {
-          setRestaurantData(response.data.businesses); // Adjusted to access the businesses array
+          setRestaurantData(response.data.businesses); 
         } else {
           console.error("Failed to fetch restaurant data");
         }
@@ -178,7 +178,7 @@ export default function HomeScreen({ navigation, route }) {
               <Restaurants
                 name={item.name}
                 image={item.image_url}
-                address={item.location.address1}
+                address={item.location.display_address.join(", ")}
                 description={item.categories
                   .map((category) => category.title)
                   .join(", ")}

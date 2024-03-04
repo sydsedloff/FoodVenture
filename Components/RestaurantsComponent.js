@@ -18,7 +18,7 @@ const Restaurants = ({
   website,
   navigation,
   star_rating,
-  restaurantId, // Assuming you receive this prop from a parent component
+  restaurantId, 
 }) => {
   const [saved, setSaved] = useState(false);
 
