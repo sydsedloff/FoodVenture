@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, SafeAreaView, Text, Pressable } from "react-native";
+import { View, SafeAreaView, Text, Pressable, Image } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import styles from "../styles";
 import ReservationScreen from "./ReservationScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
-import axios from "axios";
+import RatingImage from "../Components/RatingImageComponent";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
     <SafeAreaView style={[styles.container, styles.alignItemsLeft]}>
@@ -19,7 +21,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
 
       <Image
         source={{ uri: image }}
-        style={[styles.image, styles.alignSelfCenter]}
+        style={[styles.image, styles.alignSelfCenter, styles.width100, styles.bottomPadding]}
       ></Image>
       <View
         style={[
@@ -42,7 +44,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
         {description}
       </Text>
       <Text style={[styles.link]} href={[website]}>
-        {website}
+        Restaurant Link
       </Text>
     </SafeAreaView>
   );
@@ -52,45 +54,43 @@ export default function RestaurantScreen({ navigation }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [partySize, setPartySize] = useState(null);
   const [mealTime, setMealTime] = useState(null);
-
   useEffect(() => {
-    async function getRestaurantData() {
+    async function getSavedRestaurantData() {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/searchRestaurants",
-          {
-            params: {
-              term: "food", // You can change the search term as needed
-            },
-          }
-        );
-        if (response.status === 200) {
-          setRestaurantData(response.data);
+        const savedData = await AsyncStorage.getItem("savedRestaurant");
+        console.log(savedData)
+        if (savedData) {
+          const parsedData = JSON.parse(savedData);
+          setRestaurantData(parsedData);
         } else {
-          console.error("Failed to fetch restaurant data");
+          console.log("No saved restaurant data found.");
         }
       } catch (error) {
-        console.error("Error fetching restaurant data:", error);
+        console.error("Error retrieving saved restaurant data:", error);
       }
     }
-
-    getRestaurantData();
-  }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
-
+  
+    getSavedRestaurantData();
+  }, []);
+ 
+  
   return (
     <SafeAreaView style={styles.container}>
       <HeaderComponent />
-
+  
       <View style={styles.width80}>
-        {restaurantData && (
+        {restaurantData === null ? (
+          <Text>Loading restaurant data...</Text> // Display loading message
+        ) : (
           <RestaurantSingle
             name={restaurantData.name}
-            image={restaurantData.image_url}
+            image={restaurantData.image}
             address={restaurantData.address}
             description={restaurantData.description}
             website={restaurantData.website}
           />
         )}
+    
         <View style={styles.smallNegativeMargins}>
           <Text style={[styles.signa28, styles.width80, styles.bottomMargins]}>
             Request a reservation

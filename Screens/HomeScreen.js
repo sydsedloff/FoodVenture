@@ -13,7 +13,6 @@ import FilterSidebar from "./FilterSidebar";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
-import myRestaurants from "../data/fakeRestaurants.json";
 
 export default function HomeScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
@@ -31,7 +30,7 @@ export default function HomeScreen({ navigation, route }) {
         );
         console.log("Response received:", response.data);
         if (response.status === 200) {
-          setRestaurantData(response.data.businesses); // Adjusted to access the businesses array
+          setRestaurantData(response.data.businesses); 
         } else {
           console.error("Failed to fetch restaurant data");
         }
@@ -152,10 +151,10 @@ export default function HomeScreen({ navigation, route }) {
           style={[
             styles.horizontalAlign,
             styles.bottomMargins,
-            styles.contentJustify,
+            styles.contentJustify, 
           ]}
         >
-          <View style={[styles.searchBar, styles.horizontalAlign]}>
+          <View style={[styles.searchBar, styles.horizontalAlign, styles.width80]}>
             <Image
               source={require("../assets/search.png")}
               style={[styles.searchBarIcon]}
@@ -179,13 +178,14 @@ export default function HomeScreen({ navigation, route }) {
               <Restaurants
                 name={item.name}
                 image={item.image_url}
-                address={item.location.address1}
+                address={item.location.display_address.join(", ")}
                 description={item.categories
                   .map((category) => category.title)
                   .join(", ")}
                 website={item.url}
                 navigation={navigation}
                 star_rating={item.rating}
+                restaurantId={item.id}
               />
             )}
             keyExtractor={(item) => item.id}

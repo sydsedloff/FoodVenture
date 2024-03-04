@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, Image, Pressable, Linking } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  Linking,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
-import RestaurantScreen from "../Screens/RestaurantScreen";
 import RatingImage from "./RatingImageComponent";
 
 const Restaurants = ({
@@ -12,12 +18,35 @@ const Restaurants = ({
   website,
   navigation,
   star_rating,
+  restaurantId, 
 }) => {
   const [saved, setSaved] = useState(false);
 
-  const handlePress = () => {
-    navigation.navigate("RestaurantScreen");
+  // Define restaurantData object
+  const restaurantData = {
+    name,
+    image,
+    address,
+    description,
+    website,
+    star_rating,
   };
+
+  const saveRestaurant = async (restaurantData) => {
+    try {
+      const serializedData = JSON.stringify(restaurantData);
+      await AsyncStorage.setItem("savedRestaurant", serializedData);
+      console.log("Restaurant saved successfully!");
+    } catch (error) {
+      console.error("Error saving restaurant:", error);
+    }
+  };
+
+  const handlePress = () => {
+    saveRestaurant(restaurantData);
+    navigation.navigate("RestaurantScreen", { params: {restaurantId} });
+  };
+
 
   const toggleSave = () => {
     setSaved(!saved);
@@ -27,7 +56,7 @@ const Restaurants = ({
 
   return (
     <View
-      style={[styles.container, styles.bottomMargins, styles.alignItemsLeft]}
+      style={[styles.container, styles.bottomMargins, styles.alignItemsLeft, styles.width80, styles.alignSelfCenter]}
     >
       <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
@@ -48,7 +77,7 @@ const Restaurants = ({
       <Pressable onPress={handlePress}>
         <Image
           source={image ? { uri: image } : placeholderImage}
-          style={[styles.image, styles.lessBottomMargins]}
+          style={[styles.image, styles.lessBottomMargins, styles.alignSelfCenter, styles.width100]}
         />
       </Pressable>
       <Text style={[styles.merri19Bold, styles.lessBottomMargins]}>
