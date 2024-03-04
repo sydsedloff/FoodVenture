@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image, Pressable, Linking } from "react-native";
 import styles from "../styles";
-import RestaurantScreen from "../Screens/RestaurantScreen";
 import RatingImage from "./RatingImageComponent";
 
 const Restaurants = ({
@@ -48,7 +47,7 @@ const Restaurants = ({
       <Pressable onPress={handlePress}>
         <Image
           source={image ? { uri: image } : placeholderImage}
-          style={[styles.image, styles.lessBottomMargins]}
+          style={[styles.image, styles.lessBottomMargins, styles.alignSelfCenter, styles.width100]}
         />
       </Pressable>
       <Text style={[styles.merri19Bold, styles.lessBottomMargins]}>
