@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, SafeAreaView, Text, Pressable } from "react-native";
+import { View, SafeAreaView, Text, Pressable, Image } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import styles from "../styles";
 import ReservationScreen from "./ReservationScreen";
