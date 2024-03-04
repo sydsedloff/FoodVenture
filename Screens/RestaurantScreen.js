@@ -7,7 +7,6 @@ import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import RatingImage from "../Components/RatingImageComponent";
 import axios from "axios";
-import { useParams } from 'react-router-dom'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const RestaurantSingle = ({ name, image, address, description, website }) => {
@@ -56,12 +55,12 @@ export default function RestaurantScreen({ navigation }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [partySize, setPartySize] = useState(null);
   const [mealTime, setMealTime] = useState(null);
-  const { restaurantId } = useParams()  
   useEffect(() => {
     async function getSavedRestaurantData() {
       try {
         const savedData = await AsyncStorage.getItem("savedRestaurant");
         console.log(savedData)
+        console.log(savedData.image_url)
         if (savedData) {
           const parsedData = JSON.parse(savedData);
           setRestaurantData(parsedData);
@@ -87,7 +86,7 @@ export default function RestaurantScreen({ navigation }) {
         ) : (
           <RestaurantSingle
             name={restaurantData.name}
-            image={restaurantData.image_url}
+            image={restaurantData.image}
             address={restaurantData.address}
             description={restaurantData.description}
             website={restaurantData.website}
