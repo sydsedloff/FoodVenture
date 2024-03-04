@@ -27,7 +27,7 @@ const Restaurants = ({
 
   return (
     <View
-      style={[styles.container, styles.bottomMargins, styles.alignItemsLeft]}
+      style={[styles.container, styles.bottomMargins, styles.alignItemsLeft, styles.width80, styles.alignSelfCenter]}
     >
       <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>

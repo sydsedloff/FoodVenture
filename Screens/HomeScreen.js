@@ -13,7 +13,6 @@ import FilterSidebar from "./FilterSidebar";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
-import myRestaurants from "../data/fakeRestaurants.json";
 
 export default function HomeScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
@@ -152,10 +151,10 @@ export default function HomeScreen({ navigation, route }) {
           style={[
             styles.horizontalAlign,
             styles.bottomMargins,
-            styles.contentJustify,
+            styles.contentJustify, 
           ]}
         >
-          <View style={[styles.searchBar, styles.horizontalAlign]}>
+          <View style={[styles.searchBar, styles.horizontalAlign, styles.width80]}>
             <Image
               source={require("../assets/search.png")}
               style={[styles.searchBarIcon]}
