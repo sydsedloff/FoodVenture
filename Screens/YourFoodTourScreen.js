@@ -57,18 +57,18 @@ const RestaurantSingle = ({
       </Text>
       <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
         <Pressable style={[styles.horizontalAlign]}>
-        <Image
-        source={require("../assets/switchRed.png")}
-        style={[styles.smallerIcons]}
-      ></Image>
-      <Text style={[styles.merri17]}>Swap</Text>
+          <Image
+            source={require("../assets/switchRed.png")}
+            style={[styles.smallerIcons]}
+          ></Image>
+          <Text style={[styles.merri17]}>Swap</Text>
         </Pressable>
         <Pressable style={[styles.horizontalAlign]}>
-        <Text style={[styles.merri17]}>Delete</Text><Image
-        source={require("../assets/trash.png")}
-        style={[styles.smallerIcons]}
-      ></Image>
-      
+          <Text style={[styles.merri17]}>Delete</Text>
+          <Image
+            source={require("../assets/trash.png")}
+            style={[styles.smallerIcons]}
+          ></Image>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -81,14 +81,28 @@ export default function YourFoodTourScreen({ navigation }) {
       <HeaderComponent />
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders]}>Your Food Tour</Text>
-        <Pressable style={[styles.buttonLarge.r, styles.horizontalAlign, styles.width70]}>
+        <Pressable
+          style={[
+            styles.buttonLarge.r,
+            styles.horizontalAlign,
+            styles.width70,
+            styles.contentJustify,
+          ]}
+        >
           <Text style={[styles.buttonLargeText.y]}>Regenerate Tour</Text>
           <Image
             style={[styles.icon]}
             source={require("../assets/switchYellow.png")}
           ></Image>
         </Pressable>
-        <Pressable style={[styles.buttonLarge.y, styles.horizontalAlign, styles.width70]}>
+        <Pressable
+          style={[
+            styles.buttonLarge.y,
+            styles.horizontalAlign,
+            styles.width70,
+            styles.contentJustify,
+          ]}
+        >
           <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
           <Image
             style={[styles.icon]}
