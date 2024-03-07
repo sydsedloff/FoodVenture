@@ -75,7 +75,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [selectedRestaurants, setSelectedRestaurants] = useState([]);
   const mealNames = ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks"];
-  const restaurantResults = restaurantData;
+  const restaurantResults = selectedRestaurants;
   function filterRestaurants(restaurants, filterData) {
     if (!filterData) {
       return restaurants;
@@ -187,7 +187,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
     getRestaurantData();
   }, []);
-
+  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
   return (
     <View>
       <HeaderComponent />
@@ -213,7 +213,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
         </Pressable>
 
         <View style={[styles.container]}>
-          {selectedRestaurants.map((restaurant, index) => (
+          {filteredRestaurants.map((restaurant, index) => (
             <RestaurantSingle
               key={index}
               name={restaurant.name}
