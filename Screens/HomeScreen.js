@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation, route }) {
         );
         console.log("Response received:", response.data);
         if (response.status === 200) {
-          setRestaurantData(response.data.businesses); 
+          setRestaurantData(response.data.businesses);
         } else {
           console.error("Failed to fetch restaurant data");
         }
@@ -42,7 +42,7 @@ export default function HomeScreen({ navigation, route }) {
     getRestaurantData();
   }, []);
   const { filterData } = route.params || {};
-  console.log(restaurantData);
+
   const restaurantResults = restaurantData;
   function filterRestaurants(restaurants, filterData) {
     if (!filterData) {
@@ -50,87 +50,77 @@ export default function HomeScreen({ navigation, route }) {
     }
 
     return restaurants.filter((restaurant) => {
+      // Check if the restaurant is closed
+      // if (filterData.isOpen && restaurant.is_closed) {
+      //   return false;
+      // }
+
+      // // Check if the restaurant offers delivery
+      // if (
+      //   filterData.isDelivery &&
+      //   !restaurant.transactions.includes("delivery")
+      // ) {
+      //   return false;
+      // }
+
+      // Check if the restaurant matches the selected price range
       if (
-        filterData.isGlutenFree &&
-        !restaurant.keywords.includes("gluten-free")
+        filterData.selectedButton &&
+        restaurant.price !== filterData.selectedButton
       ) {
         return false;
       }
-      if (filterData.isKosher && !restaurant.keywords.includes("kosher")) {
-        return false;
-      }
+
+      // // Check if the restaurant matches any of the selected dietary restrictions
+      // if (
+      //   (filterData.isGlutenFree && !restaurant.is_gluten_free) ||
+      //   (filterData.isKosher && !restaurant.is_kosher) ||
+      //   (filterData.isPescatarian && !restaurant.is_pescatarian) ||
+      //   (filterData.isVegan && !restaurant.is_vegan) ||
+      //   (filterData.isVegetarian && !restaurant.is_vegetarian)
+      // ) {
+      //   return false;
+      // }
+
+      // Check if the restaurant matches any of the selected cuisines
       if (
-        filterData.isPescatarian &&
-        !restaurant.keywords.includes("pescatarian")
+        !restaurant.categories.some(
+          (category) =>
+            (filterData.isAmerican && category.title === "American") ||
+            (filterData.isJapanese && category.title === "Japanese") ||
+            (filterData.isIndian && category.title === "Indian") ||
+            (filterData.isCaribbean && category.title === "Caribbean") ||
+            (filterData.isKorean && category.title === "Korean") ||
+            (filterData.isFrench && category.title === "French") ||
+            (filterData.isBBQ && category.title === "BBQ") ||
+            (filterData.isItalian && category.title === "Italian") ||
+            (filterData.isChinese && category.title === "Chinese") ||
+            (filterData.isGreek && category.title === "Greek") ||
+            (filterData.isMexican && category.title === "Mexican") ||
+            (filterData.isThai && category.title === "Thai") ||
+            (filterData.isSeafood && category.title === "Seafood") ||
+            (filterData.isPizza && category.title === "Pizza")
+        )
       ) {
         return false;
       }
-      if (filterData.isVegan && !restaurant.keywords.includes("vegan")) {
-        return false;
-      }
+
+      // Convert distance from meters to miles
+      const distanceInMiles = restaurant.distance / 1609.34;
+      // Check if the restaurant matches the selected distance
+      // Check if the restaurant matches the selected distance
       if (
-        filterData.isVegetarian &&
-        !restaurant.keywords.includes("vegetarian")
+        (filterData.isDistance0_10 && distanceInMiles > 10) ||
+        (filterData.isDistance12_30 &&
+          (distanceInMiles < 12 || distanceInMiles > 30)) ||
+        (filterData.isDistance11_20 &&
+          (distanceInMiles < 11 || distanceInMiles > 20)) ||
+        (filterData.isDistance31_plus && distanceInMiles <= 31)
       ) {
         return false;
       }
-      if (filterData.isDistance0_10 && restaurant.distance !== "0-10") {
-        return false;
-      }
-      if (filterData.isDistance12_30 && restaurant.distance !== "12-30") {
-        return false;
-      }
-      if (filterData.isDistance11_20 && restaurant.distance !== "11-20") {
-        return false;
-      }
-      if (filterData.isDistance31_plus && restaurant.distance === "31 plus") {
-        return false;
-      }
-      if (filterData.isAmerican && !restaurant.keywords.includes("american")) {
-        return false;
-      }
-      if (filterData.isJapanese && !restaurant.keywords.includes("japanese")) {
-        return false;
-      }
-      if (filterData.isIndian && !restaurant.keywords.includes("indian")) {
-        return false;
-      }
-      if (
-        filterData.isCaribbean &&
-        !restaurant.keywords.includes("caribbean")
-      ) {
-        return false;
-      }
-      if (filterData.isKorean && !restaurant.keywords.includes("korean")) {
-        return false;
-      }
-      if (filterData.isFrench && !restaurant.keywords.includes("french")) {
-        return false;
-      }
-      if (filterData.isBBQ && !restaurant.keywords.includes("bbq")) {
-        return false;
-      }
-      if (filterData.isItalian && !restaurant.keywords.includes("italian")) {
-        return false;
-      }
-      if (filterData.isChinese && !restaurant.keywords.includes("chinese")) {
-        return false;
-      }
-      if (filterData.isGreek && !restaurant.keywords.includes("greek")) {
-        return false;
-      }
-      if (filterData.isMexican && !restaurant.keywords.includes("mexican")) {
-        return false;
-      }
-      if (filterData.isThai && !restaurant.keywords.includes("thai")) {
-        return false;
-      }
-      if (filterData.isSeafood && !restaurant.keywords.includes("seafood")) {
-        return false;
-      }
-      if (filterData.isPizza && !restaurant.keywords.includes("pizza")) {
-        return false;
-      }
+
+      // Add more conditions here based on your filterData structure and requirements
 
       return true;
     });
@@ -151,10 +141,12 @@ export default function HomeScreen({ navigation, route }) {
           style={[
             styles.horizontalAlign,
             styles.bottomMargins,
-            styles.contentJustify, 
+            styles.contentJustify,
           ]}
         >
-          <View style={[styles.searchBar, styles.horizontalAlign, styles.width80]}>
+          <View
+            style={[styles.searchBar, styles.horizontalAlign, styles.width80]}
+          >
             <Image
               source={require("../assets/search.png")}
               style={[styles.searchBarIcon]}
