@@ -48,7 +48,7 @@ app.get("/api/searchRestaurants", async (req, res) => {
 
   try {
     const response = await axios.get(
-      "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=50",
+      "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=100",
       {
         headers: {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,
