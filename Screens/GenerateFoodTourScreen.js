@@ -11,10 +11,9 @@ import { Colors } from "../colors";
 import Checkbox from "expo-checkbox";
 import HeaderComponent from "../Components/HeaderComponent";
 import styles from "../styles";
-import NavigationBar from "../Components/NavigationBar";
-import YourFoodTourScreen from "./YourFoodTourScreen";
+import HomeScreen from "./HomeScreen";
 
-export default function GenerateFoodTourScreen({ navigation }) {
+export default function FilterSidebar({ navigation }) {
   // DIETARY RESTRICTIONS
   const [isGlutenFree, setGlutenFree] = useState(false);
   const [isKosher, setKosher] = useState(false);
@@ -50,12 +49,46 @@ export default function GenerateFoodTourScreen({ navigation }) {
     setSelectedButton(button);
   };
 
+  // Assuming this is inside your FilterSidebar component
+  const navigateToHomeScreenWithFilters = () => {
+    // Prepare the filter data
+    const filterData = {
+      isGlutenFree,
+      isKosher,
+      isPescatarian,
+      isVegan,
+      isVegetarian,
+      isDistance0_10,
+      isDistance12_30,
+      isDistance11_20,
+      isDistance31_plus,
+      isAmerican,
+      isJapanese,
+      isIndian,
+      isCaribbean,
+      isKorean,
+      isFrench,
+      isBBQ,
+      isItalian,
+      isChinese,
+      isGreek,
+      isMexican,
+      isThai,
+      isSeafood,
+      isPizza,
+      selectedButton,
+    };
+
+    // Navigate to HomeScreen and pass the filter data
+    navigation.navigate("YourFoodTourScreen", { filterData });
+  };
+
   return (
     <SafeAreaView style={[styles.container]}>
       <HeaderComponent />
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders, styles.width70, styles.textCenter]}>
-          Generate Your Food Tour
+          Filters
         </Text>
         <Text style={[styles.profileText]}>Price Range</Text>
 
@@ -153,7 +186,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width100,
+                styles.width50,
               ]}
               onPress={() => setKosher(!isKosher)}
             >
@@ -169,7 +202,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width100,
+                styles.width50,
               ]}
               onPress={() => setPescatarian(!isPescatarian)}
             >
@@ -190,7 +223,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width100,
+                styles.width50,
               ]}
               onPress={() => setVegan(!isVegan)}
             >
@@ -206,7 +239,7 @@ export default function GenerateFoodTourScreen({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width100,
+                styles.width50,
               ]}
               onPress={() => setVegetarian(!isVegetarian)}
             >
@@ -295,7 +328,6 @@ export default function GenerateFoodTourScreen({ navigation }) {
             </Pressable>
           </View>
         </View>
-
         {/* CUISINE TYPE */}
         <Text style={[styles.profileText]}>Cuisine Type</Text>
         <View
@@ -536,9 +568,8 @@ export default function GenerateFoodTourScreen({ navigation }) {
             </Pressable>
           </View>
         </View>
-
         <Pressable
-          onPress={() => navigation.navigate(YourFoodTourScreen)}
+          onPress={() => navigateToHomeScreenWithFilters()}
           style={[
             styles.buttonLarge.r,
             styles.width70,
@@ -546,11 +577,10 @@ export default function GenerateFoodTourScreen({ navigation }) {
             { marginTop: 125 },
           ]}
         >
-          <Text style={[styles.buttonLargeText.y]}>Generate Food Tour</Text>
+          <Text style={[styles.buttonLargeText.y]}>Apply</Text>
         </Pressable>
         <View style={[styles.moreBottomMargins]}></View>
       </View>
-      <NavigationBar />
     </SafeAreaView>
   );
 }
