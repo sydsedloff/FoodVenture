@@ -194,7 +194,12 @@ export default function YourFoodTourScreen({ navigation, route }) {
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders]}>Your Food Tour</Text>
         <Pressable
-          style={[styles.buttonLarge.r, styles.horizontalAlign, styles.width70]}
+          style={[
+            styles.buttonLarge.r,
+            styles.horizontalAlign,
+            styles.width70,
+            styles.contentJustify,
+          ]}
         >
           <Text style={[styles.buttonLargeText.y]}>Regenerate Tour</Text>
           <Image
@@ -203,7 +208,12 @@ export default function YourFoodTourScreen({ navigation, route }) {
           ></Image>
         </Pressable>
         <Pressable
-          style={[styles.buttonLarge.y, styles.horizontalAlign, styles.width70]}
+          style={[
+            styles.buttonLarge.y,
+            styles.horizontalAlign,
+            styles.width70,
+            styles.contentJustify,
+          ]}
         >
           <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
           <Image
