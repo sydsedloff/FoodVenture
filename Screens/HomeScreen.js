@@ -49,6 +49,13 @@ export default function HomeScreen({ navigation, route }) {
       return restaurants;
     }
 
+    const allFiltersFalse = Object.values(filterData).every((value) => !value);
+
+    // If all filters are false, return all restaurants
+    if (allFiltersFalse) {
+      return restaurants;
+    }
+
     return restaurants.filter((restaurant) => {
       // Check if the restaurant is closed
       // if (filterData.isOpen && restaurant.is_closed) {
