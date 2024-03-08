@@ -1,9 +1,73 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, SafeAreaView, Pressable } from "react-native";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
+import RatingImage from "../Components/RatingImageComponent";
+
+const RestaurantSingle = ({
+  name,
+  image,
+  address,
+  description,
+  website,
+  myMealName,
+}) => {
+  return (
+    <SafeAreaView
+      style={[
+        styles.container,
+        styles.alignItemsLeft,
+        styles.contentContainer.sharpCorner,
+        styles.alignItemsLeft,
+        styles.width80,
+      ]}
+    >
+      <Text style={[styles.signa32, styles.bold]}>{myMealName}</Text>
+      <Image
+        source={{ uri: image }}
+        style={[styles.image, styles.alignSelfCenter]}
+      ></Image>
+      <View
+        style={[
+          styles.horizontalAlign,
+          styles.justifySpaceBetween,
+          styles.width100,
+        ]}
+      >
+        <Text style={[styles.signa24, styles.bold]}>{name}</Text>
+        <RatingImage
+          star_rating={4}
+          style={{ position: "relative", zIndex: 1, opacity: 1 }}
+        />
+      </View>
+      <Text style={[styles.dollarText, styles.lessBottomMargins]}>
+        {address}
+      </Text>
+
+      <Pressable onPress={() => Linking.openURL(website)}>
+        <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
+      </Pressable>
+      <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+        <Pressable style={[styles.horizontalAlign]}>
+          <Image
+            source={require("../assets/switchRed.png")}
+            style={[styles.smallerIcons]}
+          ></Image>
+          <Text style={[styles.merri17]}>Swap</Text>
+        </Pressable>
+        <Pressable style={[styles.horizontalAlign]}>
+          <Text style={[styles.merri17]}>Delete</Text>
+          <Image
+            source={require("../assets/trash.png")}
+            style={[styles.smallerIcons]}
+          ></Image>
+        </Pressable>
+      </View>
+    </SafeAreaView>
+  );
+};
 
 export default function YourFoodTourScreen({ navigation, route }) {
   const { filterData } = route.params || {};
@@ -14,14 +78,10 @@ export default function YourFoodTourScreen({ navigation, route }) {
   function filterRestaurants(restaurants, filterData) {
     // Check if all filter criteria are false or undefined
     const allFiltersFalse = Object.values(filterData).every((value) => !value);
-
-    // If all filters are false, return all restaurants
     if (allFiltersFalse) {
       return restaurants;
     }
-
     return restaurants.filter((restaurant) => {
-      // Check if the restaurant matches the selected price range
       if (
         filterData.selectedButton &&
         restaurant.price !== filterData.selectedButton
@@ -29,7 +89,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
         return false;
       }
 
-      // Check if the restaurant matches any of the selected cuisines
       if (
         !restaurant.categories.some(
           (category) =>
@@ -65,7 +124,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
       ) {
         return false;
       }
-
       return true;
     });
   }
