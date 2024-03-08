@@ -1,25 +1,32 @@
 import React from "react";
-import { ImageBackground, Text, Image, View, Pressable, SafeAreaView } from "react-native";
+import {
+  ImageBackground,
+  Text,
+  Image,
+  View,
+  Pressable,
+  SafeAreaView,
+} from "react-native";
 import styles from "../styles";
 import NavigationBar from "../Components/NavigationBar";
 
 export default function ReservationScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      {/* Remove the title at the top of the screen */}
       <ImageBackground
         source={require("../assets/Foodventure_Background_Image.png")}
         style={styles.backgroundImage}
-      ><SafeAreaView
-        style={[styles.headerContainerClear, styles.negativeMargins]}
       >
-        <Pressable onPress={() => navigation.goBack()}>
-          <Image
-            source={require("../assets/backArrow.png")}
-            style={[styles.headerBackArrow]}
-          ></Image>
-        </Pressable>
-      </SafeAreaView>
+        <SafeAreaView
+          style={[styles.headerContainerClear, styles.negativeMargins]}
+        >
+          <Pressable onPress={() => navigation.goBack()}>
+            <Image
+              source={require("../assets/backArrow.png")}
+              style={[styles.headerBackArrow]}
+            ></Image>
+          </Pressable>
+        </SafeAreaView>
         <Image
           style={styles.logo}
           source={require("../assets/FViconYellow.png")}
@@ -32,7 +39,7 @@ export default function ReservationScreen({ navigation }) {
           </Text>
           <View>
             <View style={[styles.horizontalAlign]}>
-              <Text style={[styles.profileText]}>Party Size:</Text>{" "}
+              <Text style={[styles.profileText]}>Party Size:</Text>
               <Text style={[styles.merri19Bold, styles.marginLeft]}>3</Text>
             </View>
             <View style={[styles.horizontalAlign]}>

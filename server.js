@@ -48,7 +48,7 @@ app.get("/api/searchRestaurants", async (req, res) => {
 
   try {
     const response = await axios.get(
-      "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=100",
+      "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=50",
       {
         headers: {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,
@@ -94,8 +94,6 @@ app.get("/api/searchRestaurants/:userSearch", async (req, res) => {
  HTTP REQUESTS
 */
 //LOGIN
-// Assuming you have a route like this in your Express server
-// Assuming you have a route like this in your Express server
 app.get("/api/login", async (req, res) => {
   const { email, password } = req.query;
 
