@@ -1,22 +1,74 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  View,
-  Text,
-  Image,
-  SafeAreaView,
-  Pressable,
-  Alert,
-} from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
-import RestaurantSingle from "../Components/RestaurantSingle"; // Import your RestaurantSingle component
 
 export default function YourFoodTourScreen({ navigation, route }) {
   const { filterData } = route.params || {};
+  const [restaurantData, setRestaurantData] = useState(null);
   const [selectedRestaurants, setSelectedRestaurants] = useState([]);
   const mealNames = ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks"];
+  const restaurantResults = selectedRestaurants;
+  function filterRestaurants(restaurants, filterData) {
+    // Check if all filter criteria are false or undefined
+    const allFiltersFalse = Object.values(filterData).every((value) => !value);
+
+    // If all filters are false, return all restaurants
+    if (allFiltersFalse) {
+      return restaurants;
+    }
+
+    return restaurants.filter((restaurant) => {
+      // Check if the restaurant matches the selected price range
+      if (
+        filterData.selectedButton &&
+        restaurant.price !== filterData.selectedButton
+      ) {
+        return false;
+      }
+
+      // Check if the restaurant matches any of the selected cuisines
+      if (
+        !restaurant.categories.some(
+          (category) =>
+            (filterData.isAmerican && category.title === "American") ||
+            (filterData.isJapanese && category.title === "Japanese") ||
+            (filterData.isIndian && category.title === "Indian") ||
+            (filterData.isCaribbean && category.title === "Caribbean") ||
+            (filterData.isKorean && category.title === "Korean") ||
+            (filterData.isFrench && category.title === "French") ||
+            (filterData.isBBQ && category.title === "BBQ") ||
+            (filterData.isItalian && category.title === "Italian") ||
+            (filterData.isChinese && category.title === "Chinese") ||
+            (filterData.isGreek && category.title === "Greek") ||
+            (filterData.isMexican && category.title === "Mexican") ||
+            (filterData.isThai && category.title === "Thai") ||
+            (filterData.isSeafood && category.title === "Seafood") ||
+            (filterData.isPizza && category.title === "Pizza")
+        )
+      ) {
+        return false;
+      }
+
+      // meters to miles
+      const distanceInMiles = restaurant.distance / 1609.34;
+
+      if (
+        (filterData.isDistance0_10 && distanceInMiles > 10) ||
+        (filterData.isDistance12_30 &&
+          (distanceInMiles < 12 || distanceInMiles > 30)) ||
+        (filterData.isDistance11_20 &&
+          (distanceInMiles < 11 || distanceInMiles > 20)) ||
+        (filterData.isDistance31_plus && distanceInMiles <= 31)
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+  }
 
   useEffect(() => {
     async function getRestaurantData() {
@@ -28,6 +80,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
           }
         );
         if (response.status === 200) {
+          setRestaurantData(response.data.businesses);
           const uniqueRandomIndices = new Set();
           while (uniqueRandomIndices.size < 5) {
             uniqueRandomIndices.add(
@@ -46,25 +99,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
     getRestaurantData();
   }, []);
-
-  const handleSaveTour = async () => {
-    try {
-      // Send selected restaurants data to server to save in the database
-      const response = await axios.post(
-        "http://localhost:3000/api/saveTour",
-        selectedRestaurants
-      );
-      if (response.status === 200) {
-        Alert.alert("Success", "Tour saved successfully!");
-      } else {
-        Alert.alert("Error", "Failed to save tour. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Error saving tour:", error);
-      Alert.alert("Error", "Failed to save tour. Please try again later.");
-    }
-  };
-
+  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
   return (
     <View>
       <HeaderComponent />
@@ -77,7 +112,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
             styles.width70,
             styles.contentJustify,
           ]}
-          onPress={handleSaveTour} // Call handleSaveTour function on button press
         >
           <Text style={[styles.buttonLargeText.y]}>Regenerate Tour</Text>
           <Image
@@ -92,7 +126,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
             styles.width70,
             styles.contentJustify,
           ]}
-          onPress={handleSaveTour} // Call handleSaveTour function on button press
         >
           <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
           <Image
@@ -102,7 +135,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
         </Pressable>
 
         <View style={[styles.container]}>
-          {selectedRestaurants.map((restaurant, index) => (
+          {filteredRestaurants.map((restaurant, index) => (
             <RestaurantSingle
               key={index}
               name={restaurant.name}
