@@ -75,26 +75,17 @@ export default function YourFoodTourScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [selectedRestaurants, setSelectedRestaurants] = useState([]);
   const mealNames = ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks"];
-  const restaurantResults = restaurantData;
+  const restaurantResults = selectedRestaurants;
   function filterRestaurants(restaurants, filterData) {
-    if (!filterData) {
+    // Check if all filter criteria are false or undefined
+    const allFiltersFalse = Object.values(filterData).every((value) => !value);
+
+    // If all filters are false, return all restaurants
+    if (allFiltersFalse) {
       return restaurants;
     }
 
     return restaurants.filter((restaurant) => {
-      // Check if the restaurant is closed
-      // if (filterData.isOpen && restaurant.is_closed) {
-      //   return false;
-      // }
-
-      // // Check if the restaurant offers delivery
-      // if (
-      //   filterData.isDelivery &&
-      //   !restaurant.transactions.includes("delivery")
-      // ) {
-      //   return false;
-      // }
-
       // Check if the restaurant matches the selected price range
       if (
         filterData.selectedButton &&
@@ -102,17 +93,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
       ) {
         return false;
       }
-
-      // // Check if the restaurant matches any of the selected dietary restrictions
-      // if (
-      //   (filterData.isGlutenFree && !restaurant.is_gluten_free) ||
-      //   (filterData.isKosher && !restaurant.is_kosher) ||
-      //   (filterData.isPescatarian && !restaurant.is_pescatarian) ||
-      //   (filterData.isVegan && !restaurant.is_vegan) ||
-      //   (filterData.isVegetarian && !restaurant.is_vegetarian)
-      // ) {
-      //   return false;
-      // }
 
       // Check if the restaurant matches any of the selected cuisines
       if (
@@ -139,7 +119,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
       // Convert distance from meters to miles
       const distanceInMiles = restaurant.distance / 1609.34;
-      // Check if the restaurant matches the selected distance
+
       // Check if the restaurant matches the selected distance
       if (
         (filterData.isDistance0_10 && distanceInMiles > 10) ||
@@ -187,7 +167,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
     getRestaurantData();
   }, []);
-
+  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
   return (
     <View>
       <HeaderComponent />
@@ -213,7 +193,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
         </Pressable>
 
         <View style={[styles.container]}>
-          {selectedRestaurants.map((restaurant, index) => (
+          {filteredRestaurants.map((restaurant, index) => (
             <RestaurantSingle
               key={index}
               name={restaurant.name}
