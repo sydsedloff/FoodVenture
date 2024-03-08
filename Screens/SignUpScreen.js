@@ -68,6 +68,8 @@ export default function SignUpScreen({ navigation }) {
             savePastFoodTours: true,
             saveSearchHistory: true,
           },
+          savedTours: {},
+          savedRestaurants: {},
         }),
       });
       if (response.ok) {

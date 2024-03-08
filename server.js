@@ -48,7 +48,7 @@ app.get("/api/searchRestaurants", async (req, res) => {
 
   try {
     const response = await axios.get(
-      "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=100",
+      "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=50",
       {
         headers: {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,
@@ -93,6 +93,26 @@ app.get("/api/searchRestaurants/:userSearch", async (req, res) => {
 /*
  HTTP REQUESTS
 */
+//LOGIN
+app.get("/api/login", async (req, res) => {
+  const { email, password } = req.query;
+
+  try {
+    // Check if there's a user with the provided email and password in your MongoDB database
+    const user = await collection.findOne({ email, password });
+
+    if (user) {
+      // If user exists and credentials match, return success status
+      res.sendStatus(200);
+    } else {
+      // If user doesn't exist or credentials don't match, return unauthorized status
+      res.sendStatus(401);
+    }
+  } catch (error) {
+    console.error("Error logging in:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 // GET PROFILES
 app.get("/api/fakeProfiles", async (req, res) => {
@@ -145,6 +165,31 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
   }
 });
 
+//SAVE FOOD TOUR
+app.put("/:userEmail/savedTours", async (req, res) => {
+  const userEmail = req.params.userEmail;
+  const { tours } = req.body; // Assuming the request body contains an array of tours
+
+  try {
+    // Find the user document by email and update the savedTours field
+    const result = await collection.findOneAndUpdate(
+      { email: userEmail },
+      { $push: { savedTours: { $each: tours } } }, // Use $push to add new tours to the array
+      { returnOriginal: false } // To return the updated document
+    );
+
+    if (result.value) {
+      res
+        .status(200)
+        .json({ message: "Tours saved successfully", user: result.value });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error saving tours:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 app.post("/api/fakeProfiles", async (req, res) => {
   const newUser = req.body;
   const result = await collection.insertOne(newUser);

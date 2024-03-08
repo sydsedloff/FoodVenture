@@ -4,8 +4,8 @@ import { View, Text, Image, SafeAreaView, Pressable } from "react-native";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
-import SavedRestaurants from "../Components/SavedRestaurantsComponent";
 import RatingImage from "../Components/RatingImageComponent";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const RestaurantSingle = ({
   name,
@@ -79,14 +79,10 @@ export default function YourFoodTourScreen({ navigation, route }) {
   function filterRestaurants(restaurants, filterData) {
     // Check if all filter criteria are false or undefined
     const allFiltersFalse = Object.values(filterData).every((value) => !value);
-
-    // If all filters are false, return all restaurants
     if (allFiltersFalse) {
       return restaurants;
     }
-
     return restaurants.filter((restaurant) => {
-      // Check if the restaurant matches the selected price range
       if (
         filterData.selectedButton &&
         restaurant.price !== filterData.selectedButton
@@ -94,7 +90,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
         return false;
       }
 
-      // Check if the restaurant matches any of the selected cuisines
       if (
         !restaurant.categories.some(
           (category) =>
@@ -116,11 +111,8 @@ export default function YourFoodTourScreen({ navigation, route }) {
       ) {
         return false;
       }
-
-      // Convert distance from meters to miles
+      // meters to miles
       const distanceInMiles = restaurant.distance / 1609.34;
-
-      // Check if the restaurant matches the selected distance
       if (
         (filterData.isDistance0_10 && distanceInMiles > 10) ||
         (filterData.isDistance12_30 &&
@@ -131,9 +123,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
       ) {
         return false;
       }
-
-      // Add more conditions here based on your filterData structure and requirements
-
       return true;
     });
   }
@@ -168,13 +157,70 @@ export default function YourFoodTourScreen({ navigation, route }) {
     getRestaurantData();
   }, []);
   const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
+
+  async function saveTour() {
+    try {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      console.log("user email is: " + userEmail);
+
+      const restaurantsArray = filteredRestaurants.map((restaurant) => ({
+        name: restaurant.name,
+        image: restaurant.image_url,
+        address: restaurant.location.display_address.join(", "),
+        description: `Rating: ${restaurant.rating}`,
+        website: restaurant.url,
+      }));
+
+      console.log("filtered restaurants:", restaurantsArray);
+
+      // Fetch existing data from savedTours
+      const response = await fetch(
+        `http://localhost:3000/${userEmail}/savedTours`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch existing tours data");
+      }
+      const existingTours = await response.json();
+
+      // Append the new restaurants array to the existing data
+      const updatedTours = [...existingTours, ...restaurantsArray];
+
+      // Update the database with the combined data
+      const updateResponse = await fetch(
+        `http://localhost:3000/${userEmail}/savedTours`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            savedTours: updatedTours,
+          }),
+        }
+      );
+
+      if (!updateResponse.ok) {
+        throw new Error("Failed to update saved tours");
+      }
+
+      console.log("Tour saved successfully");
+    } catch (error) {
+      console.error("Error saving tour:", error);
+    }
+  }
+
   return (
     <View>
       <HeaderComponent />
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders]}>Your Food Tour</Text>
         <Pressable
-          style={[styles.buttonLarge.r, styles.horizontalAlign, styles.width70]}
+          style={[
+            styles.buttonLarge.r,
+            styles.horizontalAlign,
+            styles.width70,
+            styles.contentJustify,
+          ]}
         >
           <Text style={[styles.buttonLargeText.y]}>Regenerate Tour</Text>
           <Image
@@ -183,7 +229,13 @@ export default function YourFoodTourScreen({ navigation, route }) {
           ></Image>
         </Pressable>
         <Pressable
-          style={[styles.buttonLarge.y, styles.horizontalAlign, styles.width70]}
+          style={[
+            styles.buttonLarge.y,
+            styles.horizontalAlign,
+            styles.width70,
+            styles.contentJustify,
+          ]}
+          onPress={() => saveTour()}
         >
           <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
           <Image

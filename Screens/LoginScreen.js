@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   Text,
@@ -12,17 +12,28 @@ import HomeScreen from "./HomeScreen";
 import SignUpScreen from "./SignUpScreen";
 
 export default function LoginScreen({ navigation }) {
-  var validLogin = false;
-  function loginFunction() {
-    if (validLogin == true) {
-      () => navigation.navigate(HomeScreen);
-    } else {
-      console.log("bad");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function loginFunction() {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/login?email=${email}&password=${password}`
+      );
+
+      if (response.ok) {
+        // Navigate to HomeScreen if login is successful
+        navigation.navigate(HomeScreen);
+      } else {
+        console.log("Login failed");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
     }
   }
+
   return (
     <View style={styles.container}>
-      {/* Remove the title at the top of the screen */}
       <ImageBackground
         source={require("../assets/Foodventure_Background_Image.png")}
         style={styles.backgroundImage}
@@ -33,13 +44,19 @@ export default function LoginScreen({ navigation }) {
         />
         <View style={styles.contentContainer.white}>
           <Text style={styles.h2.r}>Login</Text>
-          {/* Style the input elements */}
           <View style={styles.textInputContainer}>
-            <TextInput placeholder="Username" style={styles.input} />
+            <TextInput
+              placeholder="Email"
+              style={styles.input}
+              value={email}
+              onChangeText={setEmail}
+            />
             <TextInput
               placeholder="Password"
               style={styles.input}
               secureTextEntry={true}
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
           <View style={styles.forgotPasswordContainer}>
