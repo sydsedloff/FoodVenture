@@ -66,7 +66,7 @@ export default function EditProfileScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={[{height: "100%"}]}>
       <SafeAreaView style={[styles.headerContainer]}>
         <Pressable onPress={() => navigation.goBack()}>
           <Image
@@ -117,17 +117,6 @@ export default function EditProfileScreen({ navigation }) {
                 value={userData.email}
                 onChangeText={(text) =>
                   setUserData({ ...userData, email: text })
-                }
-              />
-            </View>
-            <View>
-              <Text style={[styles.signa28]}>Phone Number</Text>
-              <TextInput
-                placeholder="123-456-7890"
-                style={[styles.thinInput, styles.input]}
-                value={userData.phoneNumber}
-                onChangeText={(text) =>
-                  setUserData({ ...userData, phoneNumber: text })
                 }
               />
             </View>
