@@ -121,17 +121,6 @@ export default function EditProfileScreen({ navigation }) {
               />
             </View>
             <View>
-              <Text style={[styles.signa28]}>Phone Number</Text>
-              <TextInput
-                placeholder="123-456-7890"
-                style={[styles.thinInput, styles.input]}
-                value={userData.phoneNumber}
-                onChangeText={(text) =>
-                  setUserData({ ...userData, phoneNumber: text })
-                }
-              />
-            </View>
-            <View>
               <Text style={[styles.signa28]}>Password</Text>
               <TextInput
                 placeholder="Password"
