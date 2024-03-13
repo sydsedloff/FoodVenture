@@ -114,7 +114,6 @@ export default function HomeScreen({ navigation, route }) {
 
       // Convert distance from meters to miles
       const distanceInMiles = restaurant.distance / 1609.34;
-      // Check if the restaurant matches the selected distance
       if (
         (filterData.isDistance0_10 && distanceInMiles > 10) ||
         (filterData.isDistance12_30 &&
@@ -125,8 +124,6 @@ export default function HomeScreen({ navigation, route }) {
       ) {
         return false;
       }
-
-      // Add more conditions here based on your filterData structure and requirements
 
       return true;
     });

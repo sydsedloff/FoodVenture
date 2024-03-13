@@ -66,7 +66,7 @@ export default function EditProfileScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={[{height: "100%"}]}>
       <SafeAreaView style={[styles.headerContainer]}>
         <Pressable onPress={() => navigation.goBack()}>
           <Image
