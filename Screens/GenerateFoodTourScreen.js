@@ -88,7 +88,7 @@ export default function FilterSidebar({ navigation }) {
       <HeaderComponent />
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders, styles.width70, styles.textCenter]}>
-          Filters
+          Generate Food Tour
         </Text>
         <Text style={[styles.profileText]}>Price Range</Text>
 
@@ -577,7 +577,7 @@ export default function FilterSidebar({ navigation }) {
             { marginTop: 125 },
           ]}
         >
-          <Text style={[styles.buttonLargeText.y]}>Apply</Text>
+          <Text style={[styles.buttonLargeText.y]}>Generate</Text>
         </Pressable>
         <View style={[styles.moreBottomMargins]}></View>
       </View>

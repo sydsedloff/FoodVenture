@@ -20,25 +20,60 @@ export default function HomeScreen({ navigation, route }) {
     async function getRestaurantData() {
       console.log("Fetching restaurant data...");
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/searchRestaurants",
+        // Array to store results from different API calls
+        const restaurantDataArray = [];
+  
+        // Make separate API calls for each dietary restriction
+        const glutenFreeResponse = await axios.get(
+          "http://localhost:3000/api/searchRestaurants/gluten_free",
           {
             params: {
-              term: "food",
+              term: "gluten free",
             },
           }
         );
-        console.log("Response received:", response.data);
-        if (response.status === 200) {
-          setRestaurantData(response.data.businesses);
-        } else {
-          console.error("Failed to fetch restaurant data");
-        }
+        restaurantDataArray.push(glutenFreeResponse.data.businesses);
+  
+        const pescatarianResponse = await axios.get(
+          "http://localhost:3000/api/searchRestaurants/pescatarian",
+          {
+            params: {
+              term: "pescatarian",
+            },
+          }
+        );
+        restaurantDataArray.push(pescatarianResponse.data.businesses);
+  
+        const veganResponse = await axios.get(
+          "http://localhost:3000/api/searchRestaurants/vegan",
+          {
+            params: {
+              term: "vegan",
+            },
+          }
+        );
+        restaurantDataArray.push(veganResponse.data.businesses);
+  
+        const vegetarianResponse = await axios.get(
+          "http://localhost:3000/api/searchRestaurants/vegetarian",
+          {
+            params: {
+              term: "vegetarian",
+            },
+          }
+        );
+        restaurantDataArray.push(vegetarianResponse.data.businesses);
+  
+        // Combine all results into a single array (optional)
+        const combinedResults = [].concat(...restaurantDataArray);
+  
+        console.log("Response received:", combinedResults);
+        setRestaurantData(combinedResults); // Update state with combined results
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
       }
     }
-
+  
     getRestaurantData();
   }, []);
   const { filterData } = route.params || {};
@@ -57,18 +92,6 @@ export default function HomeScreen({ navigation, route }) {
     }
 
     return restaurants.filter((restaurant) => {
-      // Check if the restaurant is closed
-      // if (filterData.isOpen && restaurant.is_closed) {
-      //   return false;
-      // }
-
-      // // Check if the restaurant offers delivery
-      // if (
-      //   filterData.isDelivery &&
-      //   !restaurant.transactions.includes("delivery")
-      // ) {
-      //   return false;
-      // }
 
       // Check if the restaurant matches the selected price range
       if (
@@ -77,17 +100,6 @@ export default function HomeScreen({ navigation, route }) {
       ) {
         return false;
       }
-
-      // // Check if the restaurant matches any of the selected dietary restrictions
-      // if (
-      //   (filterData.isGlutenFree && !restaurant.is_gluten_free) ||
-      //   (filterData.isKosher && !restaurant.is_kosher) ||
-      //   (filterData.isPescatarian && !restaurant.is_pescatarian) ||
-      //   (filterData.isVegan && !restaurant.is_vegan) ||
-      //   (filterData.isVegetarian && !restaurant.is_vegetarian)
-      // ) {
-      //   return false;
-      // }
 
       // Check if the restaurant matches any of the selected cuisines
       if (
