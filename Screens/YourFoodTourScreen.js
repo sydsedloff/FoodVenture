@@ -216,20 +216,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
         <Text style={[styles.pageHeaders]}>Your Food Tour</Text>
         <Pressable
           style={[
-            styles.buttonLarge.r,
-            styles.horizontalAlign,
-            styles.width70,
-            styles.contentJustify,
-          ]}
-        >
-          <Text style={[styles.buttonLargeText.y]}>Regenerate Tour</Text>
-          <Image
-            style={[styles.icon]}
-            source={require("../assets/switchYellow.png")}
-          ></Image>
-        </Pressable>
-        <Pressable
-          style={[
             styles.buttonLarge.y,
             styles.horizontalAlign,
             styles.width70,
