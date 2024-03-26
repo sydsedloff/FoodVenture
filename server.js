@@ -90,9 +90,6 @@ app.get("/api/searchRestaurants/:userSearch", async (req, res) => {
   }
 });
 
-/*
- HTTP REQUESTS
-*/
 //LOGIN
 app.get("/api/login", async (req, res) => {
   const { email, password } = req.query;
@@ -119,6 +116,7 @@ app.get("/api/fakeProfiles", async (req, res) => {
   const fakeProfiles = await collection.find({}).toArray();
   res.json(fakeProfiles);
 });
+
 // GET USER PROFILE PICTURE
 app.get("/api/profilePicture/:userEmail", async (req, res) => {
   const userEmail = req.params.userEmail; // Extract userEmail from request parameters

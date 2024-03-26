@@ -14,6 +14,7 @@ const RestaurantSingle = ({
   description,
   website,
   myMealName,
+  onSwapPress,
 }) => {
   return (
     <SafeAreaView
@@ -51,7 +52,7 @@ const RestaurantSingle = ({
         <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
       </Pressable>
       <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-        <Pressable style={[styles.horizontalAlign]}>
+        <Pressable style={[styles.horizontalAlign]} onPress={onSwapPress}>
           <Image
             source={require("../assets/switchRed.png")}
             style={[styles.smallerIcons]}
@@ -72,60 +73,9 @@ const RestaurantSingle = ({
 
 export default function YourFoodTourScreen({ navigation, route }) {
   const { filterData } = route.params || {};
-  const [restaurantData, setRestaurantData] = useState(null);
+  const [restaurantData, setRestaurantData] = useState([]);
   const [selectedRestaurants, setSelectedRestaurants] = useState([]);
   const mealNames = ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks"];
-  const restaurantResults = selectedRestaurants;
-  function filterRestaurants(restaurants, filterData) {
-    // Check if all filter criteria are false or undefined
-    const allFiltersFalse = Object.values(filterData).every((value) => !value);
-    if (allFiltersFalse) {
-      return restaurants;
-    }
-    return restaurants.filter((restaurant) => {
-      if (
-        filterData.selectedButton &&
-        restaurant.price !== filterData.selectedButton
-      ) {
-        return false;
-      }
-
-      if (
-        !restaurant.categories.some(
-          (category) =>
-            (filterData.isAmerican && category.title === "American") ||
-            (filterData.isJapanese && category.title === "Japanese") ||
-            (filterData.isIndian && category.title === "Indian") ||
-            (filterData.isCaribbean && category.title === "Caribbean") ||
-            (filterData.isKorean && category.title === "Korean") ||
-            (filterData.isFrench && category.title === "French") ||
-            (filterData.isBBQ && category.title === "BBQ") ||
-            (filterData.isItalian && category.title === "Italian") ||
-            (filterData.isChinese && category.title === "Chinese") ||
-            (filterData.isGreek && category.title === "Greek") ||
-            (filterData.isMexican && category.title === "Mexican") ||
-            (filterData.isThai && category.title === "Thai") ||
-            (filterData.isSeafood && category.title === "Seafood") ||
-            (filterData.isPizza && category.title === "Pizza")
-        )
-      ) {
-        return false;
-      }
-      // meters to miles
-      const distanceInMiles = restaurant.distance / 1609.34;
-      if (
-        (filterData.isDistance0_10 && distanceInMiles > 10) ||
-        (filterData.isDistance12_30 &&
-          (distanceInMiles < 12 || distanceInMiles > 30)) ||
-        (filterData.isDistance11_20 &&
-          (distanceInMiles < 11 || distanceInMiles > 20)) ||
-        (filterData.isDistance31_plus && distanceInMiles <= 31)
-      ) {
-        return false;
-      }
-      return true;
-    });
-  }
 
   useEffect(() => {
     async function getRestaurantData() {
@@ -137,15 +87,16 @@ export default function YourFoodTourScreen({ navigation, route }) {
           }
         );
         if (response.status === 200) {
-          setRestaurantData(response.data.businesses);
+          const allRestaurants = response.data.businesses;
+          setRestaurantData(allRestaurants);
           const uniqueRandomIndices = new Set();
           while (uniqueRandomIndices.size < 5) {
             uniqueRandomIndices.add(
-              Math.floor(Math.random() * response.data.businesses.length)
+              Math.floor(Math.random() * allRestaurants.length)
             );
           }
           const selectedRestaurants = Array.from(uniqueRandomIndices).map(
-            (index) => response.data.businesses[index]
+            (index) => allRestaurants[index]
           );
           setSelectedRestaurants(selectedRestaurants);
         }
@@ -156,14 +107,21 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
     getRestaurantData();
   }, []);
-  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
+
+  function handleSwap(index) {
+    const updatedSelectedRestaurants = [...selectedRestaurants];
+    const allRestaurants = restaurantData || [];
+    const newIndex = Math.floor(Math.random() * allRestaurants.length);
+    updatedSelectedRestaurants[index] = allRestaurants[newIndex];
+    setSelectedRestaurants(updatedSelectedRestaurants);
+  }
 
   async function saveTour() {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       console.log("user email is: " + userEmail);
 
-      const restaurantsArray = filteredRestaurants.map((restaurant) => ({
+      const restaurantsArray = selectedRestaurants.map((restaurant) => ({
         name: restaurant.name,
         image: restaurant.image_url,
         address: restaurant.location.display_address.join(", "),
@@ -184,7 +142,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
       // Append the new restaurants array to the existing data
       const updatedTours = [...existingTours, ...restaurantsArray];
-
+      console.log(updatedTours);
       // Update the database with the combined data
       const updateResponse = await fetch(
         `http://localhost:3000/${userEmail}/savedTours`,
@@ -216,20 +174,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
         <Text style={[styles.pageHeaders]}>Your Food Tour</Text>
         <Pressable
           style={[
-            styles.buttonLarge.r,
-            styles.horizontalAlign,
-            styles.width70,
-            styles.contentJustify,
-          ]}
-        >
-          <Text style={[styles.buttonLargeText.y]}>Regenerate Tour</Text>
-          <Image
-            style={[styles.icon]}
-            source={require("../assets/switchYellow.png")}
-          ></Image>
-        </Pressable>
-        <Pressable
-          style={[
             styles.buttonLarge.y,
             styles.horizontalAlign,
             styles.width70,
@@ -245,7 +189,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
         </Pressable>
 
         <View style={[styles.container]}>
-          {filteredRestaurants.map((restaurant, index) => (
+          {selectedRestaurants.map((restaurant, index) => (
             <RestaurantSingle
               key={index}
               name={restaurant.name}
@@ -254,6 +198,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
               description={`Rating: ${restaurant.rating}`}
               website={restaurant.url}
               myMealName={mealNames[index % mealNames.length]} // Cycle through meal names
+              onSwapPress={() => handleSwap(index)}
             />
           ))}
         </View>
