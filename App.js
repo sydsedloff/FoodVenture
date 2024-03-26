@@ -24,6 +24,7 @@ import SavedFoodToursScreen from "./Screens/SavedFoodToursScreen";
 import GenerateFoodTourScreen from "./Screens/GenerateFoodTourScreen";
 import YourFoodTourScreen from "./Screens/YourFoodTourScreen";
 import SavedFoodToursMenuScreen from "./Screens/SavedFoodToursMenuScreen";
+import ChoosePfpScreen from "./Screens/ChoosePfpScreen";
 
 // Import custom fonts
 import FugazOneRegular from "./assets/fonts/FugazOne-Regular.ttf";
@@ -58,7 +59,7 @@ export default function App() {
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="ChoosePfpScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
@@ -83,7 +84,11 @@ export default function App() {
           name="PersonalizedWelcomeScreen"
           component={PersonalizedWelcomeScreen}
           options={{ headerShown: false }}
-        />
+        /><Stack.Screen
+        name="ChoosePfpScreen"
+        component={ChoosePfpScreen}
+        options={{ headerShown: false }}
+      />
         <Stack.Screen
           name="RestaurantScreen"
           component={RestaurantScreen}

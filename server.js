@@ -95,14 +95,11 @@ app.get("/api/login", async (req, res) => {
   const { email, password } = req.query;
 
   try {
-    // Check if there's a user with the provided email and password in your MongoDB database
     const user = await collection.findOne({ email, password });
 
     if (user) {
-      // If user exists and credentials match, return success status
       res.sendStatus(200);
     } else {
-      // If user doesn't exist or credentials don't match, return unauthorized status
       res.sendStatus(401);
     }
   } catch (error) {
@@ -119,7 +116,7 @@ app.get("/api/fakeProfiles", async (req, res) => {
 
 // GET USER PROFILE PICTURE
 app.get("/api/profilePicture/:userEmail", async (req, res) => {
-  const userEmail = req.params.userEmail; // Extract userEmail from request parameters
+  const userEmail = req.params.userEmail; 
   const user = await collection.findOne({ email: userEmail });
   if (user && user.profilePicture) {
     res.json({ profilePicture: user.profilePicture });
@@ -131,10 +128,10 @@ app.get("/api/profilePicture/:userEmail", async (req, res) => {
 
 //GET USER ID
 app.get("/api/userID", async (req, res) => {
-  const { email } = req.query; // Assuming you're fetching the user ID based on email
-  const user = await collection.findOne({ email }); // Query the database based on email
+  const { email } = req.query; 
+  const user = await collection.findOne({ email }); 
   if (user) {
-    res.json({ _id: user._id }); // Respond with the user ID if found
+    res.json({ _id: user._id }); 
   } else {
     console.log("User not found");
   }
@@ -149,7 +146,7 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
       { $set: { dietaryRestrictions: newDietaryRestrictions } },
-      { returnOriginal: false } // To return the updated document
+      { returnOriginal: false } 
     );
 
     if (result.value) {
@@ -166,14 +163,14 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
 //SAVE FOOD TOUR
 app.put("/:userEmail/savedTours", async (req, res) => {
   const userEmail = req.params.userEmail;
-  const { tours } = req.body; // Assuming the request body contains an array of tours
+  const { tours } = req.body; 
 
   try {
     // Find the user document by email and update the savedTours field
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
-      { $push: { savedTours: { $each: tours } } }, // Use $push to add new tours to the array
-      { returnOriginal: false } // To return the updated document
+      { $push: { savedTours: { $each: tours } } }, 
+      { returnOriginal: false } 
     );
 
     if (result.value) {
