@@ -184,7 +184,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
       // Append the new restaurants array to the existing data
       const updatedTours = [...existingTours, ...restaurantsArray];
-
+      console.log(updatedTours);
       // Update the database with the combined data
       const updateResponse = await fetch(
         `http://localhost:3000/${userEmail}/savedTours`,
