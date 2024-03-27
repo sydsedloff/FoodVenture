@@ -274,6 +274,12 @@ export default StyleSheet.create({
     borderRadius: 100,
     zIndex: 1,
   },
+  tasteBuddies: {
+    height: 58,
+    width: 58,
+    borderRadius: 100,
+
+  },
   searchBarIcon: {
     height: 35,
     width: 35,
@@ -479,6 +485,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+
   verticalAlign: {
     flexDirection: "column",
     alignItems: "center",

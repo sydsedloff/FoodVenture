@@ -7,11 +7,7 @@ import HomeScreen from "./HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ChoosePfpScreen({ navigation }) {
-  const [isGlutenFree, setGlutenFree] = useState(false);
-  const [isKosher, setKosher] = useState(false);
-  const [isPescatarian, setPescatarian] = useState(false);
-  const [isVegan, setVegan] = useState(false);
-  const [isVegetarian, setVegetarian] = useState(false);
+  const [isGlutenFree, setTasteBuddy] = useState("");
 
   async function saveDietRestrictions() {
     try {
@@ -97,30 +93,84 @@ export default function ChoosePfpScreen({ navigation }) {
             Choose your Taste Buddy!
           </Text>
 
-{/* PROFILE PICTURES */}
+          {/* PROFILE PICTURES */}
           <View>
-            <View style={[styles.horizontalAlign, styles.bottomMargins]}>
-            <Pressable
-              onPress={() => setGlutenFree(!isGlutenFree)}
-            >
-              <Image
-            style={[styles.headerImage]}
-            source={require("../assets/pfp/chopstick_profile.svg")}
-            />
-            </Pressable>
-            <Pressable
-              onPress={() => setKosher(!isKosher)}
-            >
-              <Image
-            style={[styles.headerImage]}
-            source={require("../assets/pfp/profileSpoon.png")}
-            />
-            </Pressable>
+            <View style={[styles.horizontalAlign]}>
+
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer]}
+              // onPress={() => setTasteBuddy()}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/chopstick_profile.svg")}
+                />
+                <Text style={[styles.merri17]}>Chopsticks</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer]}
+              // onPress={() => setTasteBuddy()}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/profileSpoon.png")}
+                />
+                <Text style={[styles.merri17]}>Spoon</Text>
+              </Pressable>
+
             </View>
-            
+            <View style={[styles.horizontalAlign]}>
+
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer]}
+              // onPress={() => setTasteBuddy()}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/chopstick_profile.svg")}
+                />
+                <Text style={[styles.merri17]}>Chopsticks</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer]}
+              // onPress={() => setTasteBuddy()}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/profileSpoon.png")}
+                />
+                <Text style={[styles.merri17]}>Spoon</Text>
+              </Pressable>
+
+            </View>
+            <View style={[styles.horizontalAlign]}>
+
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer]}
+              // onPress={() => setTasteBuddy()}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/chopstick_profile.svg")}
+                />
+                <Text style={[styles.merri17]}>Chopsticks</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer]}
+              // onPress={() => setTasteBuddy()}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/profileSpoon.png")}
+                />
+                <Text style={[styles.merri17]}>Spoon</Text>
+              </Pressable>
+
+            </View>
           </View>
-          
-            {/* <Pressable
+
+
+          {/* <Pressable
             style={[styles.buttonLarge.r, styles.topMargins]}
             onPress={() => navigation.navigate(HomeScreen)}
           >
@@ -131,8 +181,8 @@ export default function ChoosePfpScreen({ navigation }) {
               Done
             </Text>
           </Pressable> */}
-         
-          
+
+
         </View>
       </ImageBackground>
     </View>

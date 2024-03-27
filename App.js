@@ -59,7 +59,7 @@ export default function App() {
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="WelcomeScreen">
+      <Stack.Navigator initialRouteName="ChoosePfpScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
@@ -85,10 +85,10 @@ export default function App() {
           component={PersonalizedWelcomeScreen}
           options={{ headerShown: false }}
         /><Stack.Screen
-        name="ChoosePfpScreen"
-        component={ChoosePfpScreen}
-        options={{ headerShown: false }}
-      />
+          name="ChoosePfpScreen"
+          component={ChoosePfpScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="RestaurantScreen"
           component={RestaurantScreen}
