@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const axios = require("axios");
-require("dotenv").config(); 
+require("dotenv").config(); //get api key from .env
 const app = express();
 const port = 3000;
 app.use(bodyParser.json());
@@ -14,7 +14,8 @@ app.listen(port, () => {
 });
 
 // MONGODB SETUP
-const uri = process.env.MONGODB_URI;
+const uri =
+  "mongodb+srv://sydsedloff:4IEmnJKSndMy3akX@cluster0.4xnd6vq.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -157,6 +158,49 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
     console.error("Error updating dietary restrictions:", error);
     res.status(500).json({ error: "Internal server error" });
   }
+});
+//UPDATE PROFILE PICTURE
+
+app.put("/profilePicture/:userEmail", async (req, res) => {
+
+  const userEmail = req.params.userEmail;
+
+  const newProfilePicture = req.body.profilePicture;
+
+
+
+  try {
+
+    const result = await collection.findOneAndUpdate(
+
+      { email: userEmail },
+
+      { $set: { profilePicture: newProfilePicture } },
+
+      { returnOriginal: false } 
+
+    );
+
+
+
+    if (result.value) {
+
+      res.json(result.value);
+
+    } else {
+
+      res.status(404).json({ error: "User not found" });
+
+    }
+
+  } catch (error) {
+
+    console.error("Error updating profile picture:", error);
+
+    res.status(500).json({ error: "Internal server error" });
+
+  }
+
 });
 
 //SAVE FOOD TOUR
