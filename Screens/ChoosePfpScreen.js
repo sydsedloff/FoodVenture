@@ -175,11 +175,11 @@ export default function ChoosePfpScreen({ navigation }) {
 
         </View><Pressable
             style={[styles.buttonLarge.r, styles.topMargins, styles.horizontalAlign, styles.justifySpaceBetween, {alignSelf:"flex-end", marginRight:"5%", width:"35%", paddingRight:"5%", paddingLeft:"5%"}]}
-            onPress={() => navigation.navigate(HomeScreen)}
+            onPress={() => updateProfilePicture()}
           >
             <Text
               style={[styles.buttonLargeText.y]}
-              onPress={() => updateProfilePicture()}
+              
             >
               Done
             </Text>

@@ -5,6 +5,7 @@ import styles from "../styles";
 import { Colors } from "../colors";
 import HomeScreen from "./HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ChoosePfpScreen from "./ChoosePfpScreen";
 
 export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isGlutenFree, setGlutenFree] = useState(false);
@@ -51,7 +52,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   async function updateDietRestrictions() {
     console.log(isGlutenFree, isKosher, isPescatarian, isVegan, isVegetarian);
     await saveDietRestrictions();
-    navigation.navigate(HomeScreen);
+    navigation.navigate(ChoosePfpScreen);
   }
   useEffect(() => {
     getUserData();
@@ -160,7 +161,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           </View>
           <Pressable
             style={[styles.buttonLarge.r]}
-            onPress={() => navigation.navigate(HomeScreen)}
+            onPress={() => navigation.navigate(ChoosePfpScreen)}
           >
             <Text
               style={[styles.buttonLargeText.y]}
