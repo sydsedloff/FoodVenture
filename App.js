@@ -85,10 +85,10 @@ export default function App() {
           component={PersonalizedWelcomeScreen}
           options={{ headerShown: false }}
         /><Stack.Screen
-        name="ChoosePfpScreen"
-        component={ChoosePfpScreen}
-        options={{ headerShown: false }}
-      />
+          name="ChoosePfpScreen"
+          component={ChoosePfpScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="RestaurantScreen"
           component={RestaurantScreen}

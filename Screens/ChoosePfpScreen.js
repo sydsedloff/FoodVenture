@@ -7,17 +7,13 @@ import HomeScreen from "./HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ChoosePfpScreen({ navigation }) {
-  const [isGlutenFree, setGlutenFree] = useState(false);
-  const [isKosher, setKosher] = useState(false);
-  const [isPescatarian, setPescatarian] = useState(false);
-  const [isVegan, setVegan] = useState(false);
-  const [isVegetarian, setVegetarian] = useState(false);
+  const [profilePicture, setTasteBuddy] = useState("");
 
-  async function saveDietRestrictions() {
+  async function saveProfilePicture() {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/dietaryRestrictions/${userEmail}`,
+        `http://localhost:3000/profilePicture/${userEmail}`,
         {
           method: "PUT",
           headers: {
@@ -36,21 +32,19 @@ export default function ChoosePfpScreen({ navigation }) {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to update dietary restrictions");
+        throw new Error("Failed to update profile picture");
       }
 
       const data = await response.json();
-      console.log("Dietary restrictions updated successfully:", data);
-      // Optionally, navigate to another screen or refresh the current screen
+      console.log("Profile Picture updated successfully:", data);
     } catch (error) {
-      console.error("Error updating dietary restrictions:", error);
-      // Handle error, e.g., show a message to the user
+      console.error("Error updating profile picture:", error);
     }
   }
 
-  async function updateDietRestrictions() {
-    console.log(isGlutenFree, isKosher, isPescatarian, isVegan, isVegetarian);
-    await saveDietRestrictions();
+  async function updateProfilePicture() {
+    console.log();
+    await saveProfilePicture();
     navigation.navigate(HomeScreen);
   }
   useEffect(() => {
@@ -93,47 +87,107 @@ export default function ChoosePfpScreen({ navigation }) {
           <View style={[styles.contentSeperatorContainer]}>
             <View style={[styles.line, styles.bottomMargins]} />
           </View>
-          <Text style={[styles.paragraph.centered, styles.bottomMargins]}>
+          <Text style={[styles.paragraph.centered, styles.bottomMargins, {fontSize:24}]}>
             Choose your Taste Buddy!
           </Text>
 
-{/* PROFILE PICTURES */}
+          {/* PROFILE PICTURES */}
           <View>
-            <View style={[styles.horizontalAlign, styles.bottomMargins]}>
+
+            <View style={[styles.horizontalAlign, styles.width100]}>
+              {/* LEFT COLUMN */}
+              <View>
             <Pressable
-              onPress={() => setGlutenFree(!isGlutenFree)}
-            >
-              <Image
-            style={[styles.headerImage]}
-            source={require("../assets/pfp/chopstick_profile.svg")}
-            />
-            </Pressable>
-            <Pressable
-              onPress={() => setKosher(!isKosher)}
-            >
-              <Image
-            style={[styles.headerImage]}
-            source={require("../assets/pfp/profileSpoon.png")}
-            />
-            </Pressable>
+                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
+              onPress={() => setTasteBuddy("chopsticks")}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/chopstick_profile.svg")}
+                />
+                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Chopsticks</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
+              onPress={() => setTasteBuddy("fork")}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/profileFork.png")}
+                />
+                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Fork</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
+              onPress={() => setTasteBuddy("knife")}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/knifeProfileIcon.png")}
+                />
+                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Knife</Text>
+              </Pressable>
+              </View>
+              
+              {/* RIGHT COLUMN */}
+              <View>
+                <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
+              onPress={() => setTasteBuddy("spoon")}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/profileSpoon.png")}
+                />
+                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Spoon</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
+              onPress={() => setTasteBuddy("spork")}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/sporkProfileIcon.png")}
+                />
+                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Spork</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
+              onPress={() => setTasteBuddy("straws")}
+              >
+                <Image
+                  style={[styles.tasteBuddies]}
+                  source={require("../assets/pfp/straws-profile.svg")}
+                />
+                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Straws</Text>
+              </Pressable>
+              </View>
+
             </View>
-            
+
+            <View style={[styles.horizontalAlign]}>
+
+            </View>
           </View>
-          
-            {/* <Pressable
-            style={[styles.buttonLarge.r, styles.topMargins]}
+<View style={[styles.tasteBuddies]}>
+  {/* SPACER */}
+</View>
+
+        </View><Pressable
+            style={[styles.buttonLarge.r, styles.topMargins, styles.horizontalAlign, styles.justifySpaceBetween, {alignSelf:"flex-end", marginRight:"5%", width:"35%", paddingRight:"5%", paddingLeft:"5%"}]}
             onPress={() => navigation.navigate(HomeScreen)}
           >
             <Text
               style={[styles.buttonLargeText.y]}
-              onPress={() => updateDietRestrictions()}
+              onPress={() => updateProfilePicture()}
             >
               Done
             </Text>
-          </Pressable> */}
-         
-          
-        </View>
+            <Image
+                  style={[{height: 25, width: 25}]}
+                  source={require("../assets/checkYellow.png")}
+                />
+          </Pressable>
       </ImageBackground>
     </View>
   );
