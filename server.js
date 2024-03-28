@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const axios = require("axios");
-require("dotenv").config(); //get api key from .env
+require("dotenv").config(); 
 const app = express();
 const port = 3000;
 app.use(bodyParser.json());
@@ -14,8 +14,7 @@ app.listen(port, () => {
 });
 
 // MONGODB SETUP
-const uri =
-  "mongodb+srv://sydsedloff:4IEmnJKSndMy3akX@cluster0.4xnd6vq.mongodb.net/test?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
