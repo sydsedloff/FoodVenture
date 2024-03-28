@@ -370,7 +370,7 @@ export default StyleSheet.create({
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-around",
-      width: "80%",
+      width: "90%",
       backgroundColor: Colors.white,
       borderRadius: 15,
       border: "1px solid #4A4F4A80",
