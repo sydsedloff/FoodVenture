@@ -99,7 +99,7 @@ export default function ChoosePfpScreen({ navigation }) {
               <View>
             <Pressable
                 style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("chopsticks")}
+              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/chopstick_profile.svg")}
               >
                 <Image
                   style={[styles.tasteBuddies]}
@@ -109,7 +109,7 @@ export default function ChoosePfpScreen({ navigation }) {
               </Pressable>
               <Pressable
                 style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("fork")}
+              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/profileFork.png")}
               >
                 <Image
                   style={[styles.tasteBuddies]}
@@ -119,7 +119,7 @@ export default function ChoosePfpScreen({ navigation }) {
               </Pressable>
               <Pressable
                 style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("knife")}
+              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/knifeProfileIcon.png")}
               >
                 <Image
                   style={[styles.tasteBuddies]}
@@ -133,7 +133,7 @@ export default function ChoosePfpScreen({ navigation }) {
               <View>
                 <Pressable
                 style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("spoon")}
+              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/profileSpoon.png")}
               >
                 <Image
                   style={[styles.tasteBuddies]}
@@ -143,7 +143,7 @@ export default function ChoosePfpScreen({ navigation }) {
               </Pressable>
               <Pressable
                 style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("spork")}
+              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/sporkProfileIcon.png")}
               >
                 <Image
                   style={[styles.tasteBuddies]}
@@ -153,7 +153,7 @@ export default function ChoosePfpScreen({ navigation }) {
               </Pressable>
               <Pressable
                 style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("straws")}
+              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/straws-profile.svg")}
               >
                 <Image
                   style={[styles.tasteBuddies]}
@@ -175,11 +175,11 @@ export default function ChoosePfpScreen({ navigation }) {
 
         </View><Pressable
             style={[styles.buttonLarge.r, styles.topMargins, styles.horizontalAlign, styles.justifySpaceBetween, {alignSelf:"flex-end", marginRight:"5%", width:"35%", paddingRight:"5%", paddingLeft:"5%"}]}
-            onPress={() => navigation.navigate(HomeScreen)}
+            onPress={() => updateProfilePicture()}
           >
             <Text
               style={[styles.buttonLargeText.y]}
-              onPress={() => updateProfilePicture()}
+              
             >
               Done
             </Text>
