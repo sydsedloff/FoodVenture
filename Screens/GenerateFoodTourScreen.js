@@ -79,8 +79,11 @@ export default function FilterSidebar({ navigation }) {
       selectedButton,
     };
 
+    // Convert filterData to query parameters
+    const queryParams = new URLSearchParams(filterData).toString();
+
     // Navigate to HomeScreen and pass the filter data
-    navigation.navigate("YourFoodTourScreen", { filterData });
+    navigation.navigate("YourFoodTourScreen", { filterData: queryParams });
   };
 
   return (

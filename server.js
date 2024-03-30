@@ -43,8 +43,21 @@ app.use(cors(corsOptions));
 
 // API
 app.get("/api/searchRestaurants", async (req, res) => {
-  const term = req.query.term;
-  const location = "Orlando";
+  const { term = "", ...filters } = req.query;
+  const location = "Orlando"; // You might want to make this dynamic based on user location
+
+  // Dynamically construct the term based on the selected filters
+  let modifiedTerm = term;
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value === "true" && key.startsWith("is")) {
+      // Extract the filter name (e.g., "Deli" from "isDeli")
+      const filterName = key.slice(2);
+      // Append the filter name to the term, separated by commas
+      modifiedTerm += `,${filterName.toLowerCase()}`;
+    }
+  });
+
+  console.log(modifiedTerm);
 
   try {
     const response = await axios.get(
@@ -54,8 +67,9 @@ app.get("/api/searchRestaurants", async (req, res) => {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,
         },
         params: {
-          term,
+          term: modifiedTerm,
           location,
+          // Note: Other filters are not directly supported by the Yelp API in this manner
         },
       }
     );

@@ -22,7 +22,6 @@ export default function HomeScreen({ navigation, route }) {
     async function getRestaurantData() {
       console.log("Fetching restaurant data...");
       try {
-        // Set to store unique restaurant IDs
         const uniqueRestaurantIds = new Set();
         // Array to store results from different API calls
         const restaurantDataArray = [];
@@ -45,7 +44,6 @@ export default function HomeScreen({ navigation, route }) {
           }),
         ]);
 
-        // Loop through each response and add unique restaurants to the array
         responses.forEach((response) => {
           response.data.businesses.forEach((restaurant) => {
             if (!uniqueRestaurantIds.has(restaurant.id)) {
@@ -56,7 +54,7 @@ export default function HomeScreen({ navigation, route }) {
         });
 
         console.log("Response received:", restaurantDataArray);
-        setRestaurantData(restaurantDataArray); // Update state with combined results
+        setRestaurantData(restaurantDataArray);
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
       }

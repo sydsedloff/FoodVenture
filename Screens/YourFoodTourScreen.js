@@ -80,11 +80,9 @@ export default function YourFoodTourScreen({ navigation, route }) {
   useEffect(() => {
     async function getRestaurantData() {
       try {
+        const { filterData } = route.params || {};
         const response = await axios.get(
-          "http://localhost:3000/api/searchRestaurants",
-          {
-            params: { term: "food" },
-          }
+          `http://localhost:3000/api/searchRestaurants?${filterData}`
         );
         if (response.status === 200) {
           const allRestaurants = response.data.businesses;

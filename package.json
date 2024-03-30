@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "react-native-dotenv": "^3.4.11",
     "resolve-url-loader": "^5.0.0"
   },
   "overrides": {
