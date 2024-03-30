@@ -21,7 +21,12 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
 
       <Image
         source={{ uri: image }}
-        style={[styles.image, styles.alignSelfCenter, styles.width100, styles.bottomPadding]}
+        style={[
+          styles.image,
+          styles.alignSelfCenter,
+          styles.width100,
+          styles.bottomPadding,
+        ]}
       ></Image>
       <View
         style={[
@@ -58,7 +63,7 @@ export default function RestaurantScreen({ navigation }) {
     async function getSavedRestaurantData() {
       try {
         const savedData = await AsyncStorage.getItem("savedRestaurant");
-        console.log(savedData)
+        console.log(savedData);
         if (savedData) {
           const parsedData = JSON.parse(savedData);
           setRestaurantData(parsedData);
@@ -69,15 +74,14 @@ export default function RestaurantScreen({ navigation }) {
         console.error("Error retrieving saved restaurant data:", error);
       }
     }
-  
+
     getSavedRestaurantData();
   }, []);
- 
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <HeaderComponent />
-  
+
       <View style={styles.width80}>
         {restaurantData === null ? (
           <Text>Loading restaurant data...</Text> // Display loading message
@@ -90,9 +94,9 @@ export default function RestaurantScreen({ navigation }) {
             website={restaurantData.website}
           />
         )}
-    
-        <View style={styles.smallNegativeMargins}>
-          <Text style={[styles.signa28, styles.width80, styles.bottomMargins]}>
+
+        <View style={[styles.smallNegativeMargins, { marginTop: -180 }]}>
+          <Text style={[styles.signa28, styles.width100, styles.bottomMargins]}>
             Request a reservation
           </Text>
           <View style={styles.bottomMargins}>
