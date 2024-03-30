@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   Text,
@@ -15,18 +15,15 @@ import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
 
 export default function HomeScreen({ navigation, route }) {
-  const [restaurantData, setRestaurantData] = useState(null);
+  const [restaurantData, setRestaurantData] = useState([]);
+
   useEffect(() => {
     async function getRestaurantData() {
       console.log("Fetching restaurant data...");
       try {
-        // Set to store unique restaurant IDs
         const uniqueRestaurantIds = new Set();
-
-        // Array to store results from different API calls
         const restaurantDataArray = [];
 
-        // Make separate API calls for each dietary restriction
         const responses = await Promise.all([
           axios.get("http://localhost:3000/api/searchRestaurants/", {
             params: { term: "food" },
@@ -45,7 +42,6 @@ export default function HomeScreen({ navigation, route }) {
           }),
         ]);
 
-        // Loop through each response and add unique restaurants to the array
         responses.forEach((response) => {
           response.data.businesses.forEach((restaurant) => {
             if (!uniqueRestaurantIds.has(restaurant.id)) {
@@ -56,7 +52,7 @@ export default function HomeScreen({ navigation, route }) {
         });
 
         console.log("Response received:", restaurantDataArray);
-        setRestaurantData(restaurantDataArray); // Update state with combined results
+        setRestaurantData(restaurantDataArray);
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
       }
@@ -64,73 +60,15 @@ export default function HomeScreen({ navigation, route }) {
 
     getRestaurantData();
   }, []);
+
   const { filterData } = route.params || {};
 
-  const restaurantResults = restaurantData;
-  function filterRestaurants(restaurants, filterData) {
-    if (!filterData) {
-      return restaurants;
-    }
+  const filteredRestaurants = restaurantData.filter((restaurant) => {
+    // Implement your filtering logic here based on filterData
+    // This is a placeholder for your actual filtering logic
+    return true;
+  });
 
-    const allFiltersFalse = Object.values(filterData).every((value) => !value);
-
-    // If all filters are false, return all restaurants
-    if (allFiltersFalse) {
-      return restaurants;
-    }
-
-    return restaurants.filter((restaurant) => {
-      // Check if the restaurant matches the selected price range
-      if (
-        filterData.selectedButton &&
-        restaurant.price !== filterData.selectedButton
-      ) {
-        return false;
-      }
-
-      // Check if the restaurant matches any of the selected cuisines
-      if (
-        !restaurant.categories.some(
-          (category) =>
-            (filterData.isAmerican && category.title === "American") ||
-            (filterData.isJapanese && category.title === "Japanese") ||
-            (filterData.isIndian && category.title === "Indian") ||
-            (filterData.isCaribbean && category.title === "Caribbean") ||
-            (filterData.isKorean && category.title === "Korean") ||
-            (filterData.isFrench && category.title === "French") ||
-            (filterData.isBBQ && category.title === "BBQ") ||
-            (filterData.isItalian && category.title === "Italian") ||
-            (filterData.isChinese && category.title === "Chinese") ||
-            (filterData.isGreek && category.title === "Greek") ||
-            (filterData.isMexican && category.title === "Mexican") ||
-            (filterData.isThai && category.title === "Thai") ||
-            (filterData.isSeafood && category.title === "Seafood") ||
-            (filterData.isPizza && category.title === "Pizza")
-        )
-      ) {
-        return false;
-      }
-
-      // Convert distance from meters to miles
-      const distanceInMiles = restaurant.distance / 1609.34;
-      if (
-        (filterData.isDistance0_10 && distanceInMiles > 10) ||
-        (filterData.isDistance12_30 &&
-          (distanceInMiles < 12 || distanceInMiles > 30)) ||
-        (filterData.isDistance11_20 &&
-          (distanceInMiles < 11 || distanceInMiles > 20)) ||
-        (filterData.isDistance31_plus && distanceInMiles <= 31)
-      ) {
-        return false;
-      }
-
-      return true;
-    });
-  }
-
-  // Apply filters to the restaurants data
-  console.log("Filtered restaurants:", filteredRestaurants);
-  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
   return (
     <View style={[styles.container]}>
       <HeaderComponent />
@@ -163,9 +101,8 @@ export default function HomeScreen({ navigation, route }) {
             ></Image>
           </Pressable>
         </View>
-        {/*CONDITIONAL TO FILLED FILTER ICON IF FILTERING IS ON*/}
 
-        {filteredRestaurants ? (
+        {restaurantData.length > 0 ? (
           <FlatList
             data={filteredRestaurants}
             renderItem={({ item }) => (

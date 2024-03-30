@@ -43,8 +43,21 @@ app.use(cors(corsOptions));
 
 // API
 app.get("/api/searchRestaurants", async (req, res) => {
-  const term = req.query.term;
-  const location = "Orlando";
+  const { term = "", ...filters } = req.query;
+  const location = "Orlando"; // You might want to make this dynamic based on user location
+
+  // Dynamically construct the term based on the selected filters
+  let modifiedTerm = term;
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value === "true" && key.startsWith("is")) {
+      // Extract the filter name (e.g., "Deli" from "isDeli")
+      const filterName = key.slice(2);
+      // Append the filter name to the term, separated by commas
+      modifiedTerm += `,${filterName.toLowerCase()}`;
+    }
+  });
+
+  console.log(modifiedTerm);
 
   try {
     const response = await axios.get(
@@ -54,8 +67,9 @@ app.get("/api/searchRestaurants", async (req, res) => {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,
         },
         params: {
-          term,
+          term: modifiedTerm,
           location,
+          // Note: Other filters are not directly supported by the Yelp API in this manner
         },
       }
     );
@@ -116,7 +130,7 @@ app.get("/api/fakeProfiles", async (req, res) => {
 
 // GET USER PROFILE PICTURE
 app.get("/api/profilePicture/:userEmail", async (req, res) => {
-  const userEmail = req.params.userEmail; 
+  const userEmail = req.params.userEmail;
   const user = await collection.findOne({ email: userEmail });
   if (user && user.profilePicture) {
     res.json({ profilePicture: user.profilePicture });
@@ -128,10 +142,10 @@ app.get("/api/profilePicture/:userEmail", async (req, res) => {
 
 //GET USER ID
 app.get("/api/userID", async (req, res) => {
-  const { email } = req.query; 
-  const user = await collection.findOne({ email }); 
+  const { email } = req.query;
+  const user = await collection.findOne({ email });
   if (user) {
-    res.json({ _id: user._id }); 
+    res.json({ _id: user._id });
   } else {
     console.log("User not found");
   }
@@ -146,7 +160,7 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
       { $set: { dietaryRestrictions: newDietaryRestrictions } },
-      { returnOriginal: false } 
+      { returnOriginal: false }
     );
 
     if (result.value) {
@@ -162,58 +176,42 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
 //UPDATE PROFILE PICTURE
 
 app.put("/profilePicture/:userEmail", async (req, res) => {
-
   const userEmail = req.params.userEmail;
 
   const newProfilePicture = req.body.profilePicture;
 
-
-
   try {
-
     const result = await collection.findOneAndUpdate(
-
       { email: userEmail },
 
       { $set: { profilePicture: newProfilePicture } },
 
-      { returnOriginal: false } 
-
+      { returnOriginal: false }
     );
 
-
-
     if (result.value) {
-
       res.json(result.value);
-
     } else {
-
       res.status(404).json({ error: "User not found" });
-
     }
-
   } catch (error) {
-
     console.error("Error updating profile picture:", error);
 
     res.status(500).json({ error: "Internal server error" });
-
   }
-
 });
 
 //SAVE FOOD TOUR
 app.put("/:userEmail/savedTours", async (req, res) => {
   const userEmail = req.params.userEmail;
-  const { tours } = req.body; 
+  const { tours } = req.body;
 
   try {
     // Find the user document by email and update the savedTours field
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
-      { $push: { savedTours: { $each: tours } } }, 
-      { returnOriginal: false } 
+      { $push: { savedTours: { $each: tours } } },
+      { returnOriginal: false }
     );
 
     if (result.value) {
