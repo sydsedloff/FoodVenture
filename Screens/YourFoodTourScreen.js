@@ -150,7 +150,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
       console.log("Tour saved successfully");
     } catch (error) {
-      console.error("Error saving tour:", error);
+      console.log("Error saving tour:", error);
     }
   }
 
