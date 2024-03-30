@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   Text,
@@ -16,16 +16,16 @@ import Restaurants from "../Components/RestaurantsComponent";
 
 export default function HomeScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
+  const [filterIcon, setFilterIcon] = useState(require("../assets/filter.png"));
+
   useEffect(() => {
     async function getRestaurantData() {
       console.log("Fetching restaurant data...");
       try {
         // Set to store unique restaurant IDs
         const uniqueRestaurantIds = new Set();
-
         // Array to store results from different API calls
         const restaurantDataArray = [];
-
         // Make separate API calls for each dietary restriction
         const responses = await Promise.all([
           axios.get("http://localhost:3000/api/searchRestaurants/", {
@@ -64,9 +64,10 @@ export default function HomeScreen({ navigation, route }) {
 
     getRestaurantData();
   }, []);
-  const { filterData } = route.params || {};
 
+  const { filterData } = route.params || {};
   const restaurantResults = restaurantData;
+
   function filterRestaurants(restaurants, filterData) {
     if (!filterData) {
       return restaurants;
@@ -128,11 +129,18 @@ export default function HomeScreen({ navigation, route }) {
     });
   }
 
-  // Apply filters to the restaurants data
-  console.log("Filtered restaurants:", filteredRestaurants);
   const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
+
+  useEffect(() => {
+    if (filterData) {
+      setFilterIcon(require("../assets/filterFilled.png"));
+    } else {
+      setFilterIcon(require("../assets/filter.png"));
+    }
+  }, [filterData]);
+
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <HeaderComponent />
       <Image
         style={[styles.smallerLogo, styles.bottomMargins]}
@@ -152,19 +160,13 @@ export default function HomeScreen({ navigation, route }) {
             <Image
               source={require("../assets/search.png")}
               style={[styles.searchBarIcon]}
-            ></Image>
+            />
             <TextInput placeholder="Search" style={[styles.searchBarText]} />
           </View>
-
           <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
-            <Image
-              source={require("../assets/filter.png")}
-              style={[styles.smallerIcons]}
-            ></Image>
+            <Image source={filterIcon} style={[styles.smallerIcons]} />
           </Pressable>
         </View>
-        {/*CONDITIONAL TO FILLED FILTER ICON IF FILTERING IS ON*/}
-
         {filteredRestaurants ? (
           <FlatList
             data={filteredRestaurants}

@@ -131,34 +131,23 @@ export default function YourFoodTourScreen({ navigation, route }) {
 
       console.log("filtered restaurants:", restaurantsArray);
 
-      // Fetch existing data from savedTours
+      // Update the database with the new tour data
       const response = await fetch(
-        `http://localhost:3000/${userEmail}/savedTours`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch existing tours data");
-      }
-      const existingTours = await response.json();
-
-      // Append the new restaurants array to the existing data
-      const updatedTours = [...existingTours, ...restaurantsArray];
-      console.log(updatedTours);
-      // Update the database with the combined data
-      const updateResponse = await fetch(
-        `http://localhost:3000/${userEmail}/savedTours`,
+        `http://localhost:3000/api/${userEmail}/${restaurantsArray}`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            savedTours: updatedTours,
+            userEmail: userEmail,
+            savedTours: restaurantsArray,
           }),
         }
       );
 
-      if (!updateResponse.ok) {
-        throw new Error("Failed to update saved tours");
+      if (!response.ok) {
+        throw new Error("Failed to save tour");
       }
 
       console.log("Tour saved successfully");

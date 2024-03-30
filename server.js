@@ -116,7 +116,7 @@ app.get("/api/fakeProfiles", async (req, res) => {
 
 // GET USER PROFILE PICTURE
 app.get("/api/profilePicture/:userEmail", async (req, res) => {
-  const userEmail = req.params.userEmail; 
+  const userEmail = req.params.userEmail;
   const user = await collection.findOne({ email: userEmail });
   if (user && user.profilePicture) {
     res.json({ profilePicture: user.profilePicture });
@@ -128,10 +128,10 @@ app.get("/api/profilePicture/:userEmail", async (req, res) => {
 
 //GET USER ID
 app.get("/api/userID", async (req, res) => {
-  const { email } = req.query; 
-  const user = await collection.findOne({ email }); 
+  const { email } = req.query;
+  const user = await collection.findOne({ email });
   if (user) {
-    res.json({ _id: user._id }); 
+    res.json({ _id: user._id });
   } else {
     console.log("User not found");
   }
@@ -146,7 +146,7 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
       { $set: { dietaryRestrictions: newDietaryRestrictions } },
-      { returnOriginal: false } 
+      { returnOriginal: false }
     );
 
     if (result.value) {
@@ -162,72 +162,54 @@ app.put("/dietaryRestrictions/:userEmail", async (req, res) => {
 //UPDATE PROFILE PICTURE
 
 app.put("/profilePicture/:userEmail", async (req, res) => {
-
   const userEmail = req.params.userEmail;
 
   const newProfilePicture = req.body.profilePicture;
 
-
-
   try {
-
     const result = await collection.findOneAndUpdate(
-
       { email: userEmail },
 
       { $set: { profilePicture: newProfilePicture } },
 
-      { returnOriginal: false } 
-
+      { returnOriginal: false }
     );
 
-
-
     if (result.value) {
-
       res.json(result.value);
-
     } else {
-
       res.status(404).json({ error: "User not found" });
-
     }
-
   } catch (error) {
-
     console.error("Error updating profile picture:", error);
 
     res.status(500).json({ error: "Internal server error" });
-
   }
-
 });
 
 //SAVE FOOD TOUR
-app.put("/:userEmail/savedTours", async (req, res) => {
+app.post("/api/:userEmail/:savedTours", async (req, res) => {
   const userEmail = req.params.userEmail;
-  const { tours } = req.body; 
+  const savedTours = req.body.savedTours;
 
   try {
-    // Find the user document by email and update the savedTours field
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
-      { $push: { savedTours: { $each: tours } } }, 
-      { returnOriginal: false } 
+      { $push: { savedTours: savedTours } },
+      { returnOriginal: false }
     );
 
     if (result.value) {
       res
         .status(200)
         .json({ message: "Tours saved successfully", user: result.value });
-    } else {
-      res.status(404).json({ error: "User not found" });
     }
   } catch (error) {
-    console.error("Error saving tours:", error);
+    console.log("Error saving tours:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 app.post("/api/fakeProfiles", async (req, res) => {
   const newUser = req.body;
   const result = await collection.insertOne(newUser);
