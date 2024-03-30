@@ -202,15 +202,14 @@ app.put("/profilePicture/:userEmail", async (req, res) => {
 });
 
 //SAVE FOOD TOUR
-app.put("/:userEmail/savedTours", async (req, res) => {
+app.post("/api/:userEmail/:savedTours", async (req, res) => {
   const userEmail = req.params.userEmail;
-  const { tours } = req.body;
+  const savedTours = req.body.savedTours;
 
   try {
-    // Find the user document by email and update the savedTours field
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
-      { $push: { savedTours: { $each: tours } } },
+      { $push: { savedTours: savedTours } },
       { returnOriginal: false }
     );
 
@@ -218,14 +217,13 @@ app.put("/:userEmail/savedTours", async (req, res) => {
       res
         .status(200)
         .json({ message: "Tours saved successfully", user: result.value });
-    } else {
-      res.status(404).json({ error: "User not found" });
     }
   } catch (error) {
-    console.error("Error saving tours:", error);
+    console.log("Error saving tours:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 app.post("/api/fakeProfiles", async (req, res) => {
   const newUser = req.body;
   const result = await collection.insertOne(newUser);

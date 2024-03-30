@@ -15,15 +15,17 @@ import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
 
 export default function HomeScreen({ navigation, route }) {
-  const [restaurantData, setRestaurantData] = useState([]);
+  const [restaurantData, setRestaurantData] = useState(null);
+  const [filterIcon, setFilterIcon] = useState(require("../assets/filter.png"));
 
   useEffect(() => {
     async function getRestaurantData() {
       console.log("Fetching restaurant data...");
       try {
         const uniqueRestaurantIds = new Set();
+        // Array to store results from different API calls
         const restaurantDataArray = [];
-
+        // Make separate API calls for each dietary restriction
         const responses = await Promise.all([
           axios.get("http://localhost:3000/api/searchRestaurants/", {
             params: { term: "food" },
@@ -62,15 +64,81 @@ export default function HomeScreen({ navigation, route }) {
   }, []);
 
   const { filterData } = route.params || {};
+  const restaurantResults = restaurantData;
 
-  const filteredRestaurants = restaurantData.filter((restaurant) => {
-    // Implement your filtering logic here based on filterData
-    // This is a placeholder for your actual filtering logic
-    return true;
-  });
+  function filterRestaurants(restaurants, filterData) {
+    if (!filterData) {
+      return restaurants;
+    }
+
+    const allFiltersFalse = Object.values(filterData).every((value) => !value);
+
+    // If all filters are false, return all restaurants
+    if (allFiltersFalse) {
+      return restaurants;
+    }
+
+    return restaurants.filter((restaurant) => {
+      // Check if the restaurant matches the selected price range
+      if (
+        filterData.selectedButton &&
+        restaurant.price !== filterData.selectedButton
+      ) {
+        return false;
+      }
+
+      // Check if the restaurant matches any of the selected cuisines
+      if (
+        !restaurant.categories.some(
+          (category) =>
+            (filterData.isAmerican && category.title === "American") ||
+            (filterData.isJapanese && category.title === "Japanese") ||
+            (filterData.isIndian && category.title === "Indian") ||
+            (filterData.isCaribbean && category.title === "Caribbean") ||
+            (filterData.isKorean && category.title === "Korean") ||
+            (filterData.isFrench && category.title === "French") ||
+            (filterData.isBBQ && category.title === "BBQ") ||
+            (filterData.isItalian && category.title === "Italian") ||
+            (filterData.isChinese && category.title === "Chinese") ||
+            (filterData.isGreek && category.title === "Greek") ||
+            (filterData.isMexican && category.title === "Mexican") ||
+            (filterData.isThai && category.title === "Thai") ||
+            (filterData.isSeafood && category.title === "Seafood") ||
+            (filterData.isPizza && category.title === "Pizza")
+        )
+      ) {
+        return false;
+      }
+
+      // Convert distance from meters to miles
+      const distanceInMiles = restaurant.distance / 1609.34;
+      if (
+        (filterData.isDistance0_10 && distanceInMiles > 10) ||
+        (filterData.isDistance12_30 &&
+          (distanceInMiles < 12 || distanceInMiles > 30)) ||
+        (filterData.isDistance11_20 &&
+          (distanceInMiles < 11 || distanceInMiles > 20)) ||
+        (filterData.isDistance31_plus && distanceInMiles <= 31)
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+  }
+
+  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
+
+  useEffect(() => {
+    if (filterData) {
+      setFilterIcon(require("../assets/filterFilled.png"));
+    } else {
+      setFilterIcon(require("../assets/filter.png"));
+    }
+  }, [filterData]);
 
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <HeaderComponent />
       <Image
         style={[styles.smallerLogo, styles.bottomMargins]}
@@ -90,19 +158,14 @@ export default function HomeScreen({ navigation, route }) {
             <Image
               source={require("../assets/search.png")}
               style={[styles.searchBarIcon]}
-            ></Image>
+            />
             <TextInput placeholder="Search" style={[styles.searchBarText]} />
           </View>
-
           <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
-            <Image
-              source={require("../assets/filter.png")}
-              style={[styles.smallerIcons]}
-            ></Image>
+            <Image source={filterIcon} style={[styles.smallerIcons]} />
           </Pressable>
         </View>
-
-        {restaurantData.length > 0 ? (
+        {filteredRestaurants ? (
           <FlatList
             data={filteredRestaurants}
             renderItem={({ item }) => (
