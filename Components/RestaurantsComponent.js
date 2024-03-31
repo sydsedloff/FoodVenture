@@ -17,16 +17,14 @@ const Restaurants = ({
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    // Check if the restaurant is saved when the component mounts
     checkSavedStatus();
   }, []);
 
   const checkSavedStatus = async () => {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
-      if (!userEmail) return; // User not logged in, handle this case accordingly
+      if (!userEmail) return;
 
-      // Fetch the user's saved restaurants from the database
       const response = await fetch(
         `http://localhost:3000/api/userData/${userEmail}`
       );
