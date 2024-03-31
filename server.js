@@ -201,6 +201,29 @@ app.put("/profilePicture/:userEmail", async (req, res) => {
   }
 });
 
+//SAVE RESTAURANT
+app.post("/api/saveRestaurant/:userEmail", async (req, res) => {
+  const userEmail = req.params.userEmail;
+  const savedRestaurant = req.body.savedRestaurant;
+
+  try {
+    const result = await collection.findOneAndUpdate(
+      { email: userEmail },
+      { $push: { savedRestaurants: savedRestaurant } },
+      { returnOriginal: false }
+    );
+
+    if (result.value) {
+      res
+        .status(200)
+        .json({ message: "Restaurant saved successfully", user: result.value });
+    }
+  } catch (error) {
+    console.log("Error saving restaurant:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 //SAVE FOOD TOUR
 app.post("/api/:userEmail/:savedTours", async (req, res) => {
   const userEmail = req.params.userEmail;

@@ -23,7 +23,6 @@ export default function HomeScreen({ navigation, route }) {
       console.log("Fetching restaurant data...");
       try {
         const uniqueRestaurantIds = new Set();
-        // Array to store results from different API calls
         const restaurantDataArray = [];
         // Make separate API calls for each dietary restriction
         const responses = await Promise.all([
@@ -52,14 +51,12 @@ export default function HomeScreen({ navigation, route }) {
             }
           });
         });
-
         console.log("Response received:", restaurantDataArray);
         setRestaurantData(restaurantDataArray);
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
       }
     }
-
     getRestaurantData();
   }, []);
 
@@ -72,22 +69,16 @@ export default function HomeScreen({ navigation, route }) {
     }
 
     const allFiltersFalse = Object.values(filterData).every((value) => !value);
-
-    // If all filters are false, return all restaurants
     if (allFiltersFalse) {
       return restaurants;
     }
-
     return restaurants.filter((restaurant) => {
-      // Check if the restaurant matches the selected price range
       if (
         filterData.selectedButton &&
         restaurant.price !== filterData.selectedButton
       ) {
         return false;
       }
-
-      // Check if the restaurant matches any of the selected cuisines
       if (
         !restaurant.categories.some(
           (category) =>
@@ -109,8 +100,6 @@ export default function HomeScreen({ navigation, route }) {
       ) {
         return false;
       }
-
-      // Convert distance from meters to miles
       const distanceInMiles = restaurant.distance / 1609.34;
       if (
         (filterData.isDistance0_10 && distanceInMiles > 10) ||
@@ -126,7 +115,6 @@ export default function HomeScreen({ navigation, route }) {
       return true;
     });
   }
-
   const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
 
   useEffect(() => {
