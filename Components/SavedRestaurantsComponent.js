@@ -52,7 +52,15 @@ const Restaurants = ({
       // Add the current restaurant to the list of saved restaurants
       const updatedSavedRestaurants = [
         ...parsedSavedRestaurants,
-        { restaurantId, name, address, description, website, star_rating },
+        {
+          restaurantId,
+          name,
+          address,
+          description,
+          website,
+          star_rating,
+          image,
+        },
       ];
       // Save the updated list of saved restaurants to AsyncStorage
       await AsyncStorage.setItem(
