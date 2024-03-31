@@ -16,88 +16,102 @@ const Restaurants = ({
 }) => {
   const [saved, setSaved] = useState(false);
 
-  useEffect(() => {
-    // Check if the restaurant is saved when the component mounts
-    checkSavedStatus();
-  }, []);
-
-  const checkSavedStatus = async () => {
-    try {
-      const userEmail = await AsyncStorage.getItem("userEmail");
-      if (!userEmail) return; // User not logged in, handle this case accordingly
-
-      // Fetch the user's saved restaurants from the database
-      const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`
-      );
-      if (!response.ok) throw new Error("Failed to fetch user data");
-
-      const userData = await response.json();
-      const savedRestaurants = userData.savedRestaurants || [];
-      const isSaved = savedRestaurants.some(
-        (rest) => rest.restaurantId === restaurantId
-      );
-      setSaved(isSaved);
-    } catch (error) {
-      console.error("Error checking saved status:", error);
-    }
+  const restaurantData = {
+    name,
+    image,
+    address,
+    description,
+    website,
+    star_rating,
+    restaurantId,
   };
 
-  const saveRestaurant = async () => {
+  useEffect(() => {
+    const checkSavedStatus = async () => {
+      try {
+        const serializedData = await AsyncStorage.getItem("savedRestaurants");
+        if (serializedData) {
+          const savedRestaurants = JSON.parse(serializedData);
+          const isSaved = savedRestaurants.some(
+            (restaurant) => restaurant.restaurantId === restaurantId
+          );
+          setSaved(isSaved);
+        }
+      } catch (error) {
+        console.error("Error checking saved status:", error);
+      }
+    };
+
+    checkSavedStatus();
+  }, [restaurantId]);
+
+  async function saveRestaurantDB(restaurantData) {
     try {
-      // Fetch the list of saved restaurants from AsyncStorage
-      const savedRestaurants = await AsyncStorage.getItem("savedRestaurants");
-      // Parse the saved restaurants list
-      const parsedSavedRestaurants = savedRestaurants
-        ? JSON.parse(savedRestaurants)
-        : [];
-      // Add the current restaurant to the list of saved restaurants
-      const updatedSavedRestaurants = [
-        ...parsedSavedRestaurants,
-        { restaurantId, name, address, description, website, star_rating },
-      ];
-      // Save the updated list of saved restaurants to AsyncStorage
-      await AsyncStorage.setItem(
-        "savedRestaurants",
-        JSON.stringify(updatedSavedRestaurants)
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      console.log("user email is: " + userEmail);
+
+      // Update the database with the new restaurant data
+      const response = await fetch(
+        `http://localhost:3000/api/saveRestaurant/${userEmail}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userEmail: userEmail,
+            savedRestaurant: restaurantData,
+          }),
+        }
       );
-      setSaved(true);
+
+      if (!response.ok) {
+        throw new Error("Failed to save restaurant");
+      }
+
+      console.log("Restaurant saved successfully");
+    } catch (error) {
+      console.error("Error saving restaurant:", error);
+    }
+  }
+
+  const saveRestaurant = async (restaurantData) => {
+    try {
+      const serializedData = JSON.stringify(restaurantData);
+      await AsyncStorage.setItem("savedRestaurant", serializedData);
       console.log("Restaurant saved successfully!");
     } catch (error) {
       console.error("Error saving restaurant:", error);
     }
   };
 
-  const unsaveRestaurant = async () => {
-    try {
-      // Fetch the list of saved restaurants from AsyncStorage
-      const savedRestaurants = await AsyncStorage.getItem("savedRestaurants");
-      // Parse the saved restaurants list
-      const parsedSavedRestaurants = savedRestaurants
-        ? JSON.parse(savedRestaurants)
-        : [];
-      // Filter out the current restaurant from the list of saved restaurants
-      const updatedSavedRestaurants = parsedSavedRestaurants.filter(
-        (rest) => rest.restaurantId !== restaurantId
-      );
-      // Save the updated list of saved restaurants to AsyncStorage
-      await AsyncStorage.setItem(
-        "savedRestaurants",
-        JSON.stringify(updatedSavedRestaurants)
-      );
-      setSaved(false);
-      console.log("Restaurant unsaved successfully!");
-    } catch (error) {
-      console.error("Error unsaving restaurant:", error);
-    }
+  const handlePress = () => {
+    saveRestaurant(restaurantData);
+    navigation.navigate("RestaurantScreen", { params: { restaurantId } });
   };
 
-  const toggleSave = () => {
-    if (saved) {
-      unsaveRestaurant();
-    } else {
-      saveRestaurant();
-    }
+  const toggleSave = async () => {
+    setSaved(!saved);
+    const {
+      name,
+      address,
+      description,
+      website,
+      star_rating,
+      restaurantId,
+      image,
+    } = restaurantData;
+    const dataToSave = {
+      name,
+      address,
+      description,
+      website,
+      star_rating,
+      restaurantId,
+      image,
+    };
+    console.log(image);
+    await saveRestaurantDB(dataToSave);
   };
 
   const placeholderImage = require("../assets/FoodVenturePlaceholder.png");
@@ -114,7 +128,9 @@ const Restaurants = ({
     >
       <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-          <Text style={[styles.signa28]}>{name}</Text>
+          <Text style={[styles.signa28]} onPress={handlePress}>
+            {name}
+          </Text>
           <Image
             style={[styles.icon]}
             source={
@@ -150,7 +166,7 @@ const Restaurants = ({
       <Pressable onPress={() => Linking.openURL(website)}>
         <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
       </Pressable>
-      {/* <Pressable onPress={handlePress}></Pressable> */}
+      <Pressable onPress={handlePress}></Pressable>
       <View style={[styles.contentSeperatorContainer]}>
         <View style={[styles.line, styles.bottomMargins]} />
       </View>
