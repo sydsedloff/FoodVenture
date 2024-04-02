@@ -51,6 +51,7 @@ export default function SavedRestaurantScreen({ navigation }) {
               website={item.website}
               navigation={navigation}
               star_rating={item.star_rating}
+              restaurantId={item.id}
             />
           )}
           keyExtractor={(item) => item.restaurantId}
