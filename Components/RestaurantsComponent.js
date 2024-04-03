@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, Pressable, Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -143,8 +144,8 @@ const Restaurants = ({
         <RatingImage star_rating={star_rating} />
       </Pressable>
       <Pressable
-        onPress={() =>
-          navigation.navigate("RestaurantScreen", { restaurantId })
+        onPress={
+          handlePress
         }
       >
         <Image
