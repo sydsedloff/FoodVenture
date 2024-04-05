@@ -10,6 +10,8 @@ import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import ProfileScreen from "./ProfileScreen";
+import ChoosePfpScreen from "./ChoosePfpScreen";
+import { Colors } from "../colors";
 
 export default function EditProfileScreen({ navigation }) {
   const [userData, setUserData] = useState(null);
@@ -66,7 +68,7 @@ export default function EditProfileScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={[{height: "100%"}]}>
+    <SafeAreaView style={[{ height: "100%" }]}>
       <SafeAreaView style={[styles.headerContainer]}>
         <Pressable onPress={() => navigation.goBack()}>
           <Image
@@ -85,6 +87,11 @@ export default function EditProfileScreen({ navigation }) {
             source={{ uri: userData.profilePicture }}
           />
         )}
+        <Pressable onPress={() => navigation.navigate(ChoosePfpScreen)}>
+          <Text style={[styles.merri17, { color: Colors.red }]}>
+            Edit Profile Picture
+          </Text>
+        </Pressable>
         {userData && (
           <View style={[styles.textInputContainer, styles.width80]}>
             <View>
