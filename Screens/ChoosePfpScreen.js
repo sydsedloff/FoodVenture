@@ -20,13 +20,7 @@ export default function ChoosePfpScreen({ navigation }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            dietaryRestrictions: {
-              glutenFree: isGlutenFree,
-              kosher: isKosher,
-              pescatarian: isPescatarian,
-              vegan: isVegan,
-              vegetarian: isVegetarian,
-            },
+            profilePicture,
           }),
         }
       );
@@ -43,7 +37,7 @@ export default function ChoosePfpScreen({ navigation }) {
   }
 
   async function updateProfilePicture() {
-    console.log();
+    console.log(profilePicture);
     await saveProfilePicture();
     navigation.navigate(HomeScreen);
   }
@@ -87,107 +81,174 @@ export default function ChoosePfpScreen({ navigation }) {
           <View style={[styles.contentSeperatorContainer]}>
             <View style={[styles.line, styles.bottomMargins]} />
           </View>
-          <Text style={[styles.paragraph.centered, styles.bottomMargins, {fontSize:24}]}>
+          <Text
+            style={[
+              styles.paragraph.centered,
+              styles.bottomMargins,
+              { fontSize: 24 },
+            ]}
+          >
             Choose your Taste Buddy!
           </Text>
 
           {/* PROFILE PICTURES */}
           <View>
-
             <View style={[styles.horizontalAlign, styles.width100]}>
               {/* LEFT COLUMN */}
               <View>
-            <Pressable
-                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/chopstick_profile.svg")}
-              >
-                <Image
-                  style={[styles.tasteBuddies]}
-                  source={require("../assets/pfp/chopstick_profile.svg")}
-                />
-                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Chopsticks</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/profileFork.png")}
-              >
-                <Image
-                  style={[styles.tasteBuddies]}
-                  source={require("../assets/pfp/profileFork.png")}
-                />
-                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Fork</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/knifeProfileIcon.png")}
-              >
-                <Image
-                  style={[styles.tasteBuddies]}
-                  source={require("../assets/pfp/knifeProfileIcon.png")}
-                />
-                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Knife</Text>
-              </Pressable>
+                <Pressable
+                  style={[
+                    styles.horizontalAlign,
+                    styles.sideBuffer,
+                    { paddingBottom: "10%" },
+                  ]}
+                  onPress={() =>
+                    setTasteBuddy(
+                      "https://raw.githubusercontent.com/sydsedloff/FoodVenture/06ce0f0c1f0f8bbb01f28338766b1bf3d8d36d94/assets/pfp/chopstick_profile.svg"
+                    )
+                  }
+                >
+                  <Image
+                    style={[styles.tasteBuddies]}
+                    source={require("../assets/pfp/chopstick_profile.svg")}
+                  />
+                  <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
+                    Chopsticks
+                  </Text>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.horizontalAlign,
+                    styles.sideBuffer,
+                    { paddingBottom: "10%" },
+                  ]}
+                  onPress={() =>
+                    setTasteBuddy(
+                      "https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/profileFork.png?raw=true"
+                    )
+                  }
+                >
+                  <Image
+                    style={[styles.tasteBuddies]}
+                    source={require("../assets/pfp/profileFork.png")}
+                  />
+                  <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
+                    Fork
+                  </Text>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.horizontalAlign,
+                    styles.sideBuffer,
+                    { paddingBottom: "10%" },
+                  ]}
+                  onPress={() =>
+                    setTasteBuddy(
+                      "https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/knifeProfileIcon.png?raw=true"
+                    )
+                  }
+                >
+                  <Image
+                    style={[styles.tasteBuddies]}
+                    source={require("../assets/pfp/knifeProfileIcon.png")}
+                  />
+                  <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
+                    Knife
+                  </Text>
+                </Pressable>
               </View>
-              
+
               {/* RIGHT COLUMN */}
               <View>
                 <Pressable
-                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/profileSpoon.png")}
-              >
-                <Image
-                  style={[styles.tasteBuddies]}
-                  source={require("../assets/pfp/profileSpoon.png")}
-                />
-                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Spoon</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/sporkProfileIcon.png")}
-              >
-                <Image
-                  style={[styles.tasteBuddies]}
-                  source={require("../assets/pfp/sporkProfileIcon.png")}
-                />
-                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Spork</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.horizontalAlign, styles.sideBuffer, {paddingBottom:"10%"}]}
-              onPress={() => setTasteBuddy("https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/straws-profile.svg")}
-              >
-                <Image
-                  style={[styles.tasteBuddies]}
-                  source={require("../assets/pfp/straws-profile.svg")}
-                />
-                <Text style={[styles.merri19Bold, {paddingLeft:"2%"}]}>Straws</Text>
-              </Pressable>
+                  style={[
+                    styles.horizontalAlign,
+                    styles.sideBuffer,
+                    { paddingBottom: "10%" },
+                  ]}
+                  onPress={() =>
+                    setTasteBuddy(
+                      "https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/profileSpoon.png?raw=true"
+                    )
+                  }
+                >
+                  <Image
+                    style={[styles.tasteBuddies]}
+                    source={require("../assets/pfp/profileSpoon.png")}
+                  />
+                  <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
+                    Spoon
+                  </Text>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.horizontalAlign,
+                    styles.sideBuffer,
+                    { paddingBottom: "10%" },
+                  ]}
+                  onPress={() =>
+                    setTasteBuddy(
+                      "https://github.com/sydsedloff/FoodVenture/blob/main/assets/pfp/sporkProfileIcon.png"
+                    )
+                  }
+                >
+                  <Image
+                    style={[styles.tasteBuddies]}
+                    source={require("../assets/pfp/sporkProfileIcon.png")}
+                  />
+                  <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
+                    Spork
+                  </Text>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.horizontalAlign,
+                    styles.sideBuffer,
+                    { paddingBottom: "10%" },
+                  ]}
+                  onPress={() =>
+                    setTasteBuddy(
+                      "https://raw.githubusercontent.com/sydsedloff/FoodVenture/06ce0f0c1f0f8bbb01f28338766b1bf3d8d36d94/assets/pfp/straws-profile.svg"
+                    )
+                  }
+                >
+                  <Image
+                    style={[styles.tasteBuddies]}
+                    source={require("../assets/pfp/straws-profile.svg")}
+                  />
+                  <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
+                    Straws
+                  </Text>
+                </Pressable>
               </View>
-
             </View>
 
-            <View style={[styles.horizontalAlign]}>
-
-            </View>
+            <View style={[styles.horizontalAlign]}></View>
           </View>
-<View style={[styles.tasteBuddies]}>
-  {/* SPACER */}
-</View>
-
-        </View><Pressable
-            style={[styles.buttonLarge.r, styles.topMargins, styles.horizontalAlign, styles.justifySpaceBetween, {alignSelf:"flex-end", marginRight:"5%", width:"35%", paddingRight:"5%", paddingLeft:"5%"}]}
-            onPress={() => updateProfilePicture()}
-          >
-            <Text
-              style={[styles.buttonLargeText.y]}
-              
-            >
-              Done
-            </Text>
-            <Image
-                  style={[{height: 25, width: 25}]}
-                  source={require("../assets/checkYellow.png")}
-                />
-          </Pressable>
+          <View style={[styles.tasteBuddies]}>{/* SPACER */}</View>
+        </View>
+        <Pressable
+          style={[
+            styles.buttonLarge.r,
+            styles.topMargins,
+            styles.horizontalAlign,
+            styles.justifySpaceBetween,
+            {
+              alignSelf: "flex-end",
+              marginRight: "5%",
+              width: "35%",
+              paddingRight: "5%",
+              paddingLeft: "5%",
+            },
+          ]}
+          onPress={() => updateProfilePicture()}
+        >
+          <Text style={[styles.buttonLargeText.y]}>Done</Text>
+          <Image
+            style={[{ height: 25, width: 25 }]}
+            source={require("../assets/checkYellow.png")}
+          />
+        </Pressable>
       </ImageBackground>
     </View>
   );
