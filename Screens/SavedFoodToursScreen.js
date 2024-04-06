@@ -1,16 +1,17 @@
-import React from "react";
-import { View, Text, Image, SafeAreaView, Pressable } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, Image, Pressable, SafeAreaView } from "react-native";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Linking } from "react-native";
-import axios from "axios";
+import RatingImage from "../Components/RatingImageComponent";
 
+// Define the RestaurantSingle component
 const RestaurantSingle = ({
   name,
   image,
   address,
+  description,
   website,
   myMealName,
   onSwapPress,
@@ -72,49 +73,33 @@ const RestaurantSingle = ({
 
 export default function SavedFoodToursScreen({ navigation, route }) {
   const mealNames = ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks"];
-  useEffect(() => {
-    async function fetchSavedTours() {
-      try {
-        const userEmail = await AsyncStorage.getItem("userEmail");
-        const response = await axios.get(
-          `http://localhost:3000/api/${userEmail}/savedTours`
-        );
-        if (response.status === 200) {
-          setSavedTours(response.data.savedTours);
-        }
-      } catch (error) {
-        console.log("Error fetching saved tours:", error);
-      }
-    }
+  const { tour } = route.params;
 
-    fetchSavedTours();
+  useEffect(() => {
+    async function fetchSavedTour() {
+      const savedFoodTours = await AsyncStorage.getItem("savedFoodTours");
+      // Handle your savedFoodTours data here if needed
+    }
+    fetchSavedTour();
   }, []);
 
   return (
     <View>
       <HeaderComponent />
       <View style={[styles.container]}>
-        <Text style={[styles.pageHeaders]}>Saved Food Tour</Text>
-        <Pressable>
-          <Image
-            style={[styles.icon]}
-            source={require("../assets/save.png")}
-          ></Image>
-        </Pressable>
-        <View style={[styles.container]}>
-          {selectedRestaurants.map((restaurant, index) => (
+        {Object.keys(tour)
+          .slice(0, 5)
+          .map((key, index) => (
             <RestaurantSingle
               key={index}
-              name={restaurant.name}
-              image={restaurant.image_url}
-              address={restaurant.location.display_address.join(", ")}
-              description={`Rating: ${restaurant.rating}`}
-              website={restaurant.url}
+              name={tour[key].name}
+              image={tour[key].image}
+              address={tour[key].address}
+              description={tour[key].description}
+              website={tour[key].website}
               myMealName={mealNames[index % mealNames.length]}
-              onSwapPress={() => handleSwap(index)}
             />
           ))}
-        </View>
       </View>
       <NavigationBar />
     </View>
