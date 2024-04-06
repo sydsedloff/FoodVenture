@@ -247,6 +247,24 @@ app.post("/api/:userEmail/:savedTours", async (req, res) => {
   }
 });
 
+//FIND SAVED FOOD TOURS
+app.get("/api/:userEmail/savedTours", async (req, res) => {
+  const userEmail = req.params.userEmail;
+
+  try {
+    const user = await collection.findOne({ email: userEmail });
+
+    if (user) {
+      res.status(200).json({ savedTours: user.savedTours });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.log("Error fetching saved tours:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.post("/api/fakeProfiles", async (req, res) => {
   const newUser = req.body;
   const result = await collection.insertOne(newUser);
