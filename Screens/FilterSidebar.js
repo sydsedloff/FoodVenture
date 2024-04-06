@@ -15,7 +15,6 @@ import styles from "../styles";
 export default function FilterSidebar({ navigation }) {
   // DIETARY RESTRICTIONS
   const [isGlutenFree, setGlutenFree] = useState(false);
-  const [isKosher, setKosher] = useState(false);
   const [isPescatarian, setPescatarian] = useState(false);
   const [isVegan, setVegan] = useState(false);
   const [isVegetarian, setVegetarian] = useState(false);
@@ -53,7 +52,6 @@ export default function FilterSidebar({ navigation }) {
     // Prepare the filter data
     const filterData = {
       isGlutenFree,
-      isKosher,
       isPescatarian,
       isVegan,
       isVegetarian,
@@ -183,22 +181,6 @@ export default function FilterSidebar({ navigation }) {
               <Text style={[styles.checkBoxText, styles.bold]}>
                 Gluten Free
               </Text>
-            </Pressable>
-            <Pressable
-              style={[
-                styles.horizontalAlign,
-                styles.bottomMargins,
-                styles.width50,
-              ]}
-              onPress={() => setKosher(!isKosher)}
-            >
-              <Checkbox
-                style={styles.checkbox}
-                value={isKosher}
-                onValueChange={setKosher}
-                color={isKosher ? Colors.red : undefined}
-              />
-              <Text style={[styles.checkBoxText, styles.bold]}>Kosher</Text>
             </Pressable>
             <Pressable
               style={[
