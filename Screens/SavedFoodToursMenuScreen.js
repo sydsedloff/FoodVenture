@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
-import SavedFoodToursScreen from "./SavedFoodToursScreen";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import axios from "axios";
@@ -18,7 +17,13 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
           `http://localhost:3000/api/${userEmail}/savedTours`
         );
         if (response.status === 200) {
+          await AsyncStorage.setItem(
+            "savedFoodTours",
+            JSON.stringify(response.data.savedTours)
+          );
           setSavedTours(response.data.savedTours);
+          console.log(response.data);
+          console.log(savedTours);
         }
       } catch (error) {
         console.log("Error fetching saved tours:", error);
@@ -28,10 +33,14 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
     fetchSavedTours();
   }, []);
 
+  const handleTourPress = (tour) => {
+    console.log(tour);
+    navigation.navigate("SavedFoodToursScreen", { tour });
+  };
+
   return (
     <View style={{ flex: 1 }}>
-      <HeaderComponent navigation={navigation}></HeaderComponent>
-
+      <HeaderComponent navigation={navigation} />
       <View style={styles.container}>
         <Text style={[styles.pageHeaders, styles.bottomMargins]}>
           Saved Food Tours
@@ -40,15 +49,13 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
           <Pressable
             key={index}
             style={styles.contentContainer.red}
-            onPress={() =>
-              navigation.navigate(SavedFoodToursScreen, { tour: tour })
-            }
+            onPress={() => handleTourPress(tour)}
           >
             <Text style={[styles.pageHeaders]}>Tour #{index + 1}</Text>
             <Image
               source={require("../assets/binoculars.png")}
               style={[styles.savedPageIcons]}
-            ></Image>
+            />
           </Pressable>
         ))}
       </View>
