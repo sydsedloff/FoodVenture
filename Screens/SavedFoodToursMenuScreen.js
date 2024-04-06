@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, Image, View, Pressable } from "react-native";
 import styles from "../styles";
-import SavedRestaurantScreen from "./SavedRestaurantsScreen";
 import SavedFoodToursScreen from "./SavedFoodToursScreen";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";

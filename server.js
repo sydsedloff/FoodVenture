@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
+const { ObjectId } = require("mongodb");
 const axios = require("axios");
 require("dotenv").config(); //get api key from .env
 const app = express();
@@ -230,9 +231,12 @@ app.post("/api/:userEmail/:savedTours", async (req, res) => {
   const savedTours = req.body.savedTours;
 
   try {
+    // Generate a unique ObjectId for the food tour
+    const tourId = new ObjectId();
+
     const result = await collection.findOneAndUpdate(
       { email: userEmail },
-      { $push: { savedTours: savedTours } },
+      { $push: { savedTours: { _id: tourId, ...savedTours } } }, // Include the generated ObjectId in the saved tour document
       { returnOriginal: false }
     );
 
@@ -240,6 +244,8 @@ app.post("/api/:userEmail/:savedTours", async (req, res) => {
       res
         .status(200)
         .json({ message: "Tours saved successfully", user: result.value });
+    } else {
+      throw new Error("User not found");
     }
   } catch (error) {
     console.log("Error saving tours:", error);
