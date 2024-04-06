@@ -11,9 +11,8 @@ import { Colors } from "../colors";
 import Checkbox from "expo-checkbox";
 import HeaderComponent from "../Components/HeaderComponent";
 import styles from "../styles";
-import HomeScreen from "./HomeScreen";
 
-export default function FilterSidebar({ navigation }) {
+export default function GenerateFoodTourScreen({ navigation }) {
   // DIETARY RESTRICTIONS
   const [isGlutenFree, setGlutenFree] = useState(false);
   const [isKosher, setKosher] = useState(false);
@@ -81,7 +80,7 @@ export default function FilterSidebar({ navigation }) {
 
     // Convert filterData to query parameters
     const queryParams = new URLSearchParams(filterData).toString();
-
+    console.log("Query Params: ", queryParams);
     // Navigate to HomeScreen and pass the filter data
     navigation.navigate("YourFoodTourScreen", { filterData: queryParams });
   };

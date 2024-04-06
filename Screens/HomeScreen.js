@@ -6,6 +6,7 @@ import {
   View,
   FlatList,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 import styles from "../styles";
@@ -17,110 +18,55 @@ import Restaurants from "../Components/RestaurantsComponent";
 export default function HomeScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [filterIcon, setFilterIcon] = useState(require("../assets/filter.png"));
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+
+  const { filterData } = route.params || {};
+  console.log("Received filter data:", filterData);
 
   useEffect(() => {
     async function getRestaurantData() {
-      console.log("Fetching restaurant data...");
+      setIsLoading(true); // Start loading
       try {
-        const uniqueRestaurantIds = new Set();
-        const restaurantDataArray = [];
-        // Make separate API calls for each dietary restriction
-        const responses = await Promise.all([
-          axios.get("http://localhost:3000/api/searchRestaurants/", {
-            params: { term: "food" },
-          }),
-          axios.get("http://localhost:3000/api/searchRestaurants/gluten_free", {
-            params: { term: "gluten free" },
-          }),
-          axios.get("http://localhost:3000/api/searchRestaurants/pescatarian", {
-            params: { term: "pescatarian" },
-          }),
-          axios.get("http://localhost:3000/api/searchRestaurants/vegan", {
-            params: { term: "vegan" },
-          }),
-          axios.get("http://localhost:3000/api/searchRestaurants/vegetarian", {
-            params: { term: "vegetarian" },
-          }),
-        ]);
-
-        responses.forEach((response) => {
-          response.data.businesses.forEach((restaurant) => {
-            if (!uniqueRestaurantIds.has(restaurant.id)) {
-              uniqueRestaurantIds.add(restaurant.id);
-              restaurantDataArray.push(restaurant);
-            }
-          });
-        });
-        console.log("Response received:", restaurantDataArray);
-        setRestaurantData(restaurantDataArray);
+        const response = await axios.get(
+          `http://localhost:3000/api/searchRestaurants?${filterData}`
+        );
+        console.log(
+          "API call URL:",
+          `http://localhost:3000/api/searchRestaurants?${filterData}`
+        );
+        if (response.status === 200) {
+          console.log("API response data:", response.data);
+          const allRestaurants = response.data.businesses;
+          setRestaurantData(allRestaurants);
+        }
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
+      } finally {
+        setIsLoading(false); // End loading
       }
     }
+
     getRestaurantData();
-  }, []);
-
-  const { filterData } = route.params || {};
-  const restaurantResults = restaurantData;
-
-  function filterRestaurants(restaurants, filterData) {
-    if (!filterData) {
-      return restaurants;
-    }
-
-    const allFiltersFalse = Object.values(filterData).every((value) => !value);
-    if (allFiltersFalse) {
-      return restaurants;
-    }
-    return restaurants.filter((restaurant) => {
-      if (
-        filterData.selectedButton &&
-        restaurant.price !== filterData.selectedButton
-      ) {
-        return false;
-      }
-      if (
-        !restaurant.categories.some(
-          (category) =>
-            (filterData.isAmerican && category.title === "American") ||
-            (filterData.isJapanese && category.title === "Japanese") ||
-            (filterData.isIndian && category.title === "Indian") ||
-            (filterData.isCaribbean && category.title === "Caribbean") ||
-            (filterData.isKorean && category.title === "Korean") ||
-            (filterData.isFrench && category.title === "French") ||
-            (filterData.isBBQ && category.title === "BBQ") ||
-            (filterData.isItalian && category.title === "Italian") ||
-            (filterData.isChinese && category.title === "Chinese") ||
-            (filterData.isGreek && category.title === "Greek") ||
-            (filterData.isMexican && category.title === "Mexican") ||
-            (filterData.isThai && category.title === "Thai") ||
-            (filterData.isSeafood && category.title === "Seafood") ||
-            (filterData.isPizza && category.title === "Pizza")
-        )
-      ) {
-        return false;
-      }
-      const distanceInMiles = restaurant.distance / 1609.34;
-      if (
-        (filterData.isDistance0_10 && distanceInMiles > 10) ||
-        (filterData.isDistance12_30 &&
-          (distanceInMiles < 12 || distanceInMiles > 30)) ||
-        (filterData.isDistance11_20 &&
-          (distanceInMiles < 11 || distanceInMiles > 20)) ||
-        (filterData.isDistance31_plus && distanceInMiles <= 31)
-      ) {
-        return false;
-      }
-
-      return true;
-    });
-  }
-  const filteredRestaurants = filterRestaurants(restaurantResults, filterData);
+  }, [filterData]);
 
   useEffect(() => {
-    if (filterData) {
+    // Parse the filterData string into an object
+    const filters = new URLSearchParams(filterData);
+    const filtersObject = {};
+    for (const [key, value] of filters.entries()) {
+      filtersObject[key] = value === "true";
+    }
+
+    // Check if any filter (excluding selectedButton) is true
+    const isAnyFilterTrue = Object.keys(filtersObject).some(
+      (key) => key !== "selectedButton" && filtersObject[key]
+    );
+
+    if (isAnyFilterTrue) {
+      console.log("Filter data is present, updating filter icon.");
       setFilterIcon(require("../assets/filterFilled.png"));
     } else {
+      console.log("No filter data, resetting filter icon.");
       setFilterIcon(require("../assets/filter.png"));
     }
   }, [filterData]);
@@ -153,9 +99,11 @@ export default function HomeScreen({ navigation, route }) {
             <Image source={filterIcon} style={[styles.smallerIcons]} />
           </Pressable>
         </View>
-        {filteredRestaurants ? (
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#9a0000" />
+        ) : (
           <FlatList
-            data={filteredRestaurants}
+            data={restaurantData}
             renderItem={({ item }) => (
               <Restaurants
                 name={item.name}
@@ -172,8 +120,6 @@ export default function HomeScreen({ navigation, route }) {
             )}
             keyExtractor={(item) => item.id}
           />
-        ) : (
-          <Text>Loading...</Text>
         )}
       </View>
       <NavigationBar />

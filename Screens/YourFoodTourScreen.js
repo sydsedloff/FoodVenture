@@ -74,7 +74,6 @@ const RestaurantSingle = ({
 };
 
 export default function YourFoodTourScreen({ navigation, route }) {
-  const { filterData } = route.params || {};
   const [restaurantData, setRestaurantData] = useState([]);
   const [selectedRestaurants, setSelectedRestaurants] = useState([]);
   const [tourSaved, setTourSaved] = useState(false);
