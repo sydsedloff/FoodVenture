@@ -23,9 +23,8 @@ export default class User {
 }
 
 export class DietaryRestrictions {
-  constructor(glutenFree, kosher, pescatarian, vegan, vegetarian) {
+  constructor(glutenFree, pescatarian, vegan, vegetarian) {
     this.glutenFree = glutenFree;
-    this.kosher = kosher;
     this.pescatarian = pescatarian;
     this.vegan = vegan;
     this.vegetarian = vegetarian;

@@ -15,7 +15,6 @@ import ProfileScreen from "./ProfileScreen";
 
 export default function EditDietaryRestrictionsScreen({ navigation }) {
   const [isGlutenFree, setGlutenFree] = useState(false);
-  const [isKosher, setKosher] = useState(false);
   const [isPescatarian, setPescatarian] = useState(false);
   const [isVegan, setVegan] = useState(false);
   const [isVegetarian, setVegetarian] = useState(false);
@@ -63,18 +62,6 @@ export default function EditDietaryRestrictionsScreen({ navigation }) {
                 <Text style={[styles.checkBoxText, styles.bold]}>
                   Gluten Free
                 </Text>
-              </Pressable>
-              <Pressable
-                style={[styles.checkboxContainer, styles.bottomMargins]}
-                onPress={() => setKosher(!isKosher)}
-              >
-                <Checkbox
-                  style={styles.checkbox}
-                  value={isKosher}
-                  onValueChange={setKosher}
-                  color={isKosher ? Colors.red : undefined}
-                />
-                <Text style={[styles.checkBoxText, styles.bold]}>Kosher</Text>
               </Pressable>
               <Pressable
                 style={[styles.checkboxContainer, styles.bottomMargins]}
