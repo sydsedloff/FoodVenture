@@ -87,17 +87,19 @@ export default function SavedFoodToursScreen({ navigation, route }) {
     <View>
       <HeaderComponent />
       <View style={[styles.container]}>
-        {Object.keys(tour).map((key, index) => (
-          <RestaurantSingle
-            key={index}
-            name={tour[key].name}
-            image={tour[key].image}
-            address={tour[key].address}
-            description={tour[key].description}
-            website={tour[key].website}
-            myMealName={mealNames[index % mealNames.length]}
-          />
-        ))}
+        {Object.keys(tour)
+          .slice(0, 5)
+          .map((key, index) => (
+            <RestaurantSingle
+              key={index}
+              name={tour[key].name}
+              image={tour[key].image}
+              address={tour[key].address}
+              description={tour[key].description}
+              website={tour[key].website}
+              myMealName={mealNames[index % mealNames.length]}
+            />
+          ))}
       </View>
       <NavigationBar />
     </View>
