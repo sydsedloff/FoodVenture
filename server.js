@@ -57,8 +57,6 @@ app.get("/api/searchRestaurants", async (req, res) => {
     }
   });
 
-  console.log(modifiedTerm);
-
   try {
     const response = await axios.get(
       "https://api.yelp.com/v3/businesses/search?sort_by=best_match&limit=50",

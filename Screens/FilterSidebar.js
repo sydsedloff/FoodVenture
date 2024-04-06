@@ -11,7 +11,6 @@ import { Colors } from "../colors";
 import Checkbox from "expo-checkbox";
 import HeaderComponent from "../Components/HeaderComponent";
 import styles from "../styles";
-import HomeScreen from "./HomeScreen";
 
 export default function FilterSidebar({ navigation }) {
   // DIETARY RESTRICTIONS
@@ -79,8 +78,11 @@ export default function FilterSidebar({ navigation }) {
       selectedButton,
     };
 
+    // Convert filterData to query parameters
+    const queryParams = new URLSearchParams(filterData).toString();
+
     // Navigate to HomeScreen and pass the filter data
-    navigation.navigate("HomeScreen", { filterData });
+    navigation.navigate("HomeScreen", { filterData: queryParams });
   };
 
   return (
