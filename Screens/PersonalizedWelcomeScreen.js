@@ -9,7 +9,6 @@ import ChoosePfpScreen from "./ChoosePfpScreen";
 
 export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isGlutenFree, setGlutenFree] = useState(false);
-  const [isKosher, setKosher] = useState(false);
   const [isPescatarian, setPescatarian] = useState(false);
   const [isVegan, setVegan] = useState(false);
   const [isVegetarian, setVegetarian] = useState(false);
@@ -27,7 +26,6 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
           body: JSON.stringify({
             dietaryRestrictions: {
               glutenFree: isGlutenFree,
-              kosher: isKosher,
               pescatarian: isPescatarian,
               vegan: isVegan,
               vegetarian: isVegetarian,
@@ -50,7 +48,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
   }
 
   async function updateDietRestrictions() {
-    console.log(isGlutenFree, isKosher, isPescatarian, isVegan, isVegetarian);
+    console.log(isGlutenFree, isPescatarian, isVegan, isVegetarian);
     await saveDietRestrictions();
     navigation.navigate(ChoosePfpScreen);
   }
@@ -109,18 +107,6 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
                 color={isGlutenFree ? Colors.red : undefined}
               />
               <Text style={[styles.checkBoxText]}>Gluten Free</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.checkboxContainer]}
-              onPress={() => setKosher(!isKosher)}
-            >
-              <Checkbox
-                style={styles.checkbox}
-                value={isKosher}
-                onValueChange={setKosher}
-                color={isKosher ? Colors.red : undefined}
-              />
-              <Text style={styles.checkBoxText}>Kosher</Text>
             </Pressable>
             <Pressable
               style={[styles.checkboxContainer]}
