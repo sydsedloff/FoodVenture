@@ -6,6 +6,8 @@ import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import RatingImage from "../Components/RatingImageComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SavedFoodToursMenuScreen from "./SavedFoodToursMenuScreen";
+import { Colors } from "../colors";
 
 const RestaurantSingle = ({
   name,
@@ -75,6 +77,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
   const { filterData } = route.params || {};
   const [restaurantData, setRestaurantData] = useState([]);
   const [selectedRestaurants, setSelectedRestaurants] = useState([]);
+  const [tourSaved, setTourSaved] = useState(false);
   const mealNames = ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks"];
 
   useEffect(() => {
@@ -128,7 +131,8 @@ export default function YourFoodTourScreen({ navigation, route }) {
       }));
 
       console.log("filtered restaurants:", restaurantsArray);
-
+      setTourSaved(true);
+      console.log(tourSaved);
       // Update the database with the new tour data
       const response = await fetch(
         `http://localhost:3000/api/${userEmail}/${restaurantsArray}`,
@@ -158,22 +162,42 @@ export default function YourFoodTourScreen({ navigation, route }) {
     <View>
       <HeaderComponent />
       <View style={[styles.container]}>
-        <Text style={[styles.pageHeaders]}>Your Food Tour</Text>
-        <Pressable
-          style={[
-            styles.buttonLarge.y,
-            styles.horizontalAlign,
-            styles.width70,
-            styles.contentJustify,
-          ]}
-          onPress={() => saveTour()}
-        >
-          <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
-          <Image
-            style={[styles.icon]}
-            source={require("../assets/save.png")}
-          ></Image>
-        </Pressable>
+        {tourSaved ? (
+          <View>
+            <Text style={[styles.buttonLargeText.y]}>
+              Your food tour has been saved
+            </Text>
+            <Pressable
+              onPress={() => navigation.navigate(SavedFoodToursMenuScreen)}
+            >
+              <Text
+                style={[
+                  styles.alignSelfCenter,
+                  styles.merri17,
+                  { color: Colors.red, textDecorationLine: "underline" },
+                ]}
+              >
+                View Saved Food Tours
+              </Text>
+            </Pressable>
+          </View>
+        ) : (
+          <Pressable
+            style={[
+              styles.buttonLarge.y,
+              styles.horizontalAlign,
+              styles.width70,
+              styles.contentJustify,
+            ]}
+            onPress={() => saveTour()}
+          >
+            <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
+            <Image
+              style={[styles.icon]}
+              source={require("../assets/save.png")}
+            ></Image>
+          </Pressable>
+        )}
 
         <View style={[styles.container]}>
           {selectedRestaurants.map((restaurant, index) => (
