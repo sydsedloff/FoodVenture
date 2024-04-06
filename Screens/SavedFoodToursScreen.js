@@ -1,30 +1,73 @@
 import React, { useEffect } from "react";
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, SafeAreaView } from "react-native";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import RatingImage from "../Components/RatingImageComponent";
 
 // Define the RestaurantSingle component
 const RestaurantSingle = ({
   name,
   image,
   address,
-  website,
   description,
+  website,
   myMealName,
+  onSwapPress,
 }) => {
   return (
-    <View style={[styles.container, styles.restaurantContainer]}>
-      <Text style={styles.restaurantName}>{name}</Text>
-      <Image source={{ uri: image }} style={styles.restaurantImage} />
-      <Text style={styles.restaurantAddress}>{address}</Text>
-      <Text style={styles.restaurantDescription}>{description}</Text>
+    <SafeAreaView
+      style={[
+        styles.container,
+        styles.alignItemsLeft,
+        styles.contentContainer.sharpCorner,
+        styles.alignItemsLeft,
+        styles.width80,
+      ]}
+    >
+      <Text style={[styles.signa32, styles.bold]}>{myMealName}</Text>
+      <Image
+        source={{ uri: image }}
+        style={[styles.image, styles.alignSelfCenter]}
+      ></Image>
+      <View
+        style={[
+          styles.horizontalAlign,
+          styles.justifySpaceBetween,
+          styles.width100,
+        ]}
+      >
+        <Text style={[styles.signa24, styles.bold]}>{name}</Text>
+        <RatingImage
+          star_rating={4}
+          style={{ position: "relative", zIndex: 1, opacity: 1 }}
+        />
+      </View>
+      <Text style={[styles.dollarText, styles.lessBottomMargins]}>
+        {address}
+      </Text>
+
       <Pressable onPress={() => Linking.openURL(website)}>
         <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
       </Pressable>
-      <Text style={styles.mealName}>{myMealName}</Text>
-    </View>
+      <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+        <Pressable style={[styles.horizontalAlign]} onPress={onSwapPress}>
+          <Image
+            source={require("../assets/switchRed.png")}
+            style={[styles.smallerIcons]}
+          ></Image>
+          <Text style={[styles.merri17]}>Swap</Text>
+        </Pressable>
+        <Pressable style={[styles.horizontalAlign]}>
+          <Text style={[styles.merri17]}>Delete</Text>
+          <Image
+            source={require("../assets/trash.png")}
+            style={[styles.smallerIcons]}
+          ></Image>
+        </Pressable>
+      </View>
+    </SafeAreaView>
   );
 };
 
