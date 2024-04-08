@@ -71,6 +71,9 @@ export default function HomeScreen({ navigation, route }) {
     }
   }, [filterData]);
 
+  // HomeScreen.js
+
+  // Inside the return statement of the HomeScreen component
   return (
     <View style={styles.container}>
       <HeaderComponent />
@@ -101,7 +104,7 @@ export default function HomeScreen({ navigation, route }) {
         </View>
         {isLoading ? (
           <ActivityIndicator size="large" color="#9a0000" />
-        ) : (
+        ) : restaurantData && restaurantData.length > 0 ? (
           <FlatList
             data={restaurantData}
             renderItem={({ item }) => (
@@ -120,6 +123,8 @@ export default function HomeScreen({ navigation, route }) {
             )}
             keyExtractor={(item) => item.id}
           />
+        ) : (
+          <Text style={styles.noResultsText}>No results found</Text>
         )}
       </View>
       <NavigationBar />

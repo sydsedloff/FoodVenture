@@ -39,6 +39,14 @@ const baseParagraphStyle = {
 
 export default StyleSheet.create({
   //TEXT
+  // styles.js or wherever your styles are defined
+
+  noResultsText: {
+    fontSize: 18,
+    textAlign: "center",
+    marginTop: 20,
+    color: "#9a0000", // Adjust the color as needed
+  },
 
   //Headers
   h1: {
@@ -278,7 +286,6 @@ export default StyleSheet.create({
     height: 58,
     width: 58,
     borderRadius: 100,
-
   },
   searchBarIcon: {
     height: 35,
