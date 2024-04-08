@@ -57,9 +57,6 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
 
 export default function RestaurantScreen({ navigation }) {
   const [restaurantData, setRestaurantData] = useState(null);
-  const [partySize, setPartySize] = useState(null);
-  const [mealTime, setMealTime] = useState(null);
-
   const [partySizeOpen, setPartySizeOpen] = useState(false);
   const [partySizeValue, setPartySizeValue] = useState(null);
   const [partySizeItems, setPartySizeItems] = useState([
@@ -138,6 +135,7 @@ export default function RestaurantScreen({ navigation }) {
                 setOpen={setMealTimeOpen} // Adjusted to toggle open state
                 setValue={setMealTimeValue}
                 setItems={setMealTimeItems} // Added to handle value change
+                dropDownDirection="TOP"
               />
             </View>
           </View>
