@@ -51,22 +51,6 @@ const RestaurantSingle = ({
       <Pressable onPress={() => Linking.openURL(website)}>
         <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
       </Pressable>
-      <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-        <Pressable style={[styles.horizontalAlign]} onPress={onSwapPress}>
-          <Image
-            source={require("../assets/switchRed.png")}
-            style={[styles.smallerIcons]}
-          ></Image>
-          <Text style={[styles.merri17]}>Swap</Text>
-        </Pressable>
-        <Pressable style={[styles.horizontalAlign]}>
-          <Text style={[styles.merri17]}>Delete</Text>
-          <Image
-            source={require("../assets/trash.png")}
-            style={[styles.smallerIcons]}
-          ></Image>
-        </Pressable>
-      </View>
     </SafeAreaView>
   );
 };
