@@ -56,24 +56,16 @@ const RestaurantSingle = ({
       <Text style={[styles.dollarText, styles.lessBottomMargins]}>
         {address}
       </Text>
-
       <Pressable onPress={() => Linking.openURL(website)}>
         <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
       </Pressable>
-      <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+      <View style={[styles.horizontalAlign, { justifyContent: "center" }]}>
         <Pressable style={[styles.horizontalAlign]} onPress={onSwapPress}>
           <Image
             source={require("../assets/switchRed.png")}
             style={[styles.smallerIcons]}
           ></Image>
           <Text style={[styles.merri17]}>Swap</Text>
-        </Pressable>
-        <Pressable style={[styles.horizontalAlign]}>
-          <Text style={[styles.merri17]}>Delete</Text>
-          <Image
-            source={require("../assets/trash.png")}
-            style={[styles.smallerIcons]}
-          ></Image>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -119,7 +111,54 @@ export default function YourFoodTourScreen({ navigation, route }) {
     getRestaurantData();
   }, []);
 
-  // Your existing functions and logic...
+  function handleSwap(index) {
+    const updatedSelectedRestaurants = [...selectedRestaurants];
+    const allRestaurants = restaurantData || [];
+    const newIndex = Math.floor(Math.random() * allRestaurants.length);
+    updatedSelectedRestaurants[index] = allRestaurants[newIndex];
+    setSelectedRestaurants(updatedSelectedRestaurants);
+  }
+
+  async function saveTour() {
+    try {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      console.log("user email is: " + userEmail);
+
+      const restaurantsArray = selectedRestaurants.map((restaurant) => ({
+        name: restaurant.name,
+        image: restaurant.image_url,
+        address: restaurant.location.display_address.join(", "),
+        description: `Rating: ${restaurant.rating}`,
+        website: restaurant.url,
+      }));
+
+      console.log("filtered restaurants:", restaurantsArray);
+      setTourSaved(true);
+      console.log(tourSaved);
+      // Update the database with the new tour data
+      const response = await fetch(
+        `http://localhost:3000/api/${userEmail}/${restaurantsArray}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userEmail: userEmail,
+            savedTours: restaurantsArray,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to save tour");
+      }
+
+      console.log("Tour saved successfully");
+    } catch (error) {
+      console.log("Error saving tour:", error);
+    }
+  }
 
   return (
     <View>
