@@ -59,6 +59,25 @@ export default function RestaurantScreen({ navigation }) {
   const [restaurantData, setRestaurantData] = useState(null);
   const [partySize, setPartySize] = useState(null);
   const [mealTime, setMealTime] = useState(null);
+
+  const [partySizeOpen, setPartySizeOpen] = useState(false);
+  const [partySizeValue, setPartySizeValue] = useState(null);
+  const [partySizeItems, setPartySizeItems] = useState([
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    { label: "4", value: "4" },
+    { label: "5", value: "5" },
+    { label: "6+", value: "6+" },
+  ]);
+  const [mealTimeOpen, setMealTimeOpen] = useState(false);
+  const [mealTimeValue, setMealTimeValue] = useState(null);
+  const [mealTimeItems, setMealTimeItems] = useState([
+    { label: "Breakfast", value: "Breakfast" },
+    { label: "Lunch", value: "Lunch" },
+    { label: "Dinner", value: "Dinner" },
+  ]);
+
   useEffect(() => {
     async function getSavedRestaurantData() {
       try {
@@ -103,32 +122,22 @@ export default function RestaurantScreen({ navigation }) {
             <View>
               <Text style={styles.merri19Bold}>Party Size</Text>
               <DropDownPicker
-                open={partySize !== null}
-                value={partySize}
-                items={[
-                  { label: "1", value: "1" },
-                  { label: "2", value: "2" },
-                  { label: "3", value: "3" },
-                  { label: "4", value: "4" },
-                  { label: "5", value: "5" },
-                  { label: "6+", value: "6+" },
-                ]}
-                setOpen={() => setPartySize(null)}
-                setValue={setPartySize}
-                setItems={() => {}}
+                open={partySizeOpen}
+                value={partySizeValue}
+                items={partySizeItems}
+                setOpen={setPartySizeOpen}
+                setValue={setPartySizeValue}
+                setItems={setPartySizeItems}
+                dropDownDirection="TOP"
               />
               <Text style={styles.merri19Bold}>Preferred Meal Time</Text>
               <DropDownPicker
-                open={mealTime !== null}
-                value={mealTime}
-                items={[
-                  { label: "Breakfast", value: "Breakfast" },
-                  { label: "Lunch", value: "Lunch" },
-                  { label: "Dinner", value: "Dinner" },
-                ]}
-                setOpen={() => setMealTime(null)}
-                setValue={setMealTime}
-                setItems={() => {}}
+                open={mealTimeOpen}
+                value={mealTimeValue}
+                items={mealTimeItems}
+                setOpen={setMealTimeOpen} // Adjusted to toggle open state
+                setValue={setMealTimeValue}
+                setItems={setMealTimeItems} // Added to handle value change
               />
             </View>
           </View>
