@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, Pressable, Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,6 +15,7 @@ const Restaurants = ({
   restaurantId,
 }) => {
   const [saved, setSaved] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const restaurantData = {
     name,
@@ -28,22 +28,29 @@ const Restaurants = ({
   };
 
   useEffect(() => {
-    const checkSavedStatus = async () => {
+    const fetchSavedRestaurants = async () => {
       try {
-        const serializedData = await AsyncStorage.getItem("savedRestaurants");
-        if (serializedData) {
-          const savedRestaurants = JSON.parse(serializedData);
-          const isSaved = savedRestaurants.some(
-            (restaurant) => restaurant.restaurantId === restaurantId
-          );
-          setSaved(isSaved);
+        const userEmail = await AsyncStorage.getItem("userEmail");
+        const response = await fetch(
+          `http://localhost:3000/api/userData/${userEmail}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch saved restaurants");
         }
+        const userData = await response.json();
+        const savedRestaurants = userData.savedRestaurants || [];
+        const isSaved = savedRestaurants.some(
+          (restaurant) => restaurant.restaurantId === restaurantId
+        );
+        setSaved(isSaved);
       } catch (error) {
-        console.error("Error checking saved status:", error);
+        console.error("Error fetching saved restaurants:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    checkSavedStatus();
+    fetchSavedRestaurants();
   }, [restaurantId]);
 
   async function saveRestaurantDB(restaurantData) {
@@ -143,11 +150,7 @@ const Restaurants = ({
         </View>
         <RatingImage star_rating={star_rating} />
       </Pressable>
-      <Pressable
-        onPress={
-          handlePress
-        }
-      >
+      <Pressable onPress={handlePress}>
         <Image
           source={image ? { uri: image } : placeholderImage}
           style={[
