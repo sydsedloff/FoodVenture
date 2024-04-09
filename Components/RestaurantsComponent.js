@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, Pressable, Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -17,27 +16,19 @@ const Restaurants = ({
 }) => {
   const [saved, setSaved] = useState(false);
 
-  const restaurantData = {
-    name,
-    image,
-    address,
-    description,
-    website,
-    star_rating,
-    restaurantId,
-  };
-
   useEffect(() => {
     const checkSavedStatus = async () => {
       try {
-        const serializedData = await AsyncStorage.getItem("savedRestaurants");
-        if (serializedData) {
-          const savedRestaurants = JSON.parse(serializedData);
-          const isSaved = savedRestaurants.some(
-            (restaurant) => restaurant.restaurantId === restaurantId
-          );
-          setSaved(isSaved);
+        const userEmail = await AsyncStorage.getItem("userEmail");
+
+        const response = await fetch(
+          `http://localhost:3000/api/checkSavedRestaurant/${userEmail}/${restaurantId}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch saved status");
         }
+        const data = await response.json();
+        setSaved(data.saved);
       } catch (error) {
         console.error("Error checking saved status:", error);
       }
@@ -46,11 +37,38 @@ const Restaurants = ({
     checkSavedStatus();
   }, [restaurantId]);
 
-  async function saveRestaurantDB(restaurantData) {
+  const handlePress = () => {
+    navigation.navigate("RestaurantScreen", { params: { restaurantId } });
+  };
+
+  const toggleSave = async () => {
+    try {
+      const restaurantData = {
+        name,
+        image,
+        address,
+        description,
+        website,
+        star_rating,
+        restaurantId,
+      };
+      if (saved) {
+        // If restaurant is already saved, unsave it
+        setSaved(false);
+        await unsaveRestaurant(restaurantId);
+      } else {
+        // If restaurant is not saved, save it
+        setSaved(true);
+        await saveRestaurantDB(restaurantData);
+      }
+    } catch (error) {
+      console.error("Error toggling save status:", error);
+    }
+  };
+
+  const saveRestaurantDB = async (restaurantData) => {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
-      console.log("user email is: " + userEmail);
-
       // Update the database with the new restaurant data
       const response = await fetch(
         `http://localhost:3000/api/saveRestaurant/${userEmail}`,
@@ -74,45 +92,27 @@ const Restaurants = ({
     } catch (error) {
       console.error("Error saving restaurant:", error);
     }
-  }
+  };
 
-  const saveRestaurant = async (restaurantData) => {
+  const unsaveRestaurant = async (restaurantId) => {
     try {
-      const serializedData = JSON.stringify(restaurantData);
-      await AsyncStorage.setItem("savedRestaurant", serializedData);
-      console.log("Restaurant saved successfully!");
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      const response = await fetch(
+        `http://localhost:3000/api/unsaveRestaurant/${userEmail}/${restaurantId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to unsave restaurant");
+      }
+      console.log("Restaurant unsaved successfully");
     } catch (error) {
-      console.error("Error saving restaurant:", error);
+      console.error("Error unsaving restaurant:", error);
     }
-  };
-
-  const handlePress = () => {
-    saveRestaurant(restaurantData);
-    navigation.navigate("RestaurantScreen", { params: { restaurantId } });
-  };
-
-  const toggleSave = async () => {
-    setSaved(!saved);
-    const {
-      name,
-      address,
-      description,
-      website,
-      star_rating,
-      restaurantId,
-      image,
-    } = restaurantData;
-    const dataToSave = {
-      name,
-      address,
-      description,
-      website,
-      star_rating,
-      restaurantId,
-      image,
-    };
-    console.log(image);
-    await saveRestaurantDB(dataToSave);
   };
 
   const placeholderImage = require("../assets/FoodVenturePlaceholder.png");
@@ -129,9 +129,7 @@ const Restaurants = ({
     >
       <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-          <Text style={[styles.signa28]} onPress={handlePress}>
-            {name}
-          </Text>
+          <Text style={[styles.signa28]}>{name}</Text>
           <Image
             style={[styles.icon]}
             source={
@@ -143,11 +141,7 @@ const Restaurants = ({
         </View>
         <RatingImage star_rating={star_rating} />
       </Pressable>
-      <Pressable
-        onPress={
-          handlePress
-        }
-      >
+      <Pressable onPress={handlePress}>
         <Image
           source={image ? { uri: image } : placeholderImage}
           style={[
