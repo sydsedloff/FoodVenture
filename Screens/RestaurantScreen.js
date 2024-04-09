@@ -111,7 +111,7 @@ export default function RestaurantScreen({ navigation }) {
           />
         )}
 
-        <View style={[styles.smallNegativeMargins, { marginTop: -180 }]}>
+        <View style={[styles.smallNegativeMargins, { marginTop: -170 }]}>
           <Text style={[styles.signa28, styles.width100, styles.bottomMargins]}>
             Request a reservation
           </Text>
@@ -127,7 +127,7 @@ export default function RestaurantScreen({ navigation }) {
                 setItems={setPartySizeItems}
                 dropDownDirection="TOP"
               />
-              <Text style={styles.merri19Bold}>Preferred Meal Time</Text>
+              <Text style={styles.merri19Bold}>Preferred Reservation Time</Text>
               <DropDownPicker
                 open={mealTimeOpen}
                 value={mealTimeValue}
