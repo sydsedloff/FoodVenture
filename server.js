@@ -226,6 +226,62 @@ app.post("/api/saveRestaurant/:userEmail", async (req, res) => {
   }
 });
 
+// UNSAVE RESTAURANT
+app.delete(
+  "/api/unsaveRestaurant/:userEmail/:restaurantId",
+  async (req, res) => {
+    const userEmail = req.params.userEmail;
+    const restaurantId = req.params.restaurantId;
+
+    try {
+      const result = await collection.findOneAndUpdate(
+        { email: userEmail },
+        { $pull: { savedRestaurants: { restaurantId: restaurantId } } },
+        { returnOriginal: false }
+      );
+
+      if (result.value) {
+        res
+          .status(200)
+          .json({
+            message: "Restaurant unsaved successfully",
+            user: result.value,
+          });
+      } else {
+        res.status(404).json({ error: "User not found" });
+      }
+    } catch (error) {
+      console.log("Error unsaving restaurant:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+);
+
+// CHECK IF RESTAURANT IS SAVED
+app.get(
+  "/api/checkSavedRestaurant/:userEmail/:restaurantId",
+  async (req, res) => {
+    const userEmail = req.params.userEmail;
+    const restaurantId = req.params.restaurantId;
+
+    try {
+      const user = await collection.findOne({ email: userEmail });
+      if (user) {
+        const savedRestaurant = user.savedRestaurants.find(
+          (restaurant) => restaurant.restaurantId === restaurantId
+        );
+        const saved = savedRestaurant ? true : false;
+        res.json({ saved: saved });
+      } else {
+        res.status(404).json({ error: "User not found" });
+      }
+    } catch (error) {
+      console.log("Error checking saved restaurant:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+);
+
 //SAVE FOOD TOUR
 app.post("/api/:userEmail/:savedTours", async (req, res) => {
   const userEmail = req.params.userEmail;
