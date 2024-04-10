@@ -16,6 +16,16 @@ const Restaurants = ({
 }) => {
   const [saved, setSaved] = useState(false);
 
+  const restaurantData = {
+    name,
+    image,
+    address,
+    description,
+    website,
+    star_rating,
+    restaurantId,
+  };
+
   useEffect(() => {
     const checkSavedStatus = async () => {
       try {
@@ -37,7 +47,18 @@ const Restaurants = ({
     checkSavedStatus();
   }, [restaurantId]);
 
+  const saveRestauranttoAsync = async (restaurantData) => {
+    try {
+      const serializedData = JSON.stringify(restaurantData);
+      await AsyncStorage.setItem("savedRestaurant", serializedData);
+      console.log("Restaurant saved successfully to async!");
+    } catch (error) {
+      console.error("Error saving restaurant to async:", error);
+    }
+  };
+
   const handlePress = () => {
+    saveRestauranttoAsync(restaurantData);
     navigation.navigate("RestaurantScreen", { params: { restaurantId } });
   };
 
@@ -129,7 +150,9 @@ const Restaurants = ({
     >
       <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-          <Text style={[styles.signa28]}>{name}</Text>
+          <Text style={[styles.signa28]} onPress={handlePress}>
+            {name}
+          </Text>
           <Image
             style={[styles.icon]}
             source={
