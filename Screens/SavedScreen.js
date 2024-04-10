@@ -12,38 +12,60 @@ export default function SavedScreen({ navigation }) {
     <View style={styles.container}>
       <HeaderComponent />
       <Text style={[styles.pageHeaders, styles.bottomMargins]}>Saved</Text>
-      <Pressable
-        style={styles.contentContainer.red}
-        onPress={() => navigation.navigate(SavedRestaurantScreen)}
-      >
-        <Text style={[styles.pageHeaders, styles.bottomMargins]}>
-          Saved Restaurants
-        </Text>
-        <Image
-          source={require("../assets/forkKnifeBW.png")}
-          style={[styles.savedPageIcons]}
-        ></Image>
-        <Text style={[styles.signa32]}>Restaurants</Text>
-        <Text style={[styles.smallText]}>
-          Breakfast, Lunch, Dinner, Desserts, & Drinks
-        </Text>
-      </Pressable>
-      <Pressable
-        style={styles.contentContainer.red}
-        onPress={() => navigation.navigate(SavedFoodToursMenuScreen)}
-      >
-        <Text style={[styles.pageHeaders, styles.bottomMargins]}>
-          Saved Tours
-        </Text>
-        <Image
-          source={require("../assets/binoculars.png")}
-          style={[styles.savedPageIcons]}
-        ></Image>
-        <Text style={[styles.signa32]}>Restaurants</Text>
-        <Text style={[styles.smallText]}>
-          Breakfast, Lunch, Dinner, Desserts, & Drinks
-        </Text>
-      </Pressable>
+      <View style={[styles.width100]}>
+        <Pressable
+          style={[styles.contentContainer.red, styles.alignSelfCenter]}
+          onPress={() => navigation.navigate(SavedRestaurantScreen)}
+        >
+          <Text
+            style={[
+              styles.pageHeaders,
+              styles.bottomMargins,
+              { fontSize: "34px" },
+            ]}
+          >
+            Saved Restaurants
+          </Text>
+          <Image
+            source={require("../assets/forkKnifeBW.png")}
+            style={[styles.savedPageIcons]}
+          ></Image>
+          <Text style={[styles.signa32]}>Restaurants</Text>
+          <Text style={[styles.smallText]}>
+            Breakfast, Lunch, Dinner, Desserts, & Drinks
+          </Text>
+        </Pressable>
+      </View>
+
+      <View style={[styles.width100]}>
+        <Pressable
+          style={[
+            styles.contentContainer.red,
+            styles.alignSelfCenter,
+            { marginBottom: "5rem" },
+          ]}
+          onPress={() => navigation.navigate(SavedFoodToursMenuScreen)}
+        >
+          <Text
+            style={[
+              styles.pageHeaders,
+              styles.bottomMargins,
+              { fontSize: "34px" },
+            ]}
+          >
+            Saved Tours
+          </Text>
+          <Image
+            source={require("../assets/binoculars.png")}
+            style={[styles.savedPageIcons]}
+          ></Image>
+          <Text style={[styles.signa32]}>Restaurants</Text>
+          <Text style={[styles.smallText]}>
+            Breakfast, Lunch, Dinner, Desserts, & Drinks
+          </Text>
+        </Pressable>
+      </View>
+
       <NavigationBar />
     </View>
   );
