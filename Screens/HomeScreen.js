@@ -49,27 +49,31 @@ export default function HomeScreen({ navigation, route }) {
     getRestaurantData();
   }, [filterData]);
 
-  useEffect(() => {
-    // Parse the filterData string into an object
-    const filters = new URLSearchParams(filterData);
-    const filtersObject = {};
-    for (const [key, value] of filters.entries()) {
-      filtersObject[key] = value === "true";
-    }
+  // useEffect(() => {
+  //   // Parse the filterData string into an object
+  //   const filters = new URLSearchParams(filterData);
+  //   const filtersObject = {};
+  //   if (filters instanceof URLSearchParams) {
+  //     for (const [key, value] of filters.entries()) {
+  //       filtersObject[key] = value === "true";
+  //     }
+  //   } else {
+  //     console.error("filters is not a URLSearchParams object:", filters);
+  //   }
 
-    // Check if any filter (excluding selectedButton) is true
-    const isAnyFilterTrue = Object.keys(filtersObject).some(
-      (key) => key !== "selectedButton" && filtersObject[key]
-    );
+  //   // Check if any filter (excluding selectedButton) is true
+  //   const isAnyFilterTrue = Object.keys(filtersObject).some(
+  //     (key) => key !== "selectedButton" && filtersObject[key]
+  //   );
 
-    if (isAnyFilterTrue) {
-      console.log("Filter data is present, updating filter icon.");
-      setFilterIcon(require("../assets/filterFilled.png"));
-    } else {
-      console.log("No filter data, resetting filter icon.");
-      setFilterIcon(require("../assets/filter.png"));
-    }
-  }, [filterData]);
+  //   if (isAnyFilterTrue) {
+  //     console.log("Filter data is present, updating filter icon.");
+  //     setFilterIcon(require("../assets/filterFilled.png"));
+  //   } else {
+  //     console.log("No filter data, resetting filter icon.");
+  //     setFilterIcon(require("../assets/filter.png"));
+  //   }
+  // }, [filterData]);
 
   // HomeScreen.js
 
