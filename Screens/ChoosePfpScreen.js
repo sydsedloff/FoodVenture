@@ -95,7 +95,7 @@ export default function ChoosePfpScreen({ navigation }) {
           <View>
             <View style={[styles.horizontalAlign, styles.width100]}>
               {/* LEFT COLUMN */}
-              <View>
+              <View style={[styles.width50]}>
                 <Pressable
                   style={[
                     styles.horizontalAlign,
@@ -113,7 +113,7 @@ export default function ChoosePfpScreen({ navigation }) {
                     source={require("../assets/pfp/chopstick_profile.svg")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
-                    Chopsticks
+                    Daniel & Miyagi
                   </Text>
                 </Pressable>
                 <Pressable
@@ -133,7 +133,7 @@ export default function ChoosePfpScreen({ navigation }) {
                     source={require("../assets/pfp/profileFork.png")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
-                    Fork
+                    Ariel
                   </Text>
                 </Pressable>
                 <Pressable
@@ -153,17 +153,19 @@ export default function ChoosePfpScreen({ navigation }) {
                     source={require("../assets/pfp/knifeProfileIcon.png")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
-                    Knife
+                    Butter
                   </Text>
                 </Pressable>
               </View>
 
               {/* RIGHT COLUMN */}
-              <View>
+              <View style={[styles.width50]}>
                 <Pressable
                   style={[
                     styles.horizontalAlign,
                     styles.sideBuffer,
+                    styles.width50,
+
                     { paddingBottom: "10%" },
                   ]}
                   onPress={() =>
@@ -177,7 +179,7 @@ export default function ChoosePfpScreen({ navigation }) {
                     source={require("../assets/pfp/profileSpoon.png")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
-                    Spoon
+                    Sugar
                   </Text>
                 </Pressable>
                 <Pressable
@@ -197,7 +199,7 @@ export default function ChoosePfpScreen({ navigation }) {
                     source={require("../assets/pfp/sporkProfileIcon.png")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
-                    Spork
+                    Craig
                   </Text>
                 </Pressable>
                 <Pressable
@@ -217,7 +219,7 @@ export default function ChoosePfpScreen({ navigation }) {
                     source={require("../assets/pfp/straws-profile.svg")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
-                    Straws
+                    Ed, Edd, & Eddy
                   </Text>
                 </Pressable>
               </View>
