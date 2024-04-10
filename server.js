@@ -241,12 +241,10 @@ app.delete(
       );
 
       if (result.value) {
-        res
-          .status(200)
-          .json({
-            message: "Restaurant unsaved successfully",
-            user: result.value,
-          });
+        res.status(200).json({
+          message: "Restaurant unsaved successfully",
+          user: result.value,
+        });
       } else {
         res.status(404).json({ error: "User not found" });
       }
