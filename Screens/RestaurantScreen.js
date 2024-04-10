@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, SafeAreaView, Text, Pressable, Image } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  Text,
+  Pressable,
+  Image,
+  TextInput,
+} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import styles from "../styles";
 import ReservationScreen from "./ReservationScreen";
@@ -111,7 +118,7 @@ export default function RestaurantScreen({ navigation }) {
           />
         )}
 
-        <View style={[styles.smallNegativeMargins, { marginTop: -170 }]}>
+        <View style={[styles.smallNegativeMargins, { marginTop: -205 }]}>
           <Text style={[styles.signa28, styles.width100, styles.bottomMargins]}>
             Request a reservation
           </Text>
@@ -136,6 +143,11 @@ export default function RestaurantScreen({ navigation }) {
                 setValue={setMealTimeValue}
                 setItems={setMealTimeItems} // Added to handle value change
                 dropDownDirection="TOP"
+              />
+              <Text style={styles.merri19Bold}>Date</Text>
+              <TextInput
+                placeholder="Date"
+                style={[styles.thinInput, styles.input]}
               />
             </View>
           </View>
