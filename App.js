@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import React, { useState, useEffect } from "react";
 import * as Font from "expo-font"; // Import Font from Expo
 
 // Import screens
@@ -55,11 +55,30 @@ export function TabNavigator() {
 }
 
 export default function App() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        "FugazOne-Regular": FugazOneRegular,
+        "MerriweatherSans-Regular": MerriweatherSansRegular,
+        "MerriweatherSans-Bold": MerriweatherSansBold,
+        "SignikaNegative-Regular": SignikaNegativeRegular,
+      });
+      setFontsLoaded(true);
+    };
+
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null; // Or a loading screen
+  }
   return (
     <NavigationContainer>
       {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
 
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="WelcomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
