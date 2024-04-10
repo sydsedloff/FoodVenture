@@ -5,6 +5,7 @@ import SavedRestaurants from "../Components/SavedRestaurantsComponent";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Restaurants from "../Components/RestaurantsComponent";
 
 export default function SavedRestaurantScreen({ navigation }) {
   const [savedRestaurants, setSavedRestaurants] = useState([]);
@@ -43,7 +44,7 @@ export default function SavedRestaurantScreen({ navigation }) {
         <FlatList
           data={savedRestaurants}
           renderItem={({ item }) => (
-            <SavedRestaurants
+            <Restaurants
               name={item.name}
               image={item.image}
               address={item.address}
