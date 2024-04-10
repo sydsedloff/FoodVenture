@@ -108,7 +108,6 @@ export default StyleSheet.create({
     padding: "3%",
     fontSize: 24,
     fontFamily: "SignikaNegative-Regular",
-    placeholderTextColor: Colors.grey,
   },
   thinInput: {
     borderColor: "black",
@@ -119,7 +118,6 @@ export default StyleSheet.create({
     padding: "3%",
     fontSize: 24,
     fontFamily: "SignikaNegative-Regular",
-    placeholderTextColor: Colors.grey,
   },
   searchBar: {
     borderColor: "black",
@@ -132,7 +130,6 @@ export default StyleSheet.create({
   searchBarText: {
     fontSize: 20,
     fontFamily: "SignikaNegative-Regular",
-    placeholderTextColor: Colors.grey,
   },
 
   forgotPasswordText: {
