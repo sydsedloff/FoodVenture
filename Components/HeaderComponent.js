@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
-import { View, Pressable, Image } from "react-native";
+import { SafeAreaView, Pressable, Image } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { localhost } from "./localHostID";
 
@@ -46,7 +46,7 @@ export default function HeaderComponent() {
   }
 
   return (
-    <View style={[styles.headerContainer]}>
+    <SafeAreaView style={[styles.headerContainer]}>
       {canGoBack && !isHomeScreen && !isFilterSidebarScreen && (
         <Pressable onPress={goBack}>
           <Image
@@ -57,9 +57,12 @@ export default function HeaderComponent() {
       )}
       {!isProfileScreen && !isFilterSidebarScreen && (
         <Pressable onPress={() => navigate("ProfileScreen")}>
-          <Image source={profilePicture} style={[styles.headerImage]} />
+          <Image
+            source={{ uri: profilePicture } || placeholderProfileImage}
+            style={[styles.headerImage]}
+          />
         </Pressable>
       )}
-    </View>
+    </SafeAreaView>
   );
 }
