@@ -56,7 +56,7 @@ const RestaurantSingle = ({ name, image, address, description, website }) => {
         {description}
       </Text>
       <Text style={[styles.link]} href={[website]}>
-        Restaurant Link
+        View Restaurant's Yelp Page
       </Text>
     </SafeAreaView>
   );

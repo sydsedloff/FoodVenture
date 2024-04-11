@@ -35,7 +35,7 @@ export default function ReservationScreen({ navigation }) {
           <Text
             style={[styles.signa48Red, styles.textCenter, styles.bottomMargins]}
           >
-            Reservation Confirmation
+            Reservation Request Confirmation
           </Text>
           <View>
             <View style={[styles.horizontalAlign]}>
