@@ -3,6 +3,7 @@ import { ImageBackground, Image, Text, View, Pressable } from "react-native";
 import styles from "../styles";
 import HomeScreen from "./HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localhost } from "../Components/localHostID";
 
 export default function ChoosePfpScreen({ navigation }) {
   const [profilePicture, setTasteBuddy] = useState("");
