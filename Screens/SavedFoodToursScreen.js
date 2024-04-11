@@ -6,6 +6,7 @@ import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import RatingImage from "../Components/RatingImageComponent";
 import SavedFoodToursMenuScreen from "./SavedFoodToursMenuScreen";
+import SavedScreen from "./SavedScreen";
 
 // Define the RestaurantSingle component
 const RestaurantSingle = ({
@@ -70,7 +71,7 @@ export default function SavedFoodToursScreen({ navigation, route }) {
         {
           method: "DELETE",
         }
-      ).then(navigation.navigate(SavedFoodToursMenuScreen));
+      ).then(navigation.navigate(SavedScreen));
 
       if (response.ok) {
         console.log("Tour unsaved successfully");
