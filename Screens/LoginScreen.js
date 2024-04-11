@@ -10,6 +10,7 @@ import {
 import styles from "../styles";
 import HomeScreen from "./HomeScreen";
 import SignUpScreen from "./SignUpScreen";
+import { localhost } from "../Components/localHostID";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ export default function LoginScreen({ navigation }) {
   async function loginFunction() {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/login?email=${email}&password=${password}`
+        `http://${localhost}/api/login?email=${email}&password=${password}`
       );
 
       if (response.ok) {
