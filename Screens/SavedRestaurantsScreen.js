@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import { View, Text, FlatList } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
-import SavedRestaurants from "../Components/SavedRestaurantsComponent";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Restaurants from "../Components/RestaurantsComponent";
 
 export default function SavedRestaurantScreen({ navigation }) {
   const [savedRestaurants, setSavedRestaurants] = useState([]);
 
   useEffect(() => {
-    // Fetch saved restaurants data from your backend server
     fetchSavedRestaurants();
   }, []);
 
   const fetchSavedRestaurants = async () => {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
-      // Make a fetch request to your backend API to get saved restaurants
       const response = await fetch(
         `http://localhost:3000/api/userData/${userEmail}`
       );
@@ -41,22 +38,30 @@ export default function SavedRestaurantScreen({ navigation }) {
       <View style={[styles.container]}>
         <Text style={[styles.pageHeaders]}>Saved Restaurants</Text>
 
-        <FlatList
-          data={savedRestaurants}
-          renderItem={({ item }) => (
-            <Restaurants
-              name={item.name}
-              image={item.image}
-              address={item.address}
-              description={item.description}
-              website={item.website}
-              navigation={navigation}
-              star_rating={item.star_rating}
-              restaurantId={item.id}
-            />
-          )}
-          keyExtractor={(item) => item.restaurantId}
-        />
+        {savedRestaurants.length === 0 ? (
+          <View style={[styles.backgroundImage]}>
+            <Text style={[styles.noSavedRestaurantsText]}>
+              No saved restaurants found
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            data={savedRestaurants}
+            renderItem={({ item }) => (
+              <Restaurants
+                name={item.name}
+                image={item.image}
+                address={item.address}
+                description={item.description}
+                website={item.website}
+                navigation={navigation}
+                star_rating={item.star_rating}
+                restaurantId={item.id}
+              />
+            )}
+            keyExtractor={(item) => item.restaurantId}
+          />
+        )}
       </View>
       <NavigationBar />
     </View>

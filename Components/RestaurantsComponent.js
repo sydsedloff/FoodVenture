@@ -182,7 +182,9 @@ const Restaurants = ({
         {description}
       </Text>
       <Pressable onPress={() => Linking.openURL(website)}>
-        <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
+        <Text style={[styles.link, styles.bottomMargins]}>
+          View Restaurant's Yelp Page
+        </Text>
       </Pressable>
       <Pressable onPress={handlePress}></Pressable>
       <View style={[styles.contentSeperatorContainer]}>
