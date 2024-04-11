@@ -142,7 +142,6 @@ const Restaurants = ({
   return (
     <View
       style={[
-        styles.container,
         styles.bottomMargins,
         styles.alignItemsLeft,
         styles.width80,
