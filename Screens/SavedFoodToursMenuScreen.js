@@ -5,6 +5,7 @@ import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localhost } from "../Components/localHostID";
 
 export default function SavedFoodToursMenuScreen({ navigation }) {
   const [savedTours, setSavedTours] = useState([]);
@@ -14,7 +15,7 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
       try {
         const userEmail = await AsyncStorage.getItem("userEmail");
         const response = await axios.get(
-          `http://localhost:3000/api/${userEmail}/savedTours`
+          `http://${localhost}/api/${userEmail}/savedTours`
         );
         if (response.status === 200) {
           await AsyncStorage.setItem(

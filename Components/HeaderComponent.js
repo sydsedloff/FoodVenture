@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import { SafeAreaView, Pressable, Image } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { localhost } from "./localHostID";
 
 // Import the placeholder image
 const placeholderProfileImage = require("../assets/icons/profile_placeholder.svg");
@@ -27,7 +28,7 @@ export default function HeaderComponent() {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/profilePicture/${userEmail}`
+        `http://${localhost}/api/profilePicture/${userEmail}`
       );
       if (response.ok) {
         const data = await response.json();

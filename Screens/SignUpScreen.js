@@ -12,6 +12,7 @@ import PersonalizedWelcomeScreen from "./PersonalizedWelcomeScreen";
 import LoginScreen from "./LoginScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Colors } from "react-native-paper";
+import { localhost } from "../Components/localHostID";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -27,7 +28,7 @@ export default function SignUpScreen({ navigation }) {
 
   async function saveNewUser(fullName, email, username, password) {
     try {
-      const response = await fetch("http://localhost:3000/api/fakeProfiles", {
+      const response = await fetch(`http://${localhost}/api/fakeProfiles`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { ImageBackground, Image, Text, View, Pressable } from "react-native";
-import Checkbox from "expo-checkbox";
 import styles from "../styles";
-import { Colors } from "../colors";
 import HomeScreen from "./HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -13,7 +11,7 @@ export default function ChoosePfpScreen({ navigation }) {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/profilePicture/${userEmail}`,
+        `http://${localhost}/profilePicture/${userEmail}`,
         {
           method: "PUT",
           headers: {
@@ -49,7 +47,7 @@ export default function ChoosePfpScreen({ navigation }) {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`
+        `http://${localhost}/api/userData/${userEmail}`
       );
       if (response.ok) {
         const data = await response.json();

@@ -7,6 +7,7 @@ import NavigationBar from "../Components/NavigationBar";
 import RatingImage from "../Components/RatingImageComponent";
 import SavedFoodToursMenuScreen from "./SavedFoodToursMenuScreen";
 import SavedScreen from "./SavedScreen";
+import { localhost } from "../Components/localHostID";
 
 // Define the RestaurantSingle component
 const RestaurantSingle = ({
@@ -67,7 +68,7 @@ export default function SavedFoodToursScreen({ navigation, route }) {
       console.log("unsaving food tour...");
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/unsaveFoodTour/${userEmail}/${tour._id}`,
+        `http://${localhost}/api/unsaveFoodTour/${userEmail}/${tour._id}`,
         {
           method: "DELETE",
         }
