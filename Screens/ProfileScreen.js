@@ -12,6 +12,7 @@ import NotificationsScreen from "./NotificationsScreen";
 import SettingsScreen from "./SettingsScreen";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
+import { localhost } from "../Components/localHostID";
 
 // Import the placeholder image
 const placeholderProfileImage = require("../assets/icons/profile_placeholder.svg");
@@ -24,7 +25,7 @@ export default function ProfileScreen({ navigation }) {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`
+        `http://${localhost}/api/userData/${userEmail}`
       );
       if (response.ok) {
         const data = await response.json();

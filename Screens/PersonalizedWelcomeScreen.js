@@ -6,6 +6,7 @@ import { Colors } from "../colors";
 import HomeScreen from "./HomeScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ChoosePfpScreen from "./ChoosePfpScreen";
+import { localhost } from "../Components/localHostID";
 
 export default function PersonalizedWelcomeScreen({ navigation }) {
   const [isGlutenFree, setGlutenFree] = useState(false);
@@ -17,7 +18,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/dietaryRestrictions/${userEmail}`,
+        `http://${localhost}/dietaryRestrictions/${userEmail}`,
         {
           method: "PUT",
           headers: {
@@ -60,7 +61,7 @@ export default function PersonalizedWelcomeScreen({ navigation }) {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`
+        `http://${localhost}/api/userData/${userEmail}`
       );
       if (response.ok) {
         const data = await response.json();

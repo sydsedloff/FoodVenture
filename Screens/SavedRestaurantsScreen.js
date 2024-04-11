@@ -5,6 +5,7 @@ import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import Restaurants from "../Components/RestaurantsComponent";
+import { localhost } from "../Components/localHostID";
 
 export default function SavedRestaurantScreen({ navigation }) {
   const [savedRestaurants, setSavedRestaurants] = useState([]);
@@ -17,7 +18,7 @@ export default function SavedRestaurantScreen({ navigation }) {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`
+        `http://${localhost}/api/userData/${userEmail}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch saved restaurants");

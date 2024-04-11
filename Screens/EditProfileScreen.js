@@ -12,6 +12,7 @@ import styles from "../styles";
 import ProfileScreen from "./ProfileScreen";
 import ChoosePfpScreen from "./ChoosePfpScreen";
 import { Colors } from "../colors";
+import { localhost } from "../Components/localHostID";
 
 export default function EditProfileScreen({ navigation }) {
   const [userData, setUserData] = useState(null);
@@ -24,7 +25,7 @@ export default function EditProfileScreen({ navigation }) {
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`
+        `http://${localhost}/api/userData/${userEmail}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -42,7 +43,7 @@ export default function EditProfileScreen({ navigation }) {
       const userEmail = await AsyncStorage.getItem("userEmail");
       console.log(userEmail);
       const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`,
+        `http://${localhost}/api/userData/${userEmail}`,
         {
           method: "PUT",
           headers: {
