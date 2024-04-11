@@ -308,6 +308,32 @@ app.post("/api/:userEmail/:savedTours", async (req, res) => {
   }
 });
 
+// UNSAVE FOOD TOUR
+app.delete("/api/unsaveFoodTour/:userEmail/:tourId", async (req, res) => {
+  const userEmail = req.params.userEmail;
+  const tourId = req.params.tourId;
+
+  try {
+    const result = await collection.findOneAndUpdate(
+      { email: userEmail },
+      { $pull: { savedTours: { _id: new ObjectId(tourId) } } },
+      { returnOriginal: false }
+    );
+
+    if (result.value) {
+      res.status(200).json({
+        message: "Food tour unsaved successfully",
+        user: result.value,
+      });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.log("Error unsaving food tour:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 //FIND SAVED FOOD TOURS
 app.get("/api/:userEmail/savedTours", async (req, res) => {
   const userEmail = req.params.userEmail;
