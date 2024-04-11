@@ -15,6 +15,7 @@ import RatingImage from "../Components/RatingImageComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SavedFoodToursMenuScreen from "./SavedFoodToursMenuScreen";
 import { Colors } from "../colors";
+import { localhost } from "../Components/localHostID";
 
 const RestaurantSingle = ({
   name,
@@ -85,7 +86,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
       try {
         const { filterData } = route.params || {};
         const response = await axios.get(
-          `http://localhost:3000/api/searchRestaurants?${filterData}`
+          `http://${localhost}/api/searchRestaurants?${filterData}`
         );
         if (response.status === 200) {
           const allRestaurants = response.data.businesses;
@@ -137,7 +138,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
       console.log(tourSaved);
       // Update the database with the new tour data
       const response = await fetch(
-        `http://localhost:3000/api/${userEmail}/${restaurantsArray}`,
+        `http://${localhost}/api/${userEmail}/${restaurantsArray}`,
         {
           method: "POST",
           headers: {

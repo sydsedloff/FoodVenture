@@ -3,7 +3,7 @@ import { View, Text, Image, Pressable, Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import RatingImage from "./RatingImageComponent";
-
+import { localhost } from "./localHostID";
 const SavedRestaurants = ({
   name,
   image,
@@ -30,7 +30,7 @@ const SavedRestaurants = ({
     try {
       const userEmail = await AsyncStorage.getItem("userEmail");
       const response = await fetch(
-        `http://localhost:3000/api/userData/${userEmail}`
+        `http://${localhost}/api/userData/${userEmail}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch saved restaurants");
@@ -58,7 +58,7 @@ const SavedRestaurants = ({
 
       // Update the database with the new restaurant data
       const response = await fetch(
-        `http://localhost:3000/api/saveRestaurant/${userEmail}`,
+        `http://${localhost}/api/saveRestaurant/${userEmail}`,
         {
           method: "POST",
           headers: {

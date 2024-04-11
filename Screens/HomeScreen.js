@@ -14,6 +14,7 @@ import FilterSidebar from "./FilterSidebar";
 import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
+import { localhost } from "../Components/localHostID";
 
 export default function HomeScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
@@ -24,27 +25,25 @@ export default function HomeScreen({ navigation, route }) {
   console.log("Received filter data:", filterData);
 
   useEffect(() => {
-    async function getRestaurantData() {
+    const getRestaurantData = async () => {
       setIsLoading(true); // Start loading
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/searchRestaurants?${filterData}`
+        const response = await fetch(
+          `http://${localhost}/api/searchRestaurants?${filterData}`
         );
-        console.log(
-          "API call URL:",
-          `http://localhost:3000/api/searchRestaurants?${filterData}`
-        );
-        if (response.status === 200) {
-          console.log("API response data:", response.data);
-          const allRestaurants = response.data.businesses;
-          setRestaurantData(allRestaurants);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        const responseData = await response.json();
+        console.log("API response data:", responseData);
+        const allRestaurants = responseData.businesses;
+        setRestaurantData(allRestaurants);
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
       } finally {
         setIsLoading(false); // End loading
       }
-    }
+    };
 
     getRestaurantData();
   }, [filterData]);
