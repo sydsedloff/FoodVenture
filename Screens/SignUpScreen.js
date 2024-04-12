@@ -13,6 +13,7 @@ import LoginScreen from "./LoginScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Colors } from "react-native-paper";
 import { localhost } from "../Components/localHostID";
+import ChoosePfpScreen from "./ChoosePfpScreen";
 
 export default function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState("");
@@ -117,7 +118,7 @@ export default function SignUpScreen({ navigation }) {
     if (isValid) {
       await AsyncStorage.setItem("userEmail", email);
       saveNewUser(fullName, email, username, password);
-      navigation.navigate(PersonalizedWelcomeScreen);
+      navigation.navigate(ChoosePfpScreen);
     }
   }
 
