@@ -36,10 +36,7 @@ const NavigationBar = () => {
         style={styles.button}
         onPress={() => navigation.navigate("HomeScreen")}
       >
-        <Image
-          style={styles.genericButtonHome}
-          source={renderIcon("HomeScreen")}
-        />
+        <Image style={styles.genericButton} source={renderIcon("HomeScreen")} />
       </Pressable>
       <Pressable
         style={styles.addButtonWrapper}
@@ -56,7 +53,7 @@ const NavigationBar = () => {
         onPress={() => navigation.navigate("SavedScreen")}
       >
         <Image
-          style={styles.genericButtonSaved}
+          style={styles.genericButton}
           source={renderIcon("SavedScreen")}
         />
       </Pressable>
@@ -66,65 +63,41 @@ const NavigationBar = () => {
 
 const styles = StyleSheet.create({
   bottomNavigation: {
-    position: "fixed",
-    bottom: -1,
+    position: "absolute",
+    bottom: 0,
     left: 0,
     right: 0,
     height: 60,
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "#EBECEB",
-    flex: 1,
-    boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
+    borderTopWidth: 1,
+    borderTopColor: "rgba(0, 0, 0, 0.2)",
   },
   button: {
-    flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-    height: "100%",
-    overflow: "visible",
+    height: 100,
+    width: 100,
   },
   navigationSpacer: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
     width: 128,
   },
   addButtonWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
     position: "absolute",
     top: -12,
     zIndex: 1,
     height: 58,
     width: 58,
+    justifyContent: "center",
+    alignItems: "center",
   },
   addButton: {
-    width: 128,
-    height: 128,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
+    width: 120,
+    height: 120,
   },
-  genericButtonHome: {
-    width: 32,
-    height: 32,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    overflow: "visible",
-    objectFit: "fill",
-  },
-  genericButtonSaved: {
-    width: 27,
-    height: 34,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    overflow: "visible",
-    objectFit: "contain",
+  genericButton: {
+    width: 100,
+    height: 100,
   },
 });
 
