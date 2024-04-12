@@ -15,6 +15,7 @@ import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import Restaurants from "../Components/RestaurantsComponent";
 import { localhost } from "../Components/localHostID";
+import { Colors } from "../colors";
 
 export default function HomeScreen({ navigation, route }) {
   const [restaurantData, setRestaurantData] = useState(null);
@@ -92,7 +93,7 @@ export default function HomeScreen({ navigation, route }) {
             styles.contentJustify,
           ]}
         >
-          <View
+          {/* <View
             style={[styles.searchBar, styles.horizontalAlign, styles.width80]}
           >
             <Image
@@ -100,9 +101,22 @@ export default function HomeScreen({ navigation, route }) {
               style={[styles.searchBarIcon]}
             />
             <TextInput placeholder="Search" style={[styles.searchBarText]} />
-          </View>
-          <Pressable onPress={() => navigation.navigate(FilterSidebar)}>
+          </View> */}
+          <Pressable
+            style={[
+              styles.horizontalAlign,
+              {
+                borderColor: Colors.red,
+                borderWidth: 2,
+                borderRadius: 15,
+                paddingRight: 20,
+                paddingLeft: 20,
+              },
+            ]}
+            onPress={() => navigation.navigate(FilterSidebar)}
+          >
             <Image source={filterIcon} style={[styles.smallerIcons]} />
+            <Text style={[styles.signa24]}>Filter Results</Text>
           </Pressable>
         </View>
         {isLoading ? (
