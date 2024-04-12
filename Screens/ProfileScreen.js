@@ -73,7 +73,7 @@ export default function ProfileScreen({ navigation }) {
           <Text style={[styles.merri28, styles.sideBuffer]}>Edit Profile</Text>
         </Pressable>
 
-        <Pressable
+        {/* <Pressable
           onPress={() => navigation.navigate(EditDietaryRestrictionsScreen)}
           style={[styles.horizontalAlign, styles.bottomMargins]}
         >
@@ -84,7 +84,7 @@ export default function ProfileScreen({ navigation }) {
           <Text style={[styles.merri28, styles.sideBuffer]}>
             Edit Dietary Restrictions
           </Text>
-        </Pressable>
+        </Pressable> */}
         <Pressable
           onPress={() => navigation.navigate(SavedScreen)}
           style={[styles.horizontalAlign, styles.bottomMargins]}

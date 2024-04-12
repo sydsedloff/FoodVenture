@@ -171,7 +171,6 @@ const Restaurants = ({
             styles.image,
             styles.lessBottomMargins,
             styles.alignSelfCenter,
-            styles.width100,
           ]}
         />
       </Pressable>
