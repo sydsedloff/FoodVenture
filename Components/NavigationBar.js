@@ -4,16 +4,16 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 const icons = {
   HomeScreen: {
-    active: require("../assets/icons/home_filled.svg"),
-    inactive: require("../assets/icons/home_outline.svg"),
+    active: require("../assets/icons/home_filled.png"),
+    inactive: require("../assets/icons/home_outline.png"),
   },
   GenerateFoodTourScreen: {
     active: require("../assets/tour_filled.png"),
     inactive: require("../assets/tour.png"),
   },
   SavedScreen: {
-    active: require("../assets/icons/saved_filled.svg"),
-    inactive: require("../assets/icons/saved_outline.svg"),
+    active: require("../assets/icons/saved_filled.png"),
+    inactive: require("../assets/icons/saved_outline.png"),
   },
 };
 
@@ -67,17 +67,19 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 60,
+    height: 70,
     alignItems: "center",
-    justifyContent: "space-around",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#EBECEB",
     borderTopWidth: 1,
     borderTopColor: "rgba(0, 0, 0, 0.2)",
   },
   button: {
     alignItems: "center",
-    height: 100,
-    width: 100,
+    height: 70,
+    width: 70,
   },
   navigationSpacer: {
     width: 128,
@@ -85,19 +87,23 @@ const styles = StyleSheet.create({
   addButtonWrapper: {
     position: "absolute",
     top: -12,
-    zIndex: 1,
     height: 58,
     width: 58,
     justifyContent: "center",
     alignItems: "center",
   },
   addButton: {
-    width: 120,
-    height: 120,
+    width: 130,
+    height: 130,
+    zIndex: 1,
+    alignSelf: "center",
   },
   genericButton: {
-    width: 100,
-    height: 100,
+    width: 40,
+    maxHeight: 40,
+    marginTop: 15,
+    borderColor: "rgba(0, 0, 0, 0.2)",
+    zIndex: 1,
   },
 });
 
