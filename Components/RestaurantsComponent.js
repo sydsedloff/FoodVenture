@@ -166,7 +166,7 @@ const Restaurants = ({
       </Pressable>
       <Pressable onPress={handlePress}>
         <Image
-          source={image ? { uri: image } : placeholderImage}
+          source={{ uri: image } || placeholderImage}
           style={[
             styles.image,
             styles.lessBottomMargins,
