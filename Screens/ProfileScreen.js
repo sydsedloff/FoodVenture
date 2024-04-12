@@ -50,7 +50,7 @@ export default function ProfileScreen({ navigation }) {
     <View style={[styles.container]}>
       <HeaderComponent />
       <Image
-        style={[styles.logoR, styles.bottomMargins]}
+        style={[styles.logoR, styles.bottomMargins, styles.paddingTopHeader]}
         source={{ uri: profilePicture }}
       />
       {userData && (

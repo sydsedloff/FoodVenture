@@ -518,6 +518,9 @@ export default StyleSheet.create({
   bottomPadding: {
     paddingBottom: 50,
   },
+  paddingTopHeader: {
+    paddingTop: 40,
+  },
   negativeMargins: {
     marginTop: -200,
   },

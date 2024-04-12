@@ -42,7 +42,7 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
       <HeaderComponent navigation={navigation} />
-      <View style={styles.container}>
+      <View style={[styles.container, styles.paddingTopHeader]}>
         <Text style={[styles.pageHeaders, styles.bottomMargins]}>
           Saved Food Tours
         </Text>

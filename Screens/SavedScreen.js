@@ -12,7 +12,15 @@ export default function SavedScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <HeaderComponent />
-      <Text style={[styles.pageHeaders, styles.bottomMargins]}>Saved</Text>
+      <Text
+        style={[
+          styles.pageHeaders,
+          styles.bottomMargins,
+          styles.paddingTopHeader,
+        ]}
+      >
+        Saved
+      </Text>
       <View style={[styles.width100]}>
         <Pressable
           style={[

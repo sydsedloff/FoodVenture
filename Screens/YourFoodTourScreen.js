@@ -167,7 +167,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
       {isLoading ? (
         <ActivityIndicator size="large" color="#9a0000" />
       ) : (
-        <View style={[styles.container]}>
+        <View style={[styles.container, styles.paddingTopHeader]}>
           {tourSaved ? (
             <View>
               <Text style={[styles.buttonLargeText.y]}>
