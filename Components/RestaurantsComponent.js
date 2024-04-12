@@ -144,7 +144,7 @@ const Restaurants = ({
       style={[
         styles.bottomMargins,
         styles.alignItemsLeft,
-        styles.width80,
+        styles.width90,
         styles.alignSelfCenter,
       ]}
     >

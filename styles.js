@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { Colors } from "./colors";
+const ScreenWidth = Dimensions.get("window").width;
 
 const baseButtonLargeStyle = {
   borderRadius: 15,
@@ -251,7 +252,7 @@ export default StyleSheet.create({
   },
   image: {
     height: 200,
-    width: 300,
+    width: ScreenWidth * 0.88,
   },
   icon: {
     height: 50,
@@ -536,6 +537,9 @@ export default StyleSheet.create({
   },
   width100: {
     width: "100%",
+  },
+  width90: {
+    width: "90%",
   },
   width80: {
     width: "80%",
