@@ -371,17 +371,17 @@ export default StyleSheet.create({
   },
   contentContainer: {
     white: {
-      display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-around",
       width: "90%",
       backgroundColor: Colors.white,
       borderRadius: 15,
-      border: "1px solid #4A4F4A80",
-      padding: "5%",
-      height: "auto",
-      marginVertical: 15,
+      borderWidth: 1,
+      borderColor: "#4A4F4A80", // Adjust border color as needed
+      paddingVertical: "5%",
+      paddingHorizontal: "5%",
+      marginBottom: 15,
       textAlign: "center",
     },
     whiteNoBorder: {
@@ -407,17 +407,17 @@ export default StyleSheet.create({
       height: "auto",
     },
     red: {
-      display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-around",
       width: "85%",
       backgroundColor: Colors.white,
       borderRadius: 6,
-      border: "1px solid #9B0000",
-      padding: "5%",
-      height: "auto",
-      marginVertical: 15,
+      borderWidth: 1,
+      borderColor: "#9B0000", // Adjust border color as needed
+      paddingVertical: "5%",
+      paddingHorizontal: "5%",
+      marginBottom: 15,
       textAlign: "center",
     },
     sharpCorner: {

@@ -6,6 +6,7 @@ import SavedFoodToursScreen from "./SavedFoodToursMenuScreen";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
 import SavedFoodToursMenuScreen from "./SavedFoodToursMenuScreen";
+import { Colors } from "../colors";
 
 export default function SavedScreen({ navigation }) {
   return (
@@ -14,15 +15,15 @@ export default function SavedScreen({ navigation }) {
       <Text style={[styles.pageHeaders, styles.bottomMargins]}>Saved</Text>
       <View style={[styles.width100]}>
         <Pressable
-          style={[styles.contentContainer.red, styles.alignSelfCenter]}
+          style={[
+            styles.contentContainer.red,
+            styles.alignSelfCenter,
+            { borderColor: Colors.red },
+          ]}
           onPress={() => navigation.navigate(SavedRestaurantScreen)}
         >
           <Text
-            style={[
-              styles.pageHeaders,
-              styles.bottomMargins,
-              { fontSize: "34px" },
-            ]}
+            style={[styles.pageHeaders, styles.bottomMargins, { fontSize: 34 }]}
           >
             Saved Restaurants
           </Text>
