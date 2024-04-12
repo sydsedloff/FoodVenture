@@ -149,7 +149,7 @@ const Restaurants = ({
       ]}
     >
       <Pressable onPress={toggleSave}>
-        <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
+        <View style={[styles.horizontalAlign, { justifyContent: "center" }]}>
           <Text style={[styles.signa28]} onPress={handlePress}>
             {name}
           </Text>

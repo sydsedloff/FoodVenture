@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     width: 40,
     maxHeight: 40,
     marginTop: 15,
-    borderColor: "rgba(0, 0, 0, 0.2)",
     zIndex: 1,
   },
 });
