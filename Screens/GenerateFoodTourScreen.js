@@ -87,78 +87,17 @@ export default function GenerateFoodTourScreen({ navigation }) {
     <SafeAreaView style={[styles.container]}>
       <HeaderComponent />
       <View style={[styles.container]}>
-        <Text style={[styles.pageHeaders, styles.width70, styles.textCenter]}>
+        <Text
+          style={[
+            styles.pageHeaders,
+            styles.width70,
+            styles.textCenter,
+            styles.bottomMargins,
+          ]}
+        >
           Generate Food Tour
         </Text>
-        <Text style={[styles.profileText]}>Price Range</Text>
 
-        <View style={[styles.checkboxContainer]}>
-          <Pressable
-            style={[
-              styles.dollarButtons,
-              { marginRight: 4 },
-              selectedButton === "$" && {
-                borderColor: "#9B0000",
-                backgroundColor: "rgba(155, 0, 0, 0.35)",
-              },
-            ]}
-            onPress={() => handlePress("$")}
-          >
-            <Text style={[styles.dollarText, styles.sideBuffer]}>$</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.dollarButtons,
-              { marginRight: 4 },
-              selectedButton === "$$" && {
-                borderColor: "#9B0000",
-                backgroundColor: "rgba(155, 0, 0, 0.35)",
-              },
-            ]}
-            onPress={() => handlePress("$$")}
-          >
-            <Text style={[styles.dollarText, styles.sideBuffer]}>$$</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.dollarButtons,
-              { marginRight: 4 },
-              selectedButton === "$$$" && {
-                borderColor: "#9B0000",
-                backgroundColor: "rgba(155, 0, 0, 0.35)",
-              },
-            ]}
-            onPress={() => handlePress("$$$")}
-          >
-            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.dollarButtons,
-              { marginRight: 4 },
-              selectedButton === "$$$$" && {
-                borderColor: "#9B0000",
-                backgroundColor: "rgba(155, 0, 0, 0.35)",
-              },
-            ]}
-            onPress={() => handlePress("$$$$")}
-          >
-            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.dollarButtons,
-              { marginRight: 4 },
-              selectedButton === "$$$$$" && {
-                borderColor: "#9B0000",
-                backgroundColor: "rgba(155, 0, 0, 0.35)",
-              },
-            ]}
-            onPress={() => handlePress("$$$$$")}
-          >
-            <Text style={[styles.dollarText, styles.sideBuffer]}>$$$$$</Text>
-          </Pressable>
-        </View>
         <Text style={[styles.profileText]}>Dietary Restrictions</Text>
         <View
           style={[styles.filterContainer, styles.flexColumn, styles.width80]}

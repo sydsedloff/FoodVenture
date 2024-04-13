@@ -141,20 +141,13 @@ const Restaurants = ({
 
   return (
     <View
-      style={[
-        styles.bottomMargins,
-        styles.alignItemsLeft,
-        styles.width90,
-        styles.alignSelfCenter,
-      ]}
+      style={[styles.bottomMargins, styles.width90, styles.alignSelfCenter]}
     >
       <Pressable onPress={toggleSave}>
         <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
-          <Text style={[styles.signa28]} onPress={handlePress}>
-            {name}
-          </Text>
+          <Text style={[styles.signa28, { maxWidth: "80%" }]}>{name}</Text>
           <Image
-            style={[styles.icon]}
+            style={[styles.icon, styles.smallMarginLeft]} // Adjust margin as needed
             source={
               saved
                 ? require("../assets/saveFilled.png")
@@ -162,15 +155,20 @@ const Restaurants = ({
             }
           />
         </View>
-        <RatingImage star_rating={star_rating} />
       </Pressable>
-      <Pressable onPress={handlePress}>
+      <RatingImage star_rating={star_rating} />
+      <Pressable
+        onPress={() =>
+          navigation.navigate("RestaurantScreen", { restaurantId })
+        }
+      >
         <Image
-          source={{ uri: image } || placeholderImage}
+          source={{ uri: image || "placeholderImageURL" }} // Replace "placeholderImageURL" with actual placeholder image URL
           style={[
             styles.image,
             styles.lessBottomMargins,
             styles.alignSelfCenter,
+            { maxWidth: "100%" },
           ]}
         />
       </Pressable>
@@ -185,7 +183,6 @@ const Restaurants = ({
           View Restaurant's Yelp Page
         </Text>
       </Pressable>
-      <Pressable onPress={handlePress}></Pressable>
       <View style={[styles.contentSeperatorContainer]}>
         <View style={[styles.line, styles.bottomMargins]} />
       </View>
