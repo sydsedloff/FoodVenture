@@ -6,11 +6,24 @@ import {
   View,
   Pressable,
   SafeAreaView,
+  LogBox,
 } from "react-native";
 import styles from "../styles";
 import NavigationBar from "../Components/NavigationBar";
 
-export default function ReservationScreen({ navigation }) {
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+]);
+
+export default function ReservationScreen({ navigation, route }) {
+  const { selectedDate, selectedTime, partySize } = route.params;
+  const formattedDate = selectedDate.toLocaleDateString(); // Format the date as needed
+  const formattedTime = new Intl.DateTimeFormat("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true, // Set to false for 24-hour format
+  }).format(selectedTime);
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -33,25 +46,27 @@ export default function ReservationScreen({ navigation }) {
         />
         <View style={styles.contentContainer.white}>
           <Text
-            style={[styles.signa48Red, styles.textCenter, styles.bottomMargins]}
+            style={[styles.signa36Red, styles.textCenter, styles.bottomMargins]}
           >
             Reservation Request Confirmation
           </Text>
           <View>
-            <View style={[styles.horizontalAlign]}>
+            <View style={[{ flexDirection: "row", alignItems: "center" }]}>
               <Text style={[styles.profileText]}>Party Size:</Text>
-              <Text style={[styles.merri19Bold, styles.marginLeft]}>3</Text>
-            </View>
-            <View style={[styles.horizontalAlign]}>
-              <Text style={[styles.profileText]}>Date:</Text>
               <Text style={[styles.merri19Bold, styles.marginLeft]}>
-                November 1, 2024
+                {partySize}
               </Text>
             </View>
-            <View style={[styles.horizontalAlign, styles.bottomMargins]}>
+            <View style={[{ flexDirection: "row", alignItems: "center" }]}>
+              <Text style={[styles.profileText]}>Date:</Text>
+              <Text style={[styles.merri19Bold, styles.marginLeft]}>
+                {formattedDate}
+              </Text>
+            </View>
+            <View style={[{ flexDirection: "row", alignItems: "center" }]}>
               <Text style={[styles.profileText]}>Time:</Text>
               <Text style={[styles.merri19Bold, styles.marginLeft]}>
-                5:30 pm
+                {formattedTime}
               </Text>
             </View>
           </View>

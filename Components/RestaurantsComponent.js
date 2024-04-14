@@ -157,11 +157,7 @@ const Restaurants = ({
         </View>
       </Pressable>
       <RatingImage star_rating={star_rating} />
-      <Pressable
-        onPress={() =>
-          navigation.navigate("RestaurantScreen", { restaurantId })
-        }
-      >
+      <Pressable onPress={() => handlePress()}>
         <Image
           source={{ uri: image || "placeholderImageURL" }} // Replace "placeholderImageURL" with actual placeholder image URL
           style={[
