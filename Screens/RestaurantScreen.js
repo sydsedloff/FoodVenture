@@ -6,6 +6,7 @@ import {
   Pressable,
   Image,
   TextInput,
+  Button,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import styles from "../styles";
@@ -14,10 +15,11 @@ import NavigationBar from "../Components/NavigationBar";
 import HeaderComponent from "../Components/HeaderComponent";
 import RatingImage from "../Components/RatingImageComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const RestaurantSingle = ({ name, image, address, description, website }) => {
   return (
-    <SafeAreaView style={[styles.container, styles.alignItemsLeft]}>
+    <SafeAreaView style={[styles.alignItemsLeft]}>
       <View style={[styles.horizontalAlign, styles.justifySpaceBetween]}>
         <Text style={[styles.signa32]}>{name}</Text>
         <Image
@@ -74,13 +76,21 @@ export default function RestaurantScreen({ navigation }) {
     { label: "5", value: "5" },
     { label: "6+", value: "6+" },
   ]);
-  const [mealTimeOpen, setMealTimeOpen] = useState(false);
-  const [mealTimeValue, setMealTimeValue] = useState(null);
-  const [mealTimeItems, setMealTimeItems] = useState([
-    { label: "Breakfast", value: "Breakfast" },
-    { label: "Lunch", value: "Lunch" },
-    { label: "Dinner", value: "Dinner" },
-  ]);
+  const [date, setDate] = useState(new Date(Date.now() + 30 * 60 * 1000));
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const onChangeDate = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(Platform.OS === "ios");
+    setDate(currentDate);
+  };
+
+  const onChangeTime = (event, selectedTime) => {
+    const currentTime = selectedTime || date;
+    setShowTimePicker(Platform.OS === "ios");
+    setDate(currentTime);
+  };
 
   useEffect(() => {
     async function getSavedRestaurantData() {
@@ -117,9 +127,8 @@ export default function RestaurantScreen({ navigation }) {
             website={restaurantData.website}
           />
         )}
-
-        <View style={[styles.smallNegativeMargins, { marginTop: -205 }]}>
-          <Text style={[styles.signa28, styles.width100, styles.bottomMargins]}>
+        <View style={[styles.smallNegativeMargins, { marginTop: 15 }]}>
+          <Text style={[styles.signa28, styles.width100]}>
             Request a reservation
           </Text>
           <View style={styles.bottomMargins}>
@@ -135,26 +144,50 @@ export default function RestaurantScreen({ navigation }) {
                 dropDownDirection="TOP"
               />
               <Text style={styles.merri19Bold}>Preferred Reservation Time</Text>
-              <DropDownPicker
-                open={mealTimeOpen}
-                value={mealTimeValue}
-                items={mealTimeItems}
-                setOpen={setMealTimeOpen} // Adjusted to toggle open state
-                setValue={setMealTimeValue}
-                setItems={setMealTimeItems} // Added to handle value change
-                dropDownDirection="TOP"
-              />
-              <Text style={styles.merri19Bold}>Date</Text>
-              <TextInput
-                placeholder="Date"
-                style={[styles.thinInput, styles.input]}
-              />
+              <SafeAreaView
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <DateTimePicker
+                  value={date}
+                  mode={"date"}
+                  display="default"
+                  onChange={onChangeDate}
+                  minimumDate={new Date(Date.now() + 30 * 60 * 1000)}
+                />
+                <DateTimePicker
+                  value={date}
+                  mode={"time"}
+                  display="default"
+                  onChange={onChangeTime}
+                  minimumDate={new Date(Date.now() + 30 * 60 * 1000)}
+                />
+                {/* <Text>selected: {date.toLocaleString()}</Text> */}
+              </SafeAreaView>
             </View>
           </View>
 
           <Pressable
-            style={[styles.buttonLarge.r, { marginBottom: 100 }]}
-            onPress={() => navigation.navigate(ReservationScreen)}
+            style={[
+              styles.buttonLarge.r,
+              { marginBottom: 100 },
+              partySizeValue ? styles.buttonEnabled : styles.buttonDisabled, // Conditionally apply styles
+              { opacity: partySizeValue ? 1 : 0.5 }, // Conditionally set opacity
+            ]}
+            onPress={
+              partySizeValue
+                ? () =>
+                    navigation.navigate("ReservationScreen", {
+                      selectedDate: date,
+                      selectedTime: date, // Assuming you want to send the same date object for time as well
+                      partySize: partySizeValue, // Assuming partySizeValue holds the selected party size
+                    })
+                : null
+            } // Conditionally enable onPress
+            disabled={!partySizeValue} // Disable the button if no party size is selected
           >
             <Text style={[styles.buttonLargeText.y]}>Request Reservation</Text>
           </Pressable>

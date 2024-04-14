@@ -58,7 +58,11 @@ export default function HeaderComponent() {
       {!isProfileScreen && !isFilterSidebarScreen && (
         <Pressable onPress={() => navigate("ProfileScreen")}>
           <Image
-            source={{ uri: profilePicture } || placeholderProfileImage}
+            source={
+              profilePicture
+                ? { uri: profilePicture }
+                : require("../assets/icons/profile_placeholder.svg")
+            }
             style={[styles.headerImage]}
           />
         </Pressable>
