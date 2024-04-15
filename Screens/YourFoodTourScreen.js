@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Pressable,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import axios from "axios";
 import styles from "../styles";
@@ -32,8 +33,6 @@ const RestaurantSingle = ({
         styles.container,
         styles.alignItemsLeft,
         styles.contentContainer.sharpCorner,
-        styles.alignItemsLeft,
-        styles.width80,
       ]}
     >
       <Text style={[styles.signa32, styles.bold]}>{myMealName}</Text>
@@ -60,7 +59,12 @@ const RestaurantSingle = ({
       <Pressable onPress={() => Linking.openURL(website)}>
         <Text style={[styles.link, styles.bottomMargins]}>Restaurant Link</Text>
       </Pressable>
-      <View style={[styles.horizontalAlign, { justifyContent: "center" }]}>
+      <View
+        style={[
+          styles.horizontalAlign,
+          { justifyContent: "center", width: "100%" },
+        ]}
+      >
         <Pressable style={[styles.horizontalAlign]} onPress={onSwapPress}>
           <Image
             source={require("../assets/switchRed.png")}
@@ -162,66 +166,68 @@ export default function YourFoodTourScreen({ navigation, route }) {
   }
 
   return (
-    <View>
+    <SafeAreaView>
       <HeaderComponent />
-      {isLoading ? (
-        <ActivityIndicator size="large" color="#9a0000" />
-      ) : (
-        <View style={[styles.container, styles.paddingTopHeader]}>
-          {tourSaved ? (
-            <View>
-              <Text style={[styles.buttonLargeText.y]}>
-                Your food tour has been saved
-              </Text>
-              <Pressable
-                onPress={() => navigation.navigate(SavedFoodToursMenuScreen)}
-              >
-                <Text
-                  style={[
-                    styles.alignSelfCenter,
-                    styles.merri17,
-                    { color: Colors.red, textDecorationLine: "underline" },
-                  ]}
-                >
-                  View Saved Food Tours
+      <ScrollView>
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#9a0000" />
+        ) : (
+          <View style={[styles.container, styles.paddingTopHeader]}>
+            {tourSaved ? (
+              <View>
+                <Text style={[styles.buttonLargeText.y]}>
+                  Your food tour has been saved
                 </Text>
+                <Pressable
+                  onPress={() => navigation.navigate(SavedFoodToursMenuScreen)}
+                >
+                  <Text
+                    style={[
+                      styles.alignSelfCenter,
+                      styles.merri17,
+                      { color: Colors.red, textDecorationLine: "underline" },
+                    ]}
+                  >
+                    View Saved Food Tours
+                  </Text>
+                </Pressable>
+              </View>
+            ) : (
+              <Pressable
+                style={[
+                  styles.buttonLarge.y,
+                  styles.horizontalAlign,
+                  styles.width70,
+                  styles.contentJustify,
+                ]}
+                onPress={() => saveTour()}
+              >
+                <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
+                <Image
+                  style={[styles.icon]}
+                  source={require("../assets/save.png")}
+                ></Image>
               </Pressable>
-            </View>
-          ) : (
-            <Pressable
-              style={[
-                styles.buttonLarge.y,
-                styles.horizontalAlign,
-                styles.width70,
-                styles.contentJustify,
-              ]}
-              onPress={() => saveTour()}
-            >
-              <Text style={[styles.buttonLargeText.r]}>Save Tour</Text>
-              <Image
-                style={[styles.icon]}
-                source={require("../assets/save.png")}
-              ></Image>
-            </Pressable>
-          )}
+            )}
 
-          <View style={[styles.container]}>
-            {selectedRestaurants.map((restaurant, index) => (
-              <RestaurantSingle
-                key={index}
-                name={restaurant.name}
-                image={restaurant.image_url}
-                address={restaurant.location.display_address.join(", ")}
-                description={`Rating: ${restaurant.rating}`}
-                website={restaurant.url}
-                myMealName={mealNames[index % mealNames.length]} // Cycle through meal names
-                onSwapPress={() => handleSwap(index)}
-              />
-            ))}
+            <View style={[styles.container]}>
+              {selectedRestaurants.map((restaurant, index) => (
+                <RestaurantSingle
+                  key={index}
+                  name={restaurant.name}
+                  image={restaurant.image_url}
+                  address={restaurant.location.display_address.join(", ")}
+                  description={`Rating: ${restaurant.rating}`}
+                  website={restaurant.url}
+                  myMealName={mealNames[index % mealNames.length]} // Cycle through meal names
+                  onSwapPress={() => handleSwap(index)}
+                />
+              ))}
+            </View>
           </View>
-        </View>
-      )}
+        )}
+      </ScrollView>
       <NavigationBar />
-    </View>
+    </SafeAreaView>
   );
 }

@@ -553,6 +553,9 @@ export default StyleSheet.create({
   width50: {
     width: "50%",
   },
+  width10: {
+    width: "10%",
+  },
   bold: {
     fontWeight: "bold",
   },
