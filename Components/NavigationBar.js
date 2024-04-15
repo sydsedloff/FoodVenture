@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     width: 70,
   },
   navigationSpacer: {
-    width: 128,
+    width: 164,
   },
   addButtonWrapper: {
     position: "absolute",

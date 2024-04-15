@@ -100,7 +100,12 @@ export default function FilterSidebar({ navigation }) {
 
         <Text style={[styles.profileText]}>Dietary Restrictions</Text>
         <View
-          style={[styles.filterContainer, styles.flexColumn, styles.width80]}
+          style={[
+            styles.filterContainer,
+            styles.flexColumn,
+            styles.width70,
+            { flexDirection: "row", justifyContent: "space-between" },
+          ]}
         >
           <View>
             <Pressable
@@ -125,7 +130,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setPescatarian(!isPescatarian)}
             >
@@ -146,7 +151,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setVegan(!isVegan)}
             >
@@ -162,7 +167,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setVegetarian(!isVegetarian)}
             >
@@ -178,14 +183,15 @@ export default function FilterSidebar({ navigation }) {
         </View>
         <Text style={[styles.profileText]}>Distance</Text>
         <View
-          style={[styles.filterContainer, styles.flexColumn, styles.width80]}
+          style={[styles.filterContainer, styles.flexColumn, styles.width70]}
         >
           <View>
             <Pressable
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width100,
+                styles.width50,
+                { flexDirection: "row", justifyContent: "space-between" },
               ]}
               onPress={() => setDistance0_10(!isDistance0_10)}
             >
@@ -257,9 +263,10 @@ export default function FilterSidebar({ navigation }) {
           style={[
             styles.filterContainer,
             styles.flexColumn,
-            styles.width80,
+            styles.width70,
             styles.moreBottomMargins,
             styles.heightmatch,
+            { flexDirection: "row", justifyContent: "space-between" },
           ]}
         >
           <View>
@@ -267,7 +274,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setAmerican(!isAmerican)}
             >
@@ -283,7 +290,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setJapanese(!isJapanese)}
             >
@@ -299,7 +306,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setIndian(!isIndian)}
             >
@@ -315,7 +322,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setCaribbean(!isCaribbean)}
             >
@@ -331,7 +338,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setKorean(!isKorean)}
             >
@@ -347,7 +354,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setFrench(!isFrench)}
             >
@@ -363,7 +370,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setBBQ(!isBBQ)}
             >
@@ -381,7 +388,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setItalian(!isItalian)}
             >
@@ -397,7 +404,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setChinese(!isChinese)}
             >
@@ -413,7 +420,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setGreek(!isGreek)}
             >
@@ -429,7 +436,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setMexican(!isMexican)}
             >
@@ -445,7 +452,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setThai(!isThai)}
             >
@@ -461,7 +468,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setSeafood(!isSeafood)}
             >
@@ -477,7 +484,7 @@ export default function FilterSidebar({ navigation }) {
               style={[
                 styles.horizontalAlign,
                 styles.bottomMargins,
-                styles.width50,
+                styles.width100,
               ]}
               onPress={() => setPizza(!isPizza)}
             >
