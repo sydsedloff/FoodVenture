@@ -166,7 +166,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
   }
 
   return (
-    <View>
+    <View style={[{ flex: 1 }]}>
       <HeaderComponent />
       <ScrollView>
         {isLoading ? (
@@ -227,7 +227,7 @@ export default function YourFoodTourScreen({ navigation, route }) {
           </View>
         )}
       </ScrollView>
-      <NavigationBar style={[styles.bottomMargins]} />
+      <NavigationBar />
     </View>
   );
 }

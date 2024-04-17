@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import { SafeAreaView, Pressable, Image } from "react-native";
@@ -18,32 +19,32 @@ export default function HeaderComponent() {
 
   const [profilePicture, setProfilePicture] = useState(placeholderProfileImage);
 
-  useEffect(() => {
-    if (!isProfileScreen && !isFilterSidebarScreen) {
-      getUserProfilePicture();
-    }
-  }, [isProfileScreen, isFilterSidebarScreen]);
-
-  async function getUserProfilePicture() {
-    try {
-      const userEmail = await AsyncStorage.getItem("userEmail");
-      const response = await fetch(
-        `http://${localhost}/api/profilePicture/${userEmail}`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        if (data.profilePicture) {
-          setProfilePicture(data.profilePicture);
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchProfilePicture = async () => {
+        try {
+          const userEmail = await AsyncStorage.getItem("userEmail");
+          const response = await fetch(
+            `http://${localhost}/api/profilePicture/${userEmail}`
+          );
+          if (response.ok) {
+            const data = await response.json();
+            if (data.profilePicture) {
+              setProfilePicture(data.profilePicture);
+            }
+          } else {
+            console.error("Failed to fetch profile picture");
+            // If fetch fails, keep the placeholder image
+          }
+        } catch (error) {
+          console.log("Error fetching profile picture:", error);
+          // If there's an error, keep the placeholder image
         }
-      } else {
-        console.error("Failed to fetch profile picture");
-        // If fetch fails, keep the placeholder image
-      }
-    } catch (error) {
-      console.log("Error fetching profile picture:", error);
-      // If there's an error, keep the placeholder image
-    }
-  }
+      };
+
+      fetchProfilePicture();
+    }, [])
+  );
 
   return (
     <SafeAreaView style={[styles.headerContainer]}>
@@ -61,7 +62,7 @@ export default function HeaderComponent() {
             source={
               profilePicture
                 ? { uri: profilePicture }
-                : require("../assets/icons/profile_placeholder.svg")
+                : require("../assets/icons/profile_placeholder.png")
             }
             style={[styles.headerImage]}
           />
