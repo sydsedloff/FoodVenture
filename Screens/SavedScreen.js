@@ -51,7 +51,7 @@ export default function SavedScreen({ navigation }) {
           style={[
             styles.contentContainer.red,
             styles.alignSelfCenter,
-            { marginBottom: "5rem" },
+            { marginBottom: "5%" },
           ]}
           onPress={() => navigation.navigate(SavedFoodToursMenuScreen)}
         >
@@ -59,7 +59,7 @@ export default function SavedScreen({ navigation }) {
             style={[
               styles.pageHeaders,
               styles.bottomMargins,
-              { fontSize: "34px" },
+              { fontSize: "34" },
             ]}
           >
             Saved Tours
