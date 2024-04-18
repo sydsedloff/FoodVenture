@@ -24,7 +24,7 @@ export default function FilterSidebar({ navigation }) {
   const [isDistance12_30, setDistance12_30] = useState(false);
   const [isDistance11_20, setDistance11_20] = useState(false);
   const [isDistance31_plus, setDistance31_plus] = useState(false);
-
+  //asdf
   // CUISINES
   const [isAmerican, setAmerican] = useState(false);
   const [isJapanese, setJapanese] = useState(false);
