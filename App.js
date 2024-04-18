@@ -2,10 +2,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Font from "expo-font"; // Import Font from Expo
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Warning: ...", "Error: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
+
 
 // Import screens
 import WelcomeScreen from "./Screens/WelcomeScreen";
@@ -35,7 +37,6 @@ import MerriweatherSansRegular from "./assets/fonts/MerriweatherSans-Regular.ttf
 import MerriweatherSansBold from "./assets/fonts/MerriweatherSans-Bold.ttf";
 import SignikaNegativeRegular from "./assets/fonts/SignikaNegative-Regular.ttf";
 
-// Register custom fonts
 Font.loadAsync({
   "FugazOne-Regular": FugazOneRegular,
   "MerriweatherSans-Regular": MerriweatherSansRegular,
@@ -59,6 +60,7 @@ export function TabNavigator() {
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const loadFonts = async () => {
@@ -71,17 +73,24 @@ export default function App() {
       setFontsLoaded(true);
     };
 
+    const checkLoginStatus = async () => {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      setIsLoggedIn(!!userEmail);
+    };
+
     loadFonts();
+    checkLoginStatus();
   }, []);
 
   if (!fontsLoaded) {
     return null; // Or a loading screen
   }
+
   return (
     <NavigationContainer>
-      {/* name initialroutename = to a variable or if statement depending on if the user is logged in. Either Home or Welcome screen */}
-
-      <Stack.Navigator initialRouteName="WelcomeScreen">
+      <Stack.Navigator
+        initialRouteName={isLoggedIn ? "HomeScreen" : "WelcomeScreen"}
+      >
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
