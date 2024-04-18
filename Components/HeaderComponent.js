@@ -19,32 +19,32 @@ export default function HeaderComponent() {
 
   const [profilePicture, setProfilePicture] = useState(placeholderProfileImage);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      const fetchProfilePicture = async () => {
-        try {
-          const userEmail = await AsyncStorage.getItem("userEmail");
-          const response = await fetch(
-            `http://${localhost}/api/profilePicture/${userEmail}`
-          );
-          if (response.ok) {
-            const data = await response.json();
-            if (data.profilePicture) {
-              setProfilePicture(data.profilePicture);
-            }
-          } else {
-            console.error("Failed to fetch profile picture");
-            // If fetch fails, keep the placeholder image
-          }
-        } catch (error) {
-          console.log("Error fetching profile picture:", error);
-          // If there's an error, keep the placeholder image
-        }
-      };
+  useEffect(() => {
+    if (!isProfileScreen && !isFilterSidebarScreen) {
+      getUserProfilePicture();
+    }
+  }, [isProfileScreen, isFilterSidebarScreen]);
 
-      fetchProfilePicture();
-    }, [])
-  );
+  async function getUserProfilePicture() {
+    try {
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      const response = await fetch(
+        `http://${localhost}/api/profilePicture/${userEmail}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data.profilePicture) {
+          setProfilePicture(data.profilePicture);
+        }
+      } else {
+        console.error("Failed to fetch profile picture");
+        // If fetch fails, keep the placeholder image
+      }
+    } catch (error) {
+      console.log("Error fetching profile picture:", error);
+      // If there's an error, keep the placeholder image
+    }
+  }
 
   return (
     <SafeAreaView style={[styles.headerContainer]}>

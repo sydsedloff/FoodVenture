@@ -45,10 +45,10 @@ export default function LoginScreen({ navigation }) {
         />
         <View style={styles.contentContainer.white}>
           <Text style={styles.h2.r}>Login</Text>
-          <View style={styles.textInputContainer}>
+          <View style={(styles.textInputContainer, styles.width100)}>
             <TextInput
               placeholder="Email"
-              style={styles.input}
+              style={[styles.input, styles.bottomMargins]}
               value={email}
               onChangeText={setEmail}
             />
