@@ -2,8 +2,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useState, useEffect } from "react";
-import * as Font from "expo-font";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Font from "expo-font"; // Import Font from Expo
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Warning: ...", "Error: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
+
 
 // Import screens
 import WelcomeScreen from "./Screens/WelcomeScreen";
