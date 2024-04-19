@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { View, Text, Image, Pressable, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
@@ -85,30 +92,32 @@ export default function SavedFoodToursScreen({ navigation, route }) {
   };
 
   return (
-    <View>
+    <SafeAreaView style={[{ flex: 1, height: "100%" }]}>
       <HeaderComponent />
-      <View style={[styles.container]}>
-        <Pressable
-          style={[styles.buttonLarge.r, styles.width80]}
-          onPress={() => unsaveFoodTour()}
-        >
-          <Text style={[styles.buttonLargeText.y]}>Unsave</Text>
-        </Pressable>
-        {Object.keys(tour)
-          .slice(0, 5)
-          .map((key, index) => (
-            <RestaurantSingle
-              key={index}
-              name={tour[key].name}
-              image={tour[key].image}
-              address={tour[key].address}
-              description={tour[key].description}
-              website={tour[key].website}
-              myMealName={mealNames[index % mealNames.length]}
-            />
-          ))}
-      </View>
+      <ScrollView>
+        <View style={[styles.container, { paddingBottom: 140 }]}>
+          <Pressable
+            style={[styles.buttonLarge.r, styles.width80]}
+            onPress={() => unsaveFoodTour()}
+          >
+            <Text style={[styles.buttonLargeText.y]}>Unsave</Text>
+          </Pressable>
+          {Object.keys(tour)
+            .slice(0, 5)
+            .map((key, index) => (
+              <RestaurantSingle
+                key={index}
+                name={tour[key].name}
+                image={tour[key].image}
+                address={tour[key].address}
+                description={tour[key].description}
+                website={tour[key].website}
+                myMealName={mealNames[index % mealNames.length]}
+              />
+            ))}
+        </View>
+      </ScrollView>
       <NavigationBar />
-    </View>
+    </SafeAreaView>
   );
 }

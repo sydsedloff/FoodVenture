@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, SafeAreaView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
@@ -34,9 +34,9 @@ export default function SavedRestaurantScreen({ navigation }) {
   };
 
   return (
-    <View>
+    <SafeAreaView style={[{ flex: 1, height: "100%" }]}>
       <HeaderComponent />
-      <View style={[styles.container]}>
+      <View style={[styles.container, { paddingBottom: 140 }]}>
         <Text style={[styles.pageHeaders]}>Saved Restaurants</Text>
 
         {savedRestaurants.length === 0 ? (
@@ -65,6 +65,6 @@ export default function SavedRestaurantScreen({ navigation }) {
         )}
       </View>
       <NavigationBar />
-    </View>
+    </SafeAreaView>
   );
 }

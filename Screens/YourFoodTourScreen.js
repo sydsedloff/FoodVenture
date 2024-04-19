@@ -166,13 +166,19 @@ export default function YourFoodTourScreen({ navigation, route }) {
   }
 
   return (
-    <View style={[{ flex: 1 }]}>
+    <SafeAreaView style={[{ flex: 1, height: "100%" }]}>
       <HeaderComponent />
       <ScrollView>
         {isLoading ? (
           <ActivityIndicator size="large" color="#9a0000" />
         ) : (
-          <View style={[styles.container, styles.paddingTopHeader]}>
+          <View
+            style={[
+              styles.container,
+              styles.paddingTopHeader,
+              { paddingBottom: 100 },
+            ]}
+          >
             {tourSaved ? (
               <View>
                 <Text style={[styles.buttonLargeText.y]}>
@@ -228,6 +234,6 @@ export default function YourFoodTourScreen({ navigation, route }) {
         )}
       </ScrollView>
       <NavigationBar />
-    </View>
+    </SafeAreaView>
   );
 }
