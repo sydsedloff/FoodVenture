@@ -109,7 +109,7 @@ export default function ChoosePfpScreen({ navigation }) {
                 >
                   <Image
                     style={[styles.tasteBuddies]}
-                    source={require("../assets/pfp/chopstick_profile.svg")}
+                    source={require("../assets/pfp/chopstick_profile.png")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
                     Daniel & Miyagi
@@ -215,7 +215,7 @@ export default function ChoosePfpScreen({ navigation }) {
                 >
                   <Image
                     style={[styles.tasteBuddies]}
-                    source={require("../assets/pfp/straws-profile.svg")}
+                    source={require("../assets/pfp/straws-profile.png")}
                   />
                   <Text style={[styles.merri19Bold, { paddingLeft: "2%" }]}>
                     Ed, Edd, & Eddy

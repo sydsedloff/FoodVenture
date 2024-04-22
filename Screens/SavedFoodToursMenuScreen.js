@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, Image, View, Pressable } from "react-native";
+import { Text, Image, View, Pressable, SafeAreaView } from "react-native";
 import styles from "../styles";
 import HeaderComponent from "../Components/HeaderComponent";
 import NavigationBar from "../Components/NavigationBar";
@@ -40,7 +40,7 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <HeaderComponent navigation={navigation} />
       <View style={[styles.container, styles.paddingTopHeader]}>
         <Text style={[styles.pageHeaders, styles.bottomMargins]}>
@@ -61,6 +61,6 @@ export default function SavedFoodToursMenuScreen({ navigation }) {
         ))}
       </View>
       <NavigationBar />
-    </View>
+    </SafeAreaView>
   );
 }
